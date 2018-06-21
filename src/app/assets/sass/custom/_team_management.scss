@@ -1,0 +1,566 @@
+/* 
+    Created on : Nov 28, 2016, 11:27:40 AM
+    Author     : ahextech
+*/
+/* Button Styles Starts Here  */
+.btn-team-member{
+    top     : 15px;
+    position: absolute;
+    @include border-radius(5px);
+    @include button(100%, 150px, $blue-light-20);
+    @include font($white, 14px, $roboto-regular);
+    @include transition(all 0.5s ease-in-out);
+    &:hover, &:focus{
+        background-color: $blue;
+    }
+}
+/* Button Styles Ends Here  */
+.team-management-wrapper{
+    padding         : 15px;
+    position        : relative;
+    background-color: $white;
+    .btn-add-member{
+        left     : 15px;
+        max-width: 170px;
+    }
+    .btn-member-activity{
+        left     : 195px;
+        max-width: 190px;
+    }
+    .view-selection-list{
+        .nav-tabs{
+            float: right;
+            width: 50px;
+            .view-selection-option{
+                a{
+                    color    : $sidebar-grey;
+                    border   : 0;
+                    padding  : 0;
+                    font-size: 19px;
+                    &:hover{
+                        background-color: transparent;
+                    }
+                }
+                &.active{
+                    a{
+                        color: $blue-1;
+                    }
+                }
+            }
+        }
+        .tab-content{
+            margin-top: 70px;
+            .team-details{
+                border  : 1px solid $blue-1;
+                margin  : 0 0 0 50px;
+                padding : 15px;
+                position: relative;
+                @include border-radius(5px);
+                img{
+                    top      : 25px;
+                    left     : -50px;
+                    width    : 100%;
+                    position : absolute;
+                    max-width: 100px;
+                    @include border-radius(50%);
+                }
+                .member-details, .member-location{
+                    float    : left;
+                    display  : inline-block;
+                    max-width: 555px;
+                    p{
+                        color       : $form-label;
+                        font-size   : 14px;
+                        font-family : $opensans-light;
+                        span{
+                            display       : inline-block;
+                            overflow      : hidden;
+                            white-space   : nowrap;
+                            text-overflow : ellipsis;
+                            vertical-align: middle;
+                        }
+                    }
+                }
+                .member-details{
+                    width       : 45%;
+                    padding-left: 60px;
+                    p{
+                        &:first-of-type{
+                            span{
+                                width: 80%;
+                            }
+                        }
+                        &:last-of-type{
+                            span{
+                                width: 78%;
+                            }
+                        }
+                    }
+                }
+                .member-location{
+                    width: 44%;
+                    p{
+                        &:first-of-type{
+                            span{
+                                width: 85%;
+                            }
+                        }
+                        &:last-of-type{
+                            span{
+                                width: 85%;
+                            }
+                        }
+                    }
+                }
+                .dropdown{
+                    float    : right;
+                    width    : 11%;
+                    .dropdown-toggle{
+                        color           : $form-label;
+                        width           : 100%;
+                        border          : 1px solid $green-1;
+                        font-size       : 14px;
+                        max-width       : 135px;
+                        margin-top      : 9px;
+                        min-height      : 40px;
+                        font-family     : $opensans-light;
+                        background-color: $light-grey;
+                        @include border-radius(5px);
+                        &:focus, &:hover{
+                            border-color: $green-hover;
+                        }
+                        span{
+                            margin-left: 10px;
+                        }
+                    }
+                    .dropdown-menu{
+                        margin   : 0;
+                        padding  : 0;
+                        min-width: 135px;
+                        @include border-radius(0);
+                        li{
+                            a{
+                                color      : $logout-options;
+                                padding    : 10px 0 10px 40px;
+                                position   : relative;
+                                font-size  : 14px;
+                                font-family: $opensans-light;
+                                i{
+                                    top      : 12px;
+                                    left     : 10px;
+                                    color    : $logout-options;
+                                    position : absolute;
+                                    font-size: 18px;
+                                }
+                                img{
+                                    top      : 12px;
+                                    left     : 10px;
+                                    position : absolute;
+                                    &.img-hover{
+                                        display: none;
+                                    }
+                                }
+                                &:hover{
+                                    color           : $white;
+                                    background-color: $blue-2;
+                                    i{
+                                        color: $white;
+                                    }
+                                    img{
+                                        &.img-hover{
+                                            display: inline;
+                                        }
+                                        &.img-default{
+                                            display: none;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .btn-more-member{
+                color           : $form-label;
+                width           : 100%;
+                border          : 1px solid $blue-1;
+                margin          : 20px auto 0;
+                display         : block;
+                font-size       : 14px;
+                max-width       : 190px;
+                min-height      : 44px;
+                font-family     : $opensans-light;
+                background-color: $light-grey;
+                @include border-radius(5px);
+                &:hover, &:focus{
+                    color       : $form-label;
+                    border-color: $blue-hover;
+                }
+            }
+            .team-member-table{
+                /*border: 1px solid $blue-1;*/
+                thead{
+                    background-color: $blue-1;
+                    tr{
+                        th{
+                            color              : $white;
+                            border             : 1px solid $blue-1;
+                            position           : relative;
+                            font-size          : 15px;
+                            font-family        : $opensans-light;
+                            border-bottom-width: 0;
+                            white-space: nowrap;
+                            a{
+                                color: $white;
+                                &.fa{
+                                    right    : 15px;
+                                    position : absolute;
+                                    font-size: 16px;
+                                    &.fa-caret-up{
+                                        top: 5px;
+                                    }
+                                    &.fa-caret-down{
+                                        top: 15px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                tbody{
+                    tr{
+                        &:nth-of-type(2n+1){
+                            background-color: $white;
+                        }
+                        &:nth-of-type(2n){
+                            background-color: #f9f9f9;
+                        }
+                        td{
+                            color      : $grey-1;
+                            border-color: $grey-9;
+                            font-size  : 14px;
+                            font-family: $opensans-light;
+                            white-space: nowrap;
+                            &:nth-last-of-type(5){
+                                border-right: 1px solid $grey-9;
+                            }
+                            &:nth-of-type(9), &:last-of-type{
+                                /*text-align: center;*/
+                            }
+                            a{
+                                color: $grey-1;
+                                &.fa-trash{
+                                    color: red;
+                                }
+                            }
+                            img{
+                                color: $grey-1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .btn-more-result{
+        color      : $sidebar-grey;
+        width      : 100%;
+        border     : 1px solid $black;
+        margin     : 20px auto 0;
+        display    : block;
+        font-size  : 15px;
+        max-width  : 150px;
+        font-family: $opensans-light;
+        @include border-radius(5px);
+    }
+    .domain-type-wrapper{
+        position: relative;
+        padding: 20px;
+        padding-top: 50px;
+        margin-bottom: 40px;
+        @include border-radius(6px);
+        @include box-shadow(0 0 13px 0px rgba(0,0,0,0.2));
+        .domain-title{
+            top: 5px;
+            color        : $white;
+            padding      : 4px 12px;
+            position     : absolute;
+            position     : absolute;
+            font-size    : 12px;
+            background   : #32c861;
+            font-family  : roboto,sans-serif;
+            margin-left  : -30px;
+            margin-bottom: 15px;
+            @include box-shadow(2px 2px 0 rgba(0,0,0,.1));
+            &::before {
+                left       : 0px;
+                width      : 0; top: 100%;
+                height     : 0;
+                content    : '';
+                position   : absolute;
+                border-top : 10px solid #289f4d;
+                border-left: 10px solid transparent;
+            }
+        }
+    }
+}
+
+/* Styles for Team Management Modal Boxes Starts Here */
+
+/* Styles for Add/Edit Team Member Starts Here */
+.add-team-management-modal{
+    .modal-dialog{
+        width: 280px;
+        .modal-content{
+            .btn-add-team-member{
+                @include border-radius(5px);
+                @include button(100%, 100%, $blue-light-20);
+                @include font($white, 14px, $roboto-regular);
+                @include transition(all 0.5s ease-in-out);
+                &:hover, &:focus{
+                    background-color: $blue;
+                }
+            }
+        }
+    }
+}
+/* Styles for Add/Edit Team Member Ends Here */
+
+/* Styles for Delete Team Member Starts Here */
+.delete-team-management-modal{
+    .modal-dialog{
+        width: 450px;
+        .modal-content{
+            .custom-modal-body{
+                .delete-team-member-text{
+                    @include font($black-1, 14px, $roboto-light);
+                }
+                .btn-assign-data{
+                    float    : left;
+                    @include border-radius(5px);
+                    @include button(100%, 120px, $blue-light-20);
+                    @include font($white, 14px, $roboto-regular);
+                    @include transition(all 0.5s ease-in-out);
+                    &:hover, &:focus{
+                        background-color: $blue;
+                    }
+                }
+                .btn-delete-without-assign{
+                    float    : left;
+                    margin   : 0 0 0 20px;
+                    @include border-radius(5px);
+                    @include button(100%, 190px, $red-1);
+                    @include font($white, 14px, $roboto-regular);
+                    @include transition(all 0.5s ease-in-out);
+                    &:hover, &:focus{
+                        background-color: $red-2;
+                    }
+                }
+            }
+        }
+    }
+}
+/* Styles for Delete Team Member Ends Here */
+
+/* Styles for Assign Data and Delete Modal Box Starts Here */
+.assign-team-management-modal{
+    .modal-dialog{
+        width: 470px;
+        .modal-content{
+            padding: 0;
+            @include border-radius(0);
+            .custom-modal-body{
+                .btn-assign-delete{
+                    border: 1px solid $red;
+                    max-width: 260px;
+                    &:focus, &:hover{
+                        border-color: $red-hover;
+                    }
+                }
+            }
+        }
+    }
+}
+/* Styles for Assign Data and Delete Modal Box Ends Here */
+
+/* Styles for Delete Without Assign Modal Box Starts Here */
+.delete-nonassign-management-modal{
+    .modal-dialog{
+        width: 440px;
+        .modal-content{
+            padding: 0;
+            @include border-radius(0);
+            .custom-modal-body{
+                p{
+                    color      : $form-label;
+                    font-size  : 14px;
+                    text-align : center;
+                    font-family: $opensans-light;
+                }
+                h3{
+                    color      : $grey-5;
+                    font-size  : 16px;
+                    font-family: $opensans-light;
+                }
+                .delete-btn-wrapper{
+                    width  : 380px;
+                    margin : 20px auto 0;
+                    display: block;
+                    .btn-delete{
+                        float    : left;
+                        border   : 1px solid $red;
+                        max-width: 220px;
+                        &:hover{
+                            border-color: $red-hover;
+                        }
+                    }
+                    .btn-dont-delete{
+                        float      : left;
+                        border     : 1px solid $grey-4;
+                        max-width  : 140px;
+                        margin-left: 20px;
+                        &:hover{
+                            border-color: $grey-hover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/* Styles for Delete Without Assign Modal Box Ends Here */
+
+/* Styles for Member Activity Modal Box Starts Here */
+.member-activity-management-modal{
+    .modal-dialog{
+        .modal-content{
+            padding: 0;
+            .custom-modal-body{
+                .search-by-date-form{
+                    span, label{
+                        color      : $grey-1;
+                        display    : inline-block;
+                        font-size  : 14px;
+                        font-weight: 400;
+                        font-family: $opensans-light;
+                    }
+                    label{
+                        margin-left : 10px;
+                        margin-right: 10px;
+                    }
+                    input{
+                        width      : 155px;
+                        border     : 1px solid $blue-1;
+                        display    : inline-block;
+                        padding    : 6px 30px 6px 12px;
+                        min-height : 40px;
+                        font-family: $opensans-light;
+                        @include border-radius(0);
+                        &.form-control{
+                            @include box-shadow(none);
+                            &:focus{
+                                @include box-shadow(none);
+                            }
+                        }
+                    }
+                    .fa-calendar{
+                        top      : 23px;
+                        color    : $grey-1;
+                        position : absolute;
+                        font-size: 23px;
+                        &.from-date-icon{
+                            right: 288px;
+                        }
+                        &.to-date-icon{
+                            right: 90px;
+                        }
+                    }
+                    .btn-go{
+                        width      : 100%;
+                        border     : 1px solid $grey-4;
+                        display    : inline-block;
+                        max-width  : 50px;
+                        min-height : 40px;
+                        margin-left: 10px;
+                        &:hover{
+                            border-color: $grey-hover;
+                        }
+                    }
+                }
+                .custom-website-form{
+                    margin-top: 20px;
+                    .form-group{
+                        .btn-search-activity{
+                            color           : $form-label;
+                            width           : auto;
+                            border          : 1px solid $green-1;
+                            margin          : 0 0 0 15px;
+                            font-size       : 14px;
+                            max-width       : 100px;
+                            min-height      : 40px;
+                            font-family     : $opensans-light;
+                            background-color: $light-grey;
+                            &:hover, &:focus{
+                                border-color: $green-hover;
+                            }
+                        }
+                    }
+                }
+                .activity-container{
+                    margin    : 20px 0 0;
+                    padding   : 0 0 0 50px;
+                    overflow  : auto;
+                    min-height: 300px;
+                    .activity-wrapper{
+                        padding         : 10px;
+                        position        : relative;
+                        background-color: $light-blue;
+                        .fa-dot-circle-o{
+                            top      : 20px;
+                            left     : -35px;
+                            color    : $blue-1;
+                            position : absolute;
+                            font-size: 23px;
+                        }
+                        p{
+                            color      : $grey-1;
+                            margin     : 0;
+                            font-family: $opensans-light;
+                            &.activity-name{
+                                margin   : 0 0 0 5px;
+                                font-size: 14px;
+                            }
+                            &.activity-date{
+                                font-size: 12px;
+                            }
+                        }
+                        &:not(:first-of-type){
+                            margin: 10px 0 0;
+                            &:before{
+                                top             : -15px;
+                                left            : -26px;
+                                width           : 1px;
+                                height          : 25px;
+                                content         : "";
+                                position        : absolute;
+                                background-color: $blue-1;
+                            }
+                        }
+                    }
+                }
+                .btn-past-activity{
+                    border   : 1px solid $grey-4;
+                    margin   : 0 auto;
+                    display  : block;
+                    max-width: 110px;
+                    &:focus, &:hover{
+                        border-color: $grey-hover;
+                    }
+                }
+            }
+        }
+    }
+}
+/* Styles for Member Activity Modal Box Ends Here */
+
+/* Styles for Team Management Modal Boxes Ends Here */

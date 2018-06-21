@@ -1,0 +1,54 @@
+<div class="modal-header custom-modal-header">
+    <h3 class="modal-title">Download Report
+        <a class="fa fa-times custom-close" href=""></a>
+    </h3>
+</div>
+<div class="modal-body custom-modal-body">
+    <form class="custom-form">
+        <div class="form-group">
+            <label for="poweredByLink">Powered by link</label>
+            <div class="switch">
+                <input id="cmn-toggle-5" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                <label for="cmn-toggle-5"></label>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Enter link text"/>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Enter link URL"/>
+        </div>
+        <div class="form-group">
+            <label for="customizeReport">Customize Report</label>
+            <div class="switch">
+                <input id="cmn-toggle-6" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                <label for="cmn-toggle-6"></label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="addLogo">Add Logo</label>
+            <button type="button" class="btn btn-custom btn-choose-logo">Choose Logo</button>
+        </div>
+        <div class="form-group">
+            <label for="logoPosition">Logo Position</label>
+            <div class="btn-group btn-custom-group">
+                <label class="btn push-btn" uib-btn-radio="'Centre'">Centre</label>
+                <label class="btn push-btn" uib-btn-radio="'Left'">Left</label>
+                <label class="btn push-btn" uib-btn-radio="'Right'">Right</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="headings">Headings</label>
+            <input type="text" class="form-control heading-field" placeholder="Enter Headline"/>
+            <input type="text" class="form-control heading-field" placeholder="Enter Sub Headline"/>
+        </div>
+        <div class="form-group">
+            <label for="selectFormat">Select Format</label>
+            <div class="btn-group btn-custom-group">
+                <label class="btn push-btn" uib-btn-radio="'PDF'">PDF</label>
+                <label class="btn push-btn" uib-btn-radio="'CSV'">CSV</label>
+            </div>
+        </div>
+        <button type="button" class="btn btn-custom btn-download-report">Download Report</button>
+    </form>
+</div>

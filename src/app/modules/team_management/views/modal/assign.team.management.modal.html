@@ -1,0 +1,24 @@
+<div class="modal-header custom-modal-header">
+    <h3 class="modal-title">Assign Data
+        <a class="fa fa-times custom-close" href="" ng-click="assignTeamManagement.cancel()"></a>
+    </h3>
+</div>
+<div class="modal-body custom-modal-body">
+    <div ng-show="assignTeamManagement.assignTeamManage.successAlert" class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" ng-click="assignTeamManagement.hideSuccessAlert()"><span aria-hidden="true">&times;</span></button>
+        {{assignTeamManagement.assignTeamManage.success}}
+    </div>
+    <div ng-show="assignTeamManagement.assignTeamManage.dangerAlert" class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" ng-click="assignTeamManagement.hideDangerAlert()"><span aria-hidden="true">&times;</span></button>
+        {{assignTeamManagement.assignTeamManage.danger}}
+    </div>
+    <form class="custom-website-form" name="selectTeamMemberForm" ng-submit="assignDataToTeamMember()">
+        <div class="form-group">
+            <input type="text" class="form-control" ng-class="{'error-field': assignTeamManagement.assignTeamManage.isSelectTeamMembersRequired}" id="selectTeamMembers" name="selectTeamMembers" ng-model="assignTeamManagement.assignTeamManage.selectTeamMembers" uib-typeahead="teamMember for teamMember in assignTeamManagement.teamMembersList" placeholder="Select Team Members" add-team-member-validator required/>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-delete-primary">Assign Data & Delete Member</button>
+            <button type="button" class="btn btn-cancel-primary" ng-click="assignTeamManagement.cancel()">Close</button>
+        </div>
+    </form>
+</div>

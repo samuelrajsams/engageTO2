@@ -1,0 +1,16 @@
+<div class="modal-header custom-modal-header">
+    <h3 class="modal-title">Welcome Notification Created
+        <a class="fa fa-times custom-close" href ng-click="welcomeNotification.navigateToAll()"></a>
+    </h3>
+</div>
+<div class="modal-body custom-modal-body">
+    <div class="verify-installation-wrapper">
+        <i class="fa fa-check verify-success-icon" aria-hidden="true"></i>
+        <div class="verify-code-success-text text-center">
+            <p>You've successfully <span ng-if="!welcomeNotification.notification.id">created</span><span ng-if="welcomeNotification.notification.id">updated</span> a welcome notification.</p>
+        </div>
+        <div class="delete-btn-wrapper clearfix">
+            <button type="button" class="btn btn-custom btn-dont-delete" ng-click="welcomeNotification.navigateToAll()">Show <span ng-if="!welcomeNotification.notification.id">added</span><span ng-if="welcomeNotification.notification.id">modified</span> welcome notification</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+{
+	  "device": [
+      {
+        "name":"laptop",
+        "percent":"23.9"
+      },
+      {
+        "name":"tablet",
+        "percent":"25.6"
+      },
+      {
+        "name":"mobile",
+        "percent":"50.5"
+      }
+    ]
+
+}

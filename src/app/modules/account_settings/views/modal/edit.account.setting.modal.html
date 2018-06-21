@@ -1,0 +1,64 @@
+<!--<div class="loader-wrapper"  ng-if="accountSettings.editDetails.load"></div>
+<div class="loader" ng-if="accountSettings.editDetails.load">
+    <div>Loading....</div>
+</div>-->
+<div class="modal-header custom-modal-header">
+    <h3 class="modal-title">Edit user
+        <a class="fa fa-times custom-close" href="" ng-click="accountSettings.close()"></a>
+    </h3>
+</div>
+<div class="modal-body edit-user-modal-body">
+    <form class="edit-user-form" name="editDetailsForm" ng-submit="accountSettings.editAccountDetails()">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-class="{'error-field': accountSettings.editDetails.isFirstNameRequired}" id="firstName" name="firstName" ng-model="accountSettings.editDetails.firstName" placeholder="First name" edit-user-validator required/>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-class="{'error-field': accountSettings.editDetails.isLastNameRequired}" id="lastName" name="lastName" ng-model="accountSettings.editDetails.lastName" placeholder="Last name" edit-user-validator required/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-class="{'error-field': accountSettings.editDetails.isEmailAddressRequired || !accountSettings.editDetails.isUrlValid}" id="emailAddress" name="emailAddress" ng-model="accountSettings.editDetails.emailAddress" placeholder="Email address" edit-user-validator required/>
+                    <span class="error-2" ng-show="!accountSettings.editDetails.isUrlValid">Please, Enter valid email address. Let us serve you better</span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="firstName" name="companyName" ng-model="accountSettings.editDetails.companyName" placeholder="Company"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="selectCountry" name="selectCountry" ng-model="accountSettings.editDetails.country" uib-typeahead="country.name for country in accountSettings.editDetails.countryList | filter:{name:$viewValue}" placeholder="Select Country" typeahead-on-select="accountSettings.selectedCountry()" edit-user-validator autocomplete="off"/>
+                </div>
+            </div>
+            <div class="col-sm-6">
+
+                <div class="form-group">
+                    <input type="text" class="form-control" id="selectCity" name="selectCity" ng-model="accountSettings.editDetails.city" uib-typeahead="city for city in accountSettings.editDetails.cityList | filter:$viewValue" placeholder="Select City" edit-user-validator autocomplete="off"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="selectTimezone" name="selectTimezone" ng-model="accountSettings.editDetails.timezone" uib-typeahead="timezone.name for timezone in accountSettings.editDetails.timezoneList | filter:{name:$viewValue}" placeholder="Select Timezone" edit-user-validator autocomplete="off"/>
+                </div>
+            </div>
+        </div>
+        <div class="text-right">
+            <button type="button" class="btn btn-cancel-primary" ng-click="accountSettings.close()">Cancel</button>
+            <button type="submit" class="btn btn-custom-primary" ng-disabled="editDetailsForm.$invalid || engagetoApp.isLoading">Save
+                <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+            </button>
+        </div>
+    </form>
+</div>

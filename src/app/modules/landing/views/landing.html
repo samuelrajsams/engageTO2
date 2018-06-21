@@ -1,0 +1,210 @@
+<!--<div class="banner-area text-center">-->
+<div class="banner-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="banner-area-content-wrapper">
+                    <h1 class="banner-head">Your customers are everywhere Engage with them anywhere</h1>
+                    <p>
+                        Now you can automatically send notifications to your customers in web and mobile. 
+                        Getting started takes less than 2 minutes.
+                    </p>
+                    <button type="button" class="btn btn-free-trial" ng-click="engagetoApp.goToState('start-free-trial')">Start a free trial now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<img class="img-responsive" src="app/assets/images/banner-animated image.gif" alt="" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"/>-->
+</div>
+<div class="container" id="how-it-works-custom">
+    <div class="benefit-area">
+        <div class="row">
+            <h3 class="custom-header text-center">How it works?</h3>
+            <img class="img-responsive" src="app/assets/images/how-it-works.gif"/>
+        </div>
+    </div>
+</div>
+<div class="features-wrapper">
+    <div class="container">
+        <h3 class="custom-header text-center">Features</h3>
+        <div class="row" id="features-landing-custom">
+            <div class="col-sm-4 text-center">
+                <img class="img-responsive" src="app/assets/images/feature/easy-setup.svg" alt=""/>
+                <h5>Easy & Quick Setup</h5>
+                <p>Just copy paste the smart code in your website and you're ready to collect subscribers.</p>
+            </div>
+            <div class="col-sm-4 text-center">
+                <img class="img-responsive" src="app/assets/images/feature/emoji.svg" alt=""/>
+                <h5>Personalise With Emoji</h5>
+                <p>Emojis are best way to show emotions. Personalise notifications with Emojis, Buttons(CTA's) & 
+                    images.</p>
+            </div>
+            <div class="col-sm-4 text-center">
+                <img class="img-responsive" src="app/assets/images/feature/advanced-segmentation.svg" alt=""/>
+                <h5>Advanced Segmentation</h5>
+                <p>
+                    Segment your subscribers according to their behavioural data such as country, city, timezone, 
+                    language, etc.
+                </p>
+            </div>
+            <div class="col-sm-4 text-center">
+                <img class="img-responsive" src="app/assets/images/feature/websites.svg" alt=""/>
+                <h5>Multiple Domains</h5>
+                <p>You can add and setup multiple domains under one account.</p>
+            </div>
+            <div class="col-sm-4 text-center">
+                <img class="img-responsive" src="app/assets/images/feature/http-https.svg" alt=""/>
+                <h5>Works on HTTP & HTTPS</h5>
+                <p>Whether your website is HTTP or HTTPS, we got you covered.</p>
+            </div>
+            <div class="col-sm-4 text-center">
+                <img class="img-responsive" src="app/assets/images/feature/schedule-notification.svg" alt=""/>
+                <h5>Schedule Notifications</h5>
+                <p>You can schedule notification to be sent on specific date, time and even timezone.</p>
+            </div>
+        </div>
+        <a href ui-sref="features" class="btn btn-more-features">More Features</a>
+    </div>
+</div>
+<div class="pricing-container">
+    <div class="container">
+        <h3 class="custom-header text-center">Pricing</h3>
+        <div id="pricing-tab-index">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="price-switch-wrapper">
+                        <span>Billed Monthly</span>
+                        <div class="switch">
+                            <input id="pricing-landing" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="landing.plan.planSlab" ng-true-value="'Yearly'" ng-false-value="'Monthly'" ng-change='landing.changePlanSlab()'>
+                            <label for="pricing-landing"></label>
+                        </div>
+                        <span>Billed Annually <small>(Save 20%)</small></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="custom-price-category text-center startup-category">
+                        <h4 class="price-category-head">Startup</h4>
+                        <p class="price-amount">Free</p>
+                        <span class="per-month-text">per month</span>
+                        <p class="category-content">Send unlimited notifications</p>
+                        <p class="category-content">HTTP + HTTPS support</p>
+                        <p class="category-content">One click subscribe</p>
+                        <button class="btn btn-price-category">Start Free Trial</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="custom-price-category text-center premium-category">
+                        <h4 class="price-category-head">Premium</h4>
+                        <small>More Popular</small>
+                        <p class="price-amount">$
+                            <span class="odometer" id="odometer-slider1"></span>
+                        </p>
+                        <span class="per-month-text">per {{landing.plan.planSlab}}</span>
+                        <rzslider rz-slider-model="landing.slider1.value" rz-slider-options="landing.slider1.options"></rzslider>
+                        <span class="subscribers-text">SUBSCRIBERS</span>
+                        <p class="category-content">Send unlimited notifications</p>
+                        <p class="category-content">HTTP + HTTPS support</p>
+                        <p class="category-content">One click subscribe</p>
+                        <p class="category-content">RSS-to-push</p>
+                        <p class="category-content">Segmentation</p>
+                        <p class="category-content">{{landing.plan.noOfPremiumAPICalls}} API access</p>
+                        <button class="btn btn-price-category">Start Free Trial</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="custom-price-category text-center expertise-category">
+                        <h4 class="price-category-head">Expertise</h4>                    
+                        <p class="price-amount">$
+                            <span class="odometer-slider" id="odometer-slider2"></span>
+                        </p>
+                        <span class="per-month-text">per {{landing.plan.planSlab}}</span>
+                        <rzslider rz-slider-model="landing.slider2.value" rz-slider-options="landing.slider2.options"></rzslider>
+                        <span class="subscribers-text">SUBSCRIBERS</span>
+                        <p class="category-content">Custom branding</p>
+                        <p class="category-content">Import/export data</p>
+                        <p class="category-content">HTTP + HTTPS support</p>
+                        <p class="category-content">One click subscribe</p>
+                        <p class="category-content">Custom sub domain</p>
+                        <p class="category-content">{{landing.plan.noOfExpertiseAPICalls}} API access</p>
+                        <button class="btn btn-price-category" ng-click="landing.selectingPlan('premium')">Start Free Trial</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="count-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-xxs-12 col-xs-4">
+                <h3>+{{totalSubscribers}}</h3>
+                <p>Website subscribers</p>
+            </div>
+            <div class="col-xxs-12 col-xs-4">
+                <h3>+{{totalNotificationSent}}</h3>
+                <p>Notifications send</p>
+            </div>
+            <div class="col-xxs-12 col-xs-4">
+                <h3>+{{totalDeviceRegistered}}</h3>
+                <p>Devices currently using</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="faq-wrapper">
+    <div class="container">
+        <h3 class="custom-header text-center">Frequently asked questions</h3>
+        <uib-accordion>
+            <div class="row" id="faq-tab-index">
+                <div class="col-sm-6">
+                    <div uib-accordion-group class="panel-default" is-open="status.isFirstOpen">
+                        <uib-accordion-heading>
+                            What is web push technology?<i class="pull-right glyphicon" ng-class="{
+                                    'faq-arrow-down'
+                                    : status.isFirstOpen, 'faq-arrow-right': !status.isFirstOpen}"></i>
+                        </uib-accordion-heading>
+                        Web push technology sends little pop-up notifications from your website to your subscribers’ computer or mobile device. 
+                        Website or e-Commerce site owners use push notifications to interact with their users and to instantly deliver relevant content or offerings to their target audience. 
+                        Messages can be customized and targeted to specific audiences. Each notification displays your website logo and customized text.
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div uib-accordion-group class="panel-default" is-open="status.isFirstOpen2">
+                        <uib-accordion-heading>
+                            Can I customize my messages?<i class="pull-right glyphicon" ng-class="{
+                                    'faq-arrow-down'
+                                    : status.isFirstOpen2, 'faq-arrow-right': !status.isFirstOpen2}"></i>
+                        </uib-accordion-heading>
+                        Yes! You can write any text you want up to 80 characters (plus an additional 32 for the subject). FoxPush even enables the use of emojis to enhance your message.
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div uib-accordion-group class="panel-default" is-open="status.isFirstOpen3">
+                        <uib-accordion-heading>
+                            How long will it take for my messages to be sent?<i class="pull-right glyphicon" ng-class="{
+                                    'faq-arrow-down': status.isFirstOpen3, 'faq-arrow-right': !status.isFirstOpen3}"></i>
+                        </uib-accordion-heading>
+                        Messages are received instantly, so you can reach your subscriber in real-time. You can also schedule messages in advance (see the next question).
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div uib-accordion-group class="panel-default" is-open="status.isFirstOpen4">
+                        <uib-accordion-heading>
+                            Can I schedule messages to be sent at a later time?<i class="pull-right glyphicon" ng-class="{
+                                    'faq-arrow-down'
+                                    : status.isFirstOpen4, 'faq-arrow-right': !status.isFirstOpen4}"></i>
+                        </uib-accordion-heading>
+                        You can schedule messages in advance, or set up messages to be automatically sent following certain website behavior, such as a user’s first visit or a purchase.
+                    </div>
+                </div>
+            </div>
+        </uib-accordion>
+        <div class="text-center">
+            <a href ui-sref="faq" class="btn-more-faq">More FAQs</a>
+        </div>
+    </div>
+</div>

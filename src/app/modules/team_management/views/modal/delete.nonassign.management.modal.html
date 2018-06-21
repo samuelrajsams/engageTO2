@@ -1,0 +1,13 @@
+<div class="modal-header custom-modal-header">
+    <h3 class="modal-title">Delete Without Assign
+        <a class="fa fa-times custom-close" href="" ng-click="deleteNonassignTeamManagement.cancel()"></a>
+    </h3>
+</div>
+<div class="modal-body custom-modal-body">
+    <p>This action is not reversible</p>
+    <h3 class="text-center">Are you sure?</h3>
+    <div class="delete-btn-wrapper clearfix">
+        <button type="button" class="btn btn-custom btn-delete" ng-click='deleteNonassignTeamManagement.confirm()'>Yes, delete without assign</button>
+        <button type="button" class="btn btn-custom btn-dont-delete" ng-click='deleteNonassignTeamManagement.cancel()'>No, Don't delete</button>
+    </div>
+</div>

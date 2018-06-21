@@ -1,0 +1,459 @@
+/* 
+    Created on : Sep 2, 2016, 3:58:47 PM
+    Author     : ahextech
+*/
+/* Styles for Navbar Starts Here */
+@import "variable.scss";
+@import "mixin.scss";
+
+.engageto-nav{
+    height          : 80px;
+    border-color    : transparent;
+    margin-bottom   : 0;
+    &.navbar-static-top{
+        top: 0;
+        left: 0;
+        right: 0;
+        position: absolute;
+    }
+    &.engageto-nav-scroll{
+        position: fixed;
+        z-index         : 99999;
+        border-bottom   : 1px solid #eee;
+        background-color: $white;
+        @include box-shadow(0 0px 28px -8px);
+        @include transition(all 0.5s ease-in-out);
+        .navbar-options{
+            ul{
+                &.navbar-landing-options{
+                    li{
+                        a{
+                            color         : #001f2d;
+                            &:focus,&:hover{
+                                color: #001f2d;
+                            }
+                            &.btn-register{
+                                color           : $white;
+                                padding         : 6px 25px;
+                                border-color    : $blue;
+                                background-color: $blue;
+                                @include border-radius(5px);
+                            }
+                            &.btn-login{
+                                &.btn-dashboard{
+                                    color           : $white;
+                                    background-color: $blue;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .container{
+        height  : 80px;
+        position: relative;
+        &:after{
+            width     : 100%;
+            bottom    : 0;
+            height    : 1px;
+            content   : "";
+            position  : absolute;
+            background: rgba(255,255,255,0.1);
+        }
+        .navbar-header{
+            .navbar-brand{
+                height     : auto;
+                display    : inline-block;
+                padding    : 0;
+                margin-top : 9px;
+                margin-left: 0;
+                .logo{
+                    width : 170px;
+                    height: 60px;
+                }
+            }
+        }
+    }
+    .navbar-options{
+        ul{ 
+            margin-top  : 20px;
+            margin-right: 0;
+            &.navbar-landing-options{
+                li{
+                    display   : table;
+                    padding   : 0 15px;
+                    min-height: 40px;
+                    a{
+                        color         : rgba(255,255,255,0.9);
+                        display       : table-cell;
+                        font-size     : 1.4rem;
+                        font-family   : $roboto-regular;
+                        padding-top   : 6px;
+                        padding-bottom: 6px;
+                        text-transform: capitalize;
+                        vertical-align: middle;
+                        @include transition(0.5s all ease-in-out);
+                        &:focus,&:hover{
+                            color         : rgba(255,255,255,1);
+                            background-color: transparent;
+                        }
+                        &.btn-login{
+                            margin-left     : 30px;
+                            background-color: transparent;
+                            @include border-radius(5px);
+                            &:hover{
+                                color           : #137edb; 
+                                background-color: $white;
+                            }
+                            &.btn-dashboard{
+                                color           : #137edb; 
+                                background-color: $white;
+                            }
+                        }
+                        &.btn-register{
+                            color           : $white;
+                            border          : 2px solid $white;
+                            padding         : 6px 25px;
+                            background-color: transparent;
+                            @include border-radius(5px);
+                        }
+                    }
+                }
+            }
+            &.left-list{
+                select{
+                    padding     : 0 20px 0 5px;
+                    position    : relative;
+                    font-weight : 400;
+                    border-color: $white;
+                    @include border-radius(5px);
+                    @include box-shadow(none);
+                    @include font($blue-1, 14px, $roboto-regular);
+                }
+                i{
+                    top      : 9px;
+                    color    : $blue-1;
+                    right    : 8px;
+                    position : absolute;
+                    font-size: 16px;
+                }
+            }
+            &.right-list{
+                margin-top: 0;
+                li{
+                    &.btn-upgrade-wrapper{
+                        margin-top: 13px;
+                        .btn-upgrade{
+                            padding         : 6px 12px;
+                            background-color: $green-1;
+                            @include border-radius(5px);
+                            @include font($blue-1, 14px, $roboto-regular);
+                        }
+                    }
+                    &.dropdown{
+                        margin-top: 7px;
+                        &.open{
+                            &>a{
+                                color: $white;
+                            }
+                            .dropdown-menu{
+                                padding   : 0;
+                                margin-top: 10px;
+                                @include border-radius(5px);
+                                li{
+                                    margin          : 0;
+                                    background-color: $white;
+                                    &.share-option{
+                                        @include border-radius(5px 5px 0 0);
+                                        a{
+                                            position: relative;
+                                            &:after{
+                                                top          : -10px;
+                                                right        : 40%;
+                                                width        : 0;
+                                                height       : 0;
+                                                content      : "";
+                                                position     : absolute;
+                                                border-left  : 10px solid transparent;
+                                                border-right : 10px solid transparent;
+                                                border-bottom: 10px solid $white;
+                                            }
+                                            &:hover{
+                                                @include border-radius(5px 5px 0 0);
+                                            }
+                                        }
+                                    }
+                                    &:last-of-type{
+                                        @include border-radius(0 0 5px 5px);
+                                        a{
+                                            &:hover{
+                                                @include border-radius(0 0 5px 5px);
+                                            }
+                                        }
+                                    }
+                                    a{
+                                        padding: 8px 12px;
+                                        @include font($logout-options, 14px, $opensans-light);
+                                        &:hover{
+                                            color           : $white;
+                                            background-color: $blue-2;
+                                        }
+                                        i{
+                                            margin-right: 5px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .loggedin-user{
+                            padding         : 0;
+                            background-color: transparent;
+                            .profile-pic-wrapper{
+                                width  : 45px;
+                                height : 45px;
+                                border : 2px solid $white;
+                                display: inline-block;
+                                @include border-radius(50%);
+                                img{
+                                    width : 100%;
+                                    height: 100%;
+                                    @include border-radius(50%);
+                                }
+                            }
+                            .username{
+                                display       : inline-block;
+                                margin-top    : 12px;
+                                margin-left   : 5px;
+                                vertical-align: top;
+                                @include font($white, 18px, $montserrat-regular);
+                                i{
+                                    font-size  : 16px;
+                                    margin-left: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/* Styles for Navbar Ends Here */
+
+/* Media Queries Starts Here */
+@media(min-width: 992px) and (max-width: 1199px){
+    .engageto-nav{
+        .navbar-options{
+            ul{
+                &.navbar-landing-options{
+                    li{
+                        a{
+                            padding: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(min-width: 768px) and (max-width: 991px){
+    .engageto-nav{
+        .container{
+            .navbar-header{
+                .navbar-brand{
+                    margin-top: 0;
+                    .logo{
+                        width: 120px;
+                    }
+                }
+            }
+        }
+        .navbar-options{
+            ul{
+                margin: 20px 0 0;
+                &.navbar-landing-options{
+                    li{
+                        padding: 0 5px;
+                        a{
+                            padding: 8px;
+                            font-size: 14px;
+                        }
+                    }
+                }
+                &.left-list{
+                    select{
+                        padding  : 0 20px 0 0;
+                        font-size: 13px;
+                    }
+                    li{
+                        &:last-of-type{
+                            margin-left: 10px;
+                        }
+                    }
+                }
+                &.right-list{
+                    li{
+                        &.btn-upgrade-wrapper{
+                            margin-top: 13px;
+                            .btn-upgrade{
+                                padding  : 7px 10px;
+                                font-size: 14px;
+                            }
+                        }
+                        &.dropdown{
+                            margin-left: 10px;
+                            .loggedin-user{
+                                .username{
+                                    font-size  : 16px;
+                                    margin-left: 5px;
+                                    i{
+                                        font-size  : 14px;
+                                        margin-left: 5px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(min-width: 320px) and (max-width: 767px){
+    .engageto-nav{
+        min-height: 50px;
+        height: auto;
+        &.engageto-nav-scroll{
+            .navbar-options{
+                background-color: $white;
+            }
+        }
+        .container{
+            height: auto;
+            .navbar-header{
+                .navbar-toggle{
+                    margin-top: 13px;
+                    border-color: $green-4;
+                    &:focus, &:hover{
+                        background-color: transparent;
+                    }
+                    .icon-bar{
+                        background-color: $green-4;
+                    }
+                }
+                .navbar-brand{
+                    padding: 0 15px;
+                    margin-top: 0;
+                    .logo{
+                        max-width: 130px;
+                    }
+                }
+            }
+        }
+        .navbar-options{
+            border-color: $green-4;
+            padding-bottom: 15px;
+            background-color: #198ce5;
+            ul{
+                margin-top : 0;
+                margin-left: 0;
+                &.navbar-landing-options{
+                    margin-bottom: 0;
+                    li{
+                        padding: 0;
+                        a{
+                            padding: 10px 0;
+                            &:hover{
+                                background-color: transparent;
+                            }
+                        }
+                    }
+                }
+                &.left-list{
+                    margin-top: 5px;
+                    li{
+                        &:last-of-type{
+                            margin-top: 5px;
+                        }
+                    }
+                    select{
+                        @include border-radius(0);
+                    }
+                }
+                &.right-list{
+                    li{
+                        &.btn-upgrade-wrapper{
+                            margin-top: 0;
+                            .btn-upgrade{
+                                width     : 100%;
+                                margin    : 0 auto;
+                                display   : block;
+                                max-width : 140px;
+                                text-align: center;
+                            }
+                        }
+                        &.dropdown{
+                            &.open{
+                                .loggedin-user{
+                                    .username{
+                                        color: $white;
+                                    }
+                                }
+                                .dropdown-menu{
+                                    &>li{
+                                        &>a{
+                                            padding: 7px 15px;
+                                            @include font($grey-1, 16px, $montserrat-regular);
+                                            i{
+                                                font-size   : 16px;
+                                                margin-right: 10px;
+                                            }
+                                        }                                    
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(min-width: 320px) and (max-width: 480px){
+    .engageto-nav{
+        .navbar-options{
+            ul{
+                &.left-list{
+                    li{
+                        &:first-of-type{
+                            width: 100%;
+                        }
+                    }
+                }
+                &.right-list{
+                    li{
+                        &.btn-upgrade-wrapper{
+                            .btn-upgrade{
+                                &:hover{
+                                    padding: 6px 12px;
+                                }
+                            }
+                        }
+                        &.dropdown{
+                            .loggedin-user{
+                                padding: 0;
+                                .username{
+                                    font-size: 16px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/* Media Queries Ends Here */

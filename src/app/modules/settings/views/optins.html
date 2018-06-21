@@ -1,0 +1,929 @@
+<!--  Optins Setting Wrapper Starts  -->
+<section class="optins-setting-wrapper">
+    <div class="container-fluid optins-container">
+        <div class="row">
+            <!--  Optins Editor Wrapper Starts  -->
+            <div class="col-sm-4 optins-editor-wrapper">
+                <div class="optins-editor-heading clearfix text-center">
+                    <go-previous-page></go-previous-page>
+                    <span>Optins Settings</span>
+                    <div class="optins-device-selector pull-right">
+                        <button ng-click="optin.onChangeDeviceType('desktop')" ng-class="{'active': optin.deviceType === 'desktop'}"><i class="fa fa-desktop"></i></button>
+                        <button ng-click="optin.onChangeDeviceType('mobile')" ng-class="{'active': optin.deviceType === 'mobile'}"><i class="fa fa-mobile"></i></button>
+                    </div>
+                </div>
+
+                <!--  Theme Selector  -->
+                <div class="theme-selector">
+                    <label>Select Theme</label>
+                    <div class="btn-group" uib-dropdown keyboard-nav>  
+                        <button type="button" class="btn btn-custom-primary" uib-dropdown-toggle style="text-transform: capitalize;">
+                            {{optin.themeType}}<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" uib-dropdown-menu>
+                            <li ng-repeat="optinData in optin.list">
+                                <a href ng-click="optin.themeSelector(optinData.name, optinData.optin_referer);">
+                                    <span>{{optinData.name}}</span>
+                                    <img src="app/assets/images/icon-optins-theme/icon-side.svg" class="img-responsive" alt="Theme Icon" ng-if="optinData.name === 'side'">
+                                    <img src="app/assets/images/icon-optins-theme/icon-top.svg" class="img-responsive" alt="Theme Icon" ng-if="optinData.name === 'top'">
+                                    <img src="app/assets/images/icon-optins-theme/icon-bottom.svg" class="img-responsive" alt="Theme Icon" ng-if="optinData.name === 'bottom'">     
+                                    <img src="app/assets/images/icon-optins-theme/icon-dialogue.svg" class="img-responsive" alt="Theme Icon" ng-if="optinData.name === 'dialogue'">     
+                                    <img src="app/assets/images/icon-optins-theme/icon-bar.svg" class="img-responsive" alt="Theme Icon" ng-if="optinData.name === 'bar'">     
+                                    <img src="app/assets/images/icon-optins-theme/icon-native.svg" class="img-responsive" alt="Theme Icon" ng-if="optinData.name === 'native-optins'">     
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--  Side Optins Editor Starts  -->
+                <div class="side-optins-editor" ng-if="optin.themeType === 'side'">
+                    <form name="optinForm">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label>Optins background color</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="BG Color" ng-model="optin.side.optinBackground"/>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.side.optinBackground" uib-tooltip="Optins Background Color" tooltip-trigger="'mouseenter'" tooltip-placement="top">
+                                                <span class="bg-color" ng-style="{'background-color': optin.side.optinBackground}"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label>Delay (ms)</label>
+                                    <input class="form-control" placeholder="Delay(ms)" ng-model="optin.side.delay">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Heading</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Heading" ng-model="optin.side.title"/>
+                                <span class="input-group-addon">
+                                    <button type="button" colorpicker ng-model="optin.side.titleTextColor" uib-tooltip="Heading Text Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                        <span>A</span>
+                                        <span ng-style="{'background-color': optin.side.titleTextColor}"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Sub-heading</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Sub-heading" ng-model="optin.side.subTitle"/>
+                                <span class="input-group-addon">
+                                    <button type="button" colorpicker ng-model="optin.side.subTitleTextColor" uib-tooltip="Sub-heading Text Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                        <span>A</span>
+                                        <span ng-style="{'background-color': optin.side.subTitleTextColor}"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label>Allow button</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Text" ng-model="optin.side.allowButtonText"/>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.side.allowButtonBackground" uib-tooltip="Allow Button Background Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                                <span class="bg-color" ng-style="{'background-color': optin.side.allowButtonBackground}"></span>
+                                            </button>
+                                        </span>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.side.allowButtonTextColor" uib-tooltip="Allow Button Text Color" tooltip-trigger="'mouseenter'" tooltip-placement="top">
+                                                <span>A</span>
+                                                <span ng-style="{'background-color': optin.side.allowButtonTextColor}"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label>Block button</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Text" ng-model="optin.side.blockButtonText"/>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.side.blockButtonBackground" uib-tooltip="Block Button Background Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                                <span class="bg-color" ng-style="{'background-color': optin.side.blockButtonBackground}"></span>
+                                            </button>
+                                        </span>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.side.blockButtonTextColor" uib-tooltip="Block Button Text Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                                <span>A</span>
+                                                <span ng-style="{'background-color': optin.side.blockButtonTextColor}"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Position</label>
+                            <div class="btn-group" uib-dropdown keyboard-nav>  
+                                <button type="button" class="btn btn-custom-primary" uib-dropdown-toggle>
+                                    {{optin.side.position}}<span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" uib-dropdown-menu>
+                                    <li><a href ng-click="optin.side.position = 'top-right'" ng-if="optin.deviceType === 'desktop'">Top Right</a></li>
+                                    <li><a href ng-click="optin.side.position = 'top-left'" ng-if="optin.deviceType === 'desktop'">Top Left</a></li>
+                                    <li><a href ng-click="optin.side.position = 'bottom-right'" ng-if="optin.deviceType === 'desktop'">Bottom Right</a></li>
+                                    <li><a href ng-click="optin.side.position = 'bottom-left'" ng-if="optin.deviceType === 'desktop'">Bottom Left</a></li>
+                                    <li><a href ng-click="optin.side.position = 'top'" ng-if="optin.deviceType === 'mobile'">Top</a></li>
+                                    <li><a href ng-click="optin.side.position = 'center'" ng-if="optin.deviceType === 'mobile'">Center</a></li>
+                                    <li><a href ng-click="optin.side.position = 'bottom'" ng-if="optin.deviceType === 'mobile'">Bottom</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="switch">
+                                        <input id="removeBranding1" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="optin.side.isBrandingRemoved">
+                                        <label for="removeBranding1"></label>
+                                        <span>Remove Branding</span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="switch">
+                                        <input id="disableOnMobile1" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="optin.side.disableOnMobile">
+                                        <label for="disableOnMobile1"></label>
+                                        <span>Disable On Mobile</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right btn-wrapper">
+                            <button type="button" class="btn btn-custom-primary" ng-click="optin.onClickSave('side')" ng-disabled="engagetoApp.isLoading">Save
+                                <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <!--  Side Optins Editor Ends  -->
+
+                <!--  Top Optins Editor Starts  -->
+                <div class="top-optins-editor" ng-if="optin.themeType === 'top'">
+                    <form class="optin-config-form optin2-form custom-form">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label>Optins background color</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="BG Color" ng-model="optin.top.optinBackground"/>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.top.optinBackground" uib-tooltip="Optins Background Color" tooltip-trigger="'mouseenter'" tooltip-placement="top">
+                                                <span class="bg-color" ng-style="{'background-color': optin.top.optinBackground}"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label>Delay (ms)</label>
+                                    <input class="form-control" placeholder="Delay(ms)" ng-model="optin.top.delay">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Heading</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Heading" ng-model="optin.top.title"/>
+                                <span class="input-group-addon">
+                                    <button type="button" colorpicker ng-model="optin.top.titleTextColor" uib-tooltip="Heading Text Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                        <span>A</span>
+                                        <span ng-style="{'background-color': optin.top.titleTextColor}"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Sub-heading</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Sub-heading" ng-model="optin.top.subTitle"/>
+                                <span class="input-group-addon">
+                                    <button type="button" colorpicker ng-model="optin.top.subTitleTextColor" uib-tooltip="Sub title Text Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                        <span>A</span>
+                                        <span ng-style="{'background-color': optin.top.subTitleTextColor}"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label>Allow button</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Allow button text" ng-model="optin.top.allowButtonText"/>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.top.allowButtonBackground" uib-tooltip="Allow Button Background Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                                <span class="bg-color" ng-style="{'background-color': optin.top.allowButtonBackground}"></span>
+                                            </button>
+                                        </span>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.top.allowButtonTextColor" uib-tooltip="Allow Button Text Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                                <span>A</span>
+                                                <span ng-style="{'background-color': optin.top.allowButtonTextColor}"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label>Block button</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Block button text" ng-model="optin.top.blockButtonText"/>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.top.blockButtonBackground" uib-tooltip="Block Button Background Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                                <span class="bg-color" ng-style="{'background-color': optin.top.blockButtonBackground}"></span>
+                                            </button>
+                                        </span>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.top.blockButtonTextColor" uib-tooltip="Block Button Text Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                                <span>A</span>
+                                                <span ng-style="{'background-color': optin.top.blockButtonTextColor}"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="switch">
+                                        <input id="removeBranding2" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="optin.top.isBrandingRemoved">
+                                        <label for="removeBranding2"></label>
+                                        <span>Remove Branding</span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="switch">
+                                        <input id="disableOnMobile2" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="optin.top.disableOnMobile">
+                                        <label for="disableOnMobile2"></label>
+                                        <span>Disable On Mobile</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-wrapper">
+                            <button type="button" class="btn btn-custom-primary" ng-click="optin.onClickSave('top')" ng-disabled="engagetoApp.isLoading">Save
+                                <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <!--  Top Optins Editor Ends  -->
+
+                <!--  Bottom Optins Editor Starts  -->
+                <div class="bottom-optins-editor" ng-if="optin.themeType === 'bottom'">
+                    <form class="optin-config-form optin3-form custom-form">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label>Optins background color</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="BG Color" ng-model="optin.bottom.optinBackground"/>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.bottom.optinBackground" uib-tooltip="Optins Background Color" tooltip-trigger="'mouseenter'" tooltip-placement="top">
+                                                <span class="bg-color" ng-style="{'background-color': optin.bottom.optinBackground}"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label>Delay (ms)</label>
+                                    <input class="form-control" placeholder="Delay(ms)" ng-model="optin.bottom.delay">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Heading</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Heading" ng-model="optin.bottom.title"/>
+                                <span class="input-group-addon">
+                                    <button type="button" colorpicker ng-model="optin.bottom.titleTextColor" uib-tooltip="Heading Text Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                        <span>A</span>
+                                        <span ng-style="{'background-color': optin.bottom.titleTextColor}"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Sub-heading</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Sub-heading" ng-model="optin.bottom.subTitle"/>
+                                <span class="input-group-addon">
+                                    <button type="button" colorpicker ng-model="optin.bottom.subTitleTextColor" uib-tooltip="Sub title Text Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                        <span>A</span>
+                                        <span ng-style="{'background-color' : optin.bottom.subTitleTextColor}"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label>Allow button</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Allow button text" ng-model="optin.bottom.allowButtonText"/>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.bottom.allowButtonBackground" uib-tooltip="Allow Button Background Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                                <span class="bg-color" ng-style="{'background-color': optin.bottom.allowButtonBackground}"></span>
+                                            </button>
+                                        </span>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.bottom.allowButtonTextColor" uib-tooltip="Allow Button Text Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                                <span>A</span>
+                                                <span ng-style="{
+                                                        'background-color'
+                                                        : optin.bottom.allowButtonTextColor}"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label>Block button</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Block button text" ng-model="optin.bottom.blockButtonText"/>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.bottom.blockButtonBackground" uib-tooltip="Block Button Background Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                                <span class="bg-color" ng-style="{'background-color': optin.bottom.blockButtonBackground}"></span>
+                                            </button>
+                                        </span>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.bottom.blockButtonTextColor" uib-tooltip="Block Button Text Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                                <span>A</span>
+                                                <span ng-style="{'background-color': optin.bottom.clockButtonTextColor}"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="switch">
+                                        <input id="removeBranding3" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="optin.bottom.isBrandingRemoved">
+                                        <label for="removeBranding3"></label>
+                                        <span>Remove Branding</span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="switch">
+                                        <input id="disableOnMobile3" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="optin.bottom.disableOnMobile">
+                                        <label for="disableOnMobile3"></label>
+                                        <span>Disable On Mobile</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-wrapper">
+                            <button type="button" class="btn btn-custom-primary" ng-click="optin.onClickSave('bottom')" ng-disabled="engagetoApp.isLoading">Save
+                                <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <!--  Bottom Optins Editor Ends  -->
+
+                <!--  Disalogue Optins Editor Starts  -->
+                <div class="dialogue-optins-editor" ng-if="optin.themeType === 'dialogue'">
+                    <form class="optin-config-form optin4-form custom-form">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label>Optins background color</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="BG Color" ng-model="optin.dialogue.optinBackground"/>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.dialogue.optinBackground" uib-tooltip="Dialogue Background Color" tooltip-trigger="'mouseenter'" tooltip-placement="top">
+                                                <span class="bg-color" ng-style="{'background-color': optin.dialogue.optinBackground}"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label>Delay (ms)</label>
+                                    <input class="form-control" placeholder="Delay(ms)" ng-model="optin.dialogue.delay">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Heading</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Heading" ng-model="optin.dialogue.title"/>
+                                <span class="input-group-addon">
+                                    <button type="button" colorpicker ng-model="optin.dialogue.titleTextColor" uib-tooltip="Dialog Title Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                        <span>A</span>
+                                        <span ng-style="{'background-color': optin.dialogue.titleTextColor}"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Sub-heading</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Sub-heading" ng-model="optin.dialogue.subTitle"/>
+                                <span class="input-group-addon">
+                                    <button type="button" colorpicker ng-model="optin.dialogue.subTitleTextColor" uib-tooltip="Dialog Title Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                        <span>A</span>
+                                        <span ng-style="{'background-color': optin.dialogue.subTitleTextColor}"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label>Allow button</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Allow button text" ng-model="optin.dialogue.allowButtonText"/>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.dialogue.allowButtonBackground" uib-tooltip="Allow Button Background Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                                <span class="bg-color" ng-style="{'background-color': optin.dialogue.allowButtonBackground}"></span>
+                                            </button>
+                                        </span>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.dialogue.allowButtonTextColor" uib-tooltip="Allow Button Text Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                                <span>A</span>
+                                                <span ng-style="{'background-color': optin.dialogue.allowButtonTextColor}"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label>Block button</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Bllow button text" ng-model="optin.dialogue.blockButtonText"/>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.dialogue.blockButtonBackground" uib-tooltip="Block Button Background Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                                <span class="bg-color" ng-style="{'background-color': optin.dialogue.blockButtonBackground}"></span>
+                                            </button>
+                                        </span>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.dialogue.blockButtonTextColor" uib-tooltip="Block Button Text Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                                <span>A</span>
+                                                <span ng-style="{'background-color': optin.dialogue.blockButtonTextColor}"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Position</label>
+                            <div class="btn-group" uib-dropdown keyboard-nav>  
+                                <button type="button" class="btn btn-custom-primary" uib-dropdown-toggle>
+                                    {{optin.dialogue.position}}<span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" uib-dropdown-menu>
+                                    <li><a href ng-click="optin.dialogue.position = 'bottom-right'">Bottom Right</a></li>
+                                    <li><a href ng-click="optin.dialogue.position = 'bottom-left'">Bottom Left</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="switch">
+                                        <input id="removeBranding4" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="optin.dialogue.isBrandingRemoved">
+                                        <label for="removeBranding4"></label>
+                                        <span>Remove Branding</span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="switch">
+                                        <input id="disableOnMobile4" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="optin.dialogue.disableOnMobile">
+                                        <label for="disableOnMobile4"></label>
+                                        <span>Disable On Mobile</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-wrapper">
+                            <button type="button" class="btn btn-custom-primary" ng-click="optin.onClickSave('dialogue')" ng-disabled="engagetoApp.isLoading">Save
+                                <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <!--  Dialogue Optins Editor Ends  -->
+
+                <!--  Bar Optins Editor Starts  -->
+                <div class="side-optins-editor" ng-if="optin.themeType === 'bar'">
+                    <form>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label>Optins background color</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="BG Color" ng-model="optin.bar.optinBackground"/>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.bar.optinBackground" uib-tooltip="Optins Background Color" tooltip-trigger="'mouseenter'" tooltip-placement="top">
+                                                <span class="bg-color" ng-style="{'background-color': optin.bar.optinBackground}"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label>Delay (ms)</label>
+                                    <input class="form-control" placeholder="Delay(ms)" ng-model="optin.bar.delay">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Heading</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Heading" ng-model="optin.bar.title"/>
+                                <span class="input-group-addon">
+                                    <button type="button" colorpicker ng-model="optin.bar.titleTextColor" uib-tooltip="Heading Text Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                        <span>A</span>
+                                        <span ng-style="{'background-color': optin.bar.titleTextColor}"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Sub-heading</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Sub-heading" ng-model="optin.bar.subTitle"/>
+                                <span class="input-group-addon">
+                                    <button type="button" colorpicker ng-model="optin.bar.subTitleTextColor" uib-tooltip="Sub-heading Text Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                        <span>A</span>
+                                        <span ng-style="{'background-color': optin.bar.subTitleTextColor}"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label>Allow button</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Text" ng-model="optin.bar.allowButtonText"/>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.bar.allowButtonBackground" uib-tooltip="Allow Button Background Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                                <span class="bg-color" ng-style="{'background-color': optin.side.allowButtonBackground}"></span>
+                                            </button>
+                                        </span>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.bar.allowButtonTextColor" uib-tooltip="Allow Button Text Color" tooltip-trigger="'mouseenter'" tooltip-placement="top">
+                                                <span>A</span>
+                                                <span ng-style="{'background-color': optin.bar.allowButtonTextColor}"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label>Block button</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Text" ng-model="optin.bar.blockButtonText"/>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.bar.blockButtonBackground" uib-tooltip="Block Button Background Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                                <span class="bg-color" ng-style="{'background-color': optin.bar.blockButtonBackground}"></span>
+                                            </button>
+                                        </span>
+                                        <span class="input-group-addon">
+                                            <button type="button" colorpicker ng-model="optin.bar.blockButtonTextColor" uib-tooltip="Block Button Text Color" tooltip-trigger="'mouseenter'" tooltip-placement="left">
+                                                <span>A</span>
+                                                <span ng-style="{'background-color': optin.bar.blockButtonTextColor}"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Position</label>
+                            <div class="btn-group" uib-dropdown keyboard-nav>  
+                                <button type="button" class="btn btn-custom-primary" uib-dropdown-toggle>
+                                    {{optin.bar.position}}<span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" uib-dropdown-menu>
+                                    <li><a href ng-click="optin.bar.position = 'top'">Top</a></li>
+                                    <li><a href ng-click="optin.bar.position = 'bottom'">Bottom</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="switch">
+                                        <input id="removeBranding7" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="optin.bar.isBrandingRemoved">
+                                        <label for="removeBranding1"></label>
+                                        <span>Remove Branding</span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="switch">
+                                        <input id="disableOnMobile7" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="optin.bar.disableOnMobile">
+                                        <label for="disableOnMobile1"></label>
+                                        <span>Disable On Mobile</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right btn-wrapper">
+                            <button type="button" class="btn btn-custom-primary" ng-click="optin.onClickSave('bar')" ng-disabled="engagetoApp.isLoading">Save
+                                <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <!--  Bar Optins Editor Ends  -->
+
+                <!--  Native Optins Editor Starts  -->
+                <div class="native-optins-editor" ng-if="optin.themeType === 'native-optins'">
+                    <form class="optin-config-form optin5-form">
+                        <p>In order to use native optin, your site must be active on default-SSL connection</p>
+                        <p>Follow these steps in order to install native optin on your SSL enabled site :</p>
+                        <p>1) Download the files using the download button given below.</p>
+                        <p>2) Extract the files from the .zip file.</p>
+                        <p>3) Upload manifest.json, service-worker.js, firefox-worker.js at the root of your domain.</p>
+                        <div class="form-group">
+                            <button type="button" ng-click="optin.onDownloadFile()" class="btn btn-custom-primary">Download Files</button>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="switch">
+                                        <input id="removeBranding5" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="optin.converting.isBrandingRemoved">
+                                        <label for="removeBranding5"></label>
+                                        <span>Remove Branding</span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="switch">
+                                        <input id="disableOnMobile5" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="optin.converting.disableOnMobile">
+                                        <label for="disableOnMobile5"></label>
+                                        <span>Disable On Mobile</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-wrapper">
+                            <button type="button" class="btn btn-custom-primary" ng-click="optin.onClickSave('converting')" ng-disabled="engagetoApp.isLoading">Save
+                                <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <!--  Native Optins Editor Ends  -->                
+            </div>
+            <!--  Optins Editor Wrapper Ends  -->
+
+            <!--  Optins Preview Wrapper Starts  -->
+            <div class="col-sm-8 optins-preview-wrapper" ng-if="optin.deviceType === 'desktop'">
+                <div class="optins-preview-container">
+                    <img src="app/assets/images/optins-preview.png" class="img-responsive" alt="Placeholder Image"/>
+
+                    <!--  Side Optins Preview  -->
+                    <div class="preview-optin-wrapper clearfix" ng-if="optin.themeType === 'side'" ng-class="{'top-right': optin.side.position === 'top-right', 'top-left': optin.side.position === 'top-left', 'bottom-right': optin.side.position === 'bottom-right', 'bottom-left': optin.side.position === 'bottom-left'}"  ng-style="{'background-color': optin.side.optinBackground}">
+                        <div class="optins-content-container">
+                            <div class="optin-logo-wrapper">
+                                <img class="img-responsive" src="app/assets/images/default.png" alt=""/>
+                            </div>
+                            <div class="optin-content-wrapper">
+                                <p class="optin-title" ng-style="{'color': optin.side.titleTextColor}">{{optin.side.title|| 'Optin Title'}}</p>
+                                <p class="optin-description" ng-style="{'color': optin.side.subTitleTextColor}">{{optin.side.subTitle|| 'Optin Description'}}</p>
+                                <div class="btn-wrapper">
+                                    <button type="button" class="btn btn-block" ng-style="{'background-color': optin.side.blockButtonBackground, 'color': optin.side.blockButtonTextColor}">{{optin.side.blockButtonText|| 'Block'}}</button>
+                                    <button type="button" class="btn btn-allow" ng-style="{'background-color': optin.side.allowButtonBackground, 'color': optin.side.allowButtonTextColor}">{{optin.side.allowButtonText|| 'Allow'}}</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="branding">
+                            <a href="javascript:void(0);">
+                                <img src="app/assets/images/favicon.png" class="img-responsive" alt="Brand Image"/>
+                                by engageTo
+                            </a>
+                        </div>
+                    </div>
+
+                    <!--  Top Optins Preview  -->
+                    <!--<div class="preview-optin-container">-->
+                    <div class="preview-optin-wrapper clearfix top"  ng-if="optin.themeType === 'top'" ng-style="{'background-color': optin.top.optinBackground}">
+                        <div class="optins-content-container">
+                            <div class="optin-logo-wrapper">
+                                <img class="img-responsive" src="app/assets/images/default.png" alt=""/>
+                            </div>
+                            <div class="optin-content-wrapper">
+                                <p class="optin-title" ng-style="{'color': optin.top.titleTextColor}">{{optin.top.title|| 'Optin Title'}}</p>
+                                <p class="optin-description" ng-style="{'color': optin.top.subTitleTextColor}">{{optin.top.subTitle|| 'Optin Description'}}</p>
+                                <div class="btn-wrapper">
+                                    <button type="button" class="btn btn-block" ng-style="{'background-color': optin.top.blockButtonBackground, 'color': optin.top.blockButtonTextColor}">{{optin.top.blockButtonText|| 'Block'}}</button>
+                                    <button type="button" class="btn btn-allow" ng-style="{'background-color': optin.top.allowButtonBackground, 'color': optin.top.allowButtonTextColor}">{{optin.top.allowButtonText|| 'Allow'}}</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="branding">
+                            <a href="javascript:void(0);">
+                                <img src="app/assets/images/favicon.png" class="img-responsive" alt="Brand Image"/>
+                                by engageTo
+                            </a>
+                        </div>
+                    </div>
+                    <!--</div>-->
+
+                    <!--  Bottom Optins Preview  -->
+                    <div class="preview-bottom-optin-wrapper text-center clearfix" ng-if="optin.themeType === 'bottom'" ng-style="{'background-color': optin.bottom.optinBackground}">
+                        <img class="img-responsive optin-logo" src="app/assets/images/default.png" alt=""/>
+                        <p class="optin-title" ng-style="{'color': optin.bottom.titleTextColor}">{{optin.bottom.title|| 'Optin Title'}}</p>
+                        <p class="optin-description" ng-style="{'color': optin.bottom.subTitleTextColor}">{{optin.bottom.subTitle|| 'Optin Description'}}</p>
+                        <div class="btn-wrapper">
+                            <button type="button" class="btn btn-block" ng-style="{'background-color': optin.bottom.blockButtonBackground, 'color': optin.bottom.blockButtonTextColor}">{{optin.bottom.blockButtonText|| 'Block'}}</button>
+                            <button type="button" class="btn btn-allow" ng-style="{'background-color': optin.bottom.allowButtonBackground, 'color': optin.bottom.allowButtonTextColor}">{{optin.bottom.allowButtonText|| 'Allow'}}</button>
+                        </div>
+                        <div class="branding">
+                            <a href="javascript:void(0);">
+                                <img src="app/assets/images/favicon.png" class="img-responsive" alt="Brand Image"/>
+                                by engageTo
+                            </a>
+                        </div>
+                    </div>
+
+                    <!--  Dialogue Optins Preview  -->
+                    <div class="dialogue-optin-wrapper" ng-if="optin.themeType === 'dialogue'" ng-class="{'bottom-right': optin.dialogue.position === 'bottom-right', 'bottom-left': optin.dialogue.position === 'bottom-left'}">
+                        <div class="dialogue-optin-bell">
+                            <i class="fa fa-bell" aria-hidden="true"></i>
+                        </div>
+                        <div class="preview-dialogue-optin-wrapper preview-optin-wrapper clearfix"  ng-style="{'background-color': optin.dialogue.optinBackground}">
+                            <div class='optins-content-container'>
+                                <div class="optin-logo-wrapper">
+                                    <img class="img-responsive" src="app/assets/images/default.png" alt=""/>
+                                </div>
+                                <div class="optin-content-wrapper">
+                                    <p class="optin-title" ng-style="{'color': optin.dialogue.titleTextColor}">{{optin.dialogue.title|| 'Optin Title'}}</p>
+                                    <p class="optin-description" ng-style="{'color': optin.dialogue.subTitleTextColor}">{{optin.dialogue.subTitle|| 'Optin Description'}}</p>
+                                    <div class="btn-wrapper">
+                                        <button type="button" class="btn btn-block" ng-style="{'background-color': optin.dialogue.blockButtonBackground, 'color': optin.dialogue.blockButtonTextColor}">{{optin.dialogue.blockButtonText|| 'Block'}}</button>
+                                        <button type="button" class="btn btn-allow" ng-style="{'background-color': optin.dialogue.allowButtonBackground, 'color': optin.dialogue.allowButtonTextColor}">{{optin.dialogue.allowButtonText|| 'Allow'}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="branding">
+                                <a href="javascript:void(0);">
+                                    <img src="app/assets/images/favicon.png" class="img-responsive" alt="Brand Image"/>
+                                    by engageTo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--  Bar Optins Preview  --> 
+                    <div class="bar-optin-wrapper" ng-style="{'background-color': optin.bar.optinBackground}" ng-if="optin.themeType === 'bar'" ng-class="{'top': optin.bar.position === 'top', 'bottom': optin.bar.position === 'bottom'}">
+                        <div class="optins-content">
+                            <p class="optin-title" ng-style="{'color': optin.bar.titleTextColor}">Get the latest updates from  {{optin.bar.title|| 'Optin Title'}}</p>
+                        </div>
+                        <div class="btn-wrapper">
+                            <button type="button" class="btn btn-block" ng-style="{'background-color': optin.bar.blockButtonBackground, 'color': optin.bar.blockButtonTextColor}">{{optin.bar.blockButtonText|| 'Block'}}</button>
+                            <button type="button" class="btn btn-allow" ng-style="{'background-color': optin.bar.allowButtonBackground, 'color': optin.bar.allowButtonTextColor}">{{optin.bar.allowButtonText|| 'Allow'}}</button>
+                        </div>
+                        <div class="branding desktop-bar">
+                            <a href="javascript:void(0);">
+                                <img src="app/assets/images/favicon.png" class="img-responsive" alt="Brand Image"/>
+                                by engageTo
+                            </a>
+                        </div>
+                    </div>
+
+                    <!--  Native Optins Editor Starts  -->
+                    <img class="img-responsive native-optin-img" ng-if="optin.themeType === 'native-optins'" src="app/assets/images/native-preview.jpg" alt="Native optins preview"/>
+
+                    <!--  Native Non-SSL Optins Editor Starts  -->
+                    <!--                    <img class="img-responsive native-optin-img" ng-if="optin.themeType === 'native-non-ssl'" src="app/assets/images/native-preview.jpg" alt="Native optins preview"/>-->
+
+                </div>
+            </div>
+            <!--  Optins Preview Wrapper Starts  -->
+
+            <!--  Optins Mobile Preview Starts  -->
+            <div class="col-sm-8 optins-preview-wrapper optins-mobile-preview" ng-if="optin.deviceType === 'mobile'">
+                <div class="optins-preview-container">
+                    <div class="preview-container">
+                        <img src="app/assets/images/mobile-preview.svg" class="img-responsive" alt="Mobile Pre Image"/>
+
+                        <!--  Side Optins Preview  -->
+                        <div class="preview-optin-wrapper clearfix" ng-if="optin.themeType === 'side'" ng-class="{'top': optin.side.position === 'top','bottom': optin.side.position === 'bottom', 'center': optin.side.position === 'center'}"  ng-style="{'background-color': optin.side.optinBackground}">
+                            <div class="optins-content-container">
+                                <div class="optin-logo-wrapper">
+                                    <img class="img-responsive" src="app/assets/images/default.png" alt=""/>
+                                </div>
+                                <div class="optin-content-wrapper">
+                                    <p class="optin-title" ng-style="{'color': optin.side.titleTextColor}">{{optin.side.title|| 'Optin Title'}}</p>
+                                    <p class="optin-description" ng-style="{'color': optin.side.subTitleTextColor}">{{optin.side.subTitle|| 'Optin Description'}}</p>
+                                </div>
+                                <div class="btn-wrapper">
+                                    <button type="button" class="btn btn-block" ng-style="{'background-color': optin.side.blockButtonBackground, 'color': optin.side.blockButtonTextColor}">{{optin.side.blockButtonText|| 'Block'}}</button>
+                                    <button type="button" class="btn btn-allow" ng-style="{'background-color': optin.side.allowButtonBackground, 'color': optin.side.allowButtonTextColor}">{{optin.side.allowButtonText|| 'Allow'}}</button>
+                                </div>
+                            </div>
+                            <div class="branding">
+                                <a href="javascript:void(0);">
+                                    <img src="app/assets/images/favicon.png" class="img-responsive" alt="Brand Image"/>
+                                    by engageTo
+                                </a>
+                            </div>
+                        </div>
+                        <!--  Top Optins Preview  -->
+                        <div class="preview-optin-wrapper clearfix top"  ng-if="optin.themeType === 'top'" ng-style="{'background-color': optin.top.optinBackground}">
+                            <div class="optins-content-container">
+                                <div class="optin-logo-wrapper">
+                                    <img class="img-responsive" src="app/assets/images/default.png" alt=""/>
+                                </div>
+                                <div class="optin-content-wrapper">
+                                    <p class="optin-title" ng-style="{'color': optin.top.titleTextColor}">{{optin.top.title|| 'Optin Title'}}</p>
+                                    <p class="optin-description" ng-style="{'color': optin.top.subTitleTextColor}">{{optin.top.subTitle|| 'Optin Description'}}</p>
+                                </div>
+                                <div class="btn-wrapper">
+                                    <button type="button" class="btn btn-block" ng-style="{'background-color': optin.top.blockButtonBackground, 'color': optin.top.blockButtonTextColor}">{{optin.top.blockButtonText|| 'Block'}}</button>
+                                    <button type="button" class="btn btn-allow" ng-style="{'background-color': optin.top.allowButtonBackground, 'color': optin.top.allowButtonTextColor}">{{optin.top.allowButtonText|| 'Allow'}}</button>
+                                </div>
+                            </div>
+                            <div class="branding">
+                                <a href="javascript:void(0);">
+                                    <img src="app/assets/images/favicon.png" class="img-responsive" alt="Brand Image"/>
+                                    by engageTo
+                                </a>
+                            </div>
+                        </div>
+                        <!--  Bottom Optins Preview  -->
+                        <div class="preview-bottom-optin-wrapper text-center clearfix" ng-if="optin.themeType === 'bottom'" ng-style="{'background-color': optin.bottom.optinBackground}">
+                            <img class="img-responsive optin-logo" src="app/assets/images/default.png" alt=""/>
+                            <p class="optin-title" ng-style="{'color': optin.bottom.titleTextColor}">{{optin.bottom.title|| 'Optin Title'}}</p>
+                            <p class="optin-description" ng-style="{'color': optin.bottom.subTitleTextColor}">{{optin.bottom.subTitle|| 'Optin Description'}}</p>
+                            <div class="btn-wrapper">
+                                <button type="button" class="btn btn-block" ng-style="{'background-color': optin.bottom.blockButtonBackground, 'color': optin.bottom.blockButtonTextColor}">{{optin.bottom.blockButtonText|| 'Block'}}</button>
+                                <button type="button" class="btn btn-allow" ng-style="{'background-color': optin.bottom.allowButtonBackground, 'color': optin.bottom.allowButtonTextColor}">{{optin.bottom.allowButtonText|| 'Allow'}}</button>
+                            </div>
+                            <div class="branding">
+                                <a href="javascript:void(0);">
+                                    <img src="app/assets/images/favicon.png" class="img-responsive" alt="Brand Image"/>
+                                    by engageTo
+                                </a>
+                            </div>
+                        </div>
+                        <!--  Dialogue Optins Preview  -->
+                        <div class="dialogue-optin-wrapper" ng-if="optin.themeType === 'dialogue'" ng-class="{'bottom-right': optin.dialogue.position === 'bottom-right', 'bottom-left': optin.dialogue.position === 'bottom-left'}" ng-init="optin.showDialogueBoxForMobile = false;">
+                            <div class="dialogue-optin-bell">
+                                <i class="fa fa-bell" aria-hidden="true" ng-click="optin.showDialogueBoxForMobile = !optin.showDialogueBoxForMobile;"></i>
+                            </div>
+                            <div class="preview-dialogue-optin-wrapper preview-optin-wrapper clearfix"  ng-style="{'background-color': optin.dialogue.optinBackground}" ng-if="optin.showDialogueBoxForMobile">
+                                <div class='optins-content-container'>
+                                    <div class="optin-logo-wrapper">
+                                        <img class="img-responsive" src="app/assets/images/default.png" alt=""/>
+                                    </div>
+                                    <div class="optin-content-wrapper">
+                                        <p class="optin-title" ng-style="{'color': optin.dialogue.titleTextColor}">{{optin.dialogue.title|| 'Optin Title'}}</p>
+                                        <p class="optin-description" ng-style="{'color': optin.dialogue.subTitleTextColor}">{{optin.dialogue.subTitle|| 'Optin Description'}}</p>
+                                        <div class="btn-wrapper">
+                                            <button type="button" class="btn btn-block" ng-style="{'background-color': optin.dialogue.blockButtonBackground, 'color': optin.dialogue.blockButtonTextColor}">{{optin.dialogue.blockButtonText|| 'Block'}}</button>
+                                            <button type="button" class="btn btn-allow" ng-style="{'background-color': optin.dialogue.allowButtonBackground, 'color': optin.dialogue.allowButtonTextColor}">{{optin.dialogue.allowButtonText|| 'Allow'}}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="branding">
+                                    <a href="javascript:void(0);">
+                                        <img src="app/assets/images/favicon.png" class="img-responsive" alt="Brand Image"/>
+                                        by engageTo
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  Bar Optins Preview  --> 
+                        <div class="bar-optin-wrapper" ng-if="optin.themeType === 'bar'" ng-style="{'background-color': optin.bar.optinBackground}" ng-class="{'top': optin.bar.position === 'top', 'bottom': optin.bar.position === 'bottom'}">
+                            <div class="optins-content">
+                                <p class="optin-title" ng-style="{'color': optin.bar.titleTextColor}">Get the latest updates from  {{optin.bar.title|| 'Optin Title'}}</p>
+                            </div>
+                            <div class="btn-wrapper">
+                                <button type="button" class="btn btn-block" ng-style="{'background-color': optin.bar.blockButtonBackground, 'color': optin.bar.blockButtonTextColor}">{{optin.bar.blockButtonText|| 'Block'}}</button>
+                                <button type="button" class="btn btn-allow" ng-style="{'background-color': optin.bar.allowButtonBackground, 'color': optin.bar.allowButtonTextColor}">{{optin.bar.allowButtonText|| 'Allow'}}</button>
+                            </div>
+                            <div class="branding">
+                                <a href="javascript:void(0);">
+                                    <img src="app/assets/images/favicon.png" class="img-responsive" alt="Brand Image"/>
+                                    by engageTo
+                                </a>
+                            </div>
+                        </div>
+                        <!--  Native Optins Editor Starts  -->
+                        <img class="img-responsive native-optin-img" ng-if="optin.themeType === 'native-optins'" src="app/assets/images/native-preview.jpg" alt="Native optins preview"/>
+                    </div>
+                </div>
+            </div>
+            <!--  Optins Mobile Preview Ends  -->
+        </div>
+    </div>
+</section>
+<!--  Optins Setting Wrapper Ends  -->

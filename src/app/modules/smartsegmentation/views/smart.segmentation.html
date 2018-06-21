@@ -1,0 +1,38 @@
+<div class="dashboard-content-header">
+    <h3 class="dashboard-content-area-heading">Smart Segmentation</h3>
+    <div class="subtitle"> <a href="javascript:void(0);" class="help-link">Help</a></div>
+</div>
+<div class="container-fluid">
+    <div class="smart-custom-container">
+        <div class="smart-custom-wrapper">
+            <button type="button" class="btn btn-custom-primary btn-add-segment" ng-click="smartSegment.newSmartSegmentModal()">New Smart Segment</button>
+            <div class="table-responsive">
+                <div class="dataTables_wrapper">
+                    <table class="table table-bordered table-striped table-responsive smart-custom-table" datatable="ng" dt-options="smartSegment.dtOptions" dt-column-defs="smartSegment.dtColumnDefs"> 
+                        <thead> 
+                            <tr> 
+                                <!--<th class="id-col">No</th>--> 
+                                <th class="name-col">Segment Name</th> 
+                                <th class="address-col">Segment Type</th> 
+                                <th class="subdomain-col">Total Subscribers</th> 
+                                <th class="edit-col">Action</th>
+                            </tr> 
+                        </thead> 
+                        <tbody> 
+                            <tr ng-repeat="segment in smartSegment.listOfSegments">
+                                <!--<td>{{$index + 1}}</td>-->
+                                <td>{{segment.name}}</td>
+                                <td>{{segment.type}}</td>
+                                <td>{{segment.subscribers}}</td>
+                                <td>
+                                    <a class="fa fa-pencil" ng-click="smartSegment.editSegment(segment.segment_referer)"></a>
+                                    <a class="fa fa-trash" ng-click="smartSegment.deleteSegment($index, segment.segment_referer)"></a>
+                                </td>
+                            </tr>
+                        </tbody> 
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

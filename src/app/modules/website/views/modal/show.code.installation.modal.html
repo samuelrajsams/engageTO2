@@ -1,0 +1,37 @@
+<div class="modal-header custom-modal-header">
+    <h3 class="modal-title">Show Installation Code
+        <a class="fa fa-times custom-close" href="" ng-click="website.close()"></a>
+    </h3>
+</div>
+<div class="modal-body custom-modal-body">
+    <div class="verify-installation-wrapper">
+        <div class="integrations-code">
+            <h4>Here are the instructions to activate web push on your website</h4>
+            <div class="instruction-wrapper">
+                <p>Copy & place following JS code before 	&lt;/head&gt; tag on all website pages </p>
+                <div class="verify-code-fail-text text-center code code-container" id="show-code">
+                    <div class="code-overlay" ng-if="website.copyMsg">
+                        <span>Code Copied</span>
+                    </div>
+                    <pre class="code-block">{{website.code}}</pre>
+                    <button type="button" class="btn btn-copy-code btn-custom-primary" ngclipboard data-clipboard-target="#show-code" ngclipboard-success="website.onCopyFunction(e);">Copy Code</button>
+                </div>
+            </div>
+            <small>Note: This code has to be paste above the end head tag in your application.</small>
+            <form class="custom-website-form form-horizontal send-code-form"> 
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                            <input type="text" class="form-control" placeholder="abc@xyz.com, xyz@abc.com" ng-model="website.emails" ng-focus="website.isEmailsValid = true">
+                            <span class="error" ng-if="!website.isEmailsValid">Please enter a valid email address</span>
+                            <button class="input-group-addon send btn-custom-primary" ng-click="website.sendCopyToDev()" ng-disabled="engagetoApp.isLoading">Send
+                                <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

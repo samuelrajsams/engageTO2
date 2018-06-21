@@ -1,0 +1,78 @@
+<div class="dashboard-content-header">
+    <h3 class="dashboard-content-area-heading">Code and Implementation</h3>
+    <ul class="navigation-link-list">
+        <li class="navigation-links">
+            Installation Instructions
+        </li>
+    </ul>
+</div>
+<div class="container-fluid code-installation-container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="code-installation-wrapper">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 clearfix">
+                        <div class="code-wrapper">
+                            <span class="copy-code-head">Copy & Paste the following code before &lt;/head&gt; of your HTML</span>
+                            <div class="code-container">
+                                <div class="code-overlay" ng-if="codeInstallation.copyMsg">
+                                    <span>Code Copied!</span>
+                                </div>
+                                <pre class="code-block" id="selectable">{{codeInstallation.code}}</pre>
+                                <button type="button" class="btn btn-custom-primary" ngclipboard data-clipboard-target="#selectable" ngclipboard-success="codeInstallation.onCopyFunction(e);">Copy Code</button>
+                            </div>
+                        </div>
+                        <!--                        <div class="field-association">
+                                                    <div class="switch">
+                                                        <input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                                                        <label for="cmn-toggle-1"></label>
+                                                    </div>
+                                                    <span class="field-association-head">FIELD ASSOCIATION 
+                                                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                                    </span>
+                                                </div>-->
+                        <p class="send-code-text">
+                            This code will display permission box on your website. It will ask for permission from website 
+                            visitors, to get notifications. Once you get permissions from your website visitors, you can 
+                            able to send them push notifications, even if they are not on your website.
+                        </p>
+                        <p class="send-code-text">
+                            You can choose to add code only on the pages on which you want permission box for notifications
+                            to appear. You can also customize & AB test different permission boxes of your website by
+                            going to settings page available in the dashboard.
+                        </p>
+                        <p class="send-code-text">
+                            Please note that your website will not ask for permission if you can't add this code to your 
+                            website pages.
+                        </p>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <span class="copy-code-head">If you don't know how to do it, send this code to your developer(s).</span>
+                        <form class="send-code-form" name="developerForm" ng-submit="sendEmailToDeveloper()">
+                            <div class="form-group">
+                                <input type="text" ng-show="codeInstallation.showTextField" name="email" ng-model="codeInstallation.developerEmail" class="form-control developer-email" placeholder="Developer(s) Email Address" ng-pattern="/^[\W]*([\w+\-.%]+@[\w\-.]+\.[A-Za-z]{2,4}[\W]*,{1}[\W]*)*([\w+\-.%]+@[\w\-.]+\.[A-Za-z]{2,4})[\W]*$/" required/>
+                                <textarea ng-hide="codeInstallation.showTextField" name="email" ng-model="codeInstallation.developerEmail" class="form-control developer-email" placeholder="Developer(s) Email Address" ng-pattern="/^[\W]*([\w+\-.%]+@[\w\-.]+\.[A-Za-z]{2,4}[\W]*,{1}[\W]*)*([\w+\-.%]+@[\w\-.]+\.[A-Za-z]{2,4})[\W]*$/" required></textarea>
+                                <span style="color: red" ng-show="developerForm.email.$dirty && developerForm.email.$invalid">
+                                    <span ng-show="developerForm.email.$error.required">Email id required</span>
+                                    <span ng-show="!developerForm.email.$error.required && developerForm.email.$error.pattern">Your developer email address is incorrect!</span>
+                                </span>
+                                <button type="submit" class="btn btn-code-installation btn-send-code btn-custom-primary" ng-disabled="developerForm.$invalid">Send</button>
+                            </div>
+                        </form>
+                        <div class="install-plugin-wrapper text-center">
+                            <span class="plugin-install">Install plugin if your website is built on following softwares</span>
+                            <ul class="list-inline">
+                                <li>
+                                    <img class="img-responsive" src="app/assets/images/wordpress.png" alt=""/>
+                                </li>
+                                <li>
+                                    <img class="img-responsive" src="app/assets/images/joomla.png" alt=""/>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

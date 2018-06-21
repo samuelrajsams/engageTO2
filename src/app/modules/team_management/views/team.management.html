@@ -1,0 +1,128 @@
+<!--<div class="loader-wrapper"  ng-if="teamManagement.loading"></div>
+<div class="loader" ng-if="teamManagement.loading">
+    <div>Loading....</div>
+</div>-->
+<div class="dashboard-content-header">
+    <h3 class="dashboard-content-area-heading">Team Management</h3>
+    <ul class="navigation-link-list">
+        <li class="navigation-links">
+            <a href ui-sref="side-nav-template.new-push-notification"><i class="fa fa-tachometer" aria-hidden="true"></i>Dashboard /</a>
+        </li>
+        <li class="navigation-links active">
+            <a href ui-sref="side-nav-template.domain-management">Team Management /</a>
+        </li>
+    </ul>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="team-management-wrapper website-management-wrapper">
+                <button type="button" class="btn btn-team-member btn-add-member" ng-click="teamManagement.addTeamManagementModal()">Add Team Member</button>
+                <button type="button" class="btn btn-team-member btn-member-activity" ng-click="teamManagement.memberActivityTeamManagementModal()">Team Member Activity</button>
+                <uib-tabset class="view-selection-list clearfix" active="teamManagement.activeTab" justified="true">
+                    <uib-tab class="view-selection-option" index="0">
+                        <uib-tab-heading>
+                            <i class="fa fa-table"></i>
+                        </uib-tab-heading>
+                        <div class="table-responsive">
+                            <div class="dataTables_wrapper">
+                                <table class="table table-bordered smart-custom-table team-member-table"> 
+                                    <thead> 
+                                        <tr> 
+                                            <th>Sub Domain</th> 
+                                            <th>Name</th> 
+                                            <th>Email</th> 
+                                            <th>Status</th> 
+                                            <th>Action</th> 
+                                        </tr> 
+                                    </thead> 
+                                    <tbody> 
+                                        <tr ng-repeat-start="(key, teamList) in teamManagement.listOfTeamMembers"> 
+                                            <td rowspan="{{teamList.length}}" class="text-center">{{key}}</td> 
+                                            <td>
+                                                <strong ng-if="engagetoApp.profile.id === teamList[0].user_id">{{teamList[0].first_name}} {{teamList[0].last_name}}</strong> 
+                                                <span ng-if="engagetoApp.profile.id !== teamList[0].user_id">{{teamList[0].first_name}} {{teamList[0].last_name}}</span> 
+                                                <span class="btn btn-xs" ng-class="{'btn-success': teamList[0].role === 'Super Administrator', 'btn-info': teamList[0].role === 'Administrator', 'btn-primary': teamList[0].role === 'Manager', 'btn-warning': teamList[0].role === 'Analyst'}">{{teamList[0].role}}</span>
+                                            </td> 
+                                            <td>{{teamList[0].user_email}}</td>
+                                            <td>
+                                                <span class="btn btn-xs" ng-class="{'btn-success': !teamList[0].pending_status, 'btn-danger': teamList[0].pending_status}">
+                                                    <span ng-if="teamList[0].pending_status">Pending</span>
+                                                    <span ng-if="!teamList[0].pending_status">Active</span>    
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <a href class="fa fa-pencil" ng-click="teamManagement.editTeamManagementModal(key, 0)" uib-tooltip="Edit" tooltip-trigger="'mouseenter'" tooltip-placement="top" ng-if="(teamList[0].role !== 'Super Administrator' && (teamList[0].user_id === engagetoApp.profile.id)) || ((teamList[0].user_id !== engagetoApp.profile.id) && (teamList[0].role.length < teamManagement.userRolesByDomain[key].length))"></a>
+                                                <!--<a href class="fa fa-eye"  uib-tooltip="View" tooltip-trigger="'mouseenter'" tooltip-placement="top"></a>-->
+                                                <a href class="fa fa-trash" ng-click="teamManagement.deleteTeamManagementModal(key, 0)"  uib-tooltip="Delete" tooltip-trigger="'mouseenter'" tooltip-placement="top" ng-if="(teamList[0].role !== 'Super Administrator' && (teamList[0].user_id === engagetoApp.profile.id)) || ((teamList[0].user_id !== engagetoApp.profile.id) && (teamList[0].role.length < teamManagement.userRolesByDomain[key].length))"></a>
+                                            </td>
+                                        </tr> 
+                                        <tr ng-repeat-end ng-repeat="team in teamList" ng-if="$index !== 0"> 
+                                            <td>
+                                                <strong ng-if="engagetoApp.profile.id === team.user_id">{{team.first_name}} {{team.last_name}}</strong>
+                                                <span ng-if="engagetoApp.profile.id !== team.user_id">{{team.first_name}} {{team.last_name}}</span>
+                                                <span class="btn btn-xs" ng-class="{'btn-success': team.role === 'Super Administrator', 'btn-info': team.role === 'Administrator', 'btn-primary': team.role === 'Manager', 'btn-warning': team.role === 'Analyst'}">{{team.role}}</span>
+                                            </td> 
+                                            <td>{{team.user_email}}</td>
+                                            <td>
+                                                <span class="btn btn-xs" ng-class="{'btn-success': !team.pending_status, 'btn-danger': team.pending_status}">
+                                                    <span ng-if="team.pending_status">Pending</span>
+                                                    <span ng-if="!team.pending_status">Active</span>    
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <a href class="fa fa-pencil"ng-click="teamManagement.editTeamManagementModal(key, $index)" uib-tooltip="Edit" tooltip-trigger="'mouseenter'" tooltip-placement="top" ng-if="(team.role !== 'Super Administrator' && (team.user_id === engagetoApp.profile.id)) || ((team.user_id !== engagetoApp.profile.id) && (team.role.length < teamManagement.userRolesByDomain[key].length))"></a>
+                                                <!--<a href class="fa fa-eye"  uib-tooltip="View" tooltip-trigger="'mouseenter'" tooltip-placement="top"></a>-->
+                                                <a href class="fa fa-trash" ng-click="teamManagement.deleteTeamManagementModal(key, $index)"  uib-tooltip="Delete" tooltip-trigger="'mouseenter'" tooltip-placement="top" ng-if="(team.role !== 'Super Administrator' && (team.user_id === engagetoApp.profile.id)) || ((team.user_id !== engagetoApp.profile.id) && (team.role.length < teamManagement.userRolesByDomain[key].length))"></a>
+                                            </td>
+                                        </tr> 
+                                    </tbody> 
+                                </table>
+                            </div>
+                        </div> 
+                    </uib-tab>
+                    <uib-tab class="view-selection-option" index="1">
+                        <uib-tab-heading>
+                            <i class="fa fa-list"></i>
+                        </uib-tab-heading>
+                        <div class="website-grid clearfix">
+                            <div class="domain-type-wrapper" ng-repeat="(key, teamList) in teamManagement.listOfTeamMembers">
+                                <div class="domain-title">{{key}}</div>
+                                <div class="row" >
+                                    <div class="col-sm-6 col-md-6 col-lg-4" ng-repeat="team in teamList">
+                                        <div class="website-details-wrapper">
+                                            <div class="website-details team-member-details">
+                                                <p><span>Name:</span>{{team.first_name}} {{team.last_name}}</p>
+                                                <p title="{{team.user_email}}"><span>Email:</span>{{team.user_email}}</p>
+                                                <p>
+                                                    <span>
+                                                        <span ng-if="team.pending_status">Pending:</span>
+                                                        <span ng-if="!team.pending_status">Active:</span> 
+                                                    </span>
+                                                    {{team.member_status}}
+                                                </p>
+                                            </div>
+                                            <div class="actions-wrapper clearfix">
+                                                <ul class="list-inline action-list pull-right">
+                                                    <li class="action-items" ng-if="(team.role !== 'Super Administrator' && (team.user_id === engagetoApp.profile.id)) || ((team.user_id !== engagetoApp.profile.id) && (team.role.length < teamManagement.userRolesByDomain[key].length))">
+                                                        <a href ng-click="teamManagement.editTeamManagementModal(key, $index)" class="fa fa-pencil" uib-tooltip="Edit" tooltip-trigger="'mouseenter'" tooltip-placement="top"></a>
+                                                    </li>
+<!--                                                    <li class="action-items">
+                                                        <a href class="fa fa-eye"  uib-tooltip="View" tooltip-trigger="'mouseenter'" tooltip-placement="top"></a>
+                                                    </li>-->
+                                                    <li class="action-items" ng-if="(team.role !== 'Super Administrator' && (team.user_id === engagetoApp.profile.id)) || ((team.user_id !== engagetoApp.profile.id) && (team.role.length < teamManagement.userRolesByDomain[key].length))">
+                                                        <a href ng-click="teamManagement.deleteTeamManagementModal(key, $index)" class="fa fa-trash" uib-tooltip="Delete" tooltip-trigger="'mouseenter'" tooltip-placement="top"></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </uib-tab>
+                </uib-tabset>
+            </div>
+        </div>
+    </div>
+</div>

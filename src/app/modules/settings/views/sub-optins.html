@@ -1,0 +1,122 @@
+<div class="dashboard-content-header">
+    <h3 class="dashboard-content-area-heading">Sub Optin</h3>
+    <div class="subtitle">Manage your sub optin</div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="sub-optin-wrapper">
+                <form class="sub-optin-config-form custom-form">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h3>Sub Optin Settings</h3>
+                            <div class="form-group">
+                                <label for="subOptinText">Sub Optin Text</label>
+                                <input type="text" class="form-control" placeholder="Sub Optin Text" ng-model="subOptin.text"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="subOptinBackgroundColor">Background Color</label>
+                                        <input colorpicker type="text" class="form-control" ng-model="subOptin.backgroundColor"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="subOptinTextColor">Text Color</label>
+                                        <input colorpicker type="text" class="form-control" ng-model="subOptin.textColor"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div><label>Theme</label></div>
+                                        <div class="custom-radio">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="sub-optin-theme" ng-model="subOptin.theme" value="side"/>
+                                                <span>
+                                                    <i class="fa fa-circle"></i>
+                                                </span> Side
+                                            </label>
+                                        </div>
+                                        <div class="custom-radio">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="sub-optin-theme" ng-model="subOptin.theme" value="round" ng-change="subOptin.onChangetheme()"/>
+                                                <span>
+                                                    <i class="fa fa-circle"></i>
+                                                </span> Round
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div><label>Position</label></div>
+                                        <div class="custom-radio">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="social-share" value="right" ng-model="subOptin.position" ng-change="subOptin.onChangePosition()"/>
+                                                <span>
+                                                    <i class="fa fa-circle"></i>
+                                                </span> Right
+                                            </label>
+                                        </div>
+                                        <div class="custom-radio">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="social-share" value="left" ng-model="subOptin.position" ng-change="subOptin.onChangePosition()"/>
+                                                <span>
+                                                    <i class="fa fa-circle"></i>
+                                                </span> Left
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" ng-if="subOptin.theme === 'round'">
+                                <div class="col-md-6">
+                                    <div class="form-group" ng-if="subOptin.position === 'left'">
+                                        <label>Left</label>
+                                        <input type="text" class="form-control" ng-model="subOptin.leftPositionValue" ng-keydown="subOptin.onKeyDown($event, 'leftPositionValue')"/>
+                                    </div>
+                                    <div class="form-group" ng-if="subOptin.position === 'right'">
+                                        <label>Right</label>
+                                        <input type="text" class="form-control" ng-model="subOptin.rightPositionValue" ng-keydown="subOptin.onKeyDown($event, 'rightPositionValue')"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Bottom</label>
+                                        <input type="text" class="form-control" ng-model="subOptin.bottomPositionValue" ng-keydown="subOptin.onKeyDown($event, 'bottomPositionValue')"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <button type="button" class="btn sub-optin-config-btn btn-save" ng-disabled="engagetoApp.isLoading" ng-click="subOptin.onClickSave()">Save
+                                    <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h3 class="text-center">Preview</h3>
+                            <div class="sub-optin-preview">
+                                <img src="app/assets/images/supoptins-preview.png" class="img-responsive" alt="Optins Preview Image">
+                                <div class="side-notification-widget" ng-if="subOptin.theme === 'side'"  ng-class="{'right': subOptin.position === 'right', 'left': subOptin.position === 'left'}">
+                                    <div class="relative">
+                                        <a href="javascript:void(0);" ng-style="{'background-color': subOptin.backgroundColor, 'color': subOptin.textColor}">
+                                            <span ng-style="{'border-color': subOptin.textColor}">{{subOptin.text|| 'Notifications'}}</span><i class="fa fa-bell"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="round-notification-widget" ng-style="subOptin.roundedNotificationStyle" ng-if="subOptin.theme === 'round'"  ng-class="{'right': subOptin.position === 'right', 'left': subOptin.position === 'left'}">
+                                    <a href="javascript:void(0);" ng-style="{'background-color': subOptin.backgroundColor, 'color': subOptin.textColor}">
+                                        <i class="fa fa-bell"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

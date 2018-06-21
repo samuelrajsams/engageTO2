@@ -1,0 +1,285 @@
+/* 
+    Created on : Jul 21, 2016, 2:44:52 PM
+    Author     : ahextech
+*/
+/* Styles for the Footer Starts Here */
+@import "variable.scss";
+@import "mixin.scss";
+.footer{
+    width     : 100%;
+    bottom    : 0;
+    position  : absolute;
+    background: #062141 url('../images/stardust.png');
+    .footer-first-section{
+        width  : 100%;
+        bottom : 0;
+        padding: 50px 0 30px;
+        z-index: 3;
+        h3{
+            margin        : 0 0 20px;
+            letter-spacing: 1px;
+            @include font(rgba(255,255,255,0.8), 16px, $roboto-regular);
+        }
+        a{
+            margin : 0 0 10px;
+            display: block;
+            @include font(#b1bbc7, 14px, $roboto-light);
+            &:hover, &:focus{
+                text-decoration : none;
+            }
+            .contact-text{
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+        }
+        .bottom-footer-content{
+            padding   : 20px 0 0;
+            border-top: 1px solid #143256;
+            margin-top: 20px;
+            p{
+                margin: 0;
+                @include font(#b1bbc7, 13px, $roboto-light);
+            }
+            .bottom-footer-links{
+                width     : 100%;
+                margin    : 0;
+                display   : block;
+                text-align: center;
+                li{
+                    padding: 0;
+                    a{
+                        margin   : 0 10px;
+                        font-size: 13px;
+                    }
+                }
+            }
+            .social-icon-wrapper{
+                width     : 100%;
+                margin    : 0;
+                position  : relative;
+                text-align: right;
+                li{
+                    a{
+                        margin   : 0;
+                        font-size: 16px;
+                        @include transition(all 0.5s ease-in-out);
+                        &.facebook-icon{
+                            &:hover, &:focus{
+                                color: $facebook-blue;
+                            }
+                        }
+                        &.twitter-icon{
+                            &:hover, &:focus{
+                                color: $twitter-blue;
+                            }
+                        }
+                        &.linkedin-icon{
+                            &:hover, &:focus{
+                                color: $linkedin-blue;
+                            }
+                        }
+                    }
+                }
+            } 
+        }
+    }
+}
+
+/* Media Queries Starts Here */
+@media(min-width: 1200px){
+    .footer{
+        .footer-first-section{
+            .col-md-2{
+                &:first-of-type{
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+}
+@media(min-width: 992px) and (max-width: 1199px){
+    .footer{
+        .footer-first-section{
+            .footer-logo{
+                img{
+                    max-width: 130px;
+                }
+            }
+            .contact-text{
+                img{
+                    display: none;
+                }
+            }
+            h3{
+                margin: 10px 0 25px;
+            }
+            .subscription-form{
+                .form-group{
+                    input{
+                        max-width: 190px;
+                    }
+                    .btn-subscribe{
+                        margin-left: 10px;
+                    }
+                }
+            }
+            .social-icon-wrapper{
+                margin: 0;
+                li{
+                    a{
+                        width : 30px;
+                        height: 30px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media(min-width: 768px) and (max-width: 991px){
+    .footer{
+        .footer-first-section{
+            .footer-logo{
+                margin-bottom: 15px;
+                img{
+                    max-width: 150px;
+                }
+            }
+            h3{
+                margin: 15px 0 25px;
+            }
+            .subscription-form{
+                .form-group{
+                    label{
+                        margin-bottom: 10px;
+                    }
+                    input{
+                        max-width: 280px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media(min-width: 481px) and (max-width: 767px){
+    .footer{
+        .footer-first-section{
+            .footer-option-list{
+                float : none;
+                margin: 15px 0 10px;
+            }
+            .social-icon-wrapper{
+                margin-bottom: 0;
+            }
+            .bottom-footer-content{
+                .text-view{
+                    text-align: center;
+                    margin-bottom: 15px;
+                }
+                .bottom-footer-links{
+                    text-align: left;
+                    li{
+                        a{
+                            margin: 0 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(min-width: 320px) and (max-width: 480px){
+    .footer{
+        .footer-first-section{
+            .col-xxs-12{
+                width: 100%;
+            }
+            .subscription-form{
+                .form-group{
+                    input{
+                        max-width: 100%;
+                    }
+                }
+            }
+            .bottom-footer-content{
+                .text-view{
+                    text-align: center;
+                    margin-bottom: 15px;
+                }
+                .bottom-footer-links{
+                    text-align: center;
+                    li{
+                        a{
+                            margin: 0 5px;
+                        }
+                    }
+                }
+                .social-icon-wrapper{
+                    text-align: center;
+                    margin-top: 15px;
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
+@media(min-width: 320px) and (max-width: 767px){
+    .footer{
+        .footer-first-section{
+            .footer-logo{
+                margin: 0 auto 15px;
+                img{
+                    max-width: 130px;
+                }
+            }
+            h3{
+                margin   : 5px 0 15px;
+                font-size: 18px;
+            }
+            a{
+                font-size: 15px;
+            }
+            .contact-text{
+                display  : block;
+                font-size: 15px;
+            }
+            .subscription-form{
+                .form-group{
+                    label{
+                        font-size: 15px;
+                    }
+                    input{
+                        font-size: 15px;
+                        &::-webkit-input-placeholder {
+                            font-size: 15px;
+                        }
+                        &:-moz-placeholder {
+                            font-size: 15px;
+                        }
+                        &::-moz-placeholder {
+                            font-size: 15px;
+                        }
+                        &:-ms-input-placeholder {  
+                            font-size: 15px;
+                        }
+                    }
+                    .btn-subscribe{
+                        width    : 100%;
+                        margin   : 20px auto 0;
+                        display  : block;
+                        max-width: 200px;
+                    }
+                }
+            }
+            .social-icon-wrapper{
+                li{
+                    a{
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+/* Media Queries Ends Here */
+/* Styles for the Footer Ends Here */

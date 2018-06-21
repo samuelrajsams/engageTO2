@@ -1,0 +1,493 @@
+<button type="button" class="visible-xxs btn-eye" ng-click="abSplitNotification.notificationPreview()"><i class="fa fa-eye" aria-hidden="true"></i></button>
+<div class="notification-preview-xs xs-visible" ng-show="abSplitNotification.showNotification">
+    <div class="browser-push-button-wrapper">
+        <div class="btn-group btn-custom-group">
+            <label class="btn push-btn" ng-model="abSplitNotification.browserPreviewTab" uib-btn-radio="'Chrome'">Chrome</label>
+            <label class="btn push-btn" ng-model="abSplitNotification.browserPreviewTab" uib-btn-radio="'Firefox'">Firefox</label>
+            <label class="btn push-btn" ng-model="abSplitNotification.browserPreviewTab" uib-btn-radio="'Safari'">Safari</label>
+        </div>
+    </div>
+    <div class="preview-wrapper-chrome" ng-if="abSplitNotification.browserPreviewTab === 'Chrome'">
+        <div class="preview-image-chrome">
+            <i class="fa {{abSplitNotification.notification.logo}}" ng-if="abSplitNotification.notification.logo != ''"></i>
+            <img class="img-responsive" ngf-src="abSplitNotification.notification.image" alt="" ng-if="abSplitNotification.notification.logo == ''"/>
+        </div>
+        <div class="preview-content-chrome clearfix">
+            <i class="fa fa-times" aria-hidden="true"></i>
+            <span>{{ abSplitNotification.notification.title || ''}}</span>
+            <span>{{ abSplitNotification.notification.message || ''}}</span>
+            <span>{{ abSplitNotification.notification.url || ''}}</span>
+            <i class="fa fa-cog" aria-hidden="true"></i>
+        </div>
+        <div class="cta-content">
+            <a href="http://www.{{abSplitNotification.advanceOptions.cta[0].url}}" class="btn btn-primary" target="_blank" ng-if="abSplitNotification.advanceOptions.cta[0].url.trim() != '' && abSplitNotification.advanceOptions.cta[0].isCtaUrlValid && abSplitNotification.advanceOptions.cta[0].text.trim() != ''">{{abSplitNotification.advanceOptions.cta[0].text}}</a>
+            <a href="http://www.{{abSplitNotification.advanceOptions.cta[1].url}}" target="_blank" class="btn btn-primary" ng-if="(abSplitNotification.advanceOptions.cta[1].url.trim() != '' && abSplitNotification.advanceOptions.cta[1].isCtaUrlValid && abSplitNotification.advanceOptions.cta[1].text.trim() != '') && abSplitNotification.advanceOptions.cta.length === 2">{{abSplitNotification.advanceOptions.cta[1].text}}</a>
+        </div>
+    </div>
+    <div class="preview-wrapper-firefox" ng-if="abSplitNotification.browserPreviewTab === 'Firefox'">
+        <div class="firefox-logo">
+            <img class="img-responsive" src="app/assets/images/firefox-logo.png"/>
+        </div>
+        <div class="preview-content-firefox">
+            <span>{{ abSplitNotification.notification.title || ''}}</span>
+            <span>{{ abSplitNotification.notification.message || ''}}</span>
+            <span>{{ abSplitNotification.notification.url || ''}}</span>
+        </div>
+        <div class="preview-image-firefox">
+            <i class="fa {{abSplitNotification.notification.logo}}" ng-if="abSplitNotification.notification.logo != ''"></i>
+            <img class="img-responsive" ngf-src="abSplitNotification.notification.image" alt="" ng-if="abSplitNotification.notification.logo == ''"/>
+        </div>
+    </div>
+    <div class="preview-wrapper-safari clearfix" ng-if="abSplitNotification.browserPreviewTab === 'Safari'">
+        <div class="preview-image-safari">
+            <img class="img-responsive" src="app/assets/images/safari-preview-image.png"/>
+        </div>
+        <div class="preview-content-safari">
+            <span>{{ abSplitNotification.notification.title || ''}}</span>
+            <span>{{ abSplitNotification.notification.message || ''}}</span>
+        </div>
+    </div>
+</div>
+<div class="notification-preview visible-sm visible-md visible-lg xs-hide">
+    <div class="browser-push-button-wrapper">
+        <div class="btn-group btn-custom-group">
+            <label class="btn push-btn" ng-model="abSplitNotification.browserPreviewTab" uib-btn-radio="'Chrome'" uncheckable>Chrome</label>
+            <label class="btn push-btn" ng-model="abSplitNotification.browserPreviewTab" uib-btn-radio="'Firefox'" uib-uncheckable="uncheckable">Firefox</label>
+            <label class="btn push-btn" ng-model="abSplitNotification.browserPreviewTab" uib-btn-radio="'Safari'" uib-uncheckable="uncheckable">Safari</label>
+        </div>
+    </div>
+    <div class="preview-wrapper-chrome clearfix" ng-if="abSplitNotification.browserPreviewTab === 'Chrome'" ng-repeat-start="list in abSplitNotification.listOfNotification" ng-show="$index === abSplitNotification.listIndex">
+        <a class="fa fa-arrow-circle-left preview-arrow" ng-click="abSplitNotification.changeNotificationPreview($index - 1)" ng-hide="abSplitNotification.listIndex === 0"></a>
+        <a class="fa fa-arrow-circle-right preview-arrow" ng-click="abSplitNotification.changeNotificationPreview($index + 1)" ng-hide="abSplitNotification.listIndex === abSplitNotification.listOfNotification.length - 1"></a>
+        <ol class="carousel-indicators"> 
+            <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li> 
+            <li data-target="#carousel-example-generic" data-slide-to="1" class="active"></li> 
+            <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li> 
+        </ol>
+        <div class="preview-image-chrome">
+            <i class="fa {{list.notification.logo}}" ng-if="list.notification.logo != ''"></i>
+            <img class="img-responsive" ngf-src="list.notification.image" alt="" ng-if="list.notification.logo == ''"/>
+        </div>
+        <div class="preview-content-chrome">
+            <i class="fa fa-times" aria-hidden="true"></i>
+            <span ng-if="list.notification.title.length <= 50">{{ list.notification.title || ''}}</span>
+            <span ng-if="list.notification.message.length <= 100">{{ list.notification.message || ''}}</span>
+            <span ng-if="abSplitNotification.notification.isUrlValid">{{ list.notification.url || ''}}</span>
+            <i class="fa fa-cog" aria-hidden="true"></i>
+        </div>
+        <div class="cta-content">
+            <a href="http://www.{{list.advanceOptions.cta[0].url}}" class="btn btn-primary" target="_blank" ng-class="{'non-clickable-pointer': list.advanceOptions.cta[0].url === ''}" ng-if="list.advanceOptions.cta[0].url !== '' || list.advanceOptions.cta[0].text !== ''">{{list.advanceOptions.cta[0].text}}</a>
+            <a href="http://www.{{list.advanceOptions.cta[1].url}}" target="_blank" class="btn btn-primary" ng-class="{'non-clickable-pointer': list.advanceOptions.cta[1].url === ''}" ng-if="(list.advanceOptions.cta[1].url !== '' || list.advanceOptions.cta[1].text !== '') && list.advanceOptions.cta.length === 2">{{list.advanceOptions.cta[1].text}}</a>
+        </div>
+    </div>
+    <div class="preview-wrapper-firefox" ng-if="abSplitNotification.browserPreviewTab === 'Firefox'" ng-show="$index === abSplitNotification.listIndex">
+        <a class="fa fa-arrow-circle-left preview-arrow" ng-click="abSplitNotification.changeNotificationPreview($index - 1)" ng-hide="abSplitNotification.listIndex === 0"></a>
+        <a class="fa fa-arrow-circle-right preview-arrow" ng-click="abSplitNotification.changeNotificationPreview($index + 1)" ng-hide="abSplitNotification.listIndex === abSplitNotification.listOfNotification.length - 1"></a>
+        <div class="firefox-logo">
+            <img class="img-responsive" src="app/assets/images/firefox-logo.png"/>
+        </div>
+        <div class="preview-content-firefox">
+            <span ng-if="list.notification.title.length <= 50">{{ list.notification.title || ''}}</span>
+            <span ng-if="list.notification.message.length <= 100">{{ list.notification.message || ''}}</span>
+            <span ng-if="abSplitNotification.notification.isUrlValid">{{ list.notification.url || ''}}</span>
+        </div>
+        <div class="preview-image-firefox">
+            <i class="fa {{list.notification.logo}}" ng-if="list.notification.logo != ''"></i>
+            <img class="img-responsive" ngf-src="list.notification.image" alt="" ng-if="list.notification.logo == ''"/>
+        </div>
+    </div>
+    <div class="preview-wrapper-safari clearfix" ng-if="abSplitNotification.browserPreviewTab === 'Safari'" ng-repeat-end ng-show="$index === abSplitNotification.listIndex">
+        <a class="fa fa-arrow-circle-left preview-arrow" ng-click="abSplitNotification.changeNotificationPreview($index - 1)" ng-hide="abSplitNotification.listIndex === 0"></a>
+        <a class="fa fa-arrow-circle-right preview-arrow" ng-click="abSplitNotification.changeNotificationPreview($index + 1)" ng-hide="abSplitNotification.listIndex === abSplitNotification.listOfNotification.length - 1"></a>
+        <div class="preview-image-safari">
+            <i class="fa {{list.notification.logo}}" ng-if="list.notification.logo != ''"></i>
+            <img class="img-responsive" ngf-src="list.notification.image" alt="" ng-if="list.notification.logo == ''"/>
+        </div>
+        <div class="preview-content-safari">
+            <span ng-if="list.notification.title.length <= 50">{{ list.notification.title || ''}}</span>
+            <span ng-if="list.notification.message.length <= 50">{{ list.notification.message || ''}}</span>
+        </div>
+    </div>
+    <button type="button" style="background-color: #fff; color: #555; margin: 20px 0 0; border: 1px solid #555; border-radius: 5px; min-height: 40px;" class="btn btn-add-preview" ng-if="abSplitNotification.activeTab === 2" ng-click="abSplitNotification.addNotification()">
+        <i class="fa fa-plus" aria-hidden="true"></i> Add more notifications
+    </button>
+</div>
+<div class="notification-details-content" id="notification-scroll-wrapper">
+    <uib-tabset class="breadcrumbs-list list-inline clearfix" active="abSplitNotification.activeTab" justified="true">
+        <uib-tab class="breadcrumbs-options active" index="0" heading="Notification Details">
+            <ul class="list-inline navigation-options-list">
+                <li><a href="javascript:void(0)" class="navigation-options">Tour</a></li>
+                <li><a href="javascript:void(0)" class="navigation-options">Help</a></li>
+            </ul>
+            <div class="notification-details-wrapper">
+                <form class="custom-form notification-details-form" name="abSplitNotificationDetailsForm">
+                    <div class="row">
+                        <div class="col-xxs-12 col-xs-6 col-sm-5 col-md-5">
+                            <h3 class="notification-header">AB Split Test Notifications</h3>
+                            <div class="form-group">
+                                <label for="notificationTitle">Notification Title<i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <input type="text" class="form-control" ng-class="{'error-field': (!abSplitNotification.notification.title.trim() && abSplitNotification.notification.isTitleBlured) || abSplitNotification.notification.isTitleRequired || !abSplitNotification.notification.isTitleShorter}" name="notificationTitle" id="notificationTitle" ng-model="abSplitNotification.notification.title" ab-split-validator required ng-trim="false"/>
+                                <small style="color: {{abSplitNotification.notification.isTitleShorter? 'green': 'red'}};">({{abSplitNotification.notification.titleCharaLength}} Characters)</small>
+                                <span style="color: red;" ng-if="!abSplitNotification.notification.isTitleShorter">Shorten your title and make it appealing.</span>
+                                <span ng-show="abSplitNotification.notification.title.trim() != '' && abSplitNotification.notification.isTitleBlured && abSplitNotification.notification.title && abSplitNotification.notification.isTitleRequired != 'undefined' && abSplitNotification.notification.isTitleRequired === false && abSplitNotification.notification.isTitleShorter">
+                                    <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label for="notificationMessage">Notification Message<i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <textarea class="form-control" ng-class="{'error-field': (!abSplitNotification.notification.message.trim() && abSplitNotification.notification.isMessageBlured) || abSplitNotification.notification.isMessageRequired || !abSplitNotification.notification.isMessageShorter}" name="notificationMessage" id="notificationMessage" ng-model="abSplitNotification.notification.message" ab-split-validator required ng-trim="false"></textarea>
+                                <small style="color: {{abSplitNotification.notification.isMessageShorter? 'green': 'red'}};">({{abSplitNotification.notification.messageCharaLength}} Characters)</small>
+                                <span style="color: red;" ng-if="!abSplitNotification.notification.isMessageShorter">Shorten your message and make it appealing.</span>
+                                <span ng-show="abSplitNotification.notification.message.trim() != '' && abSplitNotification.notification.isMessageBlured && abSplitNotification.notification.isMessageRequired != 'undefined' && abSplitNotification.notification.isMessageRequired === false && abSplitNotification.notification.isMessageShorter">
+                                    <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label for="notificationURL">Notification URL<i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <input type="text" class="form-control" ng-class="{'error-field': abSplitNotification.notification.isUrlValid === false}" name="notificationURL" id="notificationURL" ng-model="abSplitNotification.notification.url" ab-split-validator/>
+                                <span class="error-2" ng-if="abSplitNotification.notification.isUrlValid === false">Please enter valid website URL.</span>
+                                <span ng-show="abSplitNotification.notification.isUrlValid != 'undefined' && abSplitNotification.notification.isUrlValid">
+                                    <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <h4 class="utm-param-head utm-hidden-sm" id="notification-utm-scroll">Track Using UTM Parameters</h4>
+                                <div class="switch" uib-tooltip="Please, Enter Notification URL, to enable UTM tracking." tooltip-placement="right" tooltip-trigger="'outsideClick'" tooltip-enable="abSplitNotification.notification.url == '' || abSplitNotification.notification.url == 'undefined'">
+                                    <input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="abSplitNotification.notification.isUTMParametersRequired" ng-disabled="!abSplitNotification.notification.isUrlValid || abSplitNotification.notification.url == '' || abSplitNotification.notification.url == 'undefined'">
+                                    <label for="cmn-toggle-1"></label>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-show="abSplitNotification.notification.isUTMParametersRequired">
+                                <label for="utmSource">UTM Source<i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <input type="text" name="utmSource" id="utmSource" class="form-control" ng-class="{'error-field': abSplitNotification.notification.isUtmSourceRequired || !abSplitNotification.notification.isUtmSourceShorter || abSplitNotification.notification.invalidUTMSourcePattern}" ng-model="abSplitNotification.notification.uTMSource" ab-split-validator ng-trim="false" required/>
+                                <small style="color: {{abSplitNotification.notification.isUtmSourceShorter? 'green': 'red'}};">({{abSplitNotification.notification.utmSourceCharaLength}} Characters)</small>
+                                <span style="color: red;" ng-if="!abSplitNotification.notification.isUtmSourceShorter">Shorten your utm source and make it appealing.</span>
+                                <span style="color:red" ng-show="abSplitNotification.notification.isUtmSourceShorter && abSplitNotification.notification.invalidUTMSourcePattern && abSplitNotification.notification.isUtmSourceRequired != 'undefined' && abSplitNotification.notification.isUtmSourceRequired === false">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                <span ng-show="abSplitNotification.notification.uTMSource && abSplitNotification.notification.isUtmSourceRequired != 'undefined' && abSplitNotification.notification.isUtmSourceRequired === false && !abSplitNotification.notification.invalidUTMSourcePattern && abSplitNotification.notification.isUtmSourceShorter">
+                                    <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="form-group" ng-show="abSplitNotification.notification.isUTMParametersRequired">
+                                <label for="utmMedium">UTM Medium<i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <input type="text" class="form-control" name="utmMedium" id="utmMedium" ng-class="{'error-field': !abSplitNotification.notification.isUtmMediumShorter || (abSplitNotification.notification.invalidUTMMediumPattern && abSplitNotification.notification.isUtmMediumBlured)}" ng-model="abSplitNotification.notification.uTMMedium" ab-split-validator ng-trim="false"/>
+                                <small style="color: {{abSplitNotification.notification.isUtmMediumShorter? 'green': 'red'}};">({{abSplitNotification.notification.utmMediumCharaLength}} Characters)</small>
+                                <span style="color: red;" ng-if="!abSplitNotification.notification.isUtmMediumShorter">Shorten your utm medium and make it appealing.</span>
+                                <span style="color:red" ng-show="abSplitNotification.notification.isUtmMediumShorter && abSplitNotification.notification.invalidUTMMediumPattern && abSplitNotification.notification.isUtmMediumBlured">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                <span ng-show="abSplitNotification.notification.uTMMedium && abSplitNotification.notification.isUtmMediumBlured && !abSplitNotification.notification.invalidUTMMediumPattern && abSplitNotification.notification.isUtmMediumShorter">
+                                    <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="form-group" ng-show="abSplitNotification.notification.isUTMParametersRequired">
+                                <label for="utmCampaign">UTM Campaign<i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <input type="text" class="form-control" name="utmCampaign" id="utmCampaign" ng-class="{'error-field': !abSplitNotification.notification.isUtmCompaignShorter || (abSplitNotification.notification.invalidUTMCompaignPattern && abSplitNotification.notification.isUtmCompaignBlured)}" ng-model="abSplitNotification.notification.uTMCompaign" ab-split-validator ng-trim="false"/>
+                                <small style="color: {{abSplitNotification.notification.isUtmCompaignShorter? 'green': 'red'}};">({{abSplitNotification.notification.utmCompaignCharaLength}} Characters)</small>
+                                <span style="color: red;" ng-if="!abSplitNotification.notification.isUtmCompaignShorter">Shorten your utm campaign and make it appealing.</span>
+                                <span style="color:red" ng-show="abSplitNotification.notification.isUtmCompaignShorter && abSplitNotification.notification.invalidUTMCompaignPattern && abSplitNotification.notification.isUtmCompaignBlured">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                <span ng-show="abSplitNotification.notification.uTMCompaign && abSplitNotification.notification.isUtmCompaignBlured && !abSplitNotification.notification.invalidUTMCompaignPattern && abSplitNotification.notification.isUtmCompaignShorter">
+                                    <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="form-group" ng-show="abSplitNotification.notification.isUTMParametersRequired">
+                                <label for="utmTerm">UTM Term<i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <input type="text" class="form-control" name="utmTerm" id="utmTerm" ng-class="{'error-field': !abSplitNotification.notification.isUtmTermShorter || (abSplitNotification.notification.invalidUTMTermPattern && abSplitNotification.notification.isUtmTermBlured)}" ng-model="abSplitNotification.notification.uTMTerm" ab-split-validator ng-trim="false"/>
+                                <small style="color: {{abSplitNotification.notification.isUtmTermShorter? 'green': 'red'}};">({{abSplitNotification.notification.utmTermCharaLength}} Characters)</small>
+                                <span style="color: red;" ng-if="!abSplitNotification.notification.isUtmTermShorter">Shorten your utm term and make it appealing.</span>
+                                <span style="color:red" ng-show="abSplitNotification.notification.isUtmTermShorter && abSplitNotification.notification.invalidUTMTermPattern && abSplitNotification.notification.isUtmTermBlured">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                <span ng-show="abSplitNotification.notification.uTMTerm && abSplitNotification.notification.isUtmTermBlured && !abSplitNotification.notification.invalidUTMTermPattern && abSplitNotification.notification.isUtmTermShorter">
+                                    <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="form-group" ng-show="abSplitNotification.notification.isUTMParametersRequired">
+                                <label for="utmContent">UTM Content<i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <input type="text" class="form-control" name="utmContent" id="utmContent" ng-class="{'error-field': !abSplitNotification.notification.isUtmContentShorter || (abSplitNotification.notification.invalidUTMContentPattern && abSplitNotification.notification.isUtmContentBlured)}" ng-model="abSplitNotification.notification.uTMContent" ab-split-validator ng-trim="false"/>
+                                <small style="color: {{abSplitNotification.notification.isUtmContentShorter? 'green': 'red'}};">({{abSplitNotification.notification.utmContentCharaLength}} Characters)</small>
+                                <span style="color: red;" ng-if="!abSplitNotification.notification.isUtmContentShorter">Shorten your utm content and make it appealing.</span>
+                                <span style="color:red" ng-show="abSplitNotification.notification.isUtmContentShorter && abSplitNotification.notification.invalidUTMContentPattern && abSplitNotification.notification.isUtmContentBlured">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                <span ng-show="abSplitNotification.notification.uTMContent && abSplitNotification.notification.isUtmContentBlured && !abSplitNotification.notification.invalidUTMContentPattern && abSplitNotification.notification.isUtmContentShorter">
+                                    <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-bitly">Connect with Bitly</button>
+                            </div>
+                            <div class="form-group">
+                                <label for="notificationURL">Notification Image<i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <div class="row">
+                                    <div class="col-xs-3 col-sm-4 col-md-3 col-lg-2">
+                                        <div class="notification-image-container">
+                                            <img ngf-thumbnail="abSplitNotification.notification.image" alt="Image" ng-if="abSplitNotification.notification.logo == ''"/>
+                                            <i class="fa {{abSplitNotification.notification.logo}}" ng-if="abSplitNotification.notification.logo != ''"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3 col-sm-4 col-md-3 col-lg-2">
+                                        <div class="notification-image-container">
+                                            <a href ng-click="abSplitNotification.uploadImageModal()" class="fa fa-plus-circle plus-icon"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn form-btn btn-back" ui-sref="side-nav-template.new-push-notification">Back</button>
+                    <button type="button" class="btn form-btn btn-next" ng-click="abSplitNotification.nextPage(1)">Next</button>
+                    <button type="button" class="btn form-btn btn-exit" ng-click="abSplitNotification.exitABSplitNotificationModal()">Exit</button>
+                </form>
+            </div>
+        </uib-tab>
+        <uib-tab class="breadcrumbs-options" index="1" heading="Advanced Options" disable="abSplitNotificationDetailsForm.$invalid || abSplitNotification.notification.isTitleRequired || !abSplitNotification.notification.isTitleShorter || abSplitNotification.notification.title.trim() == '' ||
+                 abSplitNotification.notification.isMessageRequired || !abSplitNotification.notification.isMessageShorter || abSplitNotification.notification.message.trim() == '' || abSplitNotification.notification.isUrlValid === false ||
+                 (abSplitNotification.notification.isUTMParametersRequired && (abSplitNotification.notification.isUtmSourceRequired || !abSplitNotification.notification.isUtmSourceShorter || abSplitNotification.notification.invalidUTMSourcePattern || 
+                 !abSplitNotification.notification.isUtmMediumShorter || abSplitNotification.notification.invalidUTMMediumPattern || !abSplitNotification.notification.isUtmCompaignShorter || abSplitNotification.notification.invalidUTMCompaignPattern || 
+                 !abSplitNotification.notification.isUtmTermShorter || abSplitNotification.notification.invalidUTMTermPattern || !abSplitNotification.notification.isUtmContentShorter || abSplitNotification.notification.invalidUTMContentPattern))">
+            <ul class="list-inline navigation-options-list">
+                <li><a href="javascript:void(0)" class="navigation-options">Tour</a></li>
+                <li><a href="javascript:void(0)" class="navigation-options">Help</a></li>
+            </ul>
+            <div class="advanced-options-wrapper">
+                <form class="custom-form advanced-options-form" name="abSplitAdvanceOptionsForm">
+                    <div class="row">
+                        <div class="col-xxs-12 col-xs-6 col-sm-5 col-md-5">
+                            <h3 class="notification-header">AB Split Test Notifications</h3>
+                            <h4 class="ab-test-cta-head">Add Call Actions(CTA)</h4>
+                            <div class="form-group" ng-repeat-start="cta in abSplitNotification.advanceOptions.cta">
+                                <label for="ctaText">{{cta.label}}<i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <input type="text" class="form-control" name="ctaText" id="ctaText{{$index}}" ng-class="{'error-field': !cta.isCtaTextShorter || cta.isCtaTextRequired}" ng-model="cta.text" ab-split-advance-validator ng-trim="false"/>
+                                <small style="color: {{cta.isCtaTextShorter? 'green': 'red'}};">({{cta.ctaTextCharaLength}} Characters)</small>
+                                <span style="color: red;" ng-if="!cta.isCtaTextShorter">Please, Make this short.</span>
+                                <span ng-show="cta.text.trim() != '' && cta.isCtaTextBlured && cta.isCtaTextShorter && !cta.isCtaTextRequired">
+                                    <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="form-group" id="utm-params-part-{{$index}}">
+                                <label for="ctaUrl">{{cta.value}}<i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <input type="text" class="form-control" name="ctaUrl" id="ctaUrl{{$index}}" ng-class="{'error-field': (cta.isCtaUrlValid === false && cta.isCtaUrlBlured) || cta.isCtaUrlRequired}" ng-model="cta.url" ab-split-advance-validator ng-trim="false"/>
+                                <span style="color: red;" ng-if="cta.isCtaUrlValid === false && cta.isCtaUrlBlured">Please enter valid CTA URL</span>
+                                <span ng-show="cta.url && cta.isCtaUrlBlured && cta.isCtaUrlValid && !cta.isCtaUrlRequired">
+                                    <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <h4 class="utm-param-head">Track Using UTM Parameters</h4>
+                                <div class="switch" uib-tooltip="Please, Enter Notification URL, to enable UTM tracking." tooltip-placement="right" tooltip-trigger="'outsideClick'" tooltip-enable="cta.url == '' || cta.url == 'undefined'">
+                                    <input id="cmn-toggle-2-{{$index}}" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="cta.isAddUTMParametersRequired" ng-disabled="!cta.isCtaUrlValid || cta.url == '' || cta.url == 'undefined'">
+                                    <label for="cmn-toggle-2-{{$index}}"></label>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-show="cta.isAddUTMParametersRequired">
+                                <label for="utmSource">UTM Source<i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <input type="text" class="form-control" name="utmSource" id="utmSource{{$index}}" ng-class="{'error-field':  (!cta.isUTMSourceShorter || cta.isUTMSourceRequired || cta.invalidUTMSourcePattern) && cta.isUTMSourceBlured}" ng-model="cta.uTMSource" ab-split-advance-validator ng-trim="false" required/>
+                                <small style="color: {{cta.isUTMSourceShorter? 'green': 'red'}};">({{cta.utmSourceCharLength}} Characters)</small>
+                                <span style="color: red;" ng-if="!cta.isUTMSourceShorter">Please, Make this short.</span>
+                                <span style="color:red" ng-show="cta.isUTMSourceShorter && cta.invalidUTMSourcePattern && cta.isUTMSourceBlured">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                <span ng-show="cta.uTMSource && cta.isUTMSourceBlured && !cta.invalidUTMSourcePattern && cta.isUTMSourceShorter && !cta.isUTMSourceRequired">
+                                    <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="form-group" ng-show="cta.isAddUTMParametersRequired">
+                                <label for="utmMedium">UTM Medium<i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <input type="text" class="form-control" name="utmMedium" id="utmMedium{{$index}}" ng-class="{'error-field': (!cta.isUTMMediumShorter || cta.invalidUTMMediumPattern) && cta.isUTMMediumBlured}" ng-model="cta.uTMMedium" ab-split-advance-validator ng-trim="false"/>
+                                <small style="color: {{cta.isUTMMediumShorter? 'green': 'red'}};">({{cta.utmMediumCharLength}} Characters)</small>
+                                <span style="color: red;" ng-if="!cta.isUTMMediumShorter">Please, Make this short.</span>
+                                <span style="color:red" ng-show="cta.isUTMMediumBlured && cta.invalidUTMMediumPattern && cta.isUTMMediumShorter">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                <span ng-show="cta.uTMMedium && cta.isUTMMediumBlured && !cta.invalidUTMMediumPattern && cta.isUTMMediumShorter">
+                                    <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="form-group" ng-show="cta.isAddUTMParametersRequired">
+                                <label for="utmCampaign">UTM Campaign<i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <input type="text" class="form-control" name="utmCampaign" id="utmCampaign{{$index}}" ng-class="{'error-field': (cta.isUTMCampaignBlured || cta.invalidUTMCampaignPattern) && !cta.isUTMCampaignShorter}" ng-model="cta.uTMCompaign" ab-split-advance-validator ng-trim="false"/>
+                                <small style="color: {{cta.isUTMCampaignShorter? 'green': 'red'}};">({{cta.utmCampaignCharLength}} Characters)</small>
+                                <span style="color: red;" ng-if="!cta.isUTMCampaignShorter">Please, Make this short.</span>
+                                <span style="color:red" ng-show="cta.isUTMCampaignBlured && cta.invalidUTMCampaignPattern && cta.isUTMCampaignShorter">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                <span ng-show="cta.uTMCompaign && cta.isUTMCampaignBlured && !cta.invalidUTMCampaignPattern && cta.isUTMCampaignShorter">
+                                    <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="form-group" ng-show="cta.isAddUTMParametersRequired">
+                                <label for="utmTerm">UTM Term<i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <input type="text" class="form-control" name="utmTerm" id="utmTerm{{$index}}" ng-class="{'error-field': (cta.isUTMTermBlured || cta.invalidUTMTermPattern) && !cta.isUTMTermShorter}" ng-model="cta.uTMTerm" ab-split-advance-validator ng-trim="false"/>
+                                <small style="color: {{cta.isUTMTermShorter? 'green': 'red'}};">({{cta.utmTermCharLength}} Characters)</small>
+                                <span style="color: red;" ng-if="!cta.isUTMTermShorter">Please, Make this short.</span>
+                                <span style="color:red" ng-show="cta.isUTMTermBlured && cta.invalidUTMTermPattern && cta.isUTMTermShorter">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                <span ng-show="cta.uTMTerm && cta.isUTMTermBlured && !cta.invalidUTMTermPattern && cta.isUTMTermShorter">
+                                    <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="form-group" ng-show="cta.isAddUTMParametersRequired">
+                                <label for="utmContent">UTM Content<i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <input type="text" class="form-control" name="utmContent" id="utmContent{{$index}}" ng-class="{'error-field': (cta.isUTMContentBlured || cta.invalidUTMContentPattern) && !cta.isUTMContentShorter}" ng-model="cta.uTMContent" ab-split-advance-validator ng-trim="false"/>
+                                <small style="color: {{cta.isUTMContentShorter? 'green': 'red'}};">({{cta.utmContentCharLength}} Characters)</small>
+                                <span style="color: red;" ng-if="!cta.isUTMContentShorter">Please, Make this short.</span>
+                                <span style="color:red" ng-show="cta.isUTMContentBlured && cta.invalidUTMContentPattern && cta.isUTMContentShorter">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                <span ng-show="cta.uTMContent && cta.isUTMContentBlured && !cta.invalidUTMContentPattern && cta.isUTMContentShorter">
+                                    <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="form-group" ng-repeat-end>
+                                <a href class="fa fa-plus-circle plus-icon plus-cta-url" ng-if="abSplitNotification.advanceOptions.cta.length <= 1" ng-click="abSplitNotification.addCtaInline()"></a>
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-bitly">Connect with Bitly</button>
+                            </div>
+                            <div class="form-group">
+                                <label class="notification-expiry-label" for="notificationExpiry">Set Notification Expiry<i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <input type="text" class="form-control notification-expiry" name="notificationExpiry" id="notificationExpiry" ng-class="{'error-field': ((abSplitNotification.advanceOptions.expiryValue <= 0 && abSplitNotification.advanceOptions.expiryValue) ||
+                                            !abSplitNotification.advanceOptions.isExpiryValid || (abSplitNotification.advanceOptions.expiryType === 'Days' && abSplitNotification.advanceOptions.expiryValue > 28 ||
+                                                    (abSplitNotification.advanceOptions.expiryType === 'Hours' && abSplitNotification.advanceOptions.expiryValue > 672) || (abSplitNotification.advanceOptions.expiryType === 'Minutes' && abSplitNotification.advanceOptions.expiryValue > 40320) ||
+                                                    (abSplitNotification.advanceOptions.expiryType === 'Seconds' && abSplitNotification.advanceOptions.expiryValue > 2419200))) && abSplitNotification.advanceOptions.isExpiryBlured}" ng-model="abSplitNotification.advanceOptions.expiryValue" ab-split-advance-validator/>
+                                <span ng-show="abSplitNotification.advanceOptions.expiryValue > 0 && abSplitNotification.advanceOptions.isExpiryValid && abSplitNotification.advanceOptions.isExpiryBlured && ((abSplitNotification.advanceOptions.expiryType === 'Days' && abSplitNotification.advanceOptions.expiryValue <= 28) || (abSplitNotification.advanceOptions.expiryType === 'Hours' && abSplitNotification.advanceOptions.expiryValue <= 672) || (abSplitNotification.advanceOptions.expiryType === 'Minutes' && abSplitNotification.advanceOptions.expiryValue <= 40320) || (abSplitNotification.advanceOptions.expiryType === 'Seconds' && abSplitNotification.advanceOptions.expiryValue <= 2419200))">
+                                    <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                </span>
+                                <div class="btn-group btn-custom-group btn-expiry-hidden-xs">
+                                    <label class="btn push-btn" ng-model="abSplitNotification.advanceOptions.expiryType" uib-btn-radio="'Days'">Days</label>
+                                    <label class="btn push-btn" ng-model="abSplitNotification.advanceOptions.expiryType" uib-btn-radio="'Hours'">Hours</label>
+                                    <label class="btn push-btn" ng-model="abSplitNotification.advanceOptions.expiryType" uib-btn-radio="'Minutes'">Minutes</label>
+                                    <label class="btn push-btn" ng-model="abSplitNotification.advanceOptions.expiryType" uib-btn-radio="'Seconds'">Seconds</label>
+                                </div>
+                                <div class="btn-group btn-custom-group btn-expiry-visible-xs">
+                                    <label class="btn push-btn" ng-model="abSplitNotification.advanceOptions.expiryType" uib-btn-radio="'Days'">Days</label>
+                                    <label class="btn push-btn" ng-model="abSplitNotification.advanceOptions.expiryType" uib-btn-radio="'Hrs'">Hrs</label>
+                                    <label class="btn push-btn" ng-model="abSplitNotification.advanceOptions.expiryType" uib-btn-radio="'Mins'">Mins</label>
+                                    <label class="btn push-btn" ng-model="abSplitNotification.advanceOptions.expiryType" uib-btn-radio="'Secs'">Secs</label>
+                                </div>
+                                <span class="error-2" ng-show="abSplitNotification.advanceOptions.expiryValue && abSplitNotification.advanceOptions.expiryValue <= 0 && abSplitNotification.advanceOptions.isExpiryBlured">[{{abSplitNotification.advanceOptions.expiryValue}}] is not notification expiry time</span>
+                                <span class="error-2" ng-show="abSplitNotification.advanceOptions.expiryValue && !abSplitNotification.advanceOptions.isExpiryValid && abSplitNotification.advanceOptions.isExpiryBlured">We allow only whole numeric time</span>
+                                <span class="error-2" ng-show="abSplitNotification.advanceOptions.expiryValue > 0 && abSplitNotification.advanceOptions.isExpiryValid && abSplitNotification.advanceOptions.isExpiryBlured && abSplitNotification.advanceOptions.expiryType === 'Days' && abSplitNotification.advanceOptions.expiryValue > 28">You cannot set notification expiry to more than 28 Days</span>
+                                <span class="error-2" ng-show="abSplitNotification.advanceOptions.expiryValue > 0 && abSplitNotification.advanceOptions.isExpiryValid && abSplitNotification.advanceOptions.isExpiryBlured && abSplitNotification.advanceOptions.expiryType === 'Hours' && abSplitNotification.advanceOptions.expiryValue > 672">You cannot set notification expiry to more than 672 Hours</span>
+                                <span class="error-2" ng-show="abSplitNotification.advanceOptions.expiryValue > 0 && abSplitNotification.advanceOptions.isExpiryValid && abSplitNotification.advanceOptions.isExpiryBlured && abSplitNotification.advanceOptions.expiryType === 'Minutes' && abSplitNotification.advanceOptions.expiryValue > 40320">You cannot set notification expiry to more than 40320 Minutes</span>
+                                <span class="error-2" ng-show="abSplitNotification.advanceOptions.expiryValue > 0 && abSplitNotification.advanceOptions.isExpiryValid && abSplitNotification.advanceOptions.isExpiryBlured && abSplitNotification.advanceOptions.expiryType === 'Seconds' && abSplitNotification.advanceOptions.expiryValue > 2419200">You cannot set notification expiry to more than 2419200 Seconds</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="ctaUrl">Notification Duration<i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <div class="radio btn-radio">
+                                    <label class="btn-radio-label">
+                                        <input type="radio" name="unlimited" id="unlimited" value="unlimited" ng-model="abSplitNotification.advanceOptions.isDurationInSecs" ng-change="abSplitNotification.advanceOptions.durationInSecs = null;
+                                                abSplitNotification.advanceOptions.isDurationBlured = false;
+                                                abSplitNotification.advanceOptions.isDurationValid = true;">
+                                        Keep notification open until interaction
+                                    </label>
+                                </div>
+                                <div class="radio btn-radio">
+                                    <label class="btn-radio-label">
+                                        <input type="radio" name="timeSpecific" id="timeSpecific" value="limited" ng-model="abSplitNotification.advanceOptions.isDurationInSecs">
+                                        Keep open for 
+                                        <input type="text" id="durationInSecs" class="form-control seconds" ng-class="{'error-field': ((abSplitNotification.advanceOptions.durationInSecs && abSplitNotification.advanceOptions.durationInSecs <= 0) || !abSplitNotification.advanceOptions.isDurationValid) && abSplitNotification.advanceOptions.isDurationBlured}" ng-model="abSplitNotification.advanceOptions.durationInSecs" ng-disabled="abSplitNotification.advanceOptions.isDurationInSecs !== 'limited'" ab-split-advance-validator/> Seconds
+                                        <span ng-show="abSplitNotification.advanceOptions.durationInSecs > 0 && abSplitNotification.advanceOptions.isDurationValid && abSplitNotification.advanceOptions.isDurationBlured">
+                                            <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="error-2" ng-show="abSplitNotification.advanceOptions.durationInSecs && abSplitNotification.advanceOptions.durationInSecs <= 0 && abSplitNotification.advanceOptions.isDurationBlured">[{{abSplitNotification.advanceOptions.durationInSecs}}] is not notification expiry time</span>
+                                        <span class="error-2" ng-show="abSplitNotification.advanceOptions.durationInSecs && !abSplitNotification.advanceOptions.isDurationValid && abSplitNotification.advanceOptions.isDurationBlured">We allow only whole numeric time</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <h4 class="utm-param-head">Target Using Smart Segments<i class="fa fa-question-circle" aria-hidden="true"></i></h4>
+                                <label class="audience-segment-label" for="audienceSegment">Audience Segment<i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <div class="btn-group btn-custom-group">
+                                    <label class="btn push-btn" ng-model="abSplitNotification.advanceOptions.advanceSegment" uib-btn-radio="'Include'" uncheckable>Include</label>
+                                    <label class="btn push-btn" ng-model="abSplitNotification.advanceOptions.advanceSegment" uib-btn-radio="'Exclude'" uib-uncheckable="uncheckable">Exclude</label>
+                                </div>
+                                <input type="text" class="form-control audience-segment" name="audienceSegment" id="audienceSegment" ng-model="abSplitNotification.advanceOptions.advanceSegmentValue" uib-typeahead="subscriber for subscriber in abSplitNotification.advanceOptions.subscribersList"/>
+                                <span> {{abSplitNotification.advanceOptions.subscribersList.length}} subscribers</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn form-btn btn-back" ng-click="abSplitNotification.previousPage(0)">Back</button>
+                    <button type="button" class="btn form-btn btn-next" ng-click="abSplitNotification.nextPage(2)">Next</button>
+                    <button type="button" class="btn form-btn btn-exit" ng-click="abSplitNotification.exitABSplitNotificationModal()">Exit</button>
+                </form>
+            </div>
+        </uib-tab>
+        <uib-tab class="breadcrumbs-options summary-option" index="2" heading="Summary" disable="abSplitNotificationDetailsForm.$invalid || abSplitNotification.notification.isTitleRequired || !abSplitNotification.notification.isTitleShorter || abSplitNotification.notification.title.trim() == '' ||
+                 abSplitNotification.notification.isMessageRequired || abSplitNotification.notification.message.trim() == '' || !abSplitNotification.notification.isMessageShorter || abSplitNotification.notification.isUrlValid === false ||
+                 (abSplitNotification.notification.isUTMParametersRequired && (abSplitNotification.notification.isUtmSourceRequired || !abSplitNotification.notification.isUtmSourceShorter || abSplitNotification.notification.invalidUTMSourcePattern || 
+                 !abSplitNotification.notification.isUtmMediumShorter || abSplitNotification.notification.invalidUTMMediumPattern || !abSplitNotification.notification.isUtmCompaignShorter || abSplitNotification.notification.invalidUTMCompaignPattern || 
+                 !abSplitNotification.notification.isUtmTermShorter || abSplitNotification.notification.invalidUTMTermPattern || !abSplitNotification.notification.isUtmContentShorter || abSplitNotification.notification.invalidUTMContentPattern)) || 
+                 !abSplitNotification.advanceOptions.cta[0].isCtaTextShorter || abSplitNotification.advanceOptions.cta[0].isCtaTextRequired || abSplitNotification.advanceOptions.cta[0].isCtaUrlValid === false || abSplitNotification.advanceOptions.cta[0].isCtaUrlRequired ||
+                 (abSplitNotification.advanceOptions.cta[0].isAddUTMParametersRequired && (abSplitNotification.advanceOptions.cta[0].uTMSource === '' || !abSplitNotification.advanceOptions.cta[0].uTMSource || !abSplitNotification.advanceOptions.cta[0].isUTMSourceShorter || abSplitNotification.advanceOptions.cta[0].isUTMSourceRequired || abSplitNotification.advanceOptions.cta[0].invalidUTMSourcePattern ||
+                 !abSplitNotification.advanceOptions.cta[0].isUTMMediumShorter || abSplitNotification.advanceOptions.cta[0].invalidUTMMediumPattern || abSplitNotification.advanceOptions.cta[0].invalidUTMCampaignPattern || !abSplitNotification.advanceOptions.cta[0].isUTMCampaignShorter ||
+                 abSplitNotification.advanceOptions.cta[0].invalidUTMTermPattern || !abSplitNotification.advanceOptions.cta[0].isUTMTermShorter || abSplitNotification.advanceOptions.cta[0].invalidUTMContentPattern || !abSplitNotification.advanceOptions.cta[0].isUTMContentShorter)) ||
+                 (abSplitNotification.advanceOptions.expiryValue <= 0 && abSplitNotification.advanceOptions.expiryValue) || !abSplitNotification.advanceOptions.isExpiryValid || 
+                 (abSplitNotification.advanceOptions.cta.length === 2 && (!abSplitNotification.advanceOptions.cta[1].isCtaTextShorter || 
+                 abSplitNotification.advanceOptions.cta[1].isCtaTextRequired || abSplitNotification.advanceOptions.cta[1].isCtaUrlValid === false || 
+                 abSplitNotification.advanceOptions.cta[1].isCtaUrlRequired || (abSplitNotification.advanceOptions.cta[1].isAddUTMParametersRequired &&
+                 (abSplitNotification.advanceOptions.cta[1].uTMSource === '' || !abSplitNotification.advanceOptions.cta[1].uTMSource || !abSplitNotification.advanceOptions.cta[1].isUTMSourceShorter || abSplitNotification.advanceOptions.cta[1].isUTMSourceRequired || 
+                 abSplitNotification.advanceOptions.cta[1].invalidUTMSourcePattern || !abSplitNotification.advanceOptions.cta[1].isUTMMediumShorter || 
+                 abSplitNotification.advanceOptions.cta[1].invalidUTMMediumPattern || abSplitNotification.advanceOptions.cta[1].invalidUTMCampaignPattern || 
+                 !abSplitNotification.advanceOptions.cta[1].isUTMCampaignShorter || abSplitNotification.advanceOptions.cta[1].invalidUTMTermPattern || 
+                 !abSplitNotification.advanceOptions.cta[1].isUTMTermShorter || abSplitNotification.advanceOptions.cta[1].invalidUTMContentPattern || 
+                 !abSplitNotification.advanceOptions.cta[1].isUTMContentShorter)))) ||
+                 (abSplitNotification.advanceOptions.expiryType === 'Days' && abSplitNotification.advanceOptions.expiryValue > 28 ||
+                 (abSplitNotification.advanceOptions.expiryType === 'Hours' && abSplitNotification.advanceOptions.expiryValue > 672) || (abSplitNotification.advanceOptions.expiryType === 'Minutes' && abSplitNotification.advanceOptions.expiryValue > 40320) ||
+                 (abSplitNotification.advanceOptions.expiryType === 'Seconds' && abSplitNotification.advanceOptions.expiryValue > 2419200)) ||
+                 (abSplitNotification.advanceOptions.durationInSecs <= 0 && abSplitNotification.advanceOptions.durationInSecs) || !abSplitNotification.advanceOptions.isDurationValid">
+            <ul class="list-inline navigation-options-list">
+                <li><a href="javascript:void(0)" class="navigation-options">Tour</a></li>
+                <li><a href="javascript:void(0)" class="navigation-options">Help</a></li>
+            </ul>
+            <div class="schedule-send-wrapper">
+                <form class="custom-form schedule-send-form">
+                    <div class="row">
+                        <div class="col-xxs-12 col-xs-6 col-sm-5 col-md-5">
+                            <h3 class="notification-header">AB Split Test Notifications</h3>
+                            <div ng-show="!abSplitNotification.isABTestPossible" class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" ng-click="abSplitNotification.hideDangerAlert()"><span aria-hidden="true">&times;</span></button>
+                                At least 2 notifications are required to AB split test.
+                            </div>
+                            <div ng-show="abSplitNotification.isNotificationExcedded" class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" ng-click="abSplitNotification.hideDangerAlert()"><span aria-hidden="true">&times;</span></button>
+                                You can’t AB test more than 5 notifications.
+                            </div>
+                            <div class="form-group clearfix">
+                                <label class="audience-segment-label" for="audienceSegment">AB Test Name <i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <input type="text" class="form-control" name="audienceSegment" id="audienceSegment" ng-model="abSplitNotification.summary.abSplitName"/>
+                            </div>
+                            <div class="form-group clearfix">
+                                <label class="audience-segment-label" for="audienceSegment">Audience Smart Segment <i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <div class="btn-group btn-custom-group">
+                                    <label class="btn push-btn summary-segment-label" ng-model="abSplitNotification.summary.isAudienceIncludeOrExclude" uib-btn-radio="'Include'">Include</label>
+                                    <label class="btn push-btn summary-segment-label" ng-model="abSplitNotification.summary.isAudienceIncludeOrExclude" uib-btn-radio="'Exclude'">Exclude</label>
+                                </div>
+                                <input type="text" class="form-control audience-segment" name="audienceSegment" id="audienceSegment" ng-model="abSplitNotification.summary.advanceSegmentValue" uib-typeahead="subscriber for subscriber in abSplitNotification.summary.subscribersList"/>
+                                <span> {{abSplitNotification.summary.subscribersList.length}} subscribers</span>
+                            </div>
+                            <div class="form-group subscriber-allocation">
+                                <label for="subscriberAllocation">Subscriber Allocation <i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                                <div class="btn-group btn-custom-group">
+                                    <label class="btn push-btn summary-segment-label" ng-model="abSplitNotification.summary.subscriberAllocation" uib-btn-radio="'Automatic'">Automatic</label>
+                                    <label class="btn push-btn summary-segment-label" ng-model="abSplitNotification.summary.subscriberAllocation" uib-btn-radio="'Manual'">Manual</label>
+                                </div>
+                                <p ng-if="abSplitNotification.summary.subscriberAllocation === 'Automatic'">We'll send a notification which has better CTR to your subscribers, after sending all notifications
+                                    randomly to {{abSplitNotification.summary.slider.value}}% of subscribers.</p>
+                                <p ng-if="abSplitNotification.summary.subscriberAllocation === 'Manual'">Allocate subscribers manually to each notification.</p>
+                            </div>
+                            <div class="form-group clearfix" ng-show="abSplitNotification.summary.subscriberAllocation === 'Automatic'">
+                                <!--<label class="audience-segment-label" for="abSplitRatio">AB Split Ratio <i class="fa fa-question-circle" aria-hidden="true"></i></label>-->
+                                <rzslider rz-slider-model="abSplitNotification.summary.slider.value" rz-slider-options="abSplitNotification.summary.slider.options"></rzslider>
+                            </div>
+                            <div class="form-group">
+                                <h4 class="utm-param-head utm-hidden-sm">Schedule</h4>
+                                <div class="switch">
+                                    <input id="schedule" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="abSplitNotification.summary.isScheduleABSplit">
+                                    <label for="schedule"></label>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-show="abSplitNotification.summary.isScheduleABSplit">
+                                <div class="radio btn-radio">
+                                    <!--<label class="btn-radio-label">-->
+                                    <label for="selectDate" class="schedule-label">Select Date and Time</label>
+                                    <div class='input-group date' data-ng-init="abSplitNotification.openDateTime()">
+                                        <input type='text' id='datetimepicker' class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn form-btn btn-back" ng-click="abSplitNotification.previousPage(1)">Back</button>
+                    <button type="button" class="btn form-btn btn-send" ng-click="abSplitNotification.startABTest()">Start AB Test</button>
+                    <button type="button" class="btn form-btn btn-exit" ng-click="abSplitNotification.exitABSplitNotificationModal()">Exit</button>
+                </form>
+            </div>
+        </uib-tab>
+    </uib-tabset>
+</div>

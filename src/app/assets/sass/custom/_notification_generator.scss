@@ -1,0 +1,542 @@
+/* 
+    Created on : Jan 20, 2017, 3:25:03 PM
+    Author     : ahextech
+*/
+.notification-preview{
+    &.notification-generator-preview{
+        top: 260px;
+        right: 15%;
+        width: 350px;
+        z-index: 1;
+        position: fixed;
+    }
+}
+.notification-generator-container{
+    padding   : 30px 0;
+    position  : relative;
+    .notification-preview{
+        top     : 30px;
+        right   : 18%;
+        position: absolute;
+        .browser-push-button-wrapper{
+            margin-top: 0;
+            .btn-custom-group{
+                border-color: $form-label;
+                .push-btn{
+                    @include font($form-label, 13px, $roboto-regular);
+                    &.active{
+                        color: $white;
+                    }
+                    &:not(:last-of-type){
+                        border-right: 1px solid $green-4;
+                    }
+                }
+            }
+        }
+        .preview-wrapper-chrome{
+            .preview-content-chrome{
+                height: 100%;
+            }
+        }
+        .domain-name{
+            position: absolute;
+            bottom: 5px;
+        }
+    }
+    .custom-form{
+        .form-group{
+            input, textarea{
+                @include font($grey-7, 14px, $roboto-regular);
+                &:focus{
+                    @include box-shadow(none);
+                }
+                &::-webkit-input-placeholder {
+                    @include font($grey-7, 14px, $roboto-regular);
+                }
+                &:-moz-placeholder {
+                    @include font($grey-7, 14px, $roboto-regular);  
+                }
+                &::-moz-placeholder {
+                    @include font($grey-7, 14px, $roboto-regular); 
+                }
+                &:-ms-input-placeholder {  
+                    @include font($grey-7, 14px, $roboto-regular); 
+                }
+            }
+            small{
+                @include font($grey-7, 13px, $roboto-regular);
+            }
+            label{
+                margin-top: 0;
+                @include font($grey-1, 16px, $roboto-regular);
+            }
+            .switch{
+                display    : inline-block;
+                margin-left: 10px;
+                input{
+                    &.cmn-toggle-round{
+                        + label{
+                            &:before{
+                                top: 8px;
+                            }
+                            &:before{
+                                width : 50px;
+                                height: 18px;
+                            }
+                            &:after{
+                                top   : 7px;
+                                width : 20px;
+                                height: 20px;
+                            }
+                        }
+                        &:checked{
+                            + label{
+                                &:after{
+                                    margin-left: 30px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .emojionearea{
+                padding     : 6px 12px;
+                border-color: $form-label;
+                @include border-radius(5px);
+                @include box-shadow(none);
+                @include font($form-label, 14px, $roboto-regular);
+                &>.emojionearea-editor{
+                    height  : auto;
+                    padding : 0;
+                    position: static;
+                    &:empty{
+                        &:before{
+                            color: $grey-7;
+
+                        }
+                    }
+                }
+                &.emojionearea-inline{
+                    height: 40px;
+                    &>.emojionearea-editor{
+                        margin-top: 2px;
+                    }
+                }
+                .emojionearea-button{
+                    right: -30px;
+                }
+            }
+        }
+    }
+}
+.notification-details-wrapper{
+    position : relative;
+    .notification-details-form{
+        h3{
+            position  : relative; 
+            margin-top: 0;
+            @include font($grey-1, 20px, $roboto-regular);
+            small{
+                top     : 5px;
+                color   : $form-label;
+                right   : 0;
+                position: absolute;
+            }
+        }
+        .form-group{
+            &:nth-of-type(2){
+                .emojionearea{
+                    .emojionearea-editor{
+                        height       : 120px;
+                        overflow     : auto;
+                        max-width    : 100%;
+                        white-space  : initial;
+                        overflow-wrap: break-word;
+                    }
+                }
+            }
+            &.div-utm-param{
+                margin: 30px 0;
+            }
+            /*            label{
+                            display       : inline-block;
+                            vertical-align: middle;
+                        }*/
+            .utm-param-head{
+                @include font($grey-1, 16px, $roboto-regular);
+            }
+            .notification-image-container{
+                width         : 40px;
+                height        : 40px;
+                display       : inline-block;
+                padding       : 5px;
+                margin-top    : 0;
+                margin-left   : 15px;
+                vertical-align: middle;
+                .plus-icon{
+                    border    : none;
+                    background: none;
+                    font-size : 25px;
+                    margin-top: 0;
+                }
+            }
+            .utm-param-head{
+                @include font($grey-1, 16px, $roboto-regular);
+            }
+            .plus-icon{
+                display   : block;
+                font-size : 22px;
+                text-align: right;
+            }
+            .btn-custom-group{
+                border: 1px solid $form-label;
+                .push-btn{
+                    @include font($form-label, 13px, $roboto-regular);
+                    &.active{
+                        color: $white;
+                    }
+                    &:not(:last-of-type){
+                        border-right: 1px solid $blue-1;
+                    }
+                }
+            }
+        }
+        .grey-overlay-container{
+            padding : 15px;
+            position: relative;
+            .form-group{
+                &:first-of-type{
+                    .btn-custom-group{
+                        margin-left: 10px;
+                    }
+                }
+                &.target-smart-segment-wrapper{
+                    > label{
+                        display: block;
+                        font-size: 16px;
+                        margin-bottom: 10px;
+                    } 
+                    > input{
+                        display: inline-block;
+                        max-width: 70px;
+                    }
+                }
+                label{
+                    display      : block;
+                    margin-bottom: 15px;
+                }
+                .notification-expiry{
+                    width  : 90px;
+                    display: inline-block;
+                    padding: 6px;
+                }
+                .btn-custom-group{
+                    display    : inline-block;
+                    .push-btn{
+                        padding      : 6px 8px;
+                        font-size    : 14px;
+                        margin-bottom: 0;
+                    }
+                }
+                .btn-radio{
+                    .btn-radio-label{
+                        display  : inline-block;
+                        font-size: 14px;
+                        .unlimited{
+                            margin-top: 5px;
+                        }
+                        .time-specific{
+                            margin-top: 15px;
+                        }
+                        .seconds{
+                            width  : 75px;
+                            display: inline-block;
+                        }
+                    }
+                }
+                .audience-segment-label{
+                    color        : $grey-1;
+                    font-size    : 14px;
+                    text-align   : left;
+                    margin-bottom: 10px;
+                }
+                .audience-segment{
+                    width      : 210px;
+                    display    : inline-block;
+                    margin-left: 5px;
+                }
+            }
+            .grey-overlay{
+                top             : 0;
+                left            : 0;
+                width           : 100%;
+                height          : 100%;
+                opacity         : 0.65;
+                z-index         : 2;
+                position        : absolute;
+                background-color: $black;
+            }
+            .btn-signup-free{
+                top       : 50%;
+                left      : 50%;
+                border    : 1px solid $black-1;
+                padding   : 6px 12px;
+                z-index   : 3;
+                position  : absolute;
+                min-height: 45px;
+                text-align: center;
+                @include border-radius(5px);
+                @include button(100%, 160px, $black-1);
+                @include font($white, 20px, $roboto-regular);
+                @include translate(-50%, -50%);
+            }
+        }
+        .btn-send-notification{
+            margin : 60px auto 0;
+            display: block;
+            @include border-radius(5px);
+            @include button(100%, 355px, $blue-light-20);
+            @include font($white, 16px, $roboto-regular);
+            @include transition(all 0.5s ease-in-out);
+            &:focus, &:hover{
+                background-color: $blue;
+            }
+        }
+    }
+}
+
+
+/* Media Queries Starts Here */
+@media(min-width: 992px) and (max-width: 1199px){
+    .notification-generator-container{
+        .notification-preview{
+            right: 10%;
+        }
+        .custom-form{
+            .form-group{
+                .switch{
+                    input{
+                        &.cmn-toggle-round{
+                            + label{
+                                &:before{
+                                    top: 4px;
+                                }
+                                &:after{
+                                    top: 2px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .advanced-options-wrapper{
+            .advanced-options-form{
+                .grey-overlay-container{
+                    .form-group{
+                        .notification-expiry{
+                            width: 70px;
+                        }
+                        .audience-segment{
+                            width : 100%;
+                            margin: 15px 0 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(min-width: 768px) and (max-width: 991px){
+    .notification-generator-container{
+        .notification-preview{
+            right: 8%;
+        }
+        .advanced-options-wrapper{
+            .advanced-options-form{
+                .form-group{
+                    h3{
+                        small{
+                            position  : static;
+                            margin-top: 5px;
+                            text-align: left;
+                        }
+                    }
+                }
+                .grey-overlay-container{
+                    .form-group{
+                        &:first-of-type{
+                            .btn-custom-group{
+                                margin : 15px 0 0;
+                                display: block;
+                                .push-btn{
+                                    padding: 8px 7px;
+                                }
+                            }
+                        }
+                        .notification-expiry{
+                            width  : 100%;
+                            padding: 6px 12px;
+                        }
+                        .audience-segment{
+                            width : 100%;
+                            margin: 15px 0 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(min-width: 320px) and (max-width: 480px){
+    .notification-generator-container{
+        .advanced-options-wrapper{
+            .advanced-options-form{
+                .grey-overlay-container{
+                    .form-group{
+                        .btn-custom-group{
+                            .push-btn{
+                                padding  : 9px 7px;
+                                font-size: 13px;
+                            }
+                        }
+                        .audience-segment{
+                            width : 100%;
+                            margin: 15px 0 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(min-width: 401px) and (max-width: 480px){
+    .notification-generator-container{
+        .advanced-options-wrapper{
+            .advanced-options-form{
+                .grey-overlay-container{
+                    .form-group{
+                        &:first-of-type{
+                            .btn-custom-group{
+                                margin-left: 5px;
+                            }
+                        }
+                        .notification-expiry{
+                            width  : 75px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(min-width: 320px) and (max-width: 400px){
+    .notification-generator-container{
+        .advanced-options-wrapper{
+            .advanced-options-form{
+                .grey-overlay-container{
+                    .form-group{
+                        &:first-of-type{
+                            .btn-custom-group{
+                                margin : 15px 0 0;
+                                .push-btn{
+                                    padding: 9px 7px;
+                                }
+                            }
+                        }
+                        .notification-expiry{
+                            width  : 100%;
+                            padding: 6px 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(min-width: 320px) and (max-width: 767px){
+    .notification-generator-container{
+        .notification-preview{
+            top      : 205px;
+            right    : 10px;
+            width    : 100%;
+            z-index  : 6;
+            position : fixed;
+            max-width: 300px;
+            .preview-wrapper-chrome{
+                .preview-image-chrome{
+                    background-color: $white;
+                }
+            }
+        }
+        .notification-details-wrapper, .advanced-options-wrapper{
+            .notification-details-form, .advanced-options-form{
+                .form-group{
+                    .utm-param-head{
+                        margin        : 0;
+                        font-size     : 14px;
+                        vertical-align: bottom;
+                    }
+                }
+            }
+        }
+        .advanced-options-wrapper{
+            .advanced-options-form{
+                .form-group{
+                    h3{
+                        font-size: 18px;
+                        small{
+                            position  : static;
+                            margin-top: 5px;
+                            text-align: left;
+                        }
+                    }
+                }
+            }
+        }
+        .custom-form{
+            .form-group{
+                label{
+                    font-size    : 13px;
+                    margin-bottom: 10px;
+                }
+                input{
+                    &::-webkit-input-placeholder {
+                        font-size: 13px;
+                    }
+                    &:-moz-placeholder {
+                        font-size: 13px; 
+                    }
+                    &::-moz-placeholder {
+                        font-size: 13px;
+                    }
+                    &:-ms-input-placeholder {  
+                        font-size: 13px; 
+                    }
+                }
+                .emojionearea{
+                    font-size: 13px;
+                    .emojionearea-button{
+                        right: 0;
+                    }
+                }
+                .switch{
+                    input{
+                        &.cmn-toggle-round{
+                            + label{
+                                &:before{
+                                    top: 4px;
+                                }
+                                &:after{
+                                    top: 2px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Media Queries Ends Here */

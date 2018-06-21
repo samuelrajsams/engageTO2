@@ -1,0 +1,100 @@
+<div class="dashboard-content-header">
+    <h3 class="dashboard-content-area-heading">Domain Management</h3>
+    <div class="subtitle">Manage your domains</div>
+    <!--    <ul class="navigation-link-list">
+            <li class="navigation-links">
+                <a href ui-sref="side-nav-template.new-push-notification"><i class="fa fa-tachometer" aria-hidden="true"></i>Dashboard /</a>
+            </li>
+            <li class="navigation-links active">
+                <a href ui-sref="side-nav-template.domain-management">Domain Management /</a>
+            </li>
+        </ul>-->
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="website-management-wrapper">
+                <button type="button" class="btn btn-add-website btn-custom-primary" ng-click="domainManagement.addWebsiteModal()">Add New Domain</button>
+                <uib-tabset class="view-selection-list clearfix" active="activeJustified" justified="true">
+                    <uib-tab class="view-selection-option" index="0">
+                        <uib-tab-heading>
+                            <i class="fa fa-table"></i>
+                        </uib-tab-heading>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped smart-custom-table" datatable="ng" dt-options="domainManagement.dtOptions" dt-column-defs="domainManagement.dtColumnDefs"> 
+                                <thead> 
+                                    <tr> 
+                                        <th class="name-col">Domain Name</th> 
+                                        <th class="address-col">Domain Address</th> 
+                                        <th class="subdomain-col">Subdomain</th> 
+                                        <th class="show-code-col">Show Code</th> 
+                                        <th class="verfiy-code-col">Verify Status</th> 
+                                        <th class="actions-col">Actions</th> 
+                                    </tr> 
+                                </thead> 
+                                <tbody> 
+                                    <tr ng-repeat="website in domainManagement.websitesList" ng-if="website.domain_status === 'active'"> 
+                                        <td>{{website.domain_name}}</td> 
+                                        <td>{{website.domain_address}} <span class="btn btn-xs btn-success super-admin" ng-if="website.primary">primary</span>
+                                            <span class="btn btn-xs" ng-class="{'btn-success': website.role === 'Super Administrator', 'btn-info': website.role === 'Administrator', 'btn-primary': website.role === 'Manager', 'btn-warning': website.role === 'Analyst'}">{{website.role}}</span>
+                                        </td> 
+                                        <td>{{website.app_domain}}</td>
+                                        <td>
+                                            <a class="fa fa-file-code-o" ng-click="domainManagement.showInstallationCode($index)"  uib-tooltip="Installation Code" tooltip-trigger="'mouseenter'" tooltip-placement="top"></a>
+                                        </td>
+                                        <td>
+                                            <span ng-if="website.code_verified">Verified</span>
+                                            <span ng-if="!website.code_verified">Not Verified</span>
+                                        </td>
+                                        <td class="action-buttons">
+                                            <a class="fa fa-pencil" ng-click="domainManagement.editWebsiteModal($index)"  uib-tooltip="Edit" tooltip-trigger="'mouseenter'" tooltip-placement="top"></a>
+                                            <a class="fa fa-trash" ng-if="!website.primary" ng-click="domainManagement.deleteWebsiteModal($index)"  uib-tooltip="Delete" tooltip-trigger="'mouseenter'" tooltip-placement="top"></a>
+                                        </td>
+                                    </tr> 
+                                </tbody> 
+                            </table>
+                        </div>
+                    </uib-tab>
+                    <uib-tab class="view-selection-option" index="1">
+                        <uib-tab-heading>
+                            <i class="fa fa-list"></i>
+                        </uib-tab-heading>
+                        <!--<div class="website-grid clearfix" ng-repeat="website in domainManagement.websitesList" ng-if="website.domain_status === 'active'">-->
+                        <div class="website-grid clearfix">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6" ng-repeat="website in domainManagement.websitesList" ng-if="website.domain_status === 'active'">
+                                    <div class="website-details-wrapper">
+                                        <div class="ribbon" ng-if="website.primary">Primary</div>
+                                        <span class="pull-right status">
+                                            <i class="fa fa-check" uib-tooltip="Verified!" tooltip-trigger="'mouseenter'" tooltip-placement="top" ng-if="website.code_verified"></i>
+                                            <i class="fa fa-exclamation-circle" uib-tooltip="unverified!" tooltip-trigger="'mouseenter'" tooltip-placement="top" ng-if="!website.code_verified"></i>
+                                        </span>
+                                        <div class="website-details">
+                                            <p><span>Website Name:</span> {{website.domain_name}}</p>
+                                            <p><span>Website Address:</span> {{website.domain_address}}</p>
+                                            <p><span>Subdomain:</span> {{website.app_domain}}</p>
+                                        </div>
+                                        <div class="actions-wrapper clearfix">
+                                            <ul class="list-inline action-list pull-right action-buttons">
+                                                <li class="action-items">
+                                                    <a href="" class="fa fa-file-code-o" ng-click="domainManagement.showInstallationCode($index)" uib-tooltip="Show Code" tooltip-trigger="'mouseenter'" tooltip-placement="top"></a>
+                                                </li>
+                                                <li class="action-items">
+                                                    <a href ng-click="domainManagement.editWebsiteModal($index)" class="fa fa-pencil" uib-tooltip="Edit" tooltip-trigger="'mouseenter'" tooltip-placement="top"></a>
+                                                </li>
+                                                <li class="action-items"  ng-if="!website.primary">
+                                                    <a href ng-click="domainManagement.deleteWebsiteModal($index)" class="fa fa-trash" uib-tooltip="Delete" tooltip-trigger="'mouseenter'" tooltip-placement="top"></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<button type="button" class="btn btn-more-result">More Websites</button>-->
+                    </uib-tab>
+                </uib-tabset>
+            </div>
+        </div>
+    </div>
+</div>

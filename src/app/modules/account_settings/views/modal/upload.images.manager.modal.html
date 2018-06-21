@@ -1,0 +1,28 @@
+<div class="modal-header image-manager-modal-header">
+    <h3 class="modal-title">Profile image manager
+        <a href ng-click="uploadImageManager.cancel()" class="fa fa-times custom-close"></a>
+    </h3>
+</div>
+<div class="modal-body image-manager-modal-body">
+    <form name="uploadImagesForm">
+        <div class="image-preview-wrapper clearfix">
+            <img class="pull-right" ng-src="{{ uploadImageManager.croppedFile || 'app/assets/images/img.png'}}" alt="Image" width="80px" height="80px"/>
+        </div>
+        <div class="icons-wrapper">
+            <span class="error" ng-show="uploadImageManager.isMaxFileSizeLimitReached">Profile image are lightweight. Kindly, Upload image below 5 MB size</span>
+            <span class="error" ng-show="!uploadImageManager.isFileFormateValid">We can only show image on push notification. File types allowed .jpg,.jpeg,.png</span>
+            <div class="upload-image-wrapper" ngf-select="uploadImageManager.uploadingFiles($file, $invalidFiles)" ngf-multiple="false" ngf-accept="'image/*'" ngf-pattern="'.jpg,.jpeg,.png'" ngf-max-size="5MB" ng-if="!uploadImageManager.isFileSelected">
+                <span>Click here to upload image</span>
+            </div>
+            <div class="cropArea" ng-if="uploadImageManager.isFileSelected" style="height: 500px; width: 500px;">
+                <img-crop image="uploadImageManager.files" result-image="uploadImageManager.croppedFile"></img-crop>
+            </div>
+            <div class="btn-wrapper text-center">
+                <button type="button" class="btn btn-custom-primary" ng-click="uploadImageManager.uploadSelectedImage()" ng-disabled="!uploadImageManager.isFileSelected || engagetoApp.isLoading">Select
+                    <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+                </button>
+                <button type="button" class="btn btn-delete-primary" ng-click="uploadImageManager.removeSelectedImage()" ng-disabled="!uploadImageManager.isFileSelected">Delete</button>
+            </div>
+        </div>
+    </form>
+</div>

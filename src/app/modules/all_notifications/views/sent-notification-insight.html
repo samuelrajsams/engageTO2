@@ -1,0 +1,92 @@
+<div class="dashboard-content-header">
+    <h3 class="dashboard-content-area-heading">Notifications Title : Insights</h3>
+    <div class="subtitle">Insights
+        <!--        <button type="button" class="btn btn-custom btn-get-report">Get Report</button>
+                <a href="javascript:void(0);" class="help-link">Help</a>-->
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="smart-custom-container insights-wrapper">
+        <a class="btn btn-cancel-primary" href ui-sref="side-nav-template.all-notifications"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Go Back</a>
+        <div class="welcome-notification-details-wrapper clearfix">
+            <p>Sent Push Notification Details :</p>
+            <div class="notification-preview">
+                <div class="preview-wrapper-chrome clearfix">
+                    <div class="preview-image-chrome">
+                        <i class="fa {{list.notification.logo}}" ng-if="list.notification.logo != ''"></i>
+                        <img src="{{notificationInsight.image}}" class="img-responsive" alt=""/>
+                    </div>
+                    <div class="preview-content-chrome">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                        <span>{{notificationInsight.title}}</span>
+                        <span>{{notificationInsight.message}}</span>
+                        <span class="domain-name">{{ engagetoApp.profile.subDomainName}}.engageto.com</span>
+                        <i class="fa fa-cog" aria-hidden="true"></i>
+                    </div>
+                    <div class="cta-content" ng-repeat="cta in notificationInsight.cta" ng-if="notificationInsight.cta.length > 0">
+                        <a href="{{cta.url}}" class="btn btn-primary" target="_blank">{{cta.cta}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-details">
+                <p><span>Notification Sent On:</span> {{notificationInsight.scheduled_at| date: 'dd MMMM yyyy HH:mm:ss'}}</p>
+                <p class="notification-expiry-text"><span>Notification Expiry:</span> {{notificationInsight.expiry|| 'NA'}} Seconds</p>
+                <p class="notification-duration-text"><span>Notification Duration:</span> {{ notificationInsight.duration || 'NA'}}</p>
+                <p><span>Notification URL :</span> <a href="{{notificationInsight.url}}" target="_blank" ng-if="notificationInsight.url !== ''">{{notificationInsight.url}}</a><span ng-if="notificationInsight.url === '' || !notificationInsight.url">NA</span></p>
+                <p><span>First CTA URL :</span> <a href="{{notificationInsight.cta[0].url}}" target="_blank" ng-if="notificationInsight.cta[0].url !== '' && notificationInsight.cta.length === 1">{{notificationInsight.cta[0].url}}</a><span ng-if="notificationInsight.cta[0].url === '' || !notificationInsight.cta[0].url || notificationInsight.cta.length === 0 || !notificationInsight.cta">NA</span></p>
+                <p><span>Second CTA URL :</span> <a href="{{notificationInsight.cta[1].url}}" target="_blank" ng-if="notificationInsight.cta[1].url !== '' && notificationInsight.cta.length === 2">{{notificationInsight.cta[1].url}}</a><span ng-if="notificationInsight.cta[1].url === '' || !notificationInsight.cta[0].url || notificationInsight.cta.length === 1 || !notificationInsight.cta">NA</span></p>
+            </div>
+        </div>
+        <div class="notification-analysis-wrapper">
+            <p class="notification-analysis-head">Notification Insights :</p>
+            <!--<p>Target Welcome Smart Segments : <a>Includes/Excludes:</a> <span>Segment List</span></p>-->
+            <p class="delivered-text">Notification Delivered to : <span>{{notificationInsight.noOfSubscribers}} Subscribers </span></p>
+            <p class="sent-notification-views-text">Views Received : <span>{{notificationInsight.views}}</span></p>
+            <p class="clicks-text">Clicks Received : <span>{{notificationInsight.clicks}}</span></p>
+            <p class="ctr-text">Click Through Rates (CTR) : <span>{{notificationInsight.ctr}}</span></p>
+            <div class="cta-click-wrapper">
+                <p>CTA 1 Clicks : <span>{{notificationInsight.noOfCTA1Clicks}}</span></p>
+                <p>CTA 2 Clicks : <span>{{notificationInsight.noOfCTA2Clicks}}</span></p>
+            </div>
+        </div>
+        <div class="notification-push-btn-wrapper text-center">
+            <div class="btn-group btn-custom-group">
+                <label class="btn push-btn" ng-model="notificationInsight.notificationViewType" uib-btn-radio="'Notification Views Insights'" ng-change="notificationInsight.onChangeInsight('view')">Notification Views Insights</label>
+                <label class="btn push-btn" ng-model="notificationInsight.notificationViewType" uib-btn-radio="'Notification Clicks Insights'" ng-change="notificationInsight.onChangeInsight('click')">Notification Clicks Insights</label>
+            </div>
+        </div>
+        <div class="chart-container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="chart-wrapper">
+                        <h4 class="chart-title">Browser Insights</h4>
+                        <div id="chart1"></div>
+                        <div class="chart-overlay" ng-if="notificationInsight.browser.isEmpty">No data found</div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="chart-wrapper">
+                        <h4 class="chart-title">Device Insights</h4>
+                        <div id="chart3"></div>
+                        <div class="chart-overlay" ng-if="notificationInsight.device.isEmpty">No data found</div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="chart-wrapper">
+                        <h4 class="chart-title">Operating System Insights</h4>
+                        <div id="chart2"></div>
+                        <div class="chart-overlay" ng-if="notificationInsight.operatingSystem.isEmpty">No data found</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="chart-wrapper">
+                        <h4 class="chart-title" ng-if="notificationInsight.geoInsights.isEmpty">Geo Insights</h4>
+                        <div id="world-map-chart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

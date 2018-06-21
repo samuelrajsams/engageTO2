@@ -1,0 +1,264 @@
+<div class="notification-preview notification-generator-preview clearfix hidden-xs" id="notification-preview-custom">
+    <div class="browser-push-button-wrapper">
+        <div class="btn-group btn-custom-group">
+            <label class="btn push-btn" ng-model="notificationGenerator.browserPreviewTab" uib-btn-radio="'Chrome'">Chrome</label>
+            <label class="btn push-btn" ng-model="notificationGenerator.browserPreviewTab" uib-btn-radio="'Firefox'">Firefox</label>
+            <label class="btn push-btn" ng-model="notificationGenerator.browserPreviewTab" uib-btn-radio="'Safari'">Safari</label>
+        </div>
+    </div>
+    <div class="preview-wrapper-chrome clearfix" ng-if="notificationGenerator.browserPreviewTab === 'Chrome'">
+        <div class="preview-image-chrome">
+            <i class="fa {{notificationGenerator.notification.logo}}" ng-if="notificationGenerator.notification.logo != ''"></i>
+            <img class="img-responsive" ngf-src="notificationGenerator.notification.image" alt="" ng-if="notificationGenerator.notification.logo == ''"/>
+        </div>
+        <div class="preview-content-chrome">
+            <i class="fa fa-times" aria-hidden="true"></i>
+            <span id="title-generator"></span>
+            <span ng-if="notificationGenerator.notification.title.length <= 50">{{ notificationGenerator.notification.title || ''}}</span>
+            <span ng-if="notificationGenerator.notification.description.length <= 100">{{ notificationGenerator.notification.description || ''}}</span>
+            <span ng-if="notificationGenerator.notification.isUrlValid">{{ notificationGenerator.notification.url || ''}}</span>
+            <i class="fa fa-cog" aria-hidden="true"></i>
+        </div>
+        <div class="cta-content">
+            <a href="http://www.{{notificationGenerator.advanceOptions.cta[0].url}}" class="btn btn-primary" target="_blank" ng-if="notificationGenerator.advanceOptions.cta[0].url.trim() != '' && notificationGenerator.advanceOptions.cta[0].isCtaUrlValid && notificationGenerator.advanceOptions.cta[0].text.trim() != ''">{{notificationGenerator.advanceOptions.cta[0].text}}</a>
+            <a href="http://www.{{notificationGenerator.advanceOptions.cta[1].url}}" target="_blank" class="btn btn-primary" ng-if="(notificationGenerator.advanceOptions.cta[1].url.trim() != '' && notificationGenerator.advanceOptions.cta[1].isCtaUrlValid && notificationGenerator.advanceOptions.cta[1].text.trim() != '') && notificationGenerator.advanceOptions.cta.length === 2">{{notificationGenerator.advanceOptions.cta[1].text}}</a>
+        </div>
+    </div>
+    <div class="preview-wrapper-firefox" ng-if="notificationGenerator.browserPreviewTab === 'Firefox'">
+        <div class="firefox-logo">
+            <img class="img-responsive" src="app/assets/images/firefox-logo.png"/>
+        </div>
+        <div class="preview-content-firefox">
+            <span ng-if="notificationGenerator.notification.title.length <= 50">{{ notificationGenerator.notification.title || ''}}</span>
+            <span ng-if="notificationGenerator.notification.description.length <= 100">{{ notificationGenerator.notification.description || ''}}</span>
+            <span ng-if="notificationGenerator.notification.isUrlValid">{{ notificationGenerator.notification.url || ''}}</span>
+        </div>
+        <div class="preview-image-firefox">
+            <i class="fa {{notificationGenerator.notification.logo}}" ng-if="notificationGenerator.notification.logo != ''"></i>
+            <img class="img-responsive" ngf-src="notificationGenerator.notification.image" alt="" ng-if="notificationGenerator.notification.logo == ''"/>
+        </div>
+    </div>
+    <div class="preview-wrapper-safari clearfix" ng-if="notificationGenerator.browserPreviewTab === 'Safari'">
+        <div class="preview-image-safari">
+            <i class="fa {{notificationGenerator.notification.logo}}" ng-if="notificationGenerator.notification.logo != ''"></i>
+            <img class="img-responsive" ngf-src="notificationGenerator.notification.image" alt="" ng-if="notificationGenerator.notification.logo == ''"/>
+        </div>
+        <div class="preview-content-safari">
+            <span ng-if="notificationGenerator.notification.title.length <= 50">{{ notificationGenerator.notification.title || ''}}</span>
+            <span ng-if="notificationGenerator.notification.description.length <= 50">{{ notificationGenerator.notification.description || ''}}</span>
+        </div>
+    </div>
+</div>
+
+<div class="custom-banner-area text-center">
+    <div id="price-slab-custom" class="container">
+        <h1 class="custom-head">Notification Generator</h1>
+        <h3 class="custom-content">Try Notification Generator and see how it works.</h3>
+    </div>
+</div>
+<button type="button" class="visible-xs btn-eye" ng-click="notificationGenerator.notificationPreview()"><i class="fa fa-eye" aria-hidden="true"></i></button>
+<div class="container">
+    <div class="row">
+        <div class="col-xxs-12 col-lg-7 col-md-6 col-sm-7">
+            <div class="notification-details-wrapper">
+                <form class="custom-form notification-details-form" name="notificationDetails">
+                    <div class='field-box-wrapper'>
+                        <div class="form-group" id="notification-generator-title">
+                            <label for="notificationTitle">Notification Title</label>
+                            <input type="text" id="notificationTitle" name="notificationTitle" class="form-control" ng-class="{'error-field': (!notificationGenerator.notification.title.trim() && notificationGenerator.notification.isTitleBlured) || notificationGenerator.notification.isTitleRequired || !notificationGenerator.notification.isTitleShorter}" placeholder="Enter Notification Title" ng-model="notificationGenerator.notification.title" notification-generator-validator required ng-trim="false"/>
+                            <small style="color: {{notificationGenerator.notification.isTitleShorter? 'green': 'red'}};">({{notificationGenerator.notification.titleCharaLength}} Characters)</small>
+                            <span class="error" ng-if="!notificationGenerator.notification.isTitleShorter">Shorten your title and make it appealing.</span>
+                            <span ng-show="notificationGenerator.notification.title.trim() != '' && notificationGenerator.notification.isTitleRequired != 'undefined' && notificationGenerator.notification.isTitleRequired === false && notificationGenerator.notification.isTitleShorter">
+                                <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <div class="form-group" id="notification-generator-description">
+                            <label for="notificationMessage">Notification Message</label>
+                            <textarea id="notificationDescription" name="notificationDescription" class="form-control" ng-class="{'error-field': (!notificationGenerator.notification.description.trim() && notificationGenerator.notification.isDescriptionBlured) || notificationGenerator.notification.isDescriptionRequired || !notificationGenerator.notification.isDescriptionShorter}" placeholder="Enter Notification Description" ng-model="notificationGenerator.notification.description" notification-generator-validator required ng-trim="false"></textarea>
+                            <small style="color: {{notificationGenerator.notification.isDescriptionShorter? 'green': 'red'}};">({{notificationGenerator.notification.descriptionCharaLength}} Characters)</small>
+                            <span class="error" ng-if="!notificationGenerator.notification.isDescriptionShorter">Shorten your message and make it appealing.</span>
+                            <span ng-show="notificationGenerator.notification.description.trim() != '' && notificationGenerator.notification.isDescriptionRequired != 'undefined' && notificationGenerator.notification.isDescriptionRequired === false && notificationGenerator.notification.isDescriptionShorter">
+                                <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <div class="form-group notification-image-container">
+                            <label for="notificationImage">Notification Image</label>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <ul class="list-inline">
+                                        <li>
+                                            <img ngf-src="notificationGenerator.notification.image" alt="uploaded-image"/>
+                                        </li>
+                                        <li ngf-select ng-model="notificationGenerator.notification.image" ngf-multiple="false" ngf-accept="'image/*'" ngf-pattern="'.jpg,.jpeg,.png'" ngf-max-size="10MB">
+                                            <span>Image Manager</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <span class="error" ng-show="notificationDetails.file.$error.maxSize">Push Notifications are lightweight. Kindly, Upload image below 10 MB size</span>
+                            </div>
+                        </div>
+                        <div class="form-group" id="notificationUrl">
+                            <label for="notificationURL">Notification URL</label>
+                            <input type="text" id="notificationUrl" name="notificationUrl" class="form-control" ng-class="{'error-field': notificationGenerator.notification.isUrlValid === false}" placeholder="Enter Notification URL" ng-model="notificationGenerator.notification.url" notification-generator-validator ng-trim="false"/>
+                            <span class="error" ng-if="notificationGenerator.notification.isUrlValid === false">Please enter valid website URL.</span>
+                            <span ng-show="notificationGenerator.notification.isUrlValid != 'undefined' && notificationGenerator.notification.isUrlValid">
+                                <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field-box-wrapper">
+                        <div class="form-group">
+                            <h4 class="utm-param-head utm-hidden-sm">Track Using UTM Parameters</h4>
+                            <div class="switch" uib-tooltip="Please, Enter Notification URL, to enable UTM tracking." tooltip-placement="right" tooltip-trigger="'outsideClick'" tooltip-enable="notificationGenerator.notification.url == '' || notificationGenerator.notification.url == 'undefined'">
+                                <input id="cmn-toggle-3" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="notificationGenerator.notification.isUTMParametersRequired" ng-disabled="!notificationGenerator.notification.isUrlValid || notificationGenerator.notification.url == '' || notificationGenerator.notification.url == 'undefined'">
+                                <label for="cmn-toggle-3"></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-show="notificationGenerator.notification.isUTMParametersRequired">
+                                    <label for="utmSource">UTM Source</label>
+                                    <input type="text" id="utmSource" name="utmSource" class="form-control" ng-class="{'error-field': notificationGenerator.notification.isUtmSourceRequired || !notificationGenerator.notification.isUtmSourceShorter || notificationGenerator.notification.invalidUTMSourcePattern}" placeholder="Enter UTM Source" ng-model="notificationGenerator.notification.uTMSource" notification-generator-validator required maxlength="50" ng-trim="false"/>
+                                    <small style="color: {{notificationGenerator.notification.isUtmSourceShorter? 'green': 'red'}};">({{notificationGenerator.notification.utmSourceCharaLength}} Characters)</small>
+                                    <span class="error" ng-if="!notificationGenerator.notification.isUtmSourceShorter">Shorten your utm source and make it appealing.</span>
+                                    <span class="error" ng-show="notificationGenerator.notification.isUtmSourceShorter && notificationGenerator.notification.invalidUTMSourcePattern && notificationGenerator.notification.isUtmSourceRequired != 'undefined' && notificationGenerator.notification.isUtmSourceRequired === false">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                    <span ng-show="notificationGenerator.notification.uTMSource && notificationGenerator.notification.isUtmSourceRequired != 'undefined' && notificationGenerator.notification.isUtmSourceRequired === false && !notificationGenerator.notification.invalidUTMSourcePattern && notificationGenerator.notification.isUtmSourceShorter">
+                                        <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" ng-show="notificationGenerator.notification.isUTMParametersRequired">
+                                    <label for="utmMedium">UTM Medium</label>
+                                    <input type="text" id="utmMedium" name="utmMedium" class="form-control" ng-class="{'error-field': !notificationGenerator.notification.isUtmMediumShorter || (notificationGenerator.notification.invalidUTMMediumPattern && notificationGenerator.notification.isUtmMediumBlured)}" placeholder="Enter UTM Medium" ng-model="notificationGenerator.notification.uTMMedium" notification-generator-validator maxlength="50" ng-trim="false"/>
+                                    <small style="color: {{notificationGenerator.notification.isUtmMediumShorter? 'green': 'red'}};">({{notificationGenerator.notification.utmMediumCharaLength}} Characters)</small>
+                                    <span class="error" ng-if="!notificationGenerator.notification.isUtmMediumShorter">Shorten your utm medium and make it appealing.</span>
+                                    <span class="error" ng-show="notificationGenerator.notification.isUtmMediumShorter && notificationGenerator.notification.invalidUTMMediumPattern && notificationGenerator.notification.isUtmMediumBlured">Sorry, only alphabets, hyphen, numbers and underscores are allowed</span>
+                                    <span ng-show="notificationGenerator.notification.uTMMedium && notificationGenerator.notification.isUtmMediumBlured && !notificationGenerator.notification.invalidUTMMediumPattern && notificationGenerator.notification.isUtmMediumShorter">
+                                        <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-show="notificationGenerator.notification.isUTMParametersRequired">
+                                    <label for="utmCampaign">UTM Campaign</label>
+                                    <input type="text" id="utmCampaign" name="utmCampaign" class="form-control" ng-class="{'error-field': !notificationGenerator.notification.isUtmCompaignShorter || (notificationGenerator.notification.invalidUTMCompaignPattern && notificationGenerator.notification.isUtmCompaignBlured)}" placeholder="Enter UTM Campaign" ng-model="notificationGenerator.notification.uTMCampaign" notification-generator-validator maxlength="50" ng-trim="false"/>
+                                    <small style="color: {{notificationGenerator.notification.isUtmCompaignShorter? 'green': 'red'}};">({{notificationGenerator.notification.utmCompaignCharaLength}} Characters)</small>
+                                    <span class="error" ng-if="!notificationGenerator.notification.isUtmCompaignShorter">Shorten your utm campaign and make it appealing.</span>
+                                    <span class="error" ng-show="notificationGenerator.notification.isUtmCompaignShorter && notificationGenerator.notification.invalidUTMCompaignPattern && notificationGenerator.notification.isUtmCompaignBlured">Sorry, only alphabets, hyphen, numbers and underscores are allowed</span>
+                                    <span ng-show="notificationGenerator.notification.uTMCampaign && notificationGenerator.notification.isUtmCompaignBlured && !notificationGenerator.notification.invalidUTMCompaignPattern && notificationGenerator.notification.isUtmCompaignShorter">
+                                        <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" ng-show="notificationGenerator.notification.isUTMParametersRequired">
+                                    <label for="utmTerm">UTM Term</label>
+                                    <input type="text" id="utmTerm" name="utmTerm" class="form-control" ng-class="{'error-field': !notificationGenerator.notification.isUtmTermShorter || (notificationGenerator.notification.invalidUTMTermPattern && notificationGenerator.notification.isUtmTermBlured)}" placeholder="Enter UTM Term" ng-model="notificationGenerator.notification.uTMTerm" notification-generator-validator maxlength="50" ng-trim="false"/>
+                                    <small style="color: {{notificationGenerator.notification.isUtmTermShorter? 'green': 'red'}};">({{notificationGenerator.notification.utmTermCharaLength}} Characters)</small>
+                                    <span class="error" ng-if="!notificationGenerator.notification.isUtmTermShorter">Shorten your utm term and make it appealing.</span>
+                                    <span class="error" ng-show="notificationGenerator.notification.isUtmTermShorter && notificationGenerator.notification.invalidUTMTermPattern && notificationGenerator.notification.isUtmTermBlured">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                    <span ng-show="notificationGenerator.notification.uTMTerm && notificationGenerator.notification.isUtmTermBlured && !notificationGenerator.notification.invalidUTMTermPattern && notificationGenerator.notification.isUtmTermShorter">
+                                        <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-show="notificationGenerator.notification.isUTMParametersRequired">
+                                    <label for="utmContent">UTM Content</label>
+                                    <input type="text" id="utmContent" name="utmContent" class="form-control" ng-class="{'error-field': !notificationGenerator.notification.isUtmContentShorter || (notificationGenerator.notification.invalidUTMContentPattern && notificationGenerator.notification.isUtmContentBlured)}" placeholder="Enter UTM Content" ng-model="notificationGenerator.notification.uTMContent" notification-generator-validator maxlength="50" ng-trim="false"/>
+                                    <small style="color: {{notificationGenerator.notification.isUtmContentShorter? 'green': 'red'}};">({{notificationGenerator.notification.utmContentCharaLength}} Characters)</small>
+                                    <span class="error" ng-if="!notificationGenerator.notification.isUtmContentShorter">Shorten your utm content and make it appealing.</span>
+                                    <span class="error" ng-show="notificationGenerator.notification.isUtmContentShorter && notificationGenerator.notification.invalidUTMContentPattern && notificationGenerator.notification.isUtmContentBlured">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                    <span ng-show="notificationGenerator.notification.uTMContent && notificationGenerator.notification.isUtmContentBlured && !notificationGenerator.notification.invalidUTMContentPattern && notificationGenerator.notification.isUtmContentShorter">
+                                        <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field-box-wrapper" id="cmn-toggle-2">
+                        <div class="form-group">
+                            <h4 class="utm-param-head utm-hidden-sm">
+                                Add Call Actions(CTA)
+                                <small>Works on chrome 48+</small>
+                            </h4>
+                        </div>
+                        <div class="form-group" ng-repeat-start="cta in notificationGenerator.advanceOptions.cta">
+                            <label for="ctaText">CTA Text</label>
+                            <input type="text" class="form-control" name="ctaText" id="ctaText{{$index}}" ng-class="{'error-field': (!cta.isCtaTextShorter && cta.isCtaTextBlured) || cta.isCtaTextRequired}" placeholder="Enter CTA Text" ng-model="cta.text" notification-generator-advance-validator ng-trim="false" maxlength="12"/>
+                            <small style="color: {{cta.isCtaTextShorter? 'green': 'red'}};">({{cta.ctaTextCharaLength}} Characters)</small>
+                            <span style="color: red;" ng-if="!cta.isCtaTextShorter">Please, Make this short.</span>
+                            <span ng-show="cta.text.trim() != '' && cta.isCtaTextBlured && cta.isCtaTextShorter && !cta.isCtaTextRequired">
+                                <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <div class="form-group" id="utm-params-part-{{$index}}" ng-repeat-end>
+                            <label for="ctaUrl">CTA Url</label>
+                            <input type="text" class="form-control" name="ctaUrl" id="ctaUrl{{$index}}" ng-class="{'error-field': (cta.isCtaUrlValid === false && cta.isCtaUrlBlured) || cta.isCtaUrlRequired}" placeholder="Enter CTA URL" ng-model="cta.url" notification-generator-advance-validator ng-trim="false"/>
+                            <span class="error" ng-if="cta.isCtaUrlValid === false && cta.isCtaUrlBlured">Please enter valid CTA URL</span>
+                            <span ng-show="cta.url && cta.isCtaUrlBlured && cta.isCtaUrlValid && !cta.isCtaUrlRequired">
+                                <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="grey-overlay-container">
+                        <div class="form-group notification-expiry-wrapper">
+                            <label class="notification-expiry-label" for="notificationExpiry">Set Notification Expiry<i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                            <input type="text" class="form-control notification-expiry" name="notificationExpiry" id="notificationExpiry"/>
+                            <div class="btn-group btn-custom-group">
+                                <label class="btn push-btn">Days</label>
+                                <label class="btn push-btn">Hours</label>
+                                <label class="btn push-btn">Minutes</label>
+                                <label class="btn push-btn">Seconds</label>
+                            </div>
+                        </div>
+                        <div class="form-group duration-wrapper">
+                            <label for="notificationDuration">Notification Duration<i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                            <div class="radio btn-radio">
+                                <div class="custom-radio">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="unlimited" id="unlimited" value="unlimited">
+                                        <span>
+                                            <i class="fa fa-circle"></i>
+                                        </span> Keep notification open until interaction
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="radio btn-radio">
+                                <div class="custom-radio">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="timeSpecific" id="timeSpecific" value="limited">
+                                        <span>
+                                            <i class="fa fa-circle"></i>
+                                        </span>  Keep open for 20 Seconds
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix target-smart-segment-wrapper">
+                            <label>Target Using Smart Segments</label>
+                            <small class="audience-segment-label">Audience Segment</small>
+                            <div class="btn-group btn-custom-group">
+                                <label class="btn push-btn">Include</label>
+                                <label class="btn push-btn">Exclude</label>
+                            </div>
+                            <input type="text" class="form-control audience-segment" name="audienceSegment" id="audienceSegment"/>
+                        </div>
+                        <div class="grey-overlay"></div>
+                        <a class="btn-custom btn-signup-free" href ui-sref="register">Signup Free</a>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-custom btn-send-notification" ng-click="notificationGenerator.send()" ng-disabled="engagetoApp.isLoading">Send Push Notification
+                            <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

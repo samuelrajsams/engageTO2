@@ -1,0 +1,20 @@
+<div class="custom-banner-area text-center coupon-banner-area">
+    <div class="container">
+        <h1 class="custom-head coupon-code-head">engageto Coupon Code</h1>
+    </div>
+</div>
+<div class="coupon-wrapper">
+    <div class="coupon-container">
+        <h3>Use the following coupon code while checkout to get 15% OFF.</h3>
+        <div ng-show="coupon.successMessage" class="alert alert-success alert-dismissible" role="alert">
+            {{coupon.successMessage}}
+        </div>
+        <div ng-show="coupon.errorMessage" class="alert alert-danger alert-dismissible" role="alert">
+            {{coupon.errorMessage}}
+        </div>
+        <button type="button" class="btn btn-coupon-code">{{coupon.copyCode}}</button>
+        <button type="button" class="btn btn-copy-code" ngclipboard data-clipboard-text="{{coupon.copyCode}}" ngclipboard-success="coupon.onSuccess(e);" ngclipboard-error="coupon.onError(e);">Copy Code</button>
+        <h3>This is official coupon code and it is valid on all plans.</h3>
+        <a class="btn btn-see-plans" href ui-sref="pricing">SEE OUR PLANS</a>
+    </div>
+</div>

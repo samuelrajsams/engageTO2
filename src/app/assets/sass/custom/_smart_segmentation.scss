@@ -1,0 +1,414 @@
+/* 
+    Created on : Oct 24, 2016, 3:21:06 PM
+    Author     : ahextech
+*/
+.smart-custom-container{
+    height          : 100%;
+    padding         : 15px;
+    position        : relative;
+    padding         : 20px;
+    background-color: $white;
+    .smart-custom-head{
+        color      : $form-label;
+        margin     : 0;
+        font-size  : 18px;
+        font-weight: 700;
+        font-family: $opensans-light;
+    }
+    .help-link{
+        top           : 25px;
+        right         : 15px;
+        color         : $form-label;
+        position      : absolute;
+        font-size     : 14px;
+        font-family   : $opensans-light;
+        border-bottom : 1px solid $form-label;
+        padding-bottom: 5px;
+    }
+    .smart-custom-wrapper{
+        background-color: $white;
+        .rss-push-text{
+            color          : $form-label;
+            margin         : 0 0 20px;
+            display        : block;
+            font-size      : 16px;
+            font-family    : $opensans-light;
+            font-weight    : 700;
+            text-decoration: underline;
+        }
+        .smart-custom-btn{
+            color           : $form-label;
+            border          : 1px solid $blue-1;
+            font-size       : 14px;
+            min-height      : 44px;
+            font-family     : $opensans-light;
+            background-color: $light-grey;
+            @include border-radius(5px);
+            &:hover, &:focus{
+                border-color: $blue-hover;
+            }
+        }
+        .btn-add-segment{
+            margin-bottom: 20px;
+        }
+
+        /*        .smart-custom-table{
+                    border: 1px solid $blue-1;
+                    margin: 20px 0 0;
+                    thead{
+                        background-color: $blue-1;
+                        tr{
+                            th{
+                                color              : $white;
+                                border             : 1px solid $blue-1;
+                                position           : relative;
+                                font-size          : 15px;
+                                font-family        : $opensans-light;
+                                border-bottom-width: 0;
+                                a{
+                                    color: $white;
+                                    &.fa{
+                                        right    : 15px;
+                                        position : absolute;
+                                        font-size: 16px;
+                                        &.fa-caret-up{
+                                            top: 5px;
+                                        }
+                                        &.fa-caret-down{
+                                            top: 15px;
+                                        }
+                                    }
+                                }
+                                &:nth-of-type(5), &:last-of-type{
+                                    text-align: center;
+                                }
+                            }
+                        }
+                    }
+                    tbody{
+                        tr{
+                            &:nth-of-type(2n+1){
+                                background-color: $white;
+                            }
+                            &:nth-of-type(2n){
+                                background-color: $table-light-blue;
+                            }
+                            td{
+                                color      : $grey-1;
+                                border     : 1px solid $blue-1;
+                                font-size  : 14px;
+                                font-family: $opensans-light;
+                                &:nth-of-type(5), &:last-of-type{
+                                    text-align: center;
+                                }
+                                a{
+                                    color: $grey-1;
+                                }
+                                img{
+                                    color: $grey-1;
+                                }
+                            }
+                        }
+                    }
+                }*/
+        .btn-wrapper{
+            width    : 100%;
+            margin   : 20px auto 0;
+            display  : block;
+            max-width: 260px;
+            .btn-previous-page{
+                border   : 1px solid $grey-4;
+                max-width: 130px;
+                &:focus, &:hover{
+                    border-color: $grey-hover;
+                }
+            }
+            .btn-next-page{
+                border   : 1px solid $green-1;
+                margin   : 0 0 0 15px;
+                max-width: 110px;
+                &:focus, &:hover{
+                    border-color: $green-hover;
+                }
+            }
+        }
+        /*        .btn-more-result{
+                    color      : $sidebar-grey;
+                    width      : 100%;
+                    border     : 1px solid $black;
+                    margin     : 20px auto 0;
+                    display    : block;
+                    font-size  : 15px;
+                    max-width  : 150px;
+                    font-family: $opensans-light;
+                    @include border-radius(5px);
+                }*/
+    }
+}
+
+/* Styles for New Smart Segment Modal Box Starts Here */
+.new-smart-segmentation-modal{
+    .modal-dialog{
+        width: 1260px;
+        .modal-content{
+            padding: 0;
+            @include border-radius(0);
+            .custom-modal-body{
+                position: relative;
+                .total-subscribers-count{
+                    top        : 15px;
+                    right      : 15px;
+                    color      : $grey-1;
+                    position   : absolute;
+                    font-size  : 20px;
+                    font-family: $opensans-light;
+                    font-weight: 700;
+                }
+                .smart-segment-form{
+                    .form-group{
+                        &>label{
+                            color      : $grey-1;
+                            margin     : 0 0 15px 0;
+                            display    : block;
+                            font-size  : 16px;
+                            font-weight: 400;
+                            font-family: $opensans-light;
+                        }
+                        .input-segment-name{
+                            width    : 100%;
+                            max-width: 310px;
+                        }
+                        .segment-criteria-container{
+                            padding   : 22px 15px 22px 110px;
+                            position  : relative;
+                            min-height: 90px;
+                            &:not(:first-of-type){
+                                &:before, &:after{
+                                    display: none;
+                                }
+                            }
+                            &:before{
+                                top: 21px;
+                                left: 27px;
+                                width: 1px;
+                                height: 35px;
+                                content: "";
+                                position: absolute;
+                                background-color: $input_border;
+                            }
+                            &:after{
+                                top             : 38px;
+                                left            : 28px;
+                                width           : 82px;
+                                height          : 1px;
+                                content         : "";
+                                position        : absolute;
+                                background-color: $input_border;
+                            }
+                            .fa-dot-circle-o{
+                                top: 5px;
+                                left: 20px;
+                                color: $form-label;
+                                font-size: 18px;
+                                position: absolute;
+                            }
+                            .fa-plus-circle{
+                                left: 17px;
+                                color: $form-label;
+                                bottom: 15px;
+                                font-size: 24px;
+                                position: absolute;
+                            }
+                            .segment-criteria-keyword, .segment-criteria-condition{
+                                float     : left;
+                                width     : 100%;
+                                display   : inline-block;
+                                position  : relative;
+                                max-width : 210px;
+                                z-index: 1;
+                                select{
+                                    cursor          : pointer;
+                                    z-index         : 2;
+                                    background-color: transparent;
+                                    /*border          : 1px solid $blue-1;*/
+                                    /*                                    min-height      : 40px;*/
+                                    @include appearance(none);
+                                }
+                                &:before{
+                                    top             : 9px;
+                                    right           : 13px;
+                                    content         : "\f0d7";
+                                    display         : inline-block;
+                                    z-index         : -1;
+                                    position        : absolute;
+                                    font-size       : 16px;
+                                    line-height     : 16px;
+                                    font-family     :FontAwesome;
+                                    background-color: transparent;
+                                }
+                                &:after{
+                                    top             : 0;
+                                    right           : 34px;
+                                    width           : 1px;
+                                    height          : 34px;
+                                    content         : "";
+                                    position        : absolute;
+                                    background-color: $input_border;
+                                }
+                            }
+                            .version-text{
+                                color      : $grey-1;
+                                float      : left;
+                                margin     : 9px 0 0 15px;
+                                display    : inline-block;
+                                position   : relative;
+                                font-size  : 15px;
+                                font-family: $opensans-light;
+                            }
+                            .segment-criteria-condition{
+                                margin: 0 0 0 15px;
+                            }
+                            .segment-criteria-value{
+                                float    : left;
+                                width    : 100%;
+                                margin   : 0 0 0 15px;
+                                display  : inline-block;
+                                position : relative;
+                                max-width: 170px;
+                                input{
+
+                                }
+                                .fa-trash{
+                                    top      : 10px;
+                                    color    : $red-1;
+                                    right    : -30px;
+                                    position : absolute;
+                                    font-size: 18px;
+                                }
+                            }
+                        }
+                        .btn-custom-group{
+                            border-color: transparent;
+                            .push-btn{
+                                border-color: $blue-1;
+                                &.active{
+                                    border-color: $blue-3;
+                                }
+                            }
+                            &.and-or-group{
+                                margin-top: 20px;
+                                min-height: 30px;
+                                .push-btn{
+                                    padding   : 4px 12px;
+                                    min-height: 30px;
+                                }
+                            }
+                        }
+                    }
+                    .btn-create{
+                        border: 1px solid $green-1;
+                        max-width: 75px;
+                        &:focus, &:hover{
+                            border-color: $green-hover;
+                        }
+                    }
+                    .btn-close{
+                        max-width: 75px;
+                    }
+                }
+            }
+        }
+    }
+}
+/* Styles for New Smart Segment Modal Box Ends Here */
+
+/* Styles for Add RSS Feed Modal Box Starts Here */
+.add-rss-feed-modal{
+    .modal-dialog{
+        width: 480px;
+        .modal-content{
+            padding: 0;
+            @include border-radius(0);
+            .custom-modal-body{
+                .rss-feed-form{
+                    .form-group{
+                        label, .rss-feed-icon-wrapper, .plus-icon-wrapper{
+                            display: inline-block;
+                        }
+                        label{
+                            color         : $grey-1;
+                            margin        : 10px 0 0;
+                            font-size     : 14px;
+                            font-family   : $opensans-light;
+                            vertical-align: top;
+                        }
+                        .rss-feed-icon-wrapper{
+                            width  : 40px;
+                            height : 40px;
+                            border : 1px solid $grey-1;
+                            margin : 0 0 0 10px;
+                            padding: 12px 10px;
+                        }
+                        .plus-icon-wrapper{
+                            width         : 40px;
+                            height        : 40px;
+                            padding       : 10px 12px;
+                            vertical-align: top;
+                            a{
+                                color    : $grey-1;
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                    .btn-add-rss-feed{
+                        border   : 1px solid $blue-1;
+                        max-width: 130px;
+                        &:focus, &:hover{
+                            border-color: $blue-hover;
+                        }
+                    }
+                    .btn-close{
+                        margin-left: 15px;
+                    }
+                }
+            }
+        }
+    }
+}
+/* Styles for Add RSS Feed Modal Box Ends Here */
+
+/* Styles for Delete Rss Feed Modal Box Starts Here */
+.delete-rss-feed-modal{
+    .modal-dialog{
+        width: 495px;
+        .modal-content{
+            padding: 0;
+            @include border-radius(0);
+            .custom-modal-body{
+                p{
+                    color      : $grey-1;
+                    font-size  : 14px;
+                    font-family: $opensans-light;
+                }
+                .delete-btn-wrapper{
+                    .btn-delete{
+                        border   : 1px solid $red-1;
+                        max-width: 200px;
+                        &:focus, &:hover{
+                            border-color: $red-hover;
+                        }
+                    }
+                    .btn-dont-delete{
+                        border   : 1px solid $grey-4;
+                        margin   : 0 0 0 15px;
+                        max-width: 240px;
+                        &:focus, &:hover{
+                            border-color: $grey-hover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/* Styles for Delete Rss Feed Modal Box Ends Here */

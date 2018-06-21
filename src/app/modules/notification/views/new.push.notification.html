@@ -1,0 +1,286 @@
+<div class="dashboard-content-header">
+    <h3 class="dashboard-content-area-heading">Dashboard</h3>
+    <div class="subtitle">Complete insight of your domain</div>
+</div>
+
+<div class="container-fluid">
+    <div class="summary-wrapper">
+        <div class="range-picker-wrapper">
+            <div class="range-picker-container">
+                <i class="fa fa-calendar"></i>
+                <input date-range-picker class="form-control date-picker" type="text" ng-model="notification.date" options="notification.options"/>
+            </div>
+        </div>
+        <uib-tabset>
+            <uib-tab class="summary-selection-option" index="0">
+                <uib-tab-heading>
+                    Notification
+                </uib-tab-heading>
+                <div class="card-wrapper">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="icon sent">
+                                            <i class="fa fa-exclamation-circle"></i>
+                                        </div>
+                                        <div class="type">Notifications sent</div>
+                                        <div class="counter">{{totalNotificationSent}}</div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <a href ui-sref="side-nav-template.all-notifications" class="detailed-report">
+                                            <i class="fa fa-info-circle"></i> See the detail report
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="icon view">
+                                            <i class="fa fa-eye"></i>
+                                        </div>
+                                        <div class="type">Total views</div>
+                                        <div class="counter">{{totalViewCount}}</div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <i class="fa fa-tag"></i> Product-wise sales
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="icon click">
+                                            <i class="fa fa-hand-pointer-o"></i>
+                                        </div>
+                                        <div class="type">Total clicks</div>
+                                        <div class="counter">{{totalClickCount}}</div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <i class="fa fa-calendar-o"></i> Weekly sales
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="icon ctr">
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="type">Average CTR</div>
+                                        <div class="counter">+{{(totalClickCount / totalViewCount) * 100 | number:2}}</div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <i class="fa fa-clock-o"></i> Last Updated
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="chart-wrapper">
+                                        <h4 class="chart-title">Click Stats</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="chart-wrapper">
+                                        <h4 class="chart-title">OS Wise</h4>
+                                        <div id="chart2"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="chart-wrapper">
+                                        <h4 class="chart-title">Browser Wise</h4>
+                                        <div id="chart1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="chart-wrapper">
+                                        <h4 class="chart-title">Device Wise</h4>
+                                        <div id="chart3"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="chart-wrapper">
+                                        <h4 class="chart-title">
+                                            Notification Wise
+                                            <span>Pushed/Saved/Scheduled</span>
+                                        </h4>
+                                        <div id="chart4"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="chart-wrapper">
+                                        <h4 class="chart-title">Geological Wise</h4>
+                                        <div id="example4" class="chartContentDiv"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab class="summary-selection-option" index="1">
+                <uib-tab-heading>
+                    Subscribers
+                </uib-tab-heading>
+                <div class="card-wrapper">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="icon sent">
+                                            <i class="fa fa-users"></i>
+                                        </div>
+                                        <div class="type">Total Subscriber</div>
+                                        <div class="counter">{{totalSubscriber}}</div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <i class="fa fa-info-circle"></i> See the detail report
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="icon view">
+                                            <i class="fa fa-user-plus"></i>
+                                        </div>
+                                        <div class="type">Active Subscriber</div>
+                                        <div class="counter">{{activeSubscriber}}</div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <i class="fa fa-tag"></i> Product-wise sales
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="icon click">
+                                            <i class="fa fa-user-times"></i>
+                                        </div>
+                                        <div class="type">Inactive Subscriber</div>
+                                        <div class="counter">{{totalSubscriber - activeSubscriber}}</div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <i class="fa fa-calendar-o"></i> Weekly sales
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="chart-wrapper">
+                                        <h4 class="chart-title">Subscriber States</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="chart-wrapper">
+                                        <h4 class="chart-title">OS Wise</h4>
+                                        <div id="chart5"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="chart-wrapper">
+                                        <h4 class="chart-title">Browser Wise</h4>
+                                        <div id="chart6"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="chart-wrapper">
+                                        <h4 class="chart-title">Device Wise</h4>
+                                        <div id="chart7"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="chart-wrapper">
+                                        <h4 class="chart-title">Geological Wise</h4>
+                                           <div id="example5" class="chartContentDiv"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab class="summary-selection-option" index="2">
+                <uib-tab-heading>
+                    Unsubscribers
+                </uib-tab-heading>
+                <div class="card-wrapper">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-4 col-sm-offset-4">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="icon view">
+                                            <i class="fa fa-user-times"></i>
+                                        </div>
+                                        <div class="type">Total Unsubscribers</div>
+                                        <div class="counter">102</div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <i class="fa fa-tag"></i> Product-wise sales
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="chart-wrapper">
+                                        <h4 class="chart-title">Unsubscriber States</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="chart-wrapper">
+                                        <h4 class="chart-title">OS Wise</h4>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="chart-wrapper">
+                                        <h4 class="chart-title">Browser Wise</h4>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="chart-wrapper">
+                                        <h4 class="chart-title">Device Wise</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="chart-wrapper">
+                                        <h4 class="chart-title">Geological Wise</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+</div> 

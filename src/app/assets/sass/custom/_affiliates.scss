@@ -1,0 +1,286 @@
+/* 
+    Created on : Jan 4, 2017, 6:04:02 PM
+    Author     : ahextech
+*/
+.custom-banner-area{
+    .btn-join-program{
+        color           : $white;
+        border          : 1px solid $white;
+        margin          : 35px auto 0;
+        display         : block;
+        font-size       : 16px;
+        max-width       : 250px;
+        min-height      : 40px;
+        font-family     : $montserrat-regular;
+        background-color: transparent;
+    }
+}
+.affiliate-wrapper{
+    padding: 65px 0 40px;
+    .container{
+        .col-xs-12{
+            h3{
+                color      : $grey-1;
+                margin     : 0 0 30px;
+                font-size  : 26px;
+                font-family: $montserrat-regular;
+                &.promote-intentpush-head, &.start-affiliation-head{
+                    margin: 50px 0 30px;
+                }
+            }
+            p{
+                color      : $grey-1;
+                margin     : 0 0 15px;
+                font-size  : 18px;
+                text-align : justify;
+                font-family: $lato-regular;
+            }
+            .affiliate-income-calculator-wrapper{
+                border : 1px solid $blue-1;
+                margin : 50px 0 0;
+                padding: 25px 45px;
+                h4{
+                    color      : $grey-1;
+                    font-size  : 20px;
+                    font-family: $montserrat-regular;
+                    &.income-calculator-head{
+                        margin: 0 0 40px;
+                    }
+                }
+                label{
+                    color      : $grey-1;
+                    display    : block;
+                    font-size  : 16px;
+                    font-family: $montserrat-regular;
+                }
+                .custom-affiliate-wrapper{
+                    margin-bottom: 20px;
+                    .btn-custom-group{
+                        border-color: transparent;
+                        margin-left : 55px;
+                        .push-btn{
+                            border-color: $grey-1;
+                            &.active{
+                                color       : $white;
+                                border-color: $blue-3; 
+                            }
+                            &:not(:last-of-type){
+                                border-right-color: $grey-1;
+                            }
+                            &:last-of-type{
+                                border-left-color: $grey-1;
+                                @include border-radius(0 5px 5px 0);
+                            }
+                            font-family: $montserrat-regular;
+                        }
+                    }
+                    .rzslider{
+                        width    : 100%;
+                        margin   : 60px 0 40px;
+                        display  : block;
+                        max-width: 800px;
+                        .rz-bar-wrapper{
+                            .rz-bar{
+                                height          : 10px;
+                                background-color: $light-grey-2;
+                                @include border-radius(5px);
+                                &.rz-selection{
+                                    background-color: $blue-1;
+                                }
+                            }
+                        }
+                        .rz-pointer{
+                            top             : -7px;
+                            width           : 25px;
+                            height          : 25px;
+                            background-color: $blue-1;
+                            &:after{
+                                background-color: transparent;
+                            }
+                        }
+                        .rz-bubble{
+                            color      : $grey-1;
+                            font-size  : 21px;
+                            font-family: $montserrat-regular;
+                            &.rz-floor{
+                                display: none;
+                            }
+                            &.rz-ceil{
+                                display: none;
+                            }
+                        }
+                        .rz-ticks{
+                            .rz-tick{
+                                top        : 1px;
+                                width      : 14px;
+                                height     : 14px;
+                                margin-left: 0;
+                                &.rz-selected{
+                                    background-color: $blue-1;
+                                }
+                            }
+                        }
+                    }
+                    select{
+                        border          : 1px solid $grey-1;
+                        cursor          : pointer;
+                        max-width       : 80px;
+                        min-height      : 40px;
+                        margin-left     : 55px;
+                        background-color: transparent;
+                        &:focus{
+                            @include box-shadow(none);
+                        }
+                    }
+                    .sales-select{
+                        width    : 100%;
+                        max-width: 105px;
+                    }
+                    .divider{
+                        top             : 44px;
+                        left            : 84px;
+                        width           : 20px;
+                        height          : 1px;
+                        position        : absolute;
+                        background-color: $grey-8;
+                    }
+                }
+                .subscribers-number-wrapper{
+                    p{
+                        margin: 0;
+                    }
+                }
+                .sales-wrapper{
+                    position: relative;
+                    a{
+                        left        : 84px;
+                        color       : $grey-1;
+                        width       : 19px;
+                        z-index     : 0;
+                        position    : absolute;
+                        font-size   : 20px;
+                        padding-left: 4px;
+                        &.fa-caret-up{
+                            top   : 25px;
+                            height: 16px;
+                        }
+                        &.fa-caret-down{
+                            top   : 43px;
+                            bottom: 7px;
+                            height: 15px;
+                        }
+                    }
+                    .seperator{
+                        left            : 83px;
+                        width           : 1px;
+                        bottom          : 0;
+                        height          : 33px;
+                        position        : absolute;
+                        background-color: $grey-8;
+                    }
+                }
+            }
+            .start-affiliation-wrapper{
+                p{
+                    &:nth-of-type(2){
+                        margin: 0;
+                    }
+                    a{
+                        color: $blue-1;
+                    }
+                }
+                .btn-join-affiliate{
+                    color           : $white;
+                    border          : 1px solid $border-green;
+                    margin          : 40px 0;
+                    font-size       : 18px;
+                    max-width       : 240px;
+                    min-height      : 45px;
+                    font-family     : $montserrat-regular;
+                    background-color: $green-2;
+                }
+            }
+        }
+    }
+}
+
+/* Media Queries Starts Here */
+@media(min-width: 1200px){
+
+}
+@media(min-width: 992px) and (max-width: 1199px){
+
+}
+@media(min-width: 768px) and (max-width: 991px){
+
+}
+@media(min-width: 481px) and (max-width: 767px){
+
+}
+@media(min-width: 320px) and (max-width: 480px){
+
+}
+@media(min-width: 320px) and (max-width: 767px){
+    .affiliate-wrapper{
+        padding: 20px 0;
+        .container{
+            .col-xs-12{
+                h3{
+                    margin   : 0 0 15px;
+                    font-size: 20px;
+                    &.promote-intentpush-head{
+                        margin: 0 0 15px;
+                    }
+                    &.start-affiliation-head{
+                        margin: 20px 0 15px;
+                    }
+                }
+                p{
+                    font-size: 16px;
+                }
+                .affiliate-income-calculator-wrapper{
+                    margin: 20px 0 0;
+                    padding: 15px;
+                    h4{
+                        font-size: 15px;
+                        &.income-calculator-head{
+                            margin   : 0 0 15px;
+                            font-size: 18px;
+                        }
+                    }
+                    label{
+                        font-size: 15px;
+                    }
+                    .custom-affiliate-wrapper{
+                        &.sales-wrapper{
+                            a{
+                                &.fa-caret-down{
+                                    top: 42px;
+                                }
+                            }
+                        }
+                        .btn-custom-group{
+                            margin-left: 0;
+                            label{
+                                font-size: 14px;
+                            }
+                        }
+                        .rzslider{
+                            .rz-bubble{
+                                font-size: 16px;
+                            }
+                        }
+                    }
+                }
+                .start-affiliation-wrapper{
+                    .btn-join-affiliate{
+                        margin: 20px 0;
+                        font-size : 14px;
+                        min-height: 40px;
+                    }
+                }
+            }
+        }
+    }
+}
+/* Media Queries Ends Here */

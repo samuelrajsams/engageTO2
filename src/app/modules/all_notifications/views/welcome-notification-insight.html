@@ -1,0 +1,70 @@
+<div class="smart-custom-container">
+    <h3 class="smart-custom-head">Notifications Title : Insights</h3>
+    <button type="button" class="btn btn-custom btn-go-back"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Go Back</button>
+    <button type="button" class="btn btn-custom btn-get-report">Get Report</button>
+    <a href="javascript:void(0);" class="help-link">Help</a>
+    <div class="welcome-notification-details-wrapper clearfix">
+        <p>Welcome Push Notification Details :</p>
+        <div class="notification-preview">
+            <div class="preview-wrapper-chrome clearfix">
+                <div class="preview-image-chrome">
+                    <i class="fa {{list.notification.logo}}" ng-if="list.notification.logo != ''"></i>
+                    <img class="img-responsive" alt=""/>
+                </div>
+                <div class="preview-content-chrome">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                </div>
+                <div class="cta-content">
+                    <a href="" class="btn btn-primary" target="_blank"></a>
+                    <a href="" target="_blank" class="btn btn-primary"></a>
+                </div>
+            </div>
+        </div>
+        <div class="notification-details">
+            <p class="notification-expiry-text">Notification Expiry : <span>24 Hours</span></p>
+            <p class="notification-duration-text">Notification Duration : <span>Not Set</span></p>
+            <p>Notification URL : <span>http://www.shopping.com/mr-coffee-jwx31/info</span></p>
+            <p>First CTA URL : <span>http://www.shopping.com/mr-coffee-jwx31/buynow</span></p>
+            <p>Second CTA URL : <span>http://www.shopping.com/mr-coffee-jwx31/related</span></p>
+        </div>
+    </div>
+    <div class="notification-analysis-wrapper">
+        <p class="notification-analysis-head">Notification Analysis :</p>
+        <p>Target Welcome Smart Segments : <a>Includes/Excludes:</a> <span>Segment List</span></p>
+        <p class="views-text">Notification Views Received : <span>3800</span></p>
+        <p class="clicks-text">Clicks Received : <span>2100</span></p>
+        <p class="ctr-text">Click Through Rates (CTR) : <span>55.26%</span></p>
+        <div class="cta-click-wrapper">
+            <p>CTA 1 Clicks : <span>1800</span></p>
+            <p>CTA 2 Clicks : <span>300</span></p>
+        </div>
+    </div>
+    <div class="notification-push-btn-wrapper text-center">
+        <div class="btn-group btn-custom-group">
+            <label class="btn push-btn" ng-model="sendPushNotification.browserPreviewTab" uib-btn-radio="'Notification Views Insights'">Notification Views Insights</label>
+            <label class="btn push-btn" ng-model="sendPushNotification.browserPreviewTab" uib-btn-radio="'Notification Clicks Insights'">Notification Clicks Insights</label>
+        </div>
+    </div>
+    <ul class="list-inline pie-charts clearfix">
+        <li>
+            <span>Browser Insights :</span>
+            <img class="img-responsive" src="app/assets/images/pie-chart.jpg" alt=""/>
+        </li>
+        <li>
+            <span>Device Insights :</span>
+            <img class="img-responsive" src="app/assets/images/pie-chart.jpg" alt=""/>
+        </li>
+        <li>
+            <span>Operating System Insights :</span>
+            <img class="img-responsive" src="app/assets/images/pie-chart.jpg" alt=""/>
+        </li>
+    </ul>
+    <div class="map-wrapper">
+        <span>Geo Insights :</span>
+        <img class="img-responsive" src="app/assets/images/map.jpg" alt=""/>
+    </div>
+</div>

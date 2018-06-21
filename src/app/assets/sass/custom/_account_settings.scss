@@ -1,0 +1,958 @@
+/* 
+    Created on : Nov 9, 2016, 7:25:56 PM
+    Author     : ahextech
+*/
+
+/*--  Profile New Styles  --*/
+.profile-wrapper{
+    .section{
+        padding         : 20px;
+        font-family     : $roboto-regular;
+        background-color: $white;
+        @include border-radius(10px);
+        @include box-shadow(0 0 5px 1px rgba(0,0,0,0.05));
+    }
+    .profile-title{
+        margin-bottom: 40px;
+        h3{
+            color    : $black-2;
+            margin   : 0;
+            display  : inline-block;
+            font-size: 20px;
+            font-family: $roboto-medium;
+            letter-spacing: 1px;
+        }
+        .btn-link{
+            color          : $blue;
+            padding        : 0; 
+            text-decoration: none;
+            &:hover{
+                color: $blue;
+            }
+        }
+    }
+    .profile-name{
+        position     : relative;
+        min-height   : 100px;
+        padding-left : 120px;
+        margin-bottom: 35px;
+        .image{
+            top     : 0;
+            left    : 0;
+            width   : 100px;
+            position: absolute;
+            &:before{
+                width     : 100%;
+                bottom    : 0;
+                height    : 20px;
+                content   : "Change";
+                position  : absolute;
+                background: rgba(0,0,0,0.8);
+                text-align: center;
+                @include border-radius(0 0 6px 6px);
+                @include font($white, 12px, $roboto-regular);
+            }
+            img{
+                width : 100%;
+                cursor: pointer;
+                @include border-radius(6px);
+            }
+        }
+        .name{
+            h4{
+                color: $black;
+                font-size: 20px;
+            }
+            small{
+                color: $grey-1;
+            }
+        }
+    }
+    .profile-details{
+        p{
+            color        : $black;
+            position     : relative;
+            min-height   : 20px;
+            padding-left : 120px;
+            margin-bottom: 15px;
+            span{
+                left     : 0;
+                color    : $grey-1;
+                position : absolute;
+                max-width: 100px;
+            }
+        }
+    }
+    .expertise-wrapper{
+        .expertise-details{
+            p{
+                color        : $black;
+                position     : relative;
+                min-height   : 20px;
+                padding-left : 160px;
+                margin-bottom: 15px;
+                span{
+                    left     : 0;
+                    color    : $grey-1;
+                    position : absolute;
+                    max-width: 160px;
+                }
+            }
+        }
+    }
+    .table{
+        tr{
+            &.bordered{
+                border-bottom: 2px solid $grey-border-dark;
+            }
+            td{
+                vertical-align: middle;
+                strong{
+                    font-family: $roboto-medium;
+                }
+            }
+        }
+    }
+}
+
+.custom-container{
+    .container-fluid{
+        .user-details-wrapper, .user-plan-wrapper{
+            border          : 1px solid $blue-1;
+            height          : auto;
+            position        : relative;
+            margin-top      : 20px;
+            background-color: $white;
+            @include border-radius(5px);
+            p{
+                color        : $form-label;
+                font-size    : 15px;
+                font-family  : $opensans-light;
+                margin-bottom: 5px;
+                &:last-child{
+                    margin-bottom: 0;
+                }
+                span{
+                    margin-left: 5px;
+                }
+            }
+            .btn-account-settings{
+                color           : $black;
+                float           : left;
+                width           : 100%;
+                font-size       : 15px;
+                margin-top      : 25px;
+                font-family     : $opensans-light;
+                background-color: $white;
+                @include border-radius(5px);
+            }
+        }
+        .user-details-wrapper{
+            padding : 15px 15px 15px 180px;
+            position: relative;
+            .title{
+                position     : relative;
+                padding      : 0 100px 15px 0;
+                margin-bottom: 15px;
+                border-bottom: 1px solid $grey-4;
+                h3{
+                    margin        : 0 0 5px;
+                    font-family   : $roboto-medium;
+                    letter-spacing: 1px;
+                }
+                small{
+                    color    : $grey;
+                    font-size: 14px;
+                }
+                .btn{
+                    float      : none;
+                    margin-top : 0;
+                    margin-left: 50px;
+                }
+            }
+            p{
+                color        : $grey-4;
+                font-family  : $roboto-medium;
+                margin-bottom: 15px;
+                span{
+                    color       : $grey;
+                    display     : inline-block;
+                    min-width   : 100px;
+                    margin-right: 5px;
+                }
+            }
+            .btn-change-profile-image{
+                position: absolute;
+                left: 137px;
+                top: 30px;
+                padding: 5px;
+                line-height: 10px;
+                box-shadow: none;
+                border: 0;
+                border-radius: 4px;
+            }
+            .user-profile-pic{
+                top      : 15px;
+                left     : 15px;
+                position : absolute;
+                max-width: 150px;
+                @include border-radius(50%);
+            }
+            .btn-edit-settings{
+                float    : right;
+                border   : 1px solid $green-1;
+                max-width: 70px;
+                &:hover{
+                    border-color: $green-hover;
+                }
+            }
+            .btn-change-pwd{
+                float      : right;
+                border     : 1px solid $sidebar-grey;
+                max-width  : 170px;
+                margin-left: 10px;
+                &:hover{
+                    border-color: $grey-hover;
+                }
+            }
+        }
+        .user-plan-wrapper{
+            padding : 15px;
+            .btn-invoices{
+                border   : 1px solid $blue-1;
+                max-width: 100px;
+                &:hover{
+                    border-color: $blue-hover;
+                }
+            }
+            p{
+                color        : $grey-4;
+                font-family  : $roboto-medium;
+                margin-bottom: 15px;
+                span{
+                    color       : $grey;
+                    display     : inline-block;
+                    min-width   : 160px;
+                    margin-right: 5px;
+                }
+            }
+            .btn-upgrade-settings{
+                border     : 1px solid $green-1;
+                max-width  : 100px;
+                margin-left: 10px;
+                &:hover{
+                    border-color: $green-hover;
+                }
+            }
+            .btn-downgrade{
+                border     : 1px solid $sidebar-grey;
+                max-width  : 120px;
+                margin-left: 10px;
+                &:hover{
+                    border-color: $grey-hover;
+                }
+            }
+        }
+        .cancel-account{
+            color         : $form-label;
+            float         : right;
+            margin        : 20px 15px 0 0;
+            display       : block;
+            font-size     : 14px;
+            font-family   : opensans-light;
+            border-bottom : 1px solid $form-label;
+            padding-bottom: 5px;
+        }
+    }
+}
+
+.settings-custom-btn{
+    color           : $black;
+    font-size       : 14px;
+    min-height      : 34px;
+    font-family     : $opensans-light;
+    background-color: $light-grey;
+    @include border-radius(5px);
+    &:hover{
+        color: $black;
+    }
+}
+/* Styles for Edit User Modal Box Starts Here */
+.edit-account-custom-modal{
+    .modal-dialog{
+        /*width: 400px;*/
+        .modal-content{
+            border  : 0;
+            padding : 0;
+            @include border-radius(0);
+            .edit-user-modal-header{
+                padding         : 10px 15px;
+                min-height      : 50px;
+                background-color: $blue-1;
+                .modal-title{
+                    color      : $white;
+                    position   : relative;
+                    font-size  : 18px;
+                    font-family: $opensans-light;
+                }
+            }
+            .edit-user-modal-body{
+                .edit-user-form{
+                    .form-group{
+/*                        input{
+                            border     : 1px solid $blue-1;
+                            min-height : 40px;
+                            font-family: $opensans-light;
+                            &.form-control{
+                                @include box-shadow(none);
+                                &:focus{
+                                    @include box-shadow(none);
+                                }
+                            }
+                        }*/
+                    }
+                    .btn-edit-user-save{
+                        width    : 100%;
+                        border   : 1px solid $blue-1;
+                        max-width: 60px;
+                        &:hover{
+                            border-color: $blue-hover;
+                        }
+                    }
+                    .btn-edit-user-close{
+                        width      : 100%;
+                        border     : 1px solid $grey-4;
+                        max-width  : 70px;
+                        margin-left: 10px;
+                        &:hover{
+                            border-color: $grey-hover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/* Styles for Edit User Modal Box Ends Here */
+
+/* Styles for Change Password Modal Box Starts Here */
+.reset-password-custom-modal{
+    .modal-dialog{
+        width: 400px;
+        .modal-content{
+            padding : 0;
+            border: 0;
+            @include border-radius(0);
+            .change-password-modal-header{
+                padding         : 10px 15px;
+                min-height      : 50px;
+                background-color: $blue-1;
+                .modal-title{
+                    color      : $white;
+                    position   : relative;
+                    font-size  : 18px;
+                    font-family: $opensans-light;
+                }
+            }
+            .change-password-modal-body{
+                .change-password-form{
+                    .form-group{
+                        /*margin-bottom: 25px;*/
+/*                        input{
+                            border     : 1px solid $blue-1;
+                            min-height : 40px;
+                            font-family: $opensans-light;
+                            &.form-control{
+                                @include box-shadow(none);
+                                &:focus{
+                                    @include box-shadow(none);
+                                }
+                            }
+                        }*/
+                        .password-strength-wrapper{
+                            top     : 12px;
+                            right   : 5px;
+                            position: absolute;
+                            .password-strength-color{
+                                float  : left;
+                                width  : 12px;
+                                height : 12px;
+                                margin : 3px 3px 0 0;
+                                display: inline-block;
+                            }
+                            .password-strength-text{
+                                float  : left;
+                                display: inline-block;
+                                @include font($black-1, 12px, $roboto-regular);
+                            }
+                        }
+                        .tooltip{
+                            left : auto !important;
+                            right: 0;
+                            .tooltip-inner{
+                                width     : 170px;
+                                padding   : 3px 10px;
+                                text-align: left;
+                            }
+                        }
+                        #strength{
+                            margin: 0;
+                        }
+                    }
+                    .btn-change-password{
+                        width    : 100%;
+                        border   : 1px solid $blue-1;
+                        max-width: 170px;
+                        &:hover{
+                            border-color: $blue-hover;
+                        }
+                    }
+                    .btn-edit-user-close{
+                        width      : 100%;
+                        border     : 1px solid $grey-4;
+                        max-width  : 70px;
+                        margin-left: 10px;
+                        &:hover{
+                            border-color: $grey-hover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/* Styles for Change Password Modal Box Ends Here */
+
+/* Styles for Invoices Modal Box Starts Here */
+.invoice-custom-modal{
+    .modal-dialog{
+        .modal-content{
+            padding : 0;
+            border: 0;
+            @include border-radius(0);
+            .invoices-modal-header{
+                padding         : 10px 15px;
+                min-height      : 50px;
+                background-color: $blue-1;
+                .modal-title{
+                    color      : $white;
+                    position   : relative;
+                    font-size  : 18px;
+                    font-family: $opensans-light;
+                }
+            }
+            .invoices-modal-body{
+                .invoices-form{
+                    span, label{
+                        color      : $grey-1;
+                        display    : inline-block;
+                        font-size  : 14px;
+                        font-weight: 400;
+                        font-family: $opensans-light;
+                    }
+                    label{
+                        margin-left : 10px;
+                        margin-right: 10px;
+                    }
+                    input{
+                        width      : 130px;
+/*                        border     : 1px solid $blue-1;
+                        display    : inline-block;
+                        min-height : 40px;
+                        font-family: $opensans-light;
+                        @include border-radius(0);
+                        &.form-control{
+                            @include box-shadow(none);
+                            &:focus{
+                                @include box-shadow(none);
+                            }
+                        }*/
+                    }
+                    .btn-go{
+                        width      : 100%;
+                        border     : 1px solid $grey-4;
+                        display    : inline-block;
+                        max-width  : 50px;
+                        margin-left: 10px;
+                        &:hover{
+                            border-color: $grey-hover;
+                        }
+                    }
+                }
+                .invoice-table{
+                    border    : 1px solid $blue-1;
+                    margin-top: 20px;
+                    thead{
+                        tr{
+                            th{
+                                color           : $white;
+                                border          : 0;
+                                font-size       : 14px;
+                                text-align      : center;
+                                font-family     : $opensans-light;
+                                font-weight     : 400;
+                                background-color: $blue-1;
+                            }
+                        }
+                    }
+                    tbody{
+                        tr{
+                            td{
+                                color       : $grey-1;
+                                font-size   : 13px;
+                                text-align  : center;
+                                font-family : $opensans-light;
+                                font-weight : 400;
+                                a{
+                                    color: $blue-1;
+                                    &:hover, &:focus{
+                                        color: $blue-1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/* Styles for Invoices Modal Box Ends Here */
+
+/* Styles for Upgrade/Downgrade Modal Box Starts Here */
+.upgrade-degrade-custom-modal{
+    .modal-dialog{
+        .modal-content{
+            padding : 0;
+            border: 0;
+            @include border-radius(0);
+            .upgrade-downgrade-modal-header{
+                padding         : 10px 15px;
+                min-height      : 50px;
+                background-color: $blue-1;
+                .modal-title{
+                    color      : $white;
+                    position   : relative;
+                    font-size  : 18px;
+                    font-family: $opensans-light;
+                }
+            }
+            .upgrade-downgrade-modal-body{
+                .pricing-button-wrapper{
+                    width : 295px;
+                    margin: 0 auto 20px;
+                    span{
+                        margin     : 0 10px;
+                        font-family: $opensans-light;
+                    }
+                    .btn-monthly-pricing{
+                        width    : 100%;
+                        border   : 1px solid $blue-1;
+                        max-width: 130px;
+                        &:hover{
+                            border-color: $blue-hover;
+                        }
+                    }
+                    .btn-yearly-pricing{
+                        width    : 100%;
+                        border   : 1px solid $grey-4;
+                        max-width: 120px;
+                        &:hover{
+                            border-color: $grey-hover;
+                        }
+                    }
+                }
+                .btn-upgrade-downgrade{
+                    margin : 0 auto 15px;
+                    border : 1px solid $sidebar-grey;
+                    display: block;
+                    &:hover{
+                        border-color: $grey-hover;
+                    }
+                }
+                .startup-wrapper{
+                    border : 2px solid $blue-1;
+                    padding: 10px 5px;
+                    @include border-radius(5px);
+                    p{
+                        color      : $grey-1;
+                        font-size  : 14px;
+                        font-family: $opensans-light;
+                        &.startup-text-head{
+                            font-size  : 18px;
+                            font-weight: 700;
+                        }
+                        &.startup-text{
+                            font-weight: 700;
+                        }
+                        &.startup-price{
+                            font-size  : 16px;
+                            font-weight: 700;
+                        }
+                        &:nth-of-type(3), &:nth-of-type(4),
+                            &:nth-of-type(6), &:nth-of-type(9){
+                            border-bottom : 1px solid $blue-1;
+                            padding-bottom: 10px;
+                        }
+                    }
+                }
+                .business-wrapper{
+                    border : 2px solid $blue-1;
+                    padding: 10px 5px;
+                    @include border-radius(5px);
+                    p{
+                        color      : $grey-1;
+                        font-size  : 14px;
+                        font-family: $opensans-light;
+                        &.business-text-head{
+                            font-size  : 18px;
+                            font-weight: 700;
+                        }
+                        &.business-price{
+                            font-size  : 16px;
+                            font-weight: 700;
+                        }
+                        &:nth-of-type(2), &:nth-of-type(3), &:nth-of-type(4),
+                            &:nth-of-type(6), &:nth-of-type(7){
+                            border-bottom : 1px solid $blue-1;
+                            padding-bottom: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/* Styles for Upgrade/Downgrade Modal Box Ends Here */
+
+/* Styles for Cancel Account Modal Box Starts Here */
+.cancel-account-custom-modal{
+    .modal-dialog{
+        width: 400px;
+        .modal-content{
+            padding : 0;
+            border: 0;
+            @include border-radius(0);
+            .cancel-account-modal-header{
+                padding         : 10px 15px;
+                min-height      : 50px;
+                background-color: $blue-1;
+                .modal-title{
+                    color      : $white;
+                    position   : relative;
+                    font-size  : 18px;
+                    font-family: $opensans-light;
+                }
+            }
+            .cancel-account-modal-body{
+                .cancel-account-text{
+                    color      : $form-label;
+                    font-size  : 14px;
+                    font-family: $opensans-light;
+                }
+                .cancel-account-form{
+                    .form-group{
+/*                        textarea{
+                            border     : 1px solid $blue-1;
+                            resize     : none;
+                            min-height : 40px;
+                            font-family: $opensans-light;
+                            &.form-control{
+                                @include box-shadow(none);
+                                &:focus{
+                                    @include box-shadow(none);
+                                }
+                            }
+                        }*/
+                    }
+                    .btn-cancel-account{
+                        width    : 100%;
+                        border   : 1px solid $red;
+                        max-width: 150px;
+                        &:hover{
+                            border-color: $red-hover;
+                        }
+                    }
+                    .btn-edit-user-close{
+                        width      : 100%;
+                        border     : 1px solid $grey-4;
+                        max-width  : 70px;
+                        margin-left: 10px;
+                        &:hover{
+                            border-color: $grey-hover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/* Styles for Cancel Account Modal Box Ends Here */
+
+/* Media Queries Starts Here */
+
+@media(min-width: 1200px){
+
+}
+@media(min-width: 992px) and (max-width: 1199px){
+    .custom-container{
+        width      : 80%;
+        height     : 92vh;
+        margin-left: 20%;
+        .container-fluid{
+            .user-details-wrapper{
+                padding: 15px 15px 15px 120px;
+                .user-profile-pic{
+                    max-width: 90px;
+                }
+                .btn-change-pwd{
+                    max-width: 150px;
+                }
+                .btn-edit-settings{
+                    max-width: 65px;
+                }
+            }
+            .user-plan-wrapper{
+                .btn-invoices, .btn-upgrade-settings{
+                    max-width: 95px;
+                }
+            }
+        }
+    }
+}
+@media(min-width: 768px) and (max-width: 991px){
+    .custom-container{
+        width      : auto;
+        height     : 100%;
+        max-width  : 764px;
+        margin-left: 210px;
+    }
+}
+@media(min-width: 481px) and (max-width: 767px){
+
+    .custom-container{
+        .container-fluid{
+            .user-details-wrapper{
+                padding: 15px 15px 15px 120px;
+                .user-profile-pic{
+                    max-width: 90px;
+                }
+            }
+            .user-details-wrapper, .user-plan-wrapper{
+                p{
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    /* Styles for Edit and Change Password Modal Box Starts Here */
+    .edit-account-custom-modal, .reset-password-custom-modal{
+        .modal-dialog{
+            margin: 60px auto 0;
+        }
+    }
+    /* Styles for Edit and Change Password Modal Box Starts Here */
+
+    /* Styles for Invoice Modal Box Starts Here */
+    .invoice-custom-modal{
+        .modal-dialog{
+            width : 470px;
+            margin: 60px auto 0;
+            .modal-content{
+                border: 0;
+                .invoices-modal-body{
+                    .invoices-form{
+                        span{
+                            display: block;
+                        }
+                        input{
+                            margin-top: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    /* Styles for Invoice Modal Box Ends Here */
+
+    /* Styles for Upgrade/Downgrade Modal Box Starts Here */
+    .upgrade-degrade-custom-modal{
+        .modal-dialog{
+            width : 400px;
+            margin: 60px auto 0;
+            .modal-content{
+                border: 0;
+                .upgrade-downgrade-modal-body{
+                    .btn-upgrade-downgrade{
+                        margin: 25px auto 15px;
+                    }
+                }
+            }
+        }
+    }
+    /* Styles for Upgrade/Downgrade Modal Box Ends Here */
+}
+@media(min-width: 320px) and (max-width: 480px){
+    .custom-container{
+        .container-fluid{
+            width: 100%;
+            .user-details-wrapper{
+                width  : 100%;
+                padding: 15px;
+                .user-profile-pic{
+                    margin   : 0 auto 20px;
+                    position : static;
+                    transform: none;
+                }
+            }
+            .user-plan-wrapper{
+                float     : none;
+                width     : 100%;
+                padding   : 15px;
+                margin-top: 20px;
+            }
+            .user-details-wrapper, .user-plan-wrapper{
+                p{
+                    font-size: 14px;
+                }
+                .btn-account-settings{
+                    float    : none;
+                    width    : 100%;
+                    margin   : 20px auto 0;
+                    display  : block;
+                    font-size: 14px;
+                    max-width: 300px;
+                }
+            }
+            .cancel-account{
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
+@media(min-width: 320px) and (max-width: 480px){
+    /*    .custom-container{
+            .container-fluid{
+                .user-plan-wrapper{
+                    .btn-account-settings{
+                        display  : inline-block;
+                        padding  : 6px;
+                        font-size: 14px;
+                        &.btn-invoices, &.btn-upgrade-settings{
+                            max-width: 70px;
+                        }
+                        &.btn-downgrade{
+                            max-width: 90px;
+                        }
+                    }
+                }
+            }
+        }*/
+
+    /* Styles for Edit and Change Password Modal Box Starts Here */
+    .edit-account-custom-modal, .reset-password-custom-modal{
+        .modal-dialog{
+            width    : auto;
+            margin   : 60px auto 0;
+            max-width: 300px;
+        }
+    }
+    /* Styles for Edit and Change Password Modal Box Starts Here */
+
+    /* Styles for Invoice Modal Box Starts Here */
+    .invoice-custom-modal{
+        .modal-dialog{
+            width    : auto;
+            margin   : 60px auto 0;
+            max-width: 300px;
+            .modal-content{
+                border: 0;
+                .invoices-modal-body{
+                    padding: 10px;
+                    .invoices-form{
+                        span{
+                            display: block;
+                        }
+                        input{
+                            width     : 100px;
+                            margin-top: 15px;
+                        }
+                        label{
+                            margin: 0 5px 0 0;
+                            &:last-of-type{
+                                margin: 0 5px;
+                            }
+                        }
+                        .btn-go{
+                            margin   : 15px 0 0 0;
+                            max-width: 300px;
+                        }
+                    }
+                    .invoice-table{
+                        width: 100%;
+                        thead, tbody{
+                            tr{
+                                th, td{
+                                    padding  : 8px 6px;
+                                    font-size: 13px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    /* Styles for Invoice Modal Box Ends Here */
+
+    /* Styles for Upgrade/Downgrade Modal Box Starts Here */
+    .upgrade-degrade-custom-modal{
+        .modal-dialog{
+            width : 300px;
+            margin: 60px auto 0;
+            .modal-content{
+                border: 0;
+                .upgrade-downgrade-modal-body{
+                    .pricing-button-wrapper{
+                        width : auto;
+                        span{
+                            margin    : 10px 0;
+                            display   : block;
+                            text-align: center;
+                        }
+                        .settings-custom-btn{
+                            width    : 100%;
+                            margin   : 0 auto;
+                            display  : block;
+                            max-width: 180px;
+                        }
+                    }
+                    .btn-upgrade-downgrade{
+                        margin: 25px auto 15px;
+                    }
+                }
+            }
+        }
+    }
+    /* Styles for Upgrade/Downgrade Modal Box Ends Here */
+}
+/*--  Media Styles  --*/
+@media(min-width: 320px) and (max-width: 767px){
+    /*--  Updrade Package Modal  --*/
+    .package-wrapper{   
+        .nav-tabs{
+            li{
+                width  : 1%;
+                display: table-cell;
+            }
+        }
+    }
+    .custom-container{
+        width      : 100%;
+        height     : 100%;
+        margin-left: 0;
+    }
+}
+
+/* Media Queries Ends Here */

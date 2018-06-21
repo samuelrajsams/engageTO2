@@ -1,0 +1,92 @@
+<div class="modal-header custom-modal-header">
+    <h3 class="modal-title">Add Domain
+        <a class="fa fa-times custom-close" href ng-click="website.close()" ng-if="!website.activeTab"></a>
+    </h3>
+</div>
+<div class="modal-body custom-modal-body">
+    <uib-tabset active="website.activeTab">
+        <uib-tab index="0">
+            <uib-tab-heading>
+                <span class="title">Add Domain</span>
+                <span class="icon"><i class="fa fa-circle"></i></span>
+            </uib-tab-heading>
+            <form class="custom-website-form" name="addWebsiteForm" ng-submit="website.addNewWebsite()" novalidate>
+                <div class="custom-alert custom-alert-error" ng-if="website.isDomainExist">
+                    This domain is archived, please 
+                    <a href ng-click="website.onClickReActive()">Re-activate</a> it.
+                </div>
+                <div class="custom-alert custom-alert-error" ng-if="website.errorMessage !== ''">
+                    {{website.errorMessage}}
+                </div>
+                <div class="custom-alert custom-alert-success" ng-if="website.successMessage !== ''">
+                    {{website.successMessage}}
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" ng-class="{'error-field': website.add_website.isWebsiteRequired}" id="websiteName" name="websiteName" ng-model="website.add_website.websiteName" placeholder="Website name" add-website-validator required/>
+                        </div>
+                        <span class="error" ng-if="!website.isDomainNameValid">Entered domain name is not valid, allowed only alphanumeric character's.</span>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" ng-class="{'error-field': website.add_website.isWebsiteAddressRequired || !website.add_website.isUrlValid}" id="websiteAddress" name="websiteAddress" ng-model="website.add_website.websiteAddress" autocomplete="off" placeholder="Website address" add-website-validator required/>
+                            <span class="error" ng-show="!website.add_website.isUrlValid">Please enter valid website url</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" id="subDomainName" name="subDomainName" class="form-control" ng-class="{'error-field': website.add_website.issubDomainNameRequired}" placeholder="Enter sub-domain" ng-model="website.add_website.subDomainName" add-website-validator required ng-trim="false"/>
+                                <span class="input-group-addon address" id="basic-addon2">.engageto.com</span>
+                            </div>
+                            <span class="error" ng-if="!website.isSubDomainValid">Entered sub domain is not valid, allowed only alphanumeric character's.</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 text-center">
+                        <button type="submit" class="btn btn-custom btn-add-website" ng-disabled="addWebsiteForm.$invalid || !website.add_website.isUrlValid || !website.isDomainNameValid || !website.isSubDomainValid || engagetoApp.isLoading">Generate Code
+                            <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </uib-tab>
+        <uib-tab index="1" disable="website.activeTab === 0">
+            <uib-tab-heading>
+                <span class="title">Integrate Code</span>
+                <span class="icon"><i class="fa fa-circle"></i></span>
+            </uib-tab-heading>
+            <div class="integrations-code">
+                <h4>Here are the instructions to activate web push on your website</h4>
+                <div class="instruction-wrapper">
+                    <p>Copy & place following JS code before 	&lt;/head&gt; tag on all website pages </p>
+                    <div class="code-container" id="show-code">
+                        <div class="code-overlay" ng-if="website.copyMsg">
+                            <span>Code Copied</span>
+                        </div>
+                        <pre class="code-block">{{website.code}}</pre>
+                        <button type="button" class="btn btn-copy-code btn-custom-primary" ngclipboard data-clipboard-target="#show-code" ngclipboard-success="website.onCopyFunction(e);">Copy Code</button>
+                    </div>
+                </div>
+                <small>Note: This code has to be paste above the end head tag in your application.</small>
+                <form class="custom-website-form form-horizontal">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                <input type="text" class="form-control" placeholder="abc@xyz.com, xyz@abc.com" ng-model="website.emails" ng-focus="website.isEmailsValid = true">
+                                <span class="error" ng-if="!website.isEmailsValid">Please enter a valid email address</span>
+                                <span class="input-group-addon send btn-custom-primary" ng-click="website.sendCopyToDev()" ng-disabled="engagetoApp.isLoading">Send
+                                    <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" text-center">
+                        <button type="button" class="btn btn-cancel-primary" ng-click="website.close('success')">Close</button>
+                    </div>
+                </form>
+            </div>
+        </uib-tab>
+    </uib-tabset>
+</div>

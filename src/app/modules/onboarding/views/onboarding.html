@@ -1,0 +1,138 @@
+<div class="getting-started-wrapper">
+    <ul class="list-inline onboarding-tab-list clearfix">
+        <li class="onboarding-tab" style="width: {{onboarding.steps === 0 ? '100%' : '50%'}}">
+            <a class="onboarding-tab-link" href ng-click="onboarding.selectingTab(0)">
+                <span><i class="fa fa-star-o" aria-hidden="true"></i></span>Personal Details
+            </a>
+        </li>
+        <li class="onboarding-tab" ng-if="onboarding.steps === 2">
+            <a href class="onboarding-tab-link" ng-class="{'disable-tab': ((!onboarding.user.firstName || onboarding.user.firstName === '') || (!onboarding.user.lastName || onboarding.user.lastName === '') || (!onboarding.user.companyName || onboarding.user.companyName === '') || !onboarding.error.isSubDomainValid)}" ng-click="onboarding.selectingTab(2)">
+                <span>2</span>Packages
+            </a>
+        </li>
+    </ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--<h2 class="text-center">Getting Started ({{onboarding.domainAddress}})</h2>-->
+                <div class="onboarding-content first-step clearfix" ng-if="onboarding.steps === 0">
+                    <h3 class="text-center">We want to know you more</h3>
+                    <p class="text-center">
+                        We'll not share your personal informational with any third party.
+                    </p>
+                    <form class="onboarding-form" name="personalDetailsForm" novalidate>
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="form-group">
+                                <input type="text" id="firstName" name="firstName" ng-model="onboarding.user.firstName" class="form-control" ng-class="{'error-field': personalDetailsForm.firstName.$touched && personalDetailsForm.firstName.$error.required}" placeholder="First Name" required/>
+                                <span class="error" ng-if="personalDetailsForm.firstName.$touched && personalDetailsForm.firstName.$error.required">First name is required</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="form-group">
+                                <input type="text" id="lastName" name="lastName" ng-model="onboarding.user.lastName" class="form-control" ng-class="{'error-field': personalDetailsForm.lastName.$touched && personalDetailsForm.lastName.$error.required}" placeholder="Last Name" required/>
+                                <span class="error" ng-if="personalDetailsForm.lastName.$touched && personalDetailsForm.lastName.$error.required">Last name is required</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="form-group">
+                                <input type="text" id="companyName" name="companyName" ng-model="onboarding.user.companyName" class="form-control" ng-class="{'error-field': personalDetailsForm.companyName.$touched && personalDetailsForm.companyName.$error.required}" placeholder="Company Name" required/>
+                                <span class="error" ng-if="personalDetailsForm.companyName.$touched && personalDetailsForm.companyName.$error.required">Company name is required</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="form-group">
+                                <input type="text" id="subDomainName" name="subDomainName" ng-model="onboarding.user.subDomainName" class="form-control subdomain" ng-class="{'error-field': (personalDetailsForm.subDomainName.$touched && personalDetailsForm.subDomainName.$error.required) || (!personalDetailsForm.subDomainName.$error.required && !onboarding.error.isSubDomainValid)}" placeholder="Subdomain" ng-blur="onboarding.checkingUrlExists()" ng-pattern="/^[a-zA-Z0-9]*$/" required ng-trim="false" autocomplete="off"/>
+                                <span class="intentpush-text">.engageto.com</span>
+                                <span class="error" ng-if="personalDetailsForm.subDomainName.$touched && personalDetailsForm.subDomainName.$error.required">Sub-domain name is required</span>
+                                <span class="error" ng-if="!personalDetailsForm.subDomainName.$error.required && !onboarding.error.isSubDomainValid && !personalDetailsForm.subDomainName.$error.pattern">Subdomain is not available.</span>
+                                <span class="error" ng-if="!personalDetailsForm.subDomainName.$error.required && personalDetailsForm.subDomainName.$error.pattern">Entered sub domain is not valid, allowed only alphanumeric character's.</span>
+                                <a ng-click="onboarding.checkingUrlExists()" class="btn-check-avail">Check Availability</a>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-custom btn-next" ng-click="onboarding.next(2)" ng-disabled="personalDetailsForm.$invalid || !onboarding.error.isSubDomainValid || personalDetailsForm.subDomainName.$error.pattern || engagetoApp.isLoading">Next
+                            <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+                        </button>
+                    </form>
+                    <p class="text-center mandatory-text"> * All Fields Required</p>
+                </div>
+                <div class="price-container" ng-show="onboarding.steps === 2">
+                    <div class="price-switch-wrapper">
+                        <label class="radio-inline package-term-label" ng-class="{'active': onboarding.plan.planSlab === 'Monthly'}">
+                            Billed Monthly
+                            <input type="radio" class="package-term" id="monthlyOptions" ng-model="onboarding.plan.planSlab" value="Monthly" ng-change="onboarding.changePlanSlab()">
+                        </label>
+                        <label class="radio-inline package-term-label" ng-class="{'active': onboarding.plan.planSlab === 'Annually'}">
+                            Billed Annually
+                            <input type="radio" class="package-term" id="yearlyOptions" ng-model="onboarding.plan.planSlab" value="Annually" ng-change="onboarding.changePlanSlab()">
+                        </label>
+                    </div>
+                    <div class="price-packages-container text-center clearfix">
+                        <div class="price-package-wrapper startup-package">
+                            <h4 class="price-category-head">Startup</h4>
+                            <div class="package-price-wrapper">
+                                <p class="price-amount">$<span>0</span></p>
+                                <span class="free-text">Free</span>
+                            </div>
+                            <div class="package-content-wrapper">
+                                <p class="package-content">Send unlimited notifications</p>
+                                <p class="package-content">HTTP + HTTPS support</p>
+                                <p class="package-content">One click subscribe</p>
+                            </div>
+                            <div class="package-selection-btn-wrapper">
+                                <button class="btn btn-package-selection" ng-click="onboarding.selectedPlan('Free')">Start Free Trial</button>
+                            </div>
+                        </div>
+                        <div class="price-package-wrapper premium-package">
+                            <div class="premium-package-head">
+                                <h4 class="price-category-head">Premium</h4>
+                                <small>More Popular</small>
+                            </div>
+                            <div class="package-price-wrapper">
+                                <p class="price-amount">$
+                                    <!--<span class="odometer" id="odometer-slider1"></span>-->
+                                    <span class="odometer" id="odometer-slider1">45</span>
+                                </p>
+                                <span class="per-month-text">per {{onboarding.plan.planSlab}}</span>
+                                <rzslider rz-slider-model="onboarding.slider1.value" rz-slider-options="onboarding.slider1.options"></rzslider>
+                                <span class="subscribers-text">SUBSCRIBERS</span>
+                            </div>
+                            <div class="package-content-wrapper">
+                                <p class="package-content">Send unlimited notifications</p>
+                                <p class="package-content">HTTP + HTTPS support</p>
+                                <p class="package-content">One click subscribe</p>
+                                <p class="package-content">RSS-to-push</p>
+                                <p class="package-content">Segmentation</p>
+                                <p class="package-content">{{onboarding.plan.noOfPremiumAPICalls}}  API access</p>
+                            </div>
+                            <div class="package-selection-btn-wrapper">
+                                <button class="btn btn-package-selection" ng-click="onboarding.selectedPlan('Premium')">Start Free Trial</button>
+                            </div>
+                        </div>
+                        <div class="price-package-wrapper expertise-package">
+                            <h4 class="price-category-head">Expertise</h4>
+                            <div class="package-price-wrapper">
+                                <p class="price-amount">$
+                                    <span class="odometer-slider" id="odometer-slider2">70</span>
+                                </p>
+                                <span class="per-month-text">per {{onboarding.plan.planSlab}}</span>
+                                <rzslider rz-slider-model="onboarding.slider2.value" rz-slider-options="onboarding.slider2.options"></rzslider>
+                                <span class="subscribers-text">SUBSCRIBERS</span>
+                            </div>
+                            <div class="package-content-wrapper">
+                                <p class="package-content">Custom branding</p>
+                                <p class="package-content">Import/export data</p>
+                                <p class="package-content">HTTP + HTTPS support</p>
+                                <p class="package-content">One click subscribe</p>
+                                <p class="package-content">Custom sub domain</p>
+                                <p class="package-content">{{onboarding.plan.noOfPremiumAPICalls}} API access</p>
+                            </div>
+                            <div class="package-selection-btn-wrapper">
+                                <button class="btn btn-package-selection" ng-click="onboarding.selectedPlan('Expertise')">Start Free Trial</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

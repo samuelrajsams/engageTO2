@@ -1,0 +1,36 @@
+<div class="modal-header custom-modal-header">
+    <h3 class="modal-title">
+        <span ng-if="addTeamManagement.addView">Add Team Member</span>
+        <span ng-if="!addTeamManagement.addView">Edit Team Member</span>
+        <a class="fa fa-times custom-close" href="" ng-click="addTeamManagement.cancel()"></a>
+    </h3>
+</div>
+<div class="modal-body custom-modal-body">
+    <form class="custom-website-form" name="addTeamMemberForm" ng-submit="addTeamManagement.saveTeamMember()">
+        <div class="form-group">
+            <input type="text" class="form-control" ng-class="{'error-field': addTeamManagement.addOrEditTeamMember.isEmailAddressRequired || addTeamManagement.addOrEditTeamMember.isUrlValid}" id="emailAddress" name="emailAddress" ng-model="addTeamManagement.addOrEditTeamMember.emailAddress" ng-disabled="addTeamManagement.isEdit" placeholder="Email address" add-team-member-validator required/>
+            <span class="error-2" ng-show="!addTeamManagement.addOrEditTeamMember.isEmailAddressRequired && addTeamManagement.addOrEditTeamMember.isUrlValid">Please, Enter valid email address</span>
+        </div>
+        <div class="form-group">
+            <div class="custom-select">
+                <select class="form-control" id="selectRole" name="selectRole" ng-model="addTeamManagement.addOrEditTeamMember.selectRole" required>
+                    <option value="" selected="selected" disabled="disabled">Select Role</option>
+                    <option ng-repeat="teamRole in addTeamManagement.teamRolesList" value="{{teamRole._role_id}}">{{teamRole.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="custom-select">
+                <select class="form-control" id="websites" name="websites" ng-model="addTeamManagement.addOrEditTeamMember.websites" ng-disabled="addTeamManagement.isEdit" required>
+                    <option value="" selected="selected" disabled="disabled">Select Website</option>
+                    <option ng-repeat="website in addTeamManagement.websitesList" value="{{website.domain_referer}}">{{website.domain_name}}</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-custom btn-add-team-member" ng-disabled="addTeamMemberForm.$invalid || engagetoApp.isLoading">
+            <span ng-if="addTeamManagement.addView">Add Team Member</span>
+            <span ng-if="!addTeamManagement.addView">Edit Team Member</span>
+            <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+        </button>
+    </form>
+</div>

@@ -1,0 +1,208 @@
+<button type="button" class="visible-xxs btn-eye" ng-click="welcomeNotification.notificationPreview()"><i class="fa fa-eye" aria-hidden="true"></i></button>
+<div class="notification-preview visible-sm visible-md visible-lg xs-hide">
+    <div class="browser-push-button-wrapper">
+        <div class="btn-group btn-custom-group">
+            <label class="btn push-btn" ng-model="welcomeNotification.browserPreviewTab" uib-btn-radio="'Chrome'" uncheckable>Chrome</label>
+            <label class="btn push-btn" ng-model="welcomeNotification.browserPreviewTab" uib-btn-radio="'Firefox'" uib-uncheckable="uncheckable">Firefox</label>
+            <label class="btn push-btn" ng-model="welcomeNotification.browserPreviewTab" uib-btn-radio="'Safari'" uib-uncheckable="uncheckable">Safari</label>
+        </div>
+    </div>
+    <div class="preview-wrapper-chrome clearfix" ng-if="welcomeNotification.browserPreviewTab === 'Chrome'">
+        <div class="preview-image-chrome">
+            <i class="fa {{welcomeNotification.notification.logo}}" ng-if="welcomeNotification.notification.logo != ''"></i>
+            <img class="img-responsive" src="{{engagetoApp.notification.image}}" alt="" ng-if="welcomeNotification.notification.logo == ''"/>
+        </div>
+        <div class="preview-content-chrome">
+            <i class="fa fa-times" aria-hidden="true"></i>
+            <span>{{ welcomeNotification.notification.title || 'Notification title here'}}</span>
+            <span>{{ welcomeNotification.notification.description || 'Notification message here'}}</span>
+            <span>{{ engagetoApp.profile.subDomainName}}.engageto.com</span>
+            <i class="fa fa-cog" aria-hidden="true"></i>
+        </div>
+    </div>
+    <div class="preview-wrapper-firefox" ng-if="welcomeNotification.browserPreviewTab === 'Firefox'">
+        <div class="firefox-logo">
+            <img class="img-responsive" src="app/assets/images/firefox-logo.png"/>
+        </div>
+        <div class="preview-content-firefox">
+            <span>{{ welcomeNotification.notification.title || 'Notification title here'}}</span>
+            <span>{{ welcomeNotification.notification.description || 'Notification message here'}}</span>
+            <span>{{ engagetoApp.profile.subDomainName}}.engageto.com</span>
+        </div>
+        <div class="preview-image-firefox">
+            <i class="fa {{welcomeNotification.notification.logo}}" ng-if="welcomeNotification.notification.logo != ''"></i>
+            <img class="img-responsive" src="{{engagetoApp.notification.image}}" alt="" ng-if="welcomeNotification.notification.logo == ''"/>
+        </div>
+    </div>
+    <div class="preview-wrapper-safari clearfix" ng-if="welcomeNotification.browserPreviewTab === 'Safari'">
+        <div class="preview-image-safari">
+            <i class="fa {{welcomeNotification.notification.logo}}" ng-if="welcomeNotification.notification.logo != ''"></i>
+            <img class="img-responsive" src="{{engagetoApp.notification.image}}" alt="" ng-if="welcomeNotification.notification.logo == ''"/>
+        </div>
+        <div class="preview-content-safari">
+            <span>{{ welcomeNotification.notification.title || 'Notification title here'}}</span>
+            <span>{{ welcomeNotification.notification.description || 'Notification message here'}}</span>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="preview-info-wrapper">
+        <div class="note">
+            <p>
+                <strong>Note:</strong> These previews are for representational purposes only based on how they may look on Mac OS. Actual notifications may differ based on text length and Operating System.
+            </p>
+            <p>If you're adding emojis, Chrome automatically appends a space next to each emoticon in the actual notification.</p>
+        </div>
+    </div>
+</div>
+<div class="dashboard-content-header">
+    <h3 class="dashboard-content-area-heading">Welcome Notification</h3>
+    <div class="subtitle">Customize your welcome notification</div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xxs-12 col-lg-7 col-md-6 col-sm-7">
+            <div class="notification-details-wrapper">
+                <form class="custom-form notification-details-form" name="welcomeNotificationDetailsForm">
+                    <div ng-show="welcomeNotification.errorMessage" class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" ng-click="welcomeNotification.hideDangerAlert()"><span aria-hidden="true">&times;</span></button>
+                        {{welcomeNotification.errorMessage}}
+                    </div>
+                    <div class='field-box-wrapper'>
+                        <div class="form-group">
+                            <h4 class="utm-param-head utm-hidden-sm">Enable Welcome Notification</h4>
+                            <div class="switch">
+                                <input id="enable-welcome-notification" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="welcomeNotification.isWelcomeEnabled">
+                                <label for="enable-welcome-notification"></label>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="welcomeNotification.isWelcomeEnabled">
+                            <label for="notificationTitle">Notification Title</label>
+                            <input type="text" id="notificationTitle" name="notificationTitle" class="form-control" ng-class="{'error-field': (!welcomeNotification.notification.title.trim() && welcomeNotification.notification.isTitleBlured) || welcomeNotification.notification.isTitleRequired || !welcomeNotification.notification.isTitleShorter}" placeholder="Enter Notification Title" ng-model="welcomeNotification.notification.title" welcome-notification-validator required maxlength="50" ng-trim="false" autocomplete="off"/>
+                            <small style="color: {{welcomeNotification.notification.isTitleShorter? 'green': 'red'}};">({{welcomeNotification.notification.titleCharaLength}} Characters)</small>
+                            <span style="color: red;" ng-if="!welcomeNotification.notification.isTitleShorter">Shorten your title and make it appealing.</span>
+                            <span ng-show="welcomeNotification.notification.title.trim() != '' && welcomeNotification.notification.isTitleRequired != 'undefined' && welcomeNotification.notification.isTitleRequired === false && welcomeNotification.notification.isTitleShorter">
+                                <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <div class="form-group" ng-if="welcomeNotification.isWelcomeEnabled">
+                            <label for="notificationMessage">Notification Message</label>
+                            <textarea id="notificationDescription" name="notificationDescription" class="form-control" ng-class="{'error-field': (!welcomeNotification.notification.description.trim() && welcomeNotification.notification.isDescriptionBlured) || welcomeNotification.notification.isDescriptionRequired || !welcomeNotification.notification.isDescriptionShorter}" placeholder="Enter Notification Description" ng-model="welcomeNotification.notification.description" welcome-notification-validator required maxlength="100" ng-trim="false"></textarea>
+                            <small style="color: {{welcomeNotification.notification.isDescriptionShorter? 'green': 'red'}};">({{welcomeNotification.notification.descriptionCharaLength}} Characters)</small>
+                            <span style="color: red;" ng-if="!welcomeNotification.notification.isDescriptionShorter">Shorten your message and make it appealing.</span>
+                            <span ng-show="welcomeNotification.notification.description.trim() != '' && welcomeNotification.notification.isDescriptionRequired != 'undefined' && welcomeNotification.notification.isDescriptionRequired === false && welcomeNotification.notification.isDescriptionShorter">
+                                <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <div class="form-group notification-image-container" ng-if="welcomeNotification.isWelcomeEnabled">
+                            <label for="notificationImage">Notification Image</label>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <ul class="list-inline">
+                                        <li ng-repeat-start="image in welcomeNotification.uploadImageList" ng-click="welcomeNotification.onClickSelectImage($index)">
+                                            <img src="{{image}}" alt=""/>
+                                        </li>
+                                        <li ng-repeat-end ng-if="$index + 2 === welcomeNotification.uploadImageList.length + 1" ng-click="welcomeNotification.uploadImageModal()">
+                                            <span>Icon Manager</span>
+                                        </li>
+                                        <li ng-if="welcomeNotification.uploadImageList.length === 0" ng-click="welcomeNotification.uploadImageModal()">
+                                            <span>Icon Manager</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="notificationUrl" ng-if="welcomeNotification.isWelcomeEnabled">
+                            <label for="notificationURL">Notification URL</label>
+                            <input type="text" id="notificationUrl" name="notificationUrl" class="form-control" ng-class="{'error-field': welcomeNotification.notification.isUrlValid === false || welcomeNotification.notification.isURLRequired}" placeholder="Enter Notification URL" ng-model="welcomeNotification.notification.url" welcome-notification-validator ng-trim="false"/>
+                            <span style="color: red;" ng-if="welcomeNotification.notification.isUrlValid === false">Please enter valid website URL.</span>
+                            <span ng-show="welcomeNotification.notification.isUrlValid != 'undefined' && welcomeNotification.notification.isUrlValid">
+                                <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field-box-wrapper" ng-if="welcomeNotification.isWelcomeEnabled">
+                        <div class="form-group">
+                            <h4 class="utm-param-head utm-hidden-sm">Track Using UTM Parameters</h4>
+                            <div class="switch" uib-tooltip="Please, Enter Notification URL, to enable UTM tracking." tooltip-placement="right" tooltip-trigger="'outsideClick'" tooltip-enable="welcomeNotification.notification.url == '' || welcomeNotification.notification.url == 'undefined'">
+                                <input id="cmn-toggle-3" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="welcomeNotification.notification.isUTMParametersRequired" ng-disabled="!welcomeNotification.notification.isUrlValid || welcomeNotification.notification.url == '' || welcomeNotification.notification.url == 'undefined'">
+                                <label for="cmn-toggle-3"></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-if="welcomeNotification.notification.isUTMParametersRequired">
+                                    <label for="utmSource">UTM Source</label>
+                                    <input type="text" id="utmSource" name="utmSource" class="form-control" ng-class="{'error-field': welcomeNotification.notification.isUtmSourceRequired || !welcomeNotification.notification.isUtmSourceShorter || welcomeNotification.notification.invalidUTMSourcePattern}" placeholder="Enter UTM Source" ng-model="welcomeNotification.notification.uTMSource" welcome-notification-validator required maxlength="50" ng-trim="false"/>
+                                    <small style="color: {{welcomeNotification.notification.isUtmSourceShorter? 'green': 'red'}};">({{welcomeNotification.notification.utmSourceCharaLength}} Characters)</small>
+                                    <span style="color: red;" ng-if="!welcomeNotification.notification.isUtmSourceShorter">Shorten your utm source and make it appealing.</span>
+                                    <span style="color:red" ng-show="welcomeNotification.notification.isUtmSourceShorter && welcomeNotification.notification.invalidUTMSourcePattern && welcomeNotification.notification.isUtmSourceRequired != 'undefined' && welcomeNotification.notification.isUtmSourceRequired === false">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                    <span ng-show="welcomeNotification.notification.uTMSource && welcomeNotification.notification.isUtmSourceRequired != 'undefined' && welcomeNotification.notification.isUtmSourceRequired === false && !welcomeNotification.notification.invalidUTMSourcePattern && welcomeNotification.notification.isUtmSourceShorter">
+                                        <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" ng-if="welcomeNotification.notification.isUTMParametersRequired">
+                                    <label for="utmMedium">UTM Medium</label>
+                                    <input type="text" id="utmMedium" name="utmMedium" class="form-control" ng-class="{'error-field': !welcomeNotification.notification.isUtmMediumShorter || (welcomeNotification.notification.invalidUTMMediumPattern && welcomeNotification.notification.isUtmMediumBlured)}" placeholder="Enter UTM Medium" ng-model="welcomeNotification.notification.uTMMedium" welcome-notification-validator maxlength="50" ng-trim="false"/>
+                                    <small style="color: {{welcomeNotification.notification.isUtmMediumShorter? 'green': 'red'}};">({{welcomeNotification.notification.utmMediumCharaLength}} Characters)</small>
+                                    <span style="color: red;" ng-if="!welcomeNotification.notification.isUtmMediumShorter">Shorten your utm medium and make it appealing.</span>
+                                    <span style="color:red" ng-show="welcomeNotification.notification.isUtmMediumShorter && welcomeNotification.notification.invalidUTMMediumPattern && welcomeNotification.notification.isUtmMediumBlured">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                    <span ng-show="welcomeNotification.notification.uTMMedium && welcomeNotification.notification.isUtmMediumBlured && !welcomeNotification.notification.invalidUTMMediumPattern && welcomeNotification.notification.isUtmMediumShorter">
+                                        <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-if="welcomeNotification.notification.isUTMParametersRequired">
+                                    <label for="utmCampaign">UTM Campaign</label>
+                                    <input type="text" id="utmCampaign" name="utmCampaign" class="form-control" ng-class="{'error-field': !welcomeNotification.notification.isUtmCompaignShorter || (welcomeNotification.notification.invalidUTMCompaignPattern && welcomeNotification.notification.isUtmCompaignBlured)}" placeholder="Enter UTM Campaign" ng-model="welcomeNotification.notification.uTMCampaign" welcome-notification-validator maxlength="50" ng-trim="false"/>
+                                    <small style="color: {{welcomeNotification.notification.isUtmCompaignShorter? 'green': 'red'}};">({{welcomeNotification.notification.utmCompaignCharaLength}} Characters)</small>
+                                    <span style="color: red;" ng-if="!welcomeNotification.notification.isUtmCompaignShorter">Shorten your utm campaign and make it appealing.</span>
+                                    <span style="color:red" ng-show="welcomeNotification.notification.isUtmCompaignShorter && welcomeNotification.notification.invalidUTMCompaignPattern && welcomeNotification.notification.isUtmCompaignBlured">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                    <span ng-show="welcomeNotification.notification.uTMCampaign && welcomeNotification.notification.isUtmCompaignBlured && !welcomeNotification.notification.invalidUTMCompaignPattern && welcomeNotification.notification.isUtmCompaignShorter">
+                                        <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" ng-hide="!welcomeNotification.notification.isUTMParametersRequired">
+                                    <label for="utmTerm">Term</label>
+                                    <input type="text" id="utmTerm" name="utmTerm" class="form-control" ng-class="{'error-field': !welcomeNotification.notification.isUtmTermShorter || (welcomeNotification.notification.invalidUTMTermPattern && welcomeNotification.notification.isUtmTermBlured)}" placeholder="Enter UTM Term" ng-model="welcomeNotification.notification.uTMTerm" welcome-notification-validator maxlength="50" ng-trim="false"/>
+                                    <small style="color: {{welcomeNotification.notification.isUtmTermShorter? 'green': 'red'}};">({{welcomeNotification.notification.utmTermCharaLength}} Characters)</small>
+                                    <span style="color: red;" ng-if="!welcomeNotification.notification.isUtmTermShorter">Shorten your utm term and make it appealing.</span>
+                                    <span style="color:red" ng-show="welcomeNotification.notification.isUtmTermShorter && welcomeNotification.notification.invalidUTMTermPattern && welcomeNotification.notification.isUtmTermBlured">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                    <span ng-show="welcomeNotification.notification.uTMTerm && welcomeNotification.notification.isUtmTermBlured && !welcomeNotification.notification.invalidUTMTermPattern && welcomeNotification.notification.isUtmTermShorter">
+                                        <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-hide="!welcomeNotification.notification.isUTMParametersRequired">
+                                    <label for="utmContent">Content</label>
+                                    <input type="text" id="utmContent" name="utmContent" class="form-control" ng-class="{'error-field': !welcomeNotification.notification.isUtmContentShorter || (welcomeNotification.notification.invalidUTMContentPattern && welcomeNotification.notification.isUtmContentBlured)}" placeholder="Enter UTM Content" ng-model="welcomeNotification.notification.uTMContent" welcome-notification-validator maxlength="50" ng-trim="false"/>
+                                    <small style="color: {{welcomeNotification.notification.isUtmContentShorter? 'green': 'red'}};">({{welcomeNotification.notification.utmContentCharaLength}} Characters)</small>
+                                    <span style="color: red;" ng-if="!welcomeNotification.notification.isUtmContentShorter">Shorten your utm content and make it appealing.</span>
+                                    <span style="color:red" ng-show="welcomeNotification.notification.isUtmContentShorter && welcomeNotification.notification.invalidUTMContentPattern && welcomeNotification.notification.isUtmContentBlured">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                    <span ng-show="welcomeNotification.notification.uTMContent && welcomeNotification.notification.isUtmContentBlured && !welcomeNotification.notification.invalidUTMContentPattern && welcomeNotification.notification.isUtmContentShorter">
+                                        <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center" ng-if="welcomeNotification.isWelcomeEnabled">
+                        <button type="button" ng-click="welcomeNotification.exitWelcomeNotificationModal()" class="btn form-btn btn-exit btn-cancel-primary">Cancel</button>
+                        <button type="button" ng-click="welcomeNotification.createdWelcomeNotification()" class="btn form-btn btn-send btn-custom-primary" ng-disabled="engagetoApp.isLoading">Send
+                            <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

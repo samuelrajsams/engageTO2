@@ -1,0 +1,224 @@
+/* 
+    Created on : Oct 20, 2016, 7:23:32 PM
+    Author     : ahextech
+*/
+.smart-automation-container{
+    .custom-smart-header{
+        color        : $form-label;
+        font-size    : 25px;
+        font-family  : $opensans-light;
+        margin-bottom: 25px;
+    }
+    .custom-smart-sub-header{
+        color         : $form-label;
+        position      : relative;
+        font-size     : 22px;
+        font-family   : $opensans-light;
+        margin-bottom : 25px;
+        padding-bottom: 10px;
+        &:after{
+            left            : 0;
+            width           : 90px;
+            bottom          : 0;
+            height          : 2px;
+            content         : "";
+            position        : absolute;
+            background-color: $form-label;
+        }
+    }
+    .btn-add-rss{
+        color           : $white;
+        width           : 100%;
+        font-size       : 18px;
+        max-width       : 140px;
+        min-height      : 45px;
+        font-family     : $opensans-light;
+        margin-bottom   : 30px;
+        background-color: $blue-1;
+        @include border-radius(5px);
+    }
+    .custom-list-head{
+        color        : $form-label;
+        display      : block;
+        font-size    : 20px;
+        font-family  : $opensans-light;
+        margin-bottom: 25px;
+    }
+    .rss-feed-wrapper{
+        width    : 100%;
+        max-width: 840px;
+        .rss-feed-container{
+            border   : 1px solid $blue-1;
+            height   : 215px;
+            padding  : 15px;
+            @include border-radius(5px);
+            .rss-feed-image-container{
+                width           : 20%;
+                float           : left;
+                border          : 1px solid $blue-1;
+                height          : 100%;
+                max-width       : 150px;
+                background-color: $blue-5;
+                @include border-radius(5px);
+                .rss-feed-img{
+                    margin: 23px auto;
+                    display: block;
+                }
+            }
+            .rss-feed-content-container{
+                float   : right;
+                width   : 80%;
+                display : inline-block;
+                .rss-feed-name{
+                    color      : $form-label;
+                    margin     : 0 0 25px 0;
+                    font-size  : 22px;
+                    font-family: $opensans-light;
+                }
+                .total-push-notification-sent{
+                    color      : $form-label;
+                    margin     : 0 0 48px 0;
+                    display    : block;
+                    font-size  : 18px;
+                    font-family: $opensans-light;
+                }
+                .custom-btn{
+                    color      : $white;
+                    float      : left;
+                    width      : 100%;
+                    display    : inline-block;
+                    padding    : 14px 12px;
+                    font-size  : 18px;
+                    max-width  : 205px;
+                    min-height : 60px;
+                    font-family: $opensans-light;
+                    @include border-radius(5px);
+                }
+                .btn-analysis{
+                    margin-right    : 15px;
+                    background-color: $blue-6;
+                }
+                .btn-rss-feed-settings{
+                    margin-right    : 15px;
+                    background-color: $sea-green;
+                }
+                .btn-delete-rss-feed{
+                    background-color: $red-1;
+                }
+            }
+        }
+        .btn-more-result{
+            color           : $white;
+            width           : 100%;
+            margin          : 100px auto 0;
+            display         : block;
+            font-size       : 18px;
+            max-width       : 190px;
+            min-height      : 40px;
+            font-family     : $opensans-light;
+            background-color: $sidebar-grey;
+            @include border-radius(5px);
+        }
+    }
+}
+
+/* Styles for Add RSS Feed Modal Starts Here */
+.add-rss-feed-modal{
+    .modal-dialog{
+        width: 700px;
+        .modal-content{
+            .add-rss-feed-modal-body{
+                padding : 0;
+                position: relative;
+                .custom-close{
+                    top             : -25px;
+                    color           : $grey-1;
+                    right           : -50px;
+                    border          : none;
+                    opacity         : 1;
+                    position        : absolute;
+                    font-size       : 25px;
+                    background-color: transparent;
+                }
+                .modal-title{
+                    color        : $grey-1;
+                    font-size    : 30px;
+                    font-family  : $opensans-light;
+                    margin-bottom: 0;
+                }
+                .add-rss-feed-form{
+                    .form-group{
+                        &:nth-of-type(3){
+                            .audience-segment{
+                                width    : 75%;
+                                display  : inline-block;
+                                max-width: 414px;
+                            }
+                        }
+                        &:last-of-type{
+                            .page-url, .animation-dropdown-wrapper, .page-url-value{
+                                display: inline-block;
+                                float: left;
+                            }
+                            .page-url{
+                                width: 200px;
+                                margin-right: 15px;
+                            }
+                            .animation-dropdown-wrapper{
+                                width: 120px;
+                                margin-right: 15px;
+                            }
+                            .page-url-value{
+                                width: 225px;
+                            }
+                        }
+                        label{
+                            display: block;
+                        }
+                        .rss-feed-url-field{
+                            float  : left;
+                            width  : 430px;
+                            display: inline-block;
+                        }
+                        .btn-validate{
+                            color           : $white;
+                            float           : left;
+                            width           : 100px;
+                            padding         : 4px 12px;
+                            font-size       : 16px;
+                            font-family     : $opensans-light;
+                            margin-left     : 20px;
+                            background-color: $blue-1;
+                            @include border-radius(5px);
+                        }
+                        .btn-custom-group{
+                            border-color: $blue-1;
+                            margin-right: 15px;
+                            .push-btn{
+                                padding  : 6px 12px;
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
+                .custom-modal-btn{
+                    color: $white;
+                    width: 100%;
+                    max-width: 200px;
+                    min-height: 40px;
+                    font-size: 22px;
+                    font-family: $opensans-light;
+                    &.modal-blue-btn{
+                        border-color    : $blue-1;
+                        background-color: $blue-1;
+                    }
+                    &.modal-grey-btn{
+                        border-color    : $grey-4;
+                        background-color: $grey-4;
+                    }
+                }
+            }
+        }
+    }
+}
+/* Styles for Add RSS Feed Modal Ends Here */

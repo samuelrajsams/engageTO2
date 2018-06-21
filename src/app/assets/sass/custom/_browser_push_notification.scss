@@ -1,0 +1,130 @@
+/* 
+    Created on : May 17, 2017, 3:16:14 PM
+    Author     : ahextech
+*/
+.custom-browser-wrapper {
+    padding: 50px 0;
+    &.choose-browser-push-notification-wrapper, 
+    &.business-needs-wrapper{
+        background-color: #f2f7f9;
+    }
+    &.about-notification-wrapper{
+        .content-wrapper{
+            h4{
+                margin        : 20px 0;
+                line-height   : 25px;
+                letter-spacing: 1px;
+                @include font($form-label, 20px, $roboto-regular);
+            }
+            p{
+                text-align: justify;
+                @include font($grey-1, 16px, $roboto-light);
+            }
+        }
+    }
+    &.choose-browser-push-notification-wrapper,
+    &.business-needs-wrapper{
+        .content-wrapper{
+            min-height: 150px;
+            h4{
+                margin: 0 0 15px;
+                @include font($form-label, 18px, $roboto-regular);
+            }
+            p{
+                margin    : 0;
+                text-align: justify;
+                @include font($grey-1, 15px, $roboto-light);
+            }
+        }
+    }
+    &.enable-notification-wrapper{
+        .col-sm-6{
+            min-height: 350px;
+        }
+        .content-wrapper{
+            width : 450px;
+            margin: 0 auto;
+            h4{
+                margin        : 20px 0;
+                line-height   : 25px;
+                letter-spacing: 1px;
+                @include font($form-label, 20px, $roboto-regular);
+            }
+            p{
+                text-align: justify;
+                @include font($grey-1, 16px, $roboto-light);
+            }
+        }
+    }
+    &.api-wrapper{
+        .content-wrapper{
+            p{
+                text-align: justify;
+                @include font($grey-1, 16px, $roboto-light);
+                a{
+                    @include font($blue, 16px, $roboto-regular);
+                    &:focus, &:hover{
+                        color          : $blue;
+                        text-decoration: none;
+                    }
+                }
+            }
+            ul{
+                li{
+                    list-style-position: inside;
+                    @include font($grey-1, 16px, $roboto-light);
+                }
+            }
+        }
+    }
+    &.works-on-wrapper{
+        background-color: #f2f7f9;
+        &.works-on-wordpress{
+            background-color: $white;
+        }
+        .browser-link{
+            display   : block;
+            text-align: center;
+            @include font($blue, 16px, $roboto-regular);
+            img{
+                margin: 0 auto 15px;
+            }
+        }
+    }
+    &.free-trial-wrapper{
+        &.free-trial-wordpress{
+            background-color: #f2f7f9;
+        }
+        h3{
+            color         : $grey-1;
+            margin        : 0 10px 0 0;
+            display       : inline-block;
+            vertical-align: middle;
+        }
+    }
+    h3{
+        margin        : 0 0 50px;
+        letter-spacing: 1px;
+        @include font($blue, 25px, $roboto-regular);
+    }
+    .image-wrapper{
+        img{
+            margin   : 0 auto;
+            max-width: 450px;
+        }
+    }
+    .browser-page-custom-btn{
+        padding         : 8px 15px;
+        background-color: $blue-light-20;
+        @include border-radius(5px);
+        @include font($white, 14px, $roboto-regular);
+        @include transition(all 0.5s ease-in-out);
+        &:focus, &:hover{
+            background-color: $blue;
+        }
+        &.btn-learn-more, &.btn-try{
+            margin : 0 auto;
+            display: block;
+        }
+    }
+}

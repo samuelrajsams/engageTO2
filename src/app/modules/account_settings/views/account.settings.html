@@ -1,0 +1,107 @@
+<div class="dashboard-content-header">
+    <h3 class="dashboard-content-area-heading">Account Settings</h3>
+    <div class="subtitle"><a href="javascript:void(0);" class="help-link">Help</a></div>
+</div>
+<div class="">
+    <div class="container-fluid">
+        <div class="profile-wrapper">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="section">
+                        <div class="profile-title clearfix">
+                            <h3>Profile</h3> <button class="btn btn-link pull-right" ng-click="account.editAccountSettingModal()"><span class="fa fa-pencil"></span> Edit Profile</button>
+                        </div>
+                        <div class="profile-name">
+                            <div class="image" ng-click="account.uploadProfile()">
+                                <img class="img-responsive user-profile-pic" ng-src="{{ account.userDetails.userProfile || 'app/assets/images/user-profile-picture.jpg'}}" />
+                            </div>
+                            <div class="name">
+                                <h4>{{account.userDetails.firstName}} {{account.userDetails.lastName}}</h4>
+                                <small>{{account.userDetails.city}}, {{account.userDetails.country}}</small>
+                            </div>
+                        </div>
+                        <div class="profile-details">
+                            <p><span>Email</span> {{account.userDetails.emailAddress}}</p>
+                            <!--<p><span>Phone</span> 1234567895</p>-->
+                            <p><span>Time Zone</span> {{account.userDetails.timezone}}</p>
+                            <p><span>Company</span> {{account.userDetails.companyName}}</p>
+                        </div>
+                        <div class="text-right">
+                            <button type="button" class="btn btn-custom-primary" ng-click="account.changePasswordModal()">Change Password</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="section expertise-wrapper">
+                        <div class="profile-title clearfix">
+                            <h3>{{account.planDetails.planName}}</h3><button type="button" class="btn pull-right btn-link" ng-click="account.upgradeDegradeModal()"><i class="fa fa-credit-card"></i> Change Plan</button>
+                        </div>
+                        <div class="expertise-details">
+                            <p><span>Plan Cost:</span>{{account.planDetails.planCost}}</p>
+                            <p class="user-billing-date"><span>Next Billing Date:</span>{{account.planDetails.nextBillingDate| date : 'dd-MMM-yyyy'}}</p>
+                            <p class="user-subscribers"><span>No. of Subscribers:</span>{{account.planDetails.noOfSubscribers}}</p>
+                            <p><span>No. of Websites:</span>{{account.planDetails.noOfWebsites}}</p>
+                            <p class="user-team-members"><span>No. of Team Members:</span>{{account.planDetails.noOfTeamMembers}}</p>
+                            <p class="user-push-journey"><span>No. of Push Journeys:</span>{{account.planDetails.noOfPushJourneys || 0}}</p>
+                            <p class="user-api-calls"><span>No. of API Calls:</span>{{account.planDetails.noOfAPICalls}}</p>
+                        </div>
+                        <div class="text-right">
+                            <button type="button" class="btn btn-custom-primary" ng-click="account.invoiceModal()">Invoices</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="section team-management-list">
+                        <div class="profile-title clearfix">
+                            <h3>Team Members</h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered"> 
+                                <thead> 
+                                    <tr> 
+                                        <th class="name-col">Domain Name</th> 
+                                        <th class="address-col">Team Members</th> 
+                                    </tr> 
+                                </thead> 
+                                <tbody> 
+                                    <tr ng-repeat-start="(key, teamList) in account.teamDomainList"> 
+                                        <td rowspan="{{teamList.length}}" class="text-center">{{key}}</td> 
+                                        <td>
+                                            <strong ng-if="engagetoApp.profile.id === teamList[0].user_id">{{teamList[0].first_name}} {{teamList[0].last_name}}</strong> 
+                                            <span ng-if="engagetoApp.profile.id !== teamList[0].user_id">{{teamList[0].first_name}} {{teamList[0].last_name}}</span> 
+                                            <span class="btn btn-xs" ng-class="{'btn-success': teamList[0].role === 'Super Administrator', 'btn-info': teamList[0].role === 'Administrator', 'btn-primary': teamList[0].role === 'Manager', 'btn-warning': teamList[0].role === 'Analyst'}">{{teamList[0].role}}</span>
+                                        </td> 
+                                    </tr> 
+                                    <tr ng-repeat-end ng-repeat="team in teamList" ng-if="$index !== 0"> 
+                                        <td>
+                                            <strong ng-if="engagetoApp.profile.id === team.user_id">{{team.first_name}} {{team.last_name}}</strong> 
+                                            <span ng-if="engagetoApp.profile.id !== team.user_id">{{team.first_name}} {{team.last_name}}</span> 
+                                            <span class="btn btn-xs" ng-class="{'btn-success': team.role === 'Super Administrator', 'btn-info': team.role === 'Administrator', 'btn-primary': team.role === 'Manager', 'btn-warning': team.role === 'Analyst'}">{{team.role}}</span>
+                                        </td> 
+                                    </tr>
+<!--                                    <tr> 
+                                        <td rowspan="3" class="text-center">engageto.com</td> 
+                                        <td>Vipul Singh <span class="btn btn-xs btn-primary">Pusher</span></td> 
+                                    </tr> 
+                                    <tr> 
+                                        <td>Tanveer Singh <span class="btn btn-xs btn-success">Super Admin</span></td> 
+                                    </tr> 
+                                    <tr> 
+                                        <td><strong>Sanjay Verma</strong> <span class="btn btn-xs btn-primary">Pusher</span></td> 
+                                    </tr>-->
+                                </tbody> 
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="javascript:void(0);" class="cancel-account" ng-click="account.cancelAccountModal()">Cancel Account</a>
+        </div>
+        <!--  Profile Section Ends  -->
+    </div>
+    <div class="settings-outer-container clearfix">
+
+
+
+    </div>
+</div>

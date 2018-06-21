@@ -1,0 +1,45 @@
+/* 
+    Created on : Dec 6, 2016, 6:25:27 PM
+    Author     : ahextech
+*/
+.custom-container{
+    .integrations-container{
+        width           : 100%;
+        border          : 1px solid $blue-1;
+        margin          : 20px 0 0;
+        padding         : 15px 20px;
+        max-width       : 280px;
+        min-height      : 220px;
+        text-align      : center;
+        background-color: $white;
+        .learn-more{
+            color      : $blue-1;
+            display    : block;
+            font-size  : 13px;
+            text-align : right;
+            font-family: $opensans-light;
+        }
+        h4{
+            color      : $sidebar-grey;
+            margin     : 0 0 20px;
+            font-size  : 16px;
+            font-family: $opensans-light;
+            font-weight: 700;
+        }
+        p{
+            color      : $sidebar-grey;
+            margin     : 0;
+            font-size  : 14px;
+            font-family: $opensans-light;
+        }
+        .btn-integration{
+            width    : 100%;
+            border   : 1px solid $blue-1;
+            margin   : 20px 0 0;
+            max-width: 190px;
+            &:focus, &:hover{
+                border-color: $blue-hover;
+            }
+        }
+    }
+}

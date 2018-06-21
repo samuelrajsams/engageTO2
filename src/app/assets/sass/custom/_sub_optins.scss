@@ -1,0 +1,149 @@
+/* 
+    Created on : May 10, 2017, 7:10:30 PM
+    Author     : ahextech
+*/
+.sub-optin-wrapper{
+    padding         : 15px;
+    background-color: $white;
+    .sub-optin-config-form{
+        h3{
+            margin        : 0 0 15px;
+            letter-spacing: 1px;
+            @include font($black-1, 22px, $roboto-regular);
+        }
+        .custom-radio{
+            display: inline-block;
+            &:last-of-type{
+                label{
+                    &.radio-inline{
+                        input[type="radio"]{
+                            + span{
+                                i{
+                                    margin: 1px 0 0 -0.5px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            label{
+                &.radio-inline{
+                    font-family: $roboto-light;
+                    input[type="radio"]{
+                        + span{
+                            i{
+                                margin: 1px 0 0 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .sub-optin-config-btn{
+            letter-spacing: 1px;
+            @include font($white, 15px, $roboto-regular);
+            @include transition(all 0.5s ease-in-out);
+            &.btn-save{
+                @include button(100%, 70px, $blue-light-20);
+                &:focus, &:hover{
+                    background-color: $blue;
+                }
+            }
+            &.btn-preview{
+                margin-left: 10px;
+                @include button(100%, 90px, $black-light-20);
+                &:focus, &:hover{
+                    background-color: $black-1;
+                }
+            }
+        }
+    }
+}
+.sub-optin-preview{
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    max-width: 500px;
+    img{
+        width: 100%;
+    }
+    .side-notification-widget{
+        top: 48%;
+        right: 0;
+        position: absolute;
+        @include translate(0, -50%);
+        .relative{
+            position: relative;
+        }
+        a{
+            color: $white;
+            right: -58px;
+            width: auto;
+            display: block;
+            position: absolute;
+            white-space: nowrap;
+            background-color: $blue;
+            @include rotate(-90);
+            @include border-radius(4px);
+            span{
+                display: inline-block;
+                padding: 5px 10px; 
+                border-right: 1px solid #ddd;
+                letter-spacing: 2px;
+            }
+            i{
+                padding: 5px;
+            }
+        }
+        &.left{
+            left: 0;
+            right: auto;
+            a{
+                left: -58px;
+                right: auto;
+            }
+        }
+    } 
+    .round-notification-widget{
+        position: absolute;
+        a{
+            display: inline-block;
+            font-size: 18px;
+            text-align: center;
+            line-height: 40px;
+            @include circle(40px);
+        }
+    }
+}
+.sub-optin-config-window{
+    top             : 50px;
+    left            : 250px;
+    right           : 0;
+    bottom          : 0;
+    position        : fixed;
+    background-color: rgba(255,255,255,0.8);
+    .sub-optin-preview-wrapper{
+        top             : 50px;
+        right           : 40px;
+        height          : 40px;
+        padding         : 10px;
+        overflow        : hidden;
+        position        : fixed;
+        max-width       : 400px;
+        transform       : rotate(-90deg);
+        white-space     : nowrap;
+        text-overflow   : ellipsis;
+        letter-spacing  : 1px;
+        background-color: $blue;
+        transform-origin: 100% 0;
+        @include font($white, 16px, $roboto-regular);
+    }
+    .btn-close{
+        top      : 60px;
+        left     : 260px;
+        color    : $black-1;
+        cursor   : pointer;
+        position : fixed;
+        font-size: 25px;
+    }
+}

@@ -1,0 +1,21 @@
+<div class="modal-header custom-modal-header">
+    <h3 class="modal-title" ng-if="deleteNotification.typeOfNotification === 'saved'">Delete saved notification
+        <a class="fa fa-times custom-close" href="" ng-click="deleteNotification.cancel()"></a>
+    </h3>
+    <h3 class="modal-title" ng-if="deleteNotification.typeOfNotification === 'sent'">Delete sent notification
+        <a class="fa fa-times custom-close" href="" ng-click="deleteNotification.cancel()"></a>
+    </h3>
+    <h3 class="modal-title" ng-if="deleteNotification.typeOfNotification === 'schedule'">Delete scheduled notification
+        <a class="fa fa-times custom-close" href="" ng-click="deleteNotification.cancel()"></a>
+    </h3>
+    <h3 class="modal-title" ng-if="deleteNotification.typeOfNotification === 'welcome'">Delete welcome notification
+        <a class="fa fa-times custom-close" href="" ng-click="deleteNotification.cancel()"></a>
+    </h3>
+</div>
+<div class="modal-body custom-modal-body">
+    <p class="text-center">Are you sure?</p>
+    <div class="delete-btn-wrapper clearfix text-center">
+        <button type="button" class="btn btn-cancel-primary" ng-click="deleteNotification.cancel()">No, Don't Delete Notification</button>
+        <button type="button" class="btn btn-custom-primary" ng-click="deleteNotification.deleteNotification()">Yes, Delete Notification</button>
+    </div>
+</div>

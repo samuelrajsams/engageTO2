@@ -1,0 +1,32 @@
+<div class="login-module-container">
+    <a class="engageto-logo" href ui-sref="landing">
+        <img class="img-responsive" src="app/assets/images/logo-white.png" alt=""/>
+    </a>
+    <div class="login-module-wrapper clearfix">
+        <h3 class="text-center login-module-header">Welcome to engageto</h3>
+        <form class="login-module-form" name="signinForm" ng-submit="signIn()" novalidate>
+            <div class="form-group">
+                <input type="email" id="email" name="email" ng-model="user.email" class="form-control" ng-class="{'error-field': (signinForm.email.$error.required || signinForm.email.$invalid) && visitedEmail}" ng-blur="visitedEmail = true" ng-focus="visitedEmail = false" placeholder="Enter your email" required/>
+                <!--<span class="error" ng-show="signinForm.email.$error.required && visitedEmail">Email is required</span>-->
+                <span class="error" ng-show="!signinForm.email.$error.required && signinForm.email.$invalid && visitedEmail">Entered username is not valid</span>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" ng-model="user.password" class="form-control" ng-class="{'error-field': signinForm.password.$error.required && visitedPwd}" ng-blur="visitedPwd = true" ng-focus="visitedPwd = false" placeholder="Password" required/>
+                <!--<span class="error" ng-show="signinForm.password.$error.required && visitedPwd">Password is required</span>-->
+            </div>
+<!--            <div class="form-group custom-check">
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="sort"/>
+                    <span>
+                        <i class="fa fa-check"></i>
+                    </span> Remember me
+                </label>
+            </div>-->
+            <button type="submit" class="btn btn-login-module" ng-disabled="signinForm.$invalid || engagetoApp.isLoading">Login
+                <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+            </button>
+        </form>
+        <a href ui-sref="forgotPasswordRequest" class="bottom-left-text">Forgot password?</a>
+        <p class="bottom-right-text text-center">Don't have an account? <a href ui-sref="register">Get started.</a></p>
+    </div>
+</div>

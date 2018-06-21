@@ -1,0 +1,931 @@
+/* 
+    Created on : Oct 7, 2016, 1:10:04 PM
+    Author     : ahextech
+*/
+@import "variable.scss";
+@import "mixin.scss";
+
+/* Styles for Optin Selection Dashboard Starts Here */
+.optins-wrapper{
+    padding         : 15px;
+    background-color: $white;
+    .optins-category-wrapper{
+        cursor          : pointer;
+        margin          : 0 auto 30px;
+        padding         : 15px;
+        position        : relative;
+        max-width       : 400px;
+        min-height      : 270px;
+        background-color: $white;
+        @include border-radius(5px);
+        @include box-shadow(3px 3px 15px -4px);
+        &:hover{
+            .optin-overlay{
+                background-color: rgba(85,85,85,0.4);
+                .optin-overlay-content{
+                    &.optin-grey-overlay-content{
+                        display: block;
+                    }
+                }
+            }
+        }
+        .optins-title-wrapper{
+            padding-top: 15px;
+            p{
+                margin: 10px 0 0;
+                @include font($black-1, 15px, $roboto-regular);
+            }
+            .btn-enable-optin{
+                margin-top      : 5px;
+                background-color: $blue-light-20;
+                @include font($white, 14px, $roboto-regular);
+                @include transition(all 0.5s ease-in-out);
+                &:focus, &:hover{
+                    background-color: $blue;
+                }
+            }
+        }
+        .optin-overlay{
+            top             : 0;
+            left            : 0;
+            right           : 0;
+            bottom          : 0;
+            position        : absolute;
+            background-color: transparent;
+            @include border-radius(5px);
+            @include transition(all 0.3s ease-in-out);
+            &.optin-overlay-green{
+                background-color: rgba(107,185,40,0.4);
+                .optin-overlay-content{
+                    &.optin-green-overlay-content{
+                        display: block;
+                    }
+                }
+            }
+            .optin-overlay-content{
+                top           : 50%;
+                left          : 50%;
+                display       : none;
+                z-index       : 1;
+                position      : absolute;
+                text-align    : center;
+                letter-spacing: 1px;
+                @include font($white, 20px, $roboto-regular);
+                @include translate(-50%, -50%);
+                &.optin-grey-overlay-content, &.optin-green-overlay-content{
+                    display: none;
+                }
+            }
+        }
+    }
+    .col-sm-4{
+        &:nth-of-type(5){
+            .optins-category-wrapper{
+                .optins-title-wrapper{
+                    p{
+                        margin   : 0;
+                        max-width: 230px;
+                    }
+                }
+            }
+        }
+    }
+}
+/* Styles for Optin Selection Dashboard Ends Here */
+
+/* Styles for Optin Config Window Starts Here */
+.optin-config-window{
+    padding : 25px;
+    position: relative;
+    /*    &.hide-optin-config{
+            left: 100%;
+        }*/
+    &.show-optin-config{
+        top             : 50px;
+        left            : 250px;
+        right           : 0;
+        bottom          : 0;
+        z-index         : 0;
+        position        : fixed;
+        background-color: rgba(241, 241, 241, 0.95);
+        @include transition(all 0.5s ease-in-out);
+    }
+    .optin-config-form{
+        &.optin1-form{
+            margin-top: 180px;
+        }
+        h3{
+            margin        : 0 0 15px;
+            letter-spacing: 1px;
+            @include font($black-1, 22px, $roboto-regular);
+        }
+        .custom-radio{
+            display: inline-block;
+            &:last-of-type{
+                label{
+                    &.radio-inline{
+                        input[type="radio"]{
+                            + span{
+                                i{
+                                    margin: 1px 0 0 -0.5px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            label{
+                &.radio-inline{
+                    input[type="radio"]{
+                        + span{
+                            i{
+                                margin: 1px 0 0 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .optin-config-btn{
+            letter-spacing: 1px;
+            @include font($white, 15px, $roboto-regular);
+            @include transition(all 0.5s ease-in-out);
+            &.btn-save{
+                @include button(100%, 70px, $blue-light-20);
+                &:focus, &:hover{
+                    background-color: $blue;
+                }
+            }
+            &.btn-close{
+                margin-left: 10px;
+                @include button(100%, 70px, $black-light-20);
+                &:focus, &:hover{
+                    background-color: $black-1;
+                }
+            }
+        }
+        .switch{
+            margin-left: 0;
+            &:nth-of-type(2){
+                margin-left: 20px;
+            }
+            input{
+                &.cmn-toggle-round{
+                    + label{
+                        min-width: auto;
+                        &:before{
+                            top             : 0;
+                            left            : 0;
+                            width           : 35px;
+                            height          : 18px;
+                            background-color: $grey-2;
+                        }
+                        &:after{
+                            top        : 1px;
+                            left       : 1px;
+                            width      : 16px;
+                            height     : 16px;
+                            margin-left: 0;
+                        }
+                    }
+                    &:checked{
+                        + label{
+                            &:before{
+                                background-color: $blue;
+                            }
+                            &:after{
+                                left       : 2px;
+                                margin-left: 16px;
+                            }
+                        }
+                    }
+                }
+            }
+            span{
+                margin-left   : 30px;
+                letter-spacing: 1px;
+                @include font($black-1, 13px, $roboto-regular);
+            }
+        }
+        .btn-download{
+            margin-bottom: 15px;
+            @include button(100%, 140px, $blue-light-20);
+            @include font($white, 14px, $roboto-regular);
+            @include transition(all 0.5s ease-in-out);
+            &:focus, &:hover{
+                background-color: $blue;
+            }
+        }
+        p{
+            @include font($black-1, 14px, $roboto-regular);
+        }
+        .native-optin-img{
+            margin   : 50px auto 0;
+            max-width: 400px;
+        }
+    }
+}
+/* Styles for Optin Config Window Ends Here */
+
+/* Styles for Preview Optin Wrapper Starts Here */
+.preview-optin-wrapper{
+    width           : 100%;
+    position        : absolute;
+    max-width       : 400px;
+    background-color: $white;
+    border: 1px solid #ddd;
+    /*@include border-radius(8px);*/
+    @include box-shadow(0 0 25px rgba(0,0,0,.3));
+    &.top-right{
+        top             : 13%;
+        bottom          : auto;
+        right           : 3%;
+        left            : auto;
+    }
+    &.top-left{
+        top             : 13%;
+        bottom          : auto; 
+        right           : auto;
+        left            : 3%;
+    }
+    &.bottom-right{
+        top             : auto;
+        bottom          : 3%;
+        right           : 3%;
+        left            : auto;
+    }
+    &.bottom-left{
+        top             : auto;
+        bottom          : 3%;
+        right           : auto;
+        left            : 3%;
+    }
+}
+/* Styles for Preview Optin Wrapper Ends Here */
+
+/* Styles for Optin Logo Wrapper Starts Here */
+.optin-logo-wrapper{
+    top: 5px;
+    left: 5px;
+    width: 80px;
+    position: absolute;
+    img{
+        width: 100%;
+        /*@include border-radius(8px);*/
+    }
+}
+/* Styles for Optin Logo Wrapper Ends Here */
+
+/* Styles for Optin Content Wrapper Starts Here */
+.optins-content-container{
+    padding: 5px 5px 5px 95px;
+    position: relative;
+    min-height: 110px;
+}
+.optin-content-wrapper{
+    position: relative;
+    min-height: 100px;
+    padding-bottom: 40px;
+    p{
+        /*        width        : 280px;
+                overflow     : hidden;
+                white-space  : nowrap;
+                text-overflow: ellipsis;*/
+        &.optin-title{
+            @include font($black-1, 16px, $roboto-regular);
+        }
+        &.optin-description{
+            @include font($black-1, 14px, $roboto-light);
+        }
+    }
+    .btn-wrapper{
+        width: 100%;
+        bottom: 0;
+        position: absolute;
+        text-align: right;
+    }
+    .btn{
+        @include font($white, 14px, $roboto-regular);
+        @include transition(all 0.5s ease-in-out);
+        &.btn-allow{
+            @include button(100%, 80px, $blue-light-20);
+            &:hover{
+                background-color: $blue;
+            }
+        }
+        &.btn-block{
+            display: inline-block;
+            margin-left: 10px;
+            @include button(100%, 80px, $black-light-20);
+            &:hover{
+                background-color: $black-1;
+            }
+        }
+    }
+}
+/* Styles for Optin Content Wrapper Ends Here */
+
+/* Styles for Preview of Optin Type 2 Starts Here */
+.preview-optin-container{
+    width           : 100%;
+    height          : 100%;
+    position        : relative;
+    margin-top      : 50px;
+    min-height      : 150px;
+    background-color: $white;
+    @include border-radius(5px);
+    .preview-optin-wrapper{
+        top       : 0;
+        left      : 50%;
+        box-shadow: 1px 2px 5px 3px $grey-8;
+        @include translate(-50%,0);
+    }
+}
+/* Styles for Preview of Optin Type 2 Ends Here */
+
+/* Styles for Bottom Preview Optin Wrapper Starts Here */
+.preview-bottom-optin-wrapper{
+    left            : 0;
+    right           : 0;
+    bottom          : 0;
+    padding         : 15px;
+    position        : absolute;
+    background-color: $white;
+    @include box-shadow(0 0 25px rgba(0,0,0,.3));
+    .optin-logo{
+        margin   : 0 auto 15px;
+        max-width: 80px;
+    }
+    p{
+        &.optin-title{
+            @include font($black-1, 16px, $roboto-regular);
+        }
+        &.optin-description{
+            @include font($black-1, 14px, $roboto-regular);
+        }
+    }
+    .btn{
+        display: inline-block;
+        @include font($white, 14px, $roboto-regular);
+        @include transition(all 0.5s ease-in-out);
+        &.btn-allow{
+            @include button(100%, 120px, $blue-light-20);
+            &:hover{
+                background-color: $blue;
+            }
+        }
+        &.btn-block{
+            margin-left: 10px;
+            @include button(100%, 120px, $black-light-20);
+            &:hover{
+                background-color: $black-1;
+            }
+        }
+    }
+}
+/* Styles for Bottom Preview Optin Wrapper Ends Here */
+
+/* Styles for Optin Type Dialogue Starts Here */
+.dialogue-optin-wrapper{
+    right   : 25px;
+    bottom  : 25px;
+    position: absolute;
+    &.bottom-right{
+        right: 25px;
+        .preview-dialogue-optin-wrapper{
+            right: 0;
+            &:before{
+                right: 8px;
+            }
+            &:after{
+                right: 9px;
+            }
+        }
+    }
+    &.bottom-left{
+        left: 25px;
+        .preview-dialogue-optin-wrapper{
+            left: 0;
+            &:before{
+                left: 8px;
+            }
+            &:after{
+                left: 9px;
+            }
+        }
+    }
+    .dialogue-optin-bell{
+        width           : 40px;
+        height          : 40px;
+        position: relative;
+        background-color: $blue;
+        @include border-radius(50%);
+        .fa-bell{
+            top      : 50%;
+            left     : 50%;
+            color    : $white;
+            position : absolute;
+            font-size: 20px;
+            @include translate(-50%, -50%);
+        }
+    }
+    .preview-dialogue-optin-wrapper{
+        width           : 400px;
+        border          : 2px solid $grey-2;
+        bottom          : 55px;
+        position        : absolute;
+        box-sizing      : content-box;
+        background-color: $white;
+        &:before{
+            width       : 0;
+            height      : 0;
+            bottom      : -12px;
+            content     : "";
+            position    : absolute;
+            border-top  : 10px solid #858585;
+            border-left : 9px solid transparent;
+            border-right: 10px solid transparent;
+        }
+        &:after{
+            width       : 0;
+            height      : 0;
+            bottom      : -8px;
+            content     : "";
+            position    : absolute;
+            border-top  : 8px solid white;
+            border-left : 8px solid transparent;
+            border-right: 9px solid transparent;
+        }
+        .optin-logo-wrapper{
+            max-width: 100px;
+        }
+        .optin-content-wrapper{
+            padding-bottom: 40px;
+            p{
+                width : 210px;
+                margin: 0 0 5px;
+                &.optin-title{
+                    font-size: 14px;
+                }
+                &.optin-description{
+                    font-size: 12px;
+                }
+            }
+            .btn{
+                font-size : 12px;
+                margin-top: 10px;
+                &.btn-allow, &.btn-block{
+                    max-width: 60px;
+                }
+            }
+        }
+    }
+}
+/* Styles for Optin Type Dialogue Ends Here */
+
+
+/*---  Optins Setting Page New Styles Starts  --*/
+.optins-setting-wrapper{
+    font-family: $roboto-regular;
+    background-color: $white;
+    .optins-container{
+        height: 100vh;
+        position: relative;
+        padding-bottom: 50px;
+    }
+
+    /*--  Optins Editor Styles  --*/
+    .optins-editor-wrapper{
+        color: $white;
+        width: 400px;
+        height: 100vh;
+        padding: 70px 0 15px;
+        overflow: auto;
+        position: relative;
+        font-size: 14px;
+        background-color: #1f2e54;
+        .optins-editor-heading{
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 10px 15px;
+            position: absolute;
+            font-size: 15px;
+            line-height: 38px;
+            background-color: $dark-blue-2;
+            a{
+                color: $white;
+                font-family: $roboto-regular; 
+                font-size: 12px;
+                @include transition(all 0.3s ease-in-out);
+                &:hover{
+                    color: $blue;
+                }
+                i{
+                    top: 2px;
+                    position: relative;
+                    font-size: 18px;
+                    margin-right: 5px;
+                }
+            }
+            .optins-device-selector{
+                button{
+                    width: 40px;
+                    height: 40px;
+                    border: 0;
+                    text-align: center;
+                    vertical-align: middle;
+                    background-color: transparent;
+                    @include box-shadow(none);
+                    @include transition(all 0.3s ease-in-out);
+                    @include border-radius(4px);
+                    &.active{
+                        background-color: #1f2e54;
+                    }
+                    i{
+                        font-size: 20px;
+                        line-height: 20px;
+                        vertical-align: middle;
+                        &.fa-mobile{
+                            font-size: 34px;
+                        }
+                    }
+                }
+            }
+        }
+        .theme-selector{
+            padding: 0 15px;
+            margin-bottom: 15px;
+            .dropdown{
+                .dropdown-menu{
+                    min-width: 215px;
+                    a{
+                        display: block;
+                        padding: 10px;
+                        &:hover{
+                            color: #262626;
+                            background-color: #f5f5f5;
+                        }
+                        &::before, &::after{
+                            clear: both;
+                            content: "";
+                            display: table;
+                        }
+                        span{
+                            float: left;
+                            display: inline-block;
+                            line-height: 55px;
+                        }
+                        img{
+                            float: right;
+                            display: inline-block;
+                            max-width: 100px;
+                            margin-left: 5px;
+                            background-color: $white;
+                        }
+                    }
+                }
+            }
+        }  
+        .dropdown{
+            margin-left: 15px;
+            .btn-group,
+            .btn{
+                width: 100%;
+                max-width: 200px;
+                text-transform: capitalize;
+                .caret{
+                    margin-left: 5px;
+                }
+            }
+            .dropdown-menu{
+                top: 100%;
+                width: 100%;
+                margin: 0;
+                a{
+                    text-transform: capitalize;
+                    @include transition(all 0.3s ease-in-out);
+                    &:hover{
+                        color: $white;
+                        background-color: $blue;
+                    }
+                }
+            }
+        }
+
+        form{
+            padding: 0 15px;
+            .form-group{
+                label{
+                    color: $white;
+                    margin-bottom: 5px;
+                }
+            }
+            .input-group{
+                .form-control{
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+            }
+        }
+        h4{
+            color: $blue;
+            margin: 10px 0;
+            font-size: 16px;
+            border-bottom: 1px solid rgba(0,7,26,.3);
+            padding-bottom: 7px;
+        }
+        .input-group-addon{
+            padding: 0;
+            button{
+                width: 34px;
+                height: 32px;
+                border: 0;
+                padding: 5px;
+                text-align: center;
+                font-size: 18px;
+                font-weight: 600;
+                background-color: transparent;
+                span{
+                    display: block;
+                    &:last-of-type{
+                        height: 5px;
+                    }
+                    &.bg-color{
+                        width: 20px;
+                        height: 20px;
+                        margin: 0 auto;
+                    }
+                }
+            }
+        }
+        .custom-radio{
+            margin-bottom: 15px;
+            .radio-inline{
+                font-size: 12px;
+            }
+        }
+        .switch{
+            margin: 0;
+            label{
+                background-color: transparent;
+            }
+            span{
+                font-size: 12px;
+                line-height: 28px;
+            }
+        }
+        .btn-wrapper{
+            text-align: right;
+        }
+    }
+    /*//*/
+
+    /*--  Optins Preview Styles for Large Screens  --*/
+    .optins-preview-wrapper{
+        width: calc(100% - 400px);
+        padding: 0;
+        .optins-preview-container{
+            position: relative;
+            overflow-y: hidden;
+            max-height: 100vh;
+            /*height: 100vh;*/
+            /*background-size: cover;*/
+            /*background-image: url(../images/optins-preview.png);*/
+            /*@include box-shadow(0 0 35px rgba(0,0,0,0.5));*/
+            img{
+                width: 100%;
+                height: auto;
+                /*max-height: 100vh;*/  
+            }
+            .preview-optin-wrapper.top{
+                top       : 13%;
+                left      : 50%;
+                box-shadow: 1px 2px 5px 3px $grey-8;
+                @include translate(-50%,0);
+            }
+            .native-optin-img{
+                top: 50%;
+                left: 50%;
+                position: absolute;
+                max-width: 600px;
+                @include translate(-50%, -50%);
+            }
+        }
+        /*--  Bar Optins Style  --*/
+        .bar-optin-wrapper{
+            top: 0;
+            left: 0;
+            right: 0;
+            position: absolute;
+            padding: 10px;
+            text-align: center;
+            white-space: nowrap;
+            background-color: $white;
+            @include box-shadow(0 0 25px rgba(0,0,0,0.3));
+            &.bottom{
+                top: auto;
+                bottom: 0;
+            }
+            .optins-content{
+                display: inline-block;
+            }
+            .btn-wrapper{
+                display: inline-block;
+            }
+            .btn{
+                @include font($white, 14px, $roboto-regular);
+                @include transition(all 0.5s ease-in-out);
+                &.btn-allow{
+                    @include button(100%, 80px, $blue-light-20);
+                    &:hover{
+                        background-color: $blue;
+                    }
+                }
+                &.btn-block{
+                    display: inline-block;
+                    margin-left: 10px;
+                    @include button(100%, 80px, $black-light-20);
+                    &:hover{
+                        background-color: $black-1;
+                    }
+                }
+            }
+            .branding.desktop-bar{
+                margin: 0 auto;
+                padding: 0;
+                text-align: right;
+                max-width: 800px;
+            }
+        }
+        .branding{
+            padding: 5px;
+            font-size: 11px;
+            font-family: $opensans-light;
+            a{
+                color: $blue-light-20;
+                @include transition(all 0.3s ease-in-out);
+                &:hover{
+                    color: $blue;
+                }
+                img{
+                    width: 15px !important;
+                    display: inline-block;
+                }
+            }
+        } 
+    }
+    /*//*/
+
+    /*--  Optins Preview Styles for Mobile Devices  --*/
+    .optins-mobile-preview{
+        height: 100vh;
+        position: relative;
+        .optins-preview-container{
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            min-width: 300px;
+            @include translate(-50%, -50%);
+            .preview-container{
+                position: relative;
+                img{
+                    width: 100%;
+                }
+                .preview-optin-wrapper{
+                    top: 52px;
+                    left: 14px;
+                    right: 14px;
+                    width: initial;
+                    bottom: auto;
+                    &.center{
+                        top: 50%;
+                        @include translate(0, -50%);
+                    }
+                    &.bottom{
+                        top: auto;
+                        bottom: 55px;
+                    }
+                    p{
+                        margin-bottom: 5px;
+                    }
+                    .optin-logo-wrapper{
+                        width: 50px;
+                    }
+                    .optins-content-container{
+                        padding: 5px 5px 5px 65px;
+                        min-height: 100px;
+                        .optin-content-wrapper{
+                            min-height: 90px;
+                        }
+                    }
+                    .btn-wrapper{
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        position: absolute;
+                        text-align: center;
+                        .btn{
+                            width: auto;
+                            display: inline-block;
+                            margin-left: 0;
+                        }
+                    }
+                    .branding{
+                        margin-top: 5px;
+                        text-align: center;
+                    }
+                    &.top{
+                        top: 52px;
+                        left: 14px;
+                        right: 14px;
+                        width: initial;
+                        bottom: auto; 
+                        @include translate(0,0);
+                        @include box-shadow(0 0 25px rgba(0,0,0,.3));
+                    }
+
+                }
+                .dialogue-optin-wrapper{
+                    &.bottom-right {
+                        right: 20px;
+                        bottom: 65px;
+                        .preview-dialogue-optin-wrapper{
+                            left: auto;
+                            right: -7px;
+                        }
+                    }
+                    &.bottom-left {
+                        left: 20px;
+                        right: auto;
+                        bottom: 65px;
+                        .preview-dialogue-optin-wrapper{
+                            right: auto;
+                            left: -7px;
+                        }
+                    }
+                }
+                .preview-dialogue-optin-wrapper{
+                    top: auto;
+                    width: 270px;
+                    bottom: 55px;
+                }
+                .preview-bottom-optin-wrapper{
+                    left: 14px;
+                    right: 14px;
+                    bottom: 52px;
+                    .optin-logo{
+                        max-width: 50px;
+                    }
+                    p{
+                        margin-bottom: 5px;
+                    }
+                    .btn-wrapper{
+                        .btn{
+                            width: auto;
+                            margin: 0;
+                            min-width: initial;
+                        }
+                    }
+                }
+                .bar-optin-wrapper{
+                    top: 52px;
+                    left: 14px;
+                    right: 14px;
+                    white-space: initial;
+                    .btn-wrapper{
+                        display: block;
+                        .btn{
+                            margin: 0;
+                        }
+                    }
+                    &.bottom{
+                        top: auto;
+                        bottom: 58px;
+                    }
+                }
+                .native-optin-img{
+                    max-width: 80%;
+                }
+            }
+        }
+        .branding{
+            font-size: 11px;
+            text-align: center;
+            margin-top: 5px;
+            font-family: $opensans-light;
+            a{
+                color: $blue-light-20;
+                @include transition(all 0.3s ease-in-out);
+                &:hover{
+                    color: $blue;
+                }
+                img{
+                    width: 15px !important;
+                    display: inline-block;
+                }
+            }
+        } 
+    }
+}
+/*---  Optins Setting Page New Styles Ends  --*/

@@ -1,0 +1,67 @@
+/* 
+    Created on : Jul 21, 2016, 2:44:39 PM
+    Author     : ahextech
+*/
+@mixin appearance($appearance){
+    appearance          : $appearance;
+    -moz-appearance     : $appearance;
+    -webkit-appearance  : $appearance; 
+}
+
+@mixin transition($transition){
+    transition          : $transition;
+    -o-transition       : $transition;
+    -ms-transition      : $transition; /* IE10 is actually unprefixed */
+    -moz-transition     : $transition;
+    -webkit-transition  : $transition;
+}
+
+@mixin border-radius($radius){
+    border-radius           : $radius;
+    -o-border-radius        : $radius;
+    -ms-border-radius       : $radius; /* IE10 is actually unprefixed */
+    -moz-border-radius      : $radius;
+    -webkit-border-radius   : $radius;
+}
+
+@mixin circle($size){
+    @include border-radius($size);
+    width: $size;
+    height: $size;
+}
+
+@mixin box-shadow($shadow){
+    box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    -webkit-box-shadow: $shadow;
+}
+
+@mixin font($color, $size, $font-family){
+    color      : $color;
+    font-size  : $size;
+    font-family: $font-family;
+}
+
+@mixin button($width, $max-width, $background-color){
+    width           : $width;
+    max-width       : $max-width;
+    background-color: $background-color;
+}
+
+@mixin transform($transforms) {
+    transform        : $transforms;
+    -ms-transform    : $transforms;
+    -moz-transform   : $transforms;
+    -webkit-transform: $transforms;
+}
+
+// Rotate
+@mixin rotate ($deg) { 
+    @include transform(rotate(#{$deg}deg));
+}
+
+@mixin appearance($appearance){
+   appearance:         $appearance;
+   -moz-appearance:    $appearance;
+   -webkit-appearance: $appearance;
+}

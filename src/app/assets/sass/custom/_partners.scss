@@ -1,0 +1,58 @@
+/* 
+    Created on : Jan 23, 2017, 3:08:18 PM
+    Author     : ahextech
+*/
+.partners-container{
+    padding: 100px 0;
+    .container{
+        .col-sm-4{
+            .partner-wrapper{
+                border   : 1px solid $blue-1;
+                margin   : 0 auto;
+                display  : block;
+                max-width: 300px;
+                .partner-logo-wrapper{
+                    padding      : 5px;
+                    position     : relative;
+                    min-height   : 140px;
+                    border-bottom: 1px solid $blue-1;
+                    img{
+                        top      : 50%;
+                        left     : 50%;
+                        position : absolute;
+                        max-width: 100px;
+                        transform: translate(-50%, -50%);
+                    }
+                }
+                .partner-details-wrapper{
+                    padding: 0 10px;
+                    h3{
+                        color      : $grey-1;
+                        margin     : 35px 0;
+                        font-size  : 22px;
+                        font-family: $montserrat-regular;
+                    }
+                    p{
+                        color      : $grey-1;
+                        margin     : 0 0 50px;
+                        font-size  : 15px;
+                        text-align : justify;
+                        font-family: $lato-regular;
+                    }
+                    .btn-know-more{
+                        color           : $white;
+                        border          : 1px solid $border-green;
+                        margin          : 0 auto 20px;
+                        display         : block;
+                        font-size       : 20px;
+                        max-width       : 140px;
+                        min-height      : 40px;
+                        font-family     : $montserrat-regular;
+                        background-color: $green-2;
+                        @include border-radius(5px);
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,18 @@
+.get-apikey-wrapper{
+    border: 1px solid $grey-border-dark;
+    display: inline-block;
+    padding: 15px;
+    font-size: 16px;
+    font-family: $roboto-regular;
+    @include border-radius(8px);
+    .btn-container{
+        margin-bottom: 15px;
+    }
+    strong{
+        display: inline-block;
+        margin-right: 15px;
+    }
+    a{
+        color: $blue;
+    }
+}

@@ -1,0 +1,84 @@
+/* 
+    Created on : Jan 4, 2017, 3:25:45 PM
+    Author     : ahextech
+*/
+.coupon-wrapper{
+    padding: 70px 0 100px;
+    .coupon-container{
+        margin   : 0 auto;
+        max-width: 560px;
+        h3{
+            color: $grey-1;
+            margin: 0 0 35px;
+            font-size: 20px;
+            font-family: $lato-regular;
+        }
+        .btn-coupon-code{
+            color           : $grey-1;
+            width           : 100%;
+            border          : 1px solid $grey-1;
+            margin          : 0 15px 35px 0;
+            display         : inline-block;
+            font-size       : 20px;
+            max-width       : 140px;
+            min-height      : 40px;
+            font-family     : $lato-regular;
+            background-color: $grey-6;
+            @include border-radius(5px);
+        }
+        .btn-copy-code{
+            color           : $grey-1;
+            width           : 100%;
+            border          : 1px solid $blue-1;
+            margin          : 0 0 35px;
+            display         : inline-block;
+            font-size       : 20px;
+            max-width       : 120px;
+            min-height      : 40px;
+            font-family     : $lato-regular;
+            background-color: $white;
+            @include border-radius(5px);
+        }
+        .btn-see-plans{
+            color           : $white;
+            border          : 1px solid $border-green;
+            margin          : 0;
+            padding         : 10px 12px;
+            font-size       : 19px;
+            max-width       : 170px;
+            min-height      : 50px;
+            font-family     : $lato-regular;
+            background-color: $green-2;
+            @include border-radius(5px);
+        }
+    }
+}
+
+/* Media Queries Starts Here */
+@media(min-width: 320px) and (max-width: 767px){
+    .coupon-wrapper{
+        padding: 20px 15px;
+        .coupon-container{
+            h3{
+                margin   : 0 0 20px;
+                font-size: 18px;
+            }
+            .btn-coupon-code{
+                margin   : 0 10px 20px 0;
+                font-size: 16px;
+                max-width: 125px;
+            }
+            .btn-copy-code{
+                margin   : 0 0 20px;
+                font-size: 16px;
+                max-width: 125px;
+            }
+            .btn-see-plans{
+                padding   : 8px 12px;
+                font-size : 16px;
+                min-height: 40px;
+            }
+        }
+    }
+}
+/* Media Queries Ends Here */

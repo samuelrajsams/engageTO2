@@ -1,0 +1,38 @@
+<div class="dashboard-content-header">
+    <h3 class="dashboard-content-area-heading">Smart Automation</h3>
+    <div class="subtitle">Automate your RSS feeds to push notification</div>
+</div>
+<div class="container-fluid">
+    <div class="smart-custom-container">
+        <div class="smart-custom-wrapper">
+            <!--            <span class="rss-push-text">RSS to Push</span>-->
+            <button type="button" ng-click="smartAutomation.addRssFeedModal()" class="btn btn-custom-primary btn-add-segment">Add RSS Feed</button>
+            <div class="table-responsive">
+                <div class="dataTables_wrapper">
+                    <table class="table table-bordered table-striped table-responsive smart-custom-table" datatable="ng" dt-options="smartAutomation.dtOptions" dt-column-defs="smartAutomation.dtColumnDefs"> 
+                        <thead> 
+                            <tr> 
+<!--                                <th>No</th> -->
+                                <th>RSS Feed Name</th> 
+                                <th>RSS Feed URL</th> 
+                                <th>Total Notification Sent</th> 
+                                <th>Action</th>
+                            </tr> 
+                        </thead> 
+                        <tbody> 
+                            <tr ng-repeat="automation in smartAutomation.listOfRSSAutomation"> 
+                                <!--<td>{{$index + 1}}</td>-->
+                                <td>{{automation.name}}</td>
+                                <td>{{automation.url}}</td>
+                                <td>{{automation.totalSentNotification}}</td>
+                                <td>
+                                    <a class="fa fa-pencil" ng-click="smartAutomation.editRssFeedModal()"></a>
+                                    <a class="fa fa-trash" ng-click="smartAutomation.deleteRssFeedModal()"></a>
+                                </td>
+                            </tr> 
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

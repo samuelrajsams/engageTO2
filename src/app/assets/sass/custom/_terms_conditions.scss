@@ -1,0 +1,99 @@
+/* 
+    Created on : Jan 3, 2017, 7:02:51 PM
+    Author     : ahextech
+*/
+.terms-condition-wrapper, .privacy-policy-wrapper{
+    padding: 80px 0;
+    .custom-terms-wrapper, .custom-policy-wrapper{
+        h3{
+            margin        : 0 0 25px;
+            text-transform: capitalize;
+            @include font($blue, 18px, $roboto-regular);
+        }
+        p{
+            color      : $grey-1;
+            margin     : 0 0 15px;
+            font-size  : 16px;
+            text-align : justify;
+            font-family: $roboto-light;
+            &:last-of-type{
+                margin: 0 0 40px;
+            }
+            a{
+                color: $blue-1;
+            }
+        }
+    }
+}
+
+
+
+/*.terms-condition-wrapper, .privacy-policy-wrapper{
+    padding: 50px 0;
+    .custom-list-wrapper{
+        height       : auto;
+        border       : 1px solid $grey-1;
+        padding      : 0 15px;
+        overflow     : auto;
+        list-style   : none;
+        max-height   : 380px;
+        margin-bottom: 0;
+        li{
+            padding: 15px 0;
+            a{
+                border    : none;
+                display   : inline-block;
+                text-align: left;
+                @include border-radius(0);
+                @include font($blue, 16px, $roboto-light);
+                @include transition(all 0.5s ease-in-out);
+                &:focus, &:hover{
+                    border          : none;
+                    background-color: transparent;
+                    span{
+                        background-color: $blue;
+                        small{
+                            color: $white;
+                        }
+                    }
+                }
+                span{
+                    width           : 40px;
+                    height          : 40px;
+                    border          : 1px solid $blue;
+                    display         : inline-block;
+                    position        : relative;
+                    margin-right    : 10px;
+                    vertical-align  : middle;
+                    background-color: transparent;
+                    @include border-radius(50%);
+                    @include transition(all 0.5s ease-in-out);
+                    small{
+                        top     : 50%;
+                        left    : 50%;
+                        position: absolute;
+                        @include font($blue, 16px, $roboto-light);
+                        @include translate(-50%, -50%);
+                    }
+                }
+            }
+        }
+    }
+    .custom-content-wrapper{
+        border    : 1px solid $grey-1;
+        height    : auto;
+        overflow  : auto;
+        max-height: 380px;
+        .custom-content-area{
+            padding: 15px;
+            .custom-content-head{
+                margin-top: 0;
+                @include font($black-1, 18px, $roboto-regular);
+            }
+            .custom-content-body{
+                text-align: justify;
+                @include font($black-1, 15px, $roboto-light);
+            }
+        }
+    }
+}*/

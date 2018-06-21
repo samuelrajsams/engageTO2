@@ -1,0 +1,228 @@
+<div class="custom-banner-area text-center terms-banner-area">
+    <div class="container">
+        <h1 class="custom-head terms-condition-head">Price & Packages</h1>
+        <p>Select a package according to your usage</p>
+    </div>
+</div>
+
+<div class="price-container">
+    <div class="price-switch-wrapper">
+        <span>Billed Monthly</span>
+        <div class="switch">
+            <input id="toggle-pricing" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="landing.plan.planSlab" ng-true-value="'Yearly'" ng-false-value="'Monthly'" ng-change='landing.changePlanSlab()'>
+            <label for="toggle-pricing"></label>
+        </div>
+        <span>Billed Annually <small>(Save 20%)</small></span>
+    </div>
+    <div class="price-packages-container text-center clearfix">
+        <div class="price-package-wrapper startup-package">
+            <h4 class="price-category-head">Startup</h4>
+            <div class="package-price-wrapper">
+                <p class="price-amount">$<span>0</span></p>
+                <span class="free-text">Free</span>
+            </div>
+            <div class="package-content-wrapper">
+                <p class="package-content">Send unlimited notifications</p>
+                <p class="package-content">HTTP + HTTPS support</p>
+                <p class="package-content">One click subscribe</p>
+            </div>
+            <div class="package-selection-btn-wrapper">
+                <button class="btn btn-package-selection">Start Free Trial</button>
+            </div>
+        </div>
+        <div class="price-package-wrapper premium-package">
+            <div class="premium-package-head">
+                <h4 class="price-category-head">Premium</h4>
+                <small>More Popular</small>
+            </div>
+            <div class="package-price-wrapper">
+                <p class="price-amount">$
+                    <!--<span class="odometer" id="odometer-slider1"></span>-->
+                    <span class="odometer" id="odometer-slider1">45</span>
+                </p>
+                <span class="per-month-text">per {{landing.plan.planSlab}}</span>
+                <rzslider rz-slider-model="landing.slider1.value" rz-slider-options="landing.slider1.options"></rzslider>
+                <span class="subscribers-text">SUBSCRIBERS</span>
+            </div>
+            <div class="package-content-wrapper">
+                <p class="package-content">Send unlimited notifications</p>
+                <p class="package-content">HTTP + HTTPS support</p>
+                <p class="package-content">One click subscribe</p>
+                <p class="package-content">RSS-to-push</p>
+                <p class="package-content">Segmentation</p>
+                <p class="package-content">{{landing.plan.noOfPremiumAPICalls}} API access</p>
+            </div>
+            <div class="package-selection-btn-wrapper">
+                <button class="btn btn-package-selection">Start Free Trial</button>
+            </div>
+        </div>
+        <div class="price-package-wrapper expertise-package">
+            <h4 class="price-category-head">Expertise</h4>
+            <div class="package-price-wrapper">
+                <p class="price-amount">$
+                    <!--<span class="odometer-slider" id="odometer-slider2"></span>-->
+                    <span class="odometer-slider" id="odometer-slider2">70</span>
+                </p>
+                <span class="per-month-text">per {{landing.plan.planSlab}}</span>
+                <rzslider rz-slider-model="landing.slider2.value" rz-slider-options="landing.slider2.options"></rzslider>
+                <span class="subscribers-text">SUBSCRIBERS</span>
+            </div>
+            <div class="package-content-wrapper">
+                <p class="package-content">Custom branding</p>
+                <p class="package-content">Import/export data</p>
+                <p class="package-content">HTTP + HTTPS support</p>
+                <p class="package-content">One click subscribe</p>
+                <p class="package-content">Custom sub domain</p>
+                <p class="package-content">{{landing.plan.noOfExpertiseAPICalls}} API access</p>
+            </div>
+            <div class="package-selection-btn-wrapper">
+                <button class="btn btn-package-selection" ng-click="landing.selectingPlan('premium')">Start Free Trial</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="price-container" id="pricing-plan-nav-custom">
+    <uib-tabset class="account-setup-steps" active="pricing.activeTab" justified="true">
+        <uib-tab index="0" heading="Email Confirmation">
+            <uib-tab-heading class="account-steps-head">
+                <span><i class="fa fa-star-o" aria-hidden="true"></i>Email Confirmation</span>
+            </uib-tab-heading>
+        </uib-tab>
+        <uib-tab index="1" heading="Packages">
+            <uib-tab-heading class="account-steps-head">
+                <span class="custom-tab-head tab-head-package">Packages</span>
+            </uib-tab-heading>
+            <div class="packages-wrapper clearfix">
+                <div class="price-switch-wrapper">
+                    <span>Monthly Pricing</span>
+                    <div class="switch">
+                        <input id="pricing" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="pricing.planSlab" ng-true-value="'Yearly'" ng-false-value="'Monthly'" ng-change='pricing.changePlanSlab()'>
+                        <label for="pricing"></label>
+                    </div>
+                    <span>Yearly Pricing</span>
+                </div>
+                <p class="subscribers-count-text text-center"><span ng-if="pricing.isSliderValueExceded">> </span>{{pricing.sliderBubbleValue}} subscribers</p>
+                <rzslider rz-slider-model="pricing.slider.value" rz-slider-options="pricing.slider.options" ng-show="!pricing.isPlanSelected"></rzslider>
+                <div class="col-md-4">
+                    <div class="package-category text-center">
+                        <p class="package-title">Startup</p>
+                        <p class="package-price free-price"><sup>$</sup>0</p>
+                        <span class="free-icon"></span>
+                        <p class="package-content"><small>Unlimited </small>notifications</p>
+                        <p class="package-content"><small>1 </small>website</p>
+                        <p class="package-content"><small>Normal </small>support</p>
+                        <p class="package-content"><small>50000 </small>API calls</p>
+                        <button class="btn btn-package-select" ng-click="pricing.goToOnboarding()">Free Trial</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="package-category text-center">
+                        <p class="package-title">Premium</p>
+                        <p class="package-price"><sup>$</sup>{{pricing.premiumPrice}}</p>
+                        <span class="premium-icon"></span>
+                        <p class="package-content"><small>Unlimited </small>notifications</p>
+                        <p class="package-content"><small>Unlimited </small>website</p>
+                        <p class="package-content"><small>Normal </small>support</p>
+                        <p class="package-content"><small>{{pricing.noOfPremiumAPICalls}} </small>API calls</p>
+                        <button class="btn btn-package-select" ng-click="pricing.selectedPlan('premium')">Purchase</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="package-category text-center">
+                        <p class="package-title">Expertise</p>
+                        <p class="package-price"><sup>$</sup>{{pricing.expertisePrice}}</p>
+                        <span class="expertise-icon"></span>
+                        <p class="package-content"><small>Unlimited </small>notifications</p>
+                        <p class="package-content"><small>Unlimited </small>website</p>
+                        <p class="package-content"><small>Priority </small>support</p>
+                        <p class="package-content"><small>{{pricing.noOfExpertiseAPICalls}} </small>API calls</p>
+                        <button class="btn btn-package-select" ng-click="pricing.selectedPlan('expertise')">Purchase</button>
+                    </div>
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab index="2" heading="Payment Info">
+            <uib-tab-heading class="account-steps-head">
+                <span class="custom-tab-head tab-head-payment">Payment info</span>
+            </uib-tab-heading>
+            <div class="payment-info-wrapper clearfix">
+                <h3 class="payment-head text-center">Payment Info</h3>
+                <form class="payment-form">
+                    <div class="container-fluid">
+                        <p>CARD DETAILS</p>
+                        <legend class="payment-form-label">CARD DETAILS</legend>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Credit/Debit Card Number"/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="MM/YYYY"/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="CVV"/>
+                                </div>
+                            </div>
+                        </div>
+                        <legend class="payment-form-label">BILLING ADDRESS</legend>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="First Name"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Last Name"/>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Street Address"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="City"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="State/Region"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Postal Code"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Phone Number"/>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-pay">Pay Now</button>
+                    </div>
+                </form>
+            </div>
+        </uib-tab>
+    </uib-tabset>
+</div>-->

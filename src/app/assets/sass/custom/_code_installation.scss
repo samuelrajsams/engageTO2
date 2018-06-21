@@ -1,0 +1,357 @@
+/* 
+    Created on : Oct 28, 2016, 10:30:28 AM
+    Author     : ahextech
+*/
+.code-installation-container{
+    /*    width           : 83%;
+        height          : 89vh;
+        z-index         : 1;
+        margin-left     : 17%;*/
+    /*padding: 15px;*/
+    .domain-name{
+        color      : #555;
+        font-size  : 22px;
+        font-family: $opensans-light;
+    }
+    .code-installation-wrapper{
+        padding         : 20px;
+        background-color: $white;
+        .copy-code-head{
+            color      : #555;
+            display    : block;
+            font-size  : 17px;
+            font-family: $opensans-light;
+        }
+        .code-wrapper{
+            .code-container{
+                border       : 1px solid $blue-1;
+                height       : auto;
+                position     : relative;
+                margin-top   : 15px;
+                border-radius: 5px;
+                .code-overlay{
+                    left            : 0;
+                    right           : 0;
+                    top             : 0;
+                    bottom          : 0;
+                    position        : absolute;
+                    background-color: rgba(45,201,45,.3);
+                    span{
+                        top      : 50%;
+                        left     : 50%;
+                        color    : $white;
+                        position : absolute;
+                        display  : inline-block;
+                        padding  : 6px 20px;
+                        font-size: 20px;
+                        background: rgba(25,106,229,0.4);
+                        @include translate(-50%, -50%);
+                    }
+                }
+                .code-block{
+                    height  : 170px;
+                    border  : 0;
+                    margin  : 0;
+                    overflow: auto;
+                }
+                .btn-custom-primary{
+                    position   : absolute;
+                    right      : 0;
+                    bottom     : 0;
+                    padding    : 6px;
+                    min-width  : auto;
+                    font-size  : 12px;
+                    line-height: 12px;
+                    @include border-radius(0);
+                }
+                .custom-screen{
+                    top     : 0;
+                    left    : 0;
+                    width   : 100%;
+                    height  : 100%;
+                    opacity : 0.8;
+                    position: absolute;
+                    @include border-radius(5px);
+                    &.blue-screen{
+                        display         : none;
+                        background-color: $blue-1;
+                    }
+                    &.green-screen{
+                        background-color: $green-1;
+                    }
+                    i{
+                        color    : $white;
+                        margin   : 60px 0 0;
+                        display  : block;
+                        font-size: 20px;
+                    }
+                    span{
+                        color      : $white;
+                        display    : block;
+                        font-size  : 20px;
+                        font-family: $opensans-light;
+                    }
+                }
+                &:hover{
+                    .custom-screen{
+                        &.blue-screen{
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+        .field-association{
+            .switch{
+                width  : 60px;
+                margin : 20px 0 0;
+                display: inline-block;
+                input{
+                    &.cmn-toggle-round{
+                        + label{
+                            &:before, &:after{
+                                top : -1px;
+                            }
+                            &:before{
+                                width : 55px;
+                                height: 18px;
+                            }
+                            &:after{
+                                top   : -4px;
+                                width : 24px;
+                                height: 24px;
+                            }
+                        }
+                    }
+                }
+            }
+            .field-association-head{
+                color      : $form-label;
+                display    : inline-block;
+                font-size  : 16px;
+                font-family: $opensans-light;
+            }
+        }
+        .send-code-form{
+            margin-top: 15px;
+            .developer-email{
+                width    : 50%;
+                border   : 1px solid $blue-1;
+                display  : inline-block;
+                max-width: 300px;
+            }
+            .btn-send-code{
+                /*color           : $black;*/
+                width           : 90px;
+                /*                border          : 1px solid $green-1;*/
+                display         : inline-block;
+                padding         : 4px 12px;
+                font-size       : 16px;
+                min-height      : 34px;
+                vertical-align  : top;
+                /*                font-family     : $opensans-light;
+                                background-color: $white;*/
+                &:hover{
+                    /*                    color           : $black;
+                                        background-color: $light-grey;*/
+                }
+            }
+        }
+        .send-code-text{
+            color      : $grey-1;
+            margin     : 10px 0 0;
+            font-size  : 10px;
+            text-align : justify;
+            font-family: $opensans-light;
+            position: relative;
+            padding-left: 15px;
+            &::before{
+                left: 0;
+                color: $black;
+                content: "*";
+                position: absolute;
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+.install-plugin-wrapper{
+    width           : 100%;
+    margin          : 50px 0 0;
+    display         : block;
+    padding         : 20px;
+    background-color: $white;
+    .plugin-install{
+        color        : $form-label;
+        display      : block;
+        font-size    : 16px;
+        font-family  : $opensans-light;
+        margin-bottom: 35px;
+    }
+}
+
+/* Media Quesries Starts Here */
+@media (min-width: 1200px){
+
+}
+@media (min-width: 992px) and (max-width: 1199px){
+    .code-installation-container{
+        width      : 80%;
+        height     : 100%;
+        margin-left: 20%;
+    }
+}
+@media (min-width: 768px){
+    .code-installation-container{
+        .code-installation-wrapper{
+            .field-association{
+                float: right;
+            }
+        }
+    }
+}
+@media (min-width: 768px) and (max-width: 991px){
+    .code-installation-container{
+        width      : 75%;
+        height     : 100%;
+        margin-left: 25%;
+        .code-installation-wrapper{
+            .copy-code-head{
+                font-size: 14px;
+            }
+            .send-code-form{
+                .developer-email{
+                    width    : 100%;
+                    display  : block;
+                    max-width: 100%;
+                }
+                .btn-send-code{
+                    width    : 100%;
+                    margin   : 20px auto 0;
+                    display  : block;
+                    max-width: 240px;
+                }
+            }
+            .field-association{
+                .switch{
+                    width  : 50px;
+                    margin : 15px 0 0;
+                    input{
+                        &.cmn-toggle-round{
+                            + label{
+                                &:before{
+                                    top   : 1px;
+                                    width : 45px;
+                                    height: 16px;
+                                }
+                                &:after{
+                                    top   : -1px;
+                                    width : 20px;
+                                    height: 20px;
+                                }
+                            }
+                            &:checked{
+                                + label{
+                                    &:after{
+                                        margin-left: 25px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .field-association-head{
+                    font-size: 14px;
+                }
+            }
+            .code-wrapper{
+                .code-container{
+                    .code-block{
+                        height: 310px;
+                    }
+                }
+            }
+            .send-code-text{
+                font-size: 13px;
+            }
+        }
+    }
+}
+@media (min-width: 481px) and (max-width: 767px){
+
+}
+@media (min-width: 320px) and (max-width: 480px){
+    .code-installation-container{
+        .code-installation-wrapper{
+            .send-code-form{
+                .developer-email{
+                    width    : 100%;
+                    display  : block;
+                    max-width: 100%;
+                }
+                .btn-send-code{
+                    width    : 100%;
+                    margin   : 20px auto 0;
+                    display  : block;
+                    max-width: 240px;
+                }
+            }
+            .send-code-text{
+                font-size: 13px;
+            }
+        }
+    }
+}
+@media (min-width: 320px) and (max-width: 767px){
+    .code-installation-container{
+        width      : auto;
+        height     : 100%;
+        margin-left: 0;
+        .code-installation-wrapper{
+            .copy-code-head{
+                font-size: 14px;
+            }
+            .field-association{
+                margin-bottom: 20px;
+                .switch{
+                    width  : 50px;
+                    margin : 15px 0 0;
+                    input{
+                        &.cmn-toggle-round{
+                            + label{
+                                &:before{
+                                    top   : 1px;
+                                    width : 45px;
+                                    height: 16px;
+                                }
+                                &:after{
+                                    top   : -1px;
+                                    width : 20px;
+                                    height: 20px;
+                                }
+                            }
+                            &:checked{
+                                + label{
+                                    &:after{
+                                        margin-left: 25px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .field-association-head{
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+    .install-plugin-wrapper{
+        margin: 20px 0;
+        .plugin-install{
+            font-size: 15px;
+        }
+    }
+}
+/* Media Quesries Ends Here */

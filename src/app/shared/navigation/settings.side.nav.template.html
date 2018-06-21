@@ -1,0 +1,62 @@
+<div class="new-notification-wrapper">
+    <!--template html-->
+    <aside class="cv-sidebar">
+        <button type="button" class=" btn-sidebar visible-xs">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
+        <ul class="sidebar-options-list">
+            <li class="sidebar-options" ng-class="{'active': engagetoApp.setting.active === 'dashboard'}">
+                <a href ui-sref="side-nav-template.new-push-notification">
+                    <img class="img-responsive img-default" src="app/assets/images/icons/dashboard 2.png" alt=""/>
+                    <img class="img-responsive img-hover" src="app/assets/images/icons/dashboard.png" alt=""/>
+                    Dashboard
+                </a>
+            </li>
+            <li class="sidebar-options" ng-class="{'active': engagetoApp.setting.active === 'account'}">
+                <a href ui-sref="settings-side-nav-template.account-settings">
+                    <img class="img-responsive img-default" src="app/assets/images/icons/settings 2.png" alt=""/>
+                    <img class="img-responsive img-hover" src="app/assets/images/icons/settings.png" alt=""/>
+                    Account Settings
+                </a>
+            </li>
+            <li class="sidebar-options" ng-class="{'active': engagetoApp.setting.active === 'fcm_credentials'}">
+                <a href ui-sref="settings-side-nav-template.fcm-credentials">
+                    <img class="img-responsive img-default" src="app/assets/images/icons/fcm 2.png" alt=""/>
+                    <img class="img-responsive img-hover" src="app/assets/images/icons/fcm.png" alt=""/>
+                    FCM Credentials
+                </a>
+            </li>
+            <li class="sidebar-options" ng-class="{'active': engagetoApp.setting.active === 'website'}">
+                <a href ui-sref="settings-side-nav-template.domain-management">
+                    <img class="img-responsive img-default" src="app/assets/images/icons/website management 2.png" alt=""/>
+                    <img class="img-responsive img-hover" src="app/assets/images/icons/website management.png" alt=""/>
+                    Website Management
+                </a>
+            </li>
+            <li class="sidebar-options" ng-class="{'active': engagetoApp.setting.active === 'team'}">
+                <a href ui-sref="settings-side-nav-template.team-management">
+                    <img class="img-responsive img-default" src="app/assets/images/icons/team management 2.png" alt=""/>
+                    <img class="img-responsive img-hover" src="app/assets/images/icons/team management.png" alt=""/>
+                    Team Management
+                </a>
+            </li>
+            <li class="sidebar-options" ng-class="{'active': engagetoApp.setting.active === 'integration'}">
+                <a href="javascript:void(0);">
+                    <img class="img-responsive img-default" src="app/assets/images/icons/smart automation 2.png" alt=""/>
+                    <img class="img-responsive img-hover" src="app/assets/images/icons/smart automation.png" alt=""/>
+                    Integrations
+                </a>
+            </li>
+            <li class="sidebar-options" ng-class="{'active': engagetoApp.setting.active === 'credentials'}">
+                <a href ui-sref="settings-side-nav-template.api-credentials">
+                    <img class="img-responsive img-default" src="app/assets/images/icons/api credential 2.png" alt=""/>
+                    <img class="img-responsive img-hover" src="app/assets/images/icons/api credential.png" alt=""/>
+                    API Credentials
+                </a>
+            </li>
+        </ul>
+    </aside>
+    <div class="container-fluid settings-content-wrapper">
+        <div ui-view=""></div>
+    </div>
+</div>

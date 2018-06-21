@@ -1,0 +1,6 @@
+<div ng-show="engagetoApp.selectPickerDiv === 'welcomeSegment'">
+    <select class="selectpicker" name="basic" id="welcome-segment-select">
+        <option value="" disabled hidden>Add Welcome Segments</option>
+        <option ng-repeat="segment in welcomeNotification.summary.segmentList" value="{{segment}}">{{segment}}</option>
+    </select>
+</div>

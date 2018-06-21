@@ -1,0 +1,436 @@
+/* 
+    Created on : Apr 11, 2017, 3:14:42 PM
+    Author     : ahextech
+*/
+.price-container{
+    padding         : 50px 0;
+    background-color: $white;
+    .price-switch-wrapper{
+        height : 28px;
+        margin : 0 auto 10px;
+        display: table;
+        /*        span{
+                    display       : table-cell;
+                    vertical-align: middle;
+                    @include font($black-1, 18px, $roboto-light);
+                }
+                .switch{
+                    margin  : 0 10px;
+                    display : inline-block;
+                    position: relative;
+                    input{
+                        &[type="checkbox"]{
+                            display: none;
+                        }
+                        &.cmn-toggle-round{
+                            + label{
+                                &:before, &:after{
+                                    top: 0;
+                                }
+                                &:before{
+                                    height: 28px;
+                                }
+                                &:after{
+                                    top        : 2px;
+                                    width      : 24px;
+                                    height     : 24px;
+                                    margin-left: 2px;
+                                }
+                            }
+                            &:checked{
+                                + label{
+                                    &:before{
+                                        background-color: $blue;
+                                    }
+                                    &:after{
+                                        margin-left: 19px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }*/
+        .package-term-label{
+            border : 1px solid $blue;
+            padding: 15px;
+            @include font($blue, 15px, $roboto-regular);
+            &.active{
+                color           : $white;
+                background-color: $blue;
+            }
+            + .package-term-label{
+                margin-left: 0;
+            }
+            .package-term{
+                display    : none;
+                margin-left: 0;
+            }
+        }
+    }
+    .price-packages-container{
+        margin-top: 50px;
+        .price-package-wrapper{
+            width         : 300px;
+            display       : inline-block;
+            vertical-align: top;
+            &.startup-package{
+                height       : 540px;
+                border-top   : 1px solid $grey-6;
+                margin-top   : 25px;
+                border-left  : 1px solid $grey-6;
+                border-bottom: 1px solid $grey-6;
+                .package-price-wrapper{
+                    padding      : 10px;
+                    border-bottom: 1px solid $grey-6;
+                    .price-amount{
+                        margin: 0;
+                    }
+                    .free-text{
+                        display      : block;
+                        margin-bottom: 67px;
+                        @include font($grey-2, 14px, $roboto-light);
+                    }
+                }
+                .package-selection-btn-wrapper{
+                    margin-top: 140px;
+                }
+            }
+            &.premium-package{
+                height    : 590px;
+                margin    : 0 -4px;
+                z-index   : 99;
+                position  : relative;
+                box-shadow: 0px 0px 13px rgba(0,0,0,.09);
+                .premium-package-head{
+                    border          : 1px solid $blue;
+                    padding         : 12px 0;
+                    background-color: $blue;
+                    .price-category-head{
+                        margin: 0 0 5px;
+                        @include font($white, 26px, $roboto-light);
+                    }
+                    small{
+                        @include font($white, 14px, $roboto-light);
+                    }
+                }
+                .package-selection-btn-wrapper{
+                    padding: 28px 0;
+                }
+            }
+            &.expertise-package{
+                height       : 540px;
+                border-top   : 1px solid $grey-6;
+                margin-top   : 25px;
+                border-right : 1px solid $grey-6;
+                border-bottom: 1px solid $grey-6;
+                .package-selection-btn-wrapper{
+                    padding: 20px 0;
+                }
+            }
+            &.startup-package, &.expertise-package{
+                .price-category-head{
+                    margin       : 0;
+                    padding      : 12px 0;
+                    border-bottom: 1px solid $grey-6;
+                    @include font($blue, 26px, $roboto-light);
+                }
+            }
+            &.premium-package, &.expertise-package{
+                .package-price-wrapper{
+                    padding      : 10px;
+                    border-bottom: 1px solid $grey-6;
+                    .price-amount{
+                        margin: 0;
+                    }
+                    .per-month-text, .subscribers-text{
+                        @include font($grey-2, 14px, $roboto-light);
+                    }
+                    .rzslider{
+                        margin: 30px 0 20px;
+                        .rz-bubble{
+                            font-size: 14px;
+                        }
+                        .rz-pointer{
+                            top   : -7px;
+                            width : 18px;
+                            height: 18px;
+                        }
+                    }
+                }
+            }
+            .price-amount{
+                @include font($black-1, 22px, $roboto-light);
+                span{
+                    vertical-align: middle;
+                    @include font($black-1, 40px, $roboto-light);
+                }
+            }
+        }
+        .package-content-wrapper{
+            .package-content{
+                margin       : 0;
+                padding      : 10px 0;
+                border-bottom: 1px solid $grey-6;
+                @include font($grey-2, 14px, $roboto-light);
+                &:nth-of-type(2n+1){
+                    background-color: #fbfbfb;
+                }
+            }
+        }
+    }
+    .btn-package-selection{
+        margin : 0 auto;
+        display: block;
+        padding: 10px 12px;
+        @include button(100%, 180px, $blue-light-20);
+        @include font($white, 13px, $roboto-regular);
+        @include transition(all 0.5s ease-in-out);
+        &:focus, &:hover{
+            background-color: $blue;
+        }
+    }
+    .rzslider{
+        margin: 35px 0;
+        .rz-bar-wrapper{
+            .rz-bar{
+                height    : 5px;
+                background: $grey-6;
+                @include border-radius(0);
+                &.rz-selection{
+                    background: $blue;
+                    @include border-radius(0);
+                }
+            }
+        }
+        .rz-pointer{
+            top             : -9px;
+            width           : 24px;
+            height          : 24px;
+            background-color: $blue;
+            &:hover{
+                &:after{
+                    background: transparent;
+                }
+            }
+            &:after{
+                background: transparent;
+            }
+        }
+        .rz-bubble{
+            @include font($dark-blue-1, 17px, $roboto-regular);
+            &.rz-limit{
+                display: none;
+            }
+        }
+        .rz-ticks{
+            .rz-tick{
+                top       : 1px;
+                width     : 1.5px;
+                height    : 10px;
+                background: $grey-light-80;
+                @include border-radius(0);
+                &.rz-selected{
+                    background: $blue;
+                }
+            }
+        }
+    }
+
+
+    /*    .subscribers-count-text{
+            @include font($black-1, 18px, $roboto-regular);
+        }
+        .account-setup-steps{
+            width : 800px;
+            margin: 0 auto;
+            .nav-tabs{
+                .nav-item{
+                    .nav-link{
+                        border: 0;
+                        @include font($blue, 16px, $roboto-regular);
+                        &:focus, &:hover{
+                            background-color: transparent;
+                        }
+                        .account-steps-head{
+                            span{
+                                i{
+                                    &:before{
+                                        border      : 1px solid $blue;
+                                        padding     : 5px 6px;
+                                        font-size   : 18px;
+                                        margin-right: 5px;
+                                        @include border-radius(50%);
+                                    }
+                                }
+                                &.custom-tab-head{
+                                    &:before{
+                                        border      : 1px solid $blue;
+                                        padding     : 2px 9px;
+                                        font-size   : 18px;
+                                        margin-right: 5px;
+                                        @include border-radius(50%);
+                                    }
+                                    &.tab-head-package{
+                                        &:before{
+                                            content: "2";
+                                        }
+                                    }
+                                    &.tab-head-payment{
+                                        &:before{
+                                            content: "3";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .tab-content{
+                .tab-pane{
+                    .packages-wrapper{
+                        border    : 2px solid $light-grey;
+                        padding   : 30px 15px;
+                        margin-top: 20px;
+                        @include border-radius(5px);
+                        .package-category{
+                            border : 2px solid $grey-border;
+                            padding: 15px;
+                            @include border-radius(5px);
+                            .package-title{
+                                @include font($black-1, 24px, $roboto-light);
+                            }
+                            .package-price{
+                                @include font($black-1, 35px, $roboto-regular);
+                                sup{
+                                    top           : 0;
+                                    font-family   : $roboto-light;
+                                    margin-right  : 2px;
+                                    vertical-align: super;
+                                }
+                            }
+                            span{
+                                width  : 75px;
+                                height : 75px;
+                                margin : 15px auto;
+                                display: block;
+                                &.free-icon{
+                                    background: url("/app/assets/images/sprite.png") no-repeat scroll left -13px bottom -13px;
+                                }
+                                &.premium-icon{
+                                    background: url("/app/assets/images/sprite.png") no-repeat scroll left -98px bottom -13px;
+                                }
+                                &.expertise-icon{
+                                    background: url("/app/assets/images/sprite.png") no-repeat scroll left -183px bottom -13px;
+                                }
+                            }
+                            .package-content{
+                                letter-spacing: 1px;
+                                @include font($black-1, 13px, $roboto-light);
+                                small{
+                                    letter-spacing: 1px;
+                                    @include font($black-1, 14px, $roboto-regular);
+                                }
+                            }
+                            .btn-package-select{
+                                margin : 20px auto 0;
+                                display: block;
+                                @include button(100%, 120px, $blue);
+                                @include font($white, 13px, $roboto-regular);
+                                @include transition(all 0.5s ease-in-out);
+                                &:focus, &:hover{
+                                    background-color: $blue-light-20;
+                                }
+                            }
+                        }
+                    }
+                    .payment-info-wrapper{
+                        border    : 2px solid $light-grey;
+                        padding   : 30px 15px;
+                        margin-top: 20px;
+                        @include border-radius(5px);
+                        .payment-head{
+                            margin-top    : 0;
+                            letter-spacing: 1px;
+                            @include font($black-1, 25px, $roboto-light);
+                        }
+                        .payment-form{
+                            .payment-form-label{
+                                @include font($grey-label, 14px, $roboto-regular);
+                            }
+                            .form-group{
+                                input{
+                                    @include font($grey-1, 14px, $roboto-light);
+                                    &:focus{
+                                        box-shadow: none;
+                                    }
+                                    &::-webkit-input-placeholder {
+                                        @include font($grey-1, 14px, $roboto-light);
+                                    }
+                                    &:-moz-placeholder {
+                                        @include font($grey-1, 14px, $roboto-light);
+                                    }
+                                    &:-ms-input-placeholder {  
+                                        @include font($grey-1, 14px, $roboto-light);
+                                    }
+                                }
+                                select{
+                                    z-index         : 1;
+                                    background-color: transparent;
+                                    @include font($grey-1, 14px, $roboto-light);
+                                    &:focus{
+                                        box-shadow: none;
+                                    }
+                                }
+                                .fa-caret-down{
+                                    top     : 10px;
+                                    right   : 10px;
+                                    position: absolute;
+                                }
+                            }
+                            .btn-pay{
+                                margin : 20px auto 0;
+                                display: block;
+                                @include button(100%, 160px, $blue);
+                                @include font($white, 15px, $roboto-regular);
+                                @include transition(all 0.5s ease-in-out);
+                                &:focus, &:hover{
+                                    background-color: $blue-light-20;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }*/
+}
+.upgrade-account-modal {
+    .modal-content{
+        border: 0;
+        @include border-radius(0);   
+    }
+    .modal-header{ 
+        @include border-radius(0);   
+    }
+}
+
+@media(min-width: 320px) and (max-width: 767px){
+    .pricing-container{
+        .price-switch-wrapper{
+            display: block;
+            >*{
+                display: inline-block;
+                font-size: 14px;
+                vertical-align: middle;
+            }
+            .switch{
+                margin: -10px 5px 0;
+            }
+            span{
+                small{
+                    top: 0;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,37 @@
+<div class="modal-header custom-modal-header">
+    <h3 class="modal-title"><span ng-if="!addRssFeed.isEditView">Add</span><span ng-if="addRssFeed.isEditView">Edit</span> RSS Feed
+        <a class="fa fa-times custom-close" href="" ng-click="addRssFeed.cancel()"></a>
+    </h3>
+</div>
+<div class="modal-body custom-modal-body">
+    <!--    <div ng-show="addRssFeed.rssFeed.successAlert" class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" ng-click="addRssFeed.hideSuccessAlert()"><span aria-hidden="true">&times;</span></button>
+            {{addRssFeed.rssFeed.success}}
+        </div>
+        <div ng-show="addRssFeed.rssFeed.dangerAlert" class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" ng-click="addRssFeed.hideDangerAlert()"><span aria-hidden="true">&times;</span></button>
+            {{addRssFeed.rssFeed.danger}}
+        </div>-->
+    <form class="custom-website-form rss-feed-form" name="addRssFeedForm" ng-submit="addRssFeed.saveRssFeed()">
+        <div class="form-group">
+            <input id="rss-feed-name" type="text" class="form-control input-segment-name" ng-class="{'error-field': (addRssFeed.rssFeed.isNameBlured && addRssFeed.rssFeed.isNameRequired)}" placeholder="Enter RSS Feed Name" ng-model="addRssFeed.rssFeed.name" rss-feed-validator/>
+        </div>
+        <div class="form-group">
+            <input id="rss-feed-url" type="text" class="form-control input-segment-name" ng-class="{'error-field': (addRssFeed.rssFeed.isUrlBlured && addRssFeed.rssFeed.isUrlRequired) || !addRssFeed.rssFeed.isUrlValid}" placeholder="Enter RSS Feed URL" ng-model="addRssFeed.rssFeed.url" rss-feed-validator/>
+            <span class="error-2" ng-if="!addRssFeed.rssFeed.isUrlValid">RSS Feed URL is invalid</span>
+        </div>
+        <div class="form-group">
+            <label for="defaultIcon">Default Icon</label>
+            <div class="rss-feed-icon-wrapper">
+                <img class="img-responsive" src="app/assets/images/img.png" alt=""/>
+            </div>
+            <div class="plus-icon-wrapper">
+                <a class="fa fa-plus-circle"></a>
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-cancel-primary" ng-click="addRssFeed.cancel()">Close</button>
+            <button type="submit" class="btn btn-custom-primary">Add RSS Feed</button>
+        </div>
+    </form>
+</div>

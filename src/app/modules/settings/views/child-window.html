@@ -1,0 +1,49 @@
+<div class="dashboard-content-header">
+    <h3 class="dashboard-content-area-heading">Child Window</h3>
+    <div class="subtitle">Manage your child window</div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="child-window-wrapper">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form class="child-window-config-form custom-form">
+                            <h3>Child Window Settings</h3>
+                            <div class="form-group">
+                                <label for="childWindowTitle">Child Window Title</label>
+                                <input type="text" class="form-control" placeholder="Child Window Title" ng-model="childWindow.title"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="childWindowSubTitle">Child Window Sub-title</label>
+                                <input type="text" class="form-control" placeholder="Child Window Sub-title" ng-model="childWindow.subTitle"/>
+                            </div>
+                            <div class="form-group">
+                                <div class="switch">
+                                    <input id="removeBranding1" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="childWindow.isRemoveBranding">
+                                    <label for="removeBranding1"></label>
+                                    <span>Remove Branding</span>
+                                </div>
+                            </div>
+                            <button type="button" class="btn child-window-config-btn btn-save" ng-click="childWindow.onClickSave()">Save</button>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="child-window-preview-wrapper">
+                            <div class="child-window-content-area">
+                                <img class="img-responsive" src="app/assets/images/firefox-logo.png">
+                                <p class="child-window-title">{{ childWindow.title || 'Child Window Title' }}</p>
+                                <p class="child-window-sub-title">{{ childWindow.subTitle || 'Child Window Sub Title'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="subOptinConfig" class="sub-optin-config-window hidden">
+    <div class="sub-optin-preview-wrapper top-right">Subscribe to notifications</div>
+    <i class="fa fa-times btn-close top-left" aria-hidden="true" ng-click="subOptin.closePreview()"></i>
+</div>

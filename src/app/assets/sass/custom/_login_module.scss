@@ -1,0 +1,292 @@
+/* 
+    Created on : Oct 25, 2016, 3:00:39 PM
+    Author     : ahextech
+*/
+
+.login-module-container{
+    width            : 100%;
+    height           : 100vh;
+    padding          : 50px 0 0;
+    overflow         : auto;
+    position         : relative;
+    background-color : #137edb;
+    background-image : url('/app/assets/images/pattern.png'), -moz-linear-gradient(289deg, #28b6ff, #004abb);
+    background-image : url('/app/assets/images/pattern.png'), -o-linear-gradient(289deg, #28b6ff, #004abb);
+    background-image : url('/app/assets/images/pattern.png'), -webkit-linear-gradient(289deg, #28b6ff, #004abb);
+    background-image : url('/app/assets/images/pattern.png'), linear-gradient(289deg, #28b6ff, #004abb);
+    background-repeat: repeat;
+    .engageto-logo{
+        margin : 0 auto 30px;
+        display: block;
+        img{
+            margin: 0 auto;
+        }
+    }
+    .login-module-wrapper{
+        width           : 100%;
+        margin          : 0 auto;
+        padding         : 50px;
+        position        : relative;
+        max-width       : 450px;
+        background-color: $white;
+        @include border-radius(5px);
+        .login-module-header{
+            margin: 0 0 35px;
+            @include font($black-1, 20px, $roboto-regular);
+        }
+        .login-module-form{
+            margin: 0;
+            .custom-check{
+                label{
+                    &.checkbox-inline{
+                        cursor: default;
+                        @include font($grey-3, 14px, $roboto-regular);
+                        input[type="checkbox"]{
+                            display:none;
+                            &:checked {
+                                +  span{
+                                    border          : 2px solid $blue;
+                                    padding         : 3px;
+                                    background-color: transparent;
+                                    @include border-radius(5px);
+                                    @include transition(all 0.3s ease-in-out);
+                                    i{
+                                        opacity: 1;
+                                    }
+                                }
+                            }
+                            + span{
+                                width           : 18px;
+                                border          : 2px solid $blue;
+                                cursor          : pointer;
+                                height          : 18px;
+                                margin          : 0 2px 0 0;
+                                display         : inline-block;
+                                padding         : 3px;
+                                position        : relative;
+                                text-align      : center;
+                                line-height     : 14px;
+                                vertical-align  : middle;
+                                background-color: transparent;
+                                @include border-radius(5px);
+                                @include transition(all 0.3s ease-in-out);
+                                i{
+                                    top        : 2px;
+                                    left       : -2px;
+                                    color      : $blue;
+                                    width      : 10px;
+                                    margin     : -4px auto;
+                                    display    : block;
+                                    opacity    : 0;
+                                    overflow   : visible;
+                                    position   : relative;
+                                    font-size  : 12px;
+                                    font-weight: 400;
+                                    @include transition(all 0.3s ease-in-out);
+                                }
+                            }
+                        }
+                        .terms-condition-text{
+                            color  : $blue;
+                            display: inline-block;
+                            &:focus, &:hover{
+                                color: $blue;
+                            }
+                        }
+                    }
+                }
+                .checkbox-inline{
+                    padding-left: 0;
+                }
+            }
+            .form-group{
+                position     : relative;
+                margin-bottom: 25px;
+                .tooltip{
+                    left : auto !important;
+                    right: 0;
+                    .tooltip-inner{
+                        width     : 170px;
+                        padding   : 3px 10px;
+                        text-align: left;
+                    }
+                }
+                #strength{
+                    margin: 0;
+                }
+                input{
+                    min-height: 50px;
+                    @include border-radius(5px);
+                    @include font($grey-3, 14px, $roboto-regular);
+                    &::-webkit-input-placeholder {
+                        @include font($grey-3, 14px, $roboto-regular);
+                    }
+                    &::-moz-placeholder {
+                        @include font($grey-3, 14px, $roboto-regular); 
+                    }
+                    &:-ms-input-placeholder {  
+                        @include font($grey-3, 14px, $roboto-regular); 
+                    }
+                    &.input-password{
+                        padding: 6px 68px 6px 12px;
+                    }
+                }
+                .password-strength-wrapper{
+                    top     : 16px;
+                    right   : 5px;
+                    position: absolute;
+                    .password-strength-color{
+                        float  : left;
+                        width  : 12px;
+                        height : 12px;
+                        margin : 3px 3px 0 0;
+                        display: inline-block;
+                    }
+                    .password-strength-text{
+                        float  : left;
+                        display: inline-block;
+                        @include font($black-1, 12px, $roboto-regular);
+                    }
+                }
+            }
+            a{
+                display   : block;
+                text-align: right;
+                @include font($white, 14px, $roboto-light);
+            }
+            .btn-login-module{
+                display   : block;
+                min-height: 50px;
+                line-height: 20px;
+                @include border-radius(5px);
+                @include button(100%, 100%, $blue);
+                @include font($white, 16px, $roboto-regular);
+                i{
+                    &.fa-spin{
+                        font-size: 18px;
+                        line-height: 20px;
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+        .bottom-left-text{
+            left    : 5px;
+            bottom  : -30px;
+            position: absolute;
+            @include font($medium-grey, 14px, $roboto-regular);
+            &:focus, &:hover{
+                color: $white;
+            }
+        }
+        .bottom-right-text{
+            right   : 5px;
+            bottom  : -30px;
+            margin  : 0;
+            position: absolute;
+            @include font($medium-grey, 14px, $roboto-regular);
+            a{
+                color        : $medium-grey;
+                border-bottom: 1px solid $medium-grey;
+                &:focus, &:hover{
+                    color              : $white;
+                    border-bottom-color: $white;
+                }
+            }
+        }
+        .already-register-text{
+            top: 100%;
+            left: 0;
+            width: 100%;
+            position: absolute;
+            text-align: center;
+            padding-top: 15px;
+            @include font($medium-grey, 14px, $roboto-regular);
+            a{
+                color        : $medium-grey;
+                border-bottom: 1px solid $medium-grey;
+                &:focus, &:hover{
+                    color              : $white;
+                    border-bottom-color: $white;
+                }
+            }
+        }
+    }
+    .information-text{
+        margin    : 0;
+        text-align: center;
+        @include font($black-1, 15px, $roboto-regular);
+        a{
+            color: $blue;
+            &:focus, &:hover{
+                color: $blue;
+            }
+        }
+    }
+    .login-module-blue-text{
+        margin    : 20px 0 0;
+        display   : block;
+        text-align: center;
+        @include font($blue, 15px, $roboto-regular);
+        &.margin-0{
+            margin: 0;
+        }
+    }
+}
+/* Media Queries Starts Here */
+@media (min-width: 481px) and (max-width: 767px){
+    .login-module-container{
+        padding: 15px 0 0;
+        .engageto-logo{
+            margin: 0 auto 15px;
+        }
+    }
+}
+@media (min-width: 320px) and (max-width: 480px){
+    .login-module-container{
+        padding: 15px 0 0;
+        .engageto-logo{
+            margin: 0 auto 15px;
+        }
+        .login-module-wrapper{
+            width    : auto;
+            margin   : 0 auto 50px;
+            padding  : 30px;
+            max-width: 300px;
+            .login-module-form{
+                .custom-check{
+                    label{
+                        &.checkbox-inline{
+                            input[type="checkbox"]{
+                                + span{
+                                    vertical-align: bottom;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .already-register-text{
+                width: 100%;
+            }
+            .bottom-left-text{
+                left  : 50%;
+                bottom: -35px;
+                @include translate(-50%, -50%);
+            }
+            .bottom-right-text{
+                right : 50%;
+                width : 100%;
+                bottom: -60px;
+                @include translate(50%, -50%);
+                &.signin-link{
+                    width: auto;
+                }
+            }
+        }
+        .information-text{
+            font-size: 14px;
+        }
+    }
+}
+/* Media Queries Ends Here */

@@ -1,0 +1,16 @@
+<div class="modal-header custom-modal-header">
+    <h3 class="modal-title">Cancel account
+        <a class="fa fa-times custom-close" href="" ng-click="cancelAccount.close()"></a>
+    </h3>
+</div>
+<div class="modal-body cancel-account-modal-body">
+    <p class="cancel-account-text">If you cancel your account, you will loose all your subscribers and important data. 
+        You will never get access to your account later.</p>
+    <form class="cancel-account-form">
+        <div class="form-group">
+            <textarea class="form-control" placeholder="Reason for cancellation"></textarea>
+        </div>
+        <button type="button" class="btn settings-custom-btn btn-cancel-account">Cancel my account</button>
+        <button type="button" class="btn settings-custom-btn btn-edit-user-close" ng-click="cancelAccount.close()">Close</button>
+    </form>
+</div>

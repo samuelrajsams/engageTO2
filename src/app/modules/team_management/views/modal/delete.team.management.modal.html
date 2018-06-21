@@ -1,0 +1,14 @@
+<div class="modal-header custom-modal-header">
+    <h3 class="modal-title">Delete Team Member
+        <a class="fa fa-times custom-close" href="" ng-click="deleteTeamManagement.cancel()"></a>
+    </h3>
+</div>
+<div class="modal-body custom-modal-body clearfix">
+    <p class="delete-team-member-text">If you delete this account, {{deleteTeamManagement.fullName}} would not be able to login and access information. However 
+        you can transfer data like Notifications, Push Journeys created by {{deleteTeamManagement.fullName}} to some other team 
+        member.</p>
+    <div class="text-center">
+        <button type="button" ng-click="deleteTeamManagement.deleteWithoutAssign()" class="btn btn-cancel-primary">Delete without Assign</button>
+        <button type="button" ng-click="deleteTeamManagement.assignData()" class="btn btn-custom-primary">Assign Data</button>
+    </div>
+</div>

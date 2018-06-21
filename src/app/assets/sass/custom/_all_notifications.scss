@@ -1,0 +1,376 @@
+/* 
+    Created on : Dec 14, 2016, 7:24:47 PM
+    Author     : ahextech
+*/
+.push-notifications-list{
+    .nav-tabs{
+        .nav-item{
+            margin-bottom: 0;
+            &.active{
+                .nav-link{
+                    color               : $blue;
+                    border-bottom-color : $blue;
+                }
+            }
+            .nav-link{
+                border          : none;
+                background-color: transparent;
+                border-bottom   : 3px solid transparent;
+                @include transition(all 0.3s ease-in-out);
+                @include border-radius(0);
+                @include font($black-1, 14px, $roboto-regular);
+                &:focus, &:hover{
+                    color               : $blue;
+                    border-bottom-color : $blue;
+                }
+            }
+        }
+    }
+}
+.all-notification-wrapper{
+    .dataTables_wrapper{
+        .row{
+            margin-left: 0;
+            margin-right: 0;
+            .dataTables_paginate{
+                .pagination{
+                    li{
+                        a{
+                            border: 2px solid transparent;
+                            @include border-radius(50%);
+                            @include font($blue, 13px, $roboto-regular);
+                            &:focus, &:hover{
+                                color           : $blue;
+                                background-color: $white;
+                            }
+                        }
+                    }
+                    .active{
+                        a{
+                            color           : $blue;
+                            border          : 2px solid $blue-light-20;
+                            background-color: transparent;
+                            &:focus, &:hover{
+                                border: 2px solid $blue-light-20;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/* Styles for Date Form Starts Here */
+.smart-custom-container{
+    &.insights-wrapper{
+        background-color: transparent;
+    }
+    .smart-custom-wrapper{
+        position: relative;
+        .date-wrapper{
+            top     : 0;
+            right   : 0;
+            z-index : 1;
+            position: absolute;
+            .date-form{
+                .form-group{
+                    position    : relative;
+                    margin-right: 5px;
+                    a{
+                        top      : 8px;
+                        color    : $grey-1;
+                        right    : 7px;
+                        position : absolute;
+                        font-size: 18px;
+                    }
+                    .fa-calendar{
+                        margin-left: 5px;
+                    }
+                }
+                .btn-get-report{
+                    width    : auto;
+                    max-width: 100px;
+                }
+                .dropdown{
+                    .dropdown-menu{
+                        min-width: 110px;
+                        li{
+                            a{
+                                @include font($black-1, 14px, $roboto-light);
+                                &:focus, &:hover{
+                                    color           : $white;
+                                    background-color: $blue;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/* Styles for Date Form Ends Here */
+
+/* Styles for Download Report Modal Box Starts Here */
+.download-report-modal{
+    .modal-dialog{
+        width: 350px;
+        .modal-content{
+            padding: 0;
+            @include border-radius(0);
+            .custom-modal-body{
+                .custom-form{
+                    .form-group{
+                        label{
+                            font-size: 14px;
+                        }
+                        .switch{
+                            margin-left   : 10px;
+                            vertical-align: top;
+                            input{
+                                &.cmn-toggle-round{
+                                    + label{
+                                        &:before{
+                                            top   : 0;
+                                            width : 50px;
+                                            height: 18px;
+                                        }
+                                        &:after{
+                                            top   : -1px;
+                                            width : 20px;
+                                            height: 20px;
+                                        }
+                                    }
+                                    &:checked{
+                                        + label{
+                                            &:after{
+                                                margin-left: 30px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .btn-choose-logo{
+                            border   : 1px solid $blue-1;
+                            max-width: 120px;
+                            &:focus, &:hover{
+                                border-color: $blue-hover;
+                            }
+                        }
+                        .btn-custom-group{
+                            border        : 1px solid $blue-1;
+                            margin-left   : 5px;
+                            vertical-align: middle;
+                            .push-btn{
+                                &:not(:last-of-type){
+                                    border-right-color: $blue-1;
+                                }
+                            }
+                        }
+                        .heading-field{
+                            margin-top: 15px;
+                        }
+                    }
+                    .btn-download-report{
+                        border   : 1px solid $blue-1;
+                        margin   : 0 auto;
+                        display  : block;
+                        max-width: 165px;
+                        &:focus, &:hover{
+                            border-color: $blue-hover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/* Styles for Download Report Modal Box Ends Here */
+
+/* Styles for Welcome Notification Insight Starts Here */
+.smart-custom-container{
+    .smart-custom-head{
+        display       : inline-block;
+        vertical-align: middle;
+    }
+    .btn-go-back{
+        border     : 1px solid $blue-1;
+        display    : inline-block;
+        max-width  : 110px;
+        margin-left: 10px;
+        &:focus, &:hover{
+            border-color: $blue-hover;
+        }
+    }
+    .btn-get-report{
+        float       : right;
+        border      : 1px solid $green-1;
+        display     : inline-block;
+        max-width   : 110px;
+        margin-bottom: 0;
+        &:hover, &:focus{
+            border-color: $green-hover;
+        }
+    }
+    .welcome-notification-details-wrapper{
+        padding         : 15px;
+        margin-top      : 20px;
+        background-color: $white;
+        p{
+            color      : $form-label;
+            font-size  : 16px;
+            font-family: $roboto-regular;
+            font-weight: 700;
+        }
+        .notification-preview{
+            float   : left;
+            display : inline-block;
+            position: static;
+            @include box-shadow(0 0 25px 3px rgba(0,0,0,.3));
+            .preview-wrapper-chrome{
+                margin-top: 0;
+                @include box-shadow(none);
+                .cta-content{
+                    a{
+                        @include box-shadow(none);
+                    }
+                }
+            }
+        }
+        .notification-details{
+            float      : left;
+            display    : inline-block;
+            margin-left: 40px;
+            p{
+                color      : $form-label;
+                font-size  : 14px;
+                font-family: $roboto-regular;
+                font-weight: 700;
+                position: relative;
+                /*padding-left: 150px;*/
+                span{
+                    font-family: $roboto-light;
+                    /*                    position: absolute;
+                                        left: 0;*/
+                }
+                &.notification-expiry-text, &.notification-duration-text{
+                    display: inline-block;
+                }
+            }
+        }
+    }
+    .notification-analysis-wrapper{
+        padding         : 15px;
+        margin-top      : 20px;
+        background-color: $white;
+        p{
+            color      : $form-label;
+            font-family: $roboto-regular;
+            font-weight: 700;
+            &.notification-analysis-head{
+                font-size: 16px;
+            }
+            &:not(:first-of-type){
+                font-size: 14px;
+                span{
+                    font-family: $roboto-light;
+                }
+            }
+            &.delivered-text, &.views-text, &.ctr-text, 
+            &.clicks-text, &.sent-notification-views-text{
+                display: inline-block;
+            }
+            &.sent-notification-views-text, 
+            &.ctr-text, &.clicks-text{
+                margin-left: 20px;
+            }
+            a{
+                color          : $form-label;
+                font-weight    : 400;
+                text-decoration: underline;
+            }
+        }
+        .cta-click-wrapper{
+            width  : 260px;
+            margin : 0 auto;
+            display: block;
+            p{
+                color      : $form-label;
+                display    : inline-block;
+                font-size  : 14px;
+                font-family: $roboto-regular;
+                span{
+                    font-family: $roboto-light;
+                }
+            }
+        }
+    }
+    .notification-push-btn-wrapper{
+        .btn-custom-group{
+            margin: 20px auto;
+        }
+    }
+    .pie-charts{
+        margin-top: 20px;
+        li{
+            float           : left;
+            width           : 33%;
+            padding         : 15px;
+            background-color: $white;
+            &:nth-of-type(2), &:last-of-type{
+                margin-left: 6px;
+            }
+            span{
+                color      : $form-label;
+                font-size  : 15px;
+                font-family: $opensans-light;
+            }
+            img{
+                margin   : 0 auto;
+                display  : block;
+                max-width: 220px;
+            }
+        }
+    }
+    .map-wrapper{
+        padding         : 15px;
+        margin-top      : 20px;
+        background-color: $white;
+        span{
+            color      : $form-label;
+            font-size  : 15px;
+            font-family: $opensans-light;
+        }
+        img{
+            margin   : 0 auto;
+            display  : block;
+            max-width: 700px;
+        }
+    }
+}
+/* Styles for Welcome Notification Insight Ends Here */
+
+.notification-details-wrapper{
+    padding: 20px;
+    background-color: $white;
+}
+
+@media(max-width: 991px){
+    .smart-custom-container{
+        .smart-custom-wrapper{
+            .date-wrapper{
+                width: 100%;
+                position: initial;
+                text-align: right;
+                .form-group{
+                    display: inline-block;
+                }
+                .form-control{
+                    width: auto;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}

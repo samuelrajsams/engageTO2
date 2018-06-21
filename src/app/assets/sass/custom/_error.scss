@@ -1,0 +1,172 @@
+/* 
+    Created on : Apr 13, 2017, 12:51:42 PM
+    Author     : ahextech
+*/
+.not-found-main{
+    height          : 100vh;
+    position        : relative;
+    background-color: #137edb;
+    background-image: -moz-linear-gradient(289deg, #28b6ff, #004abb);
+    background-image: -o-linear-gradient(289deg, #28b6ff, #004abb);
+    background-image: -webkit-linear-gradient(289deg, #28b6ff, #004abb);
+    background-image: linear-gradient(289deg, #28b6ff, #004abb);
+    .not-found-main-wave{
+        position:absolute;
+        height:60px;
+        width:60px;
+        left:50%;
+        -webkit-transform:translateX(-50%);
+        -moz-transform:translateX(-50%);
+        -ms-transform:translateX(-50%);
+        -o-transform:translateX(-50%);
+        transform:translate(-50%,-50%);
+        -webkit-border-radius:208px;
+        -moz-border-radius:208px;
+        -ms-border-radius:208px;
+        -o-border-radius:208px;
+        border-radius:208px;
+        top:50%;
+        &:nth-child(1){
+            -webkit-animation:not-found-main-wave-animation 10s linear infinite;
+            -moz-animation:not-found-main-wave-animation 10s linear infinite;
+            -ms-animation:not-found-main-wave-animation 10s linear infinite;
+            -o-animation:not-found-main-wave-animation 10s linear infinite;
+            animation:not-found-main-wave-animation 10s linear infinite;
+            -webkit-animation-delay:10s;
+            -moz-animation-delay:10s;
+            -ms-animation-delay:10s;
+            -o-animation-delay:10s;
+            animation-delay:10s;
+        }
+        &:nth-child(2), &:nth-child(3){
+            -webkit-animation:not-found-main-wave-animation 10s linear infinite;
+            -moz-animation:not-found-main-wave-animation 10s linear infinite;
+            -ms-animation:not-found-main-wave-animation 10s linear infinite;
+            -o-animation:not-found-main-wave-animation 10s linear infinite;
+        }
+        &:nth-child(2){
+            animation:not-found-main-wave-animation 10s linear infinite;
+            -webkit-animation-delay:8s;
+            -moz-animation-delay:8s;
+            -ms-animation-delay:8s;
+            -o-animation-delay:8s;
+            animation-delay:8s;
+        }
+        &:nth-child(3){
+            animation:not-found-main-wave-animation 10s linear infinite;
+            -webkit-animation-delay:6s;
+            -moz-animation-delay:6s;
+            -ms-animation-delay:6s;
+            -o-animation-delay:6s;
+            animation-delay:6s;
+        }
+        &:nth-child(4), &:nth-child(5){
+            -webkit-animation:not-found-main-wave-animation 10s linear infinite;
+            -moz-animation:not-found-main-wave-animation 10s linear infinite;
+            -ms-animation:not-found-main-wave-animation 10s linear infinite;
+            -o-animation:not-found-main-wave-animation 10s linear infinite;
+        }
+        &:nth-child(4){
+            animation:not-found-main-wave-animation 10s linear infinite;
+            -webkit-animation-delay:4s;
+            -moz-animation-delay:4s;
+            -ms-animation-delay:4s;
+            -o-animation-delay:4s;
+            animation-delay:4s;
+        }
+        &:nth-child(5){
+            animation:not-found-main-wave-animation 10s linear infinite;
+            -webkit-animation-delay:2s;
+            -moz-animation-delay:2s;
+            -ms-animation-delay:2s;
+            -o-animation-delay:2s;
+            animation-delay:2s;
+        }
+        &:nth-child(6){
+            -webkit-animation:not-found-main-wave-animation 10s linear infinite;
+            -moz-animation:not-found-main-wave-animation 10s linear infinite;
+            -ms-animation:not-found-main-wave-animation 10s linear infinite;
+            -o-animation:not-found-main-wave-animation 10s linear infinite;
+            animation:not-found-main-wave-animation 10s linear infinite;
+        }
+    }
+}
+
+@-webkit-keyframes not-found-main-wave-animation{
+    from {
+        -webkit-box-shadow:0 0 0 0 rgba(255,255,255,.2);
+        -moz-box-shadow:0 0 0 0 rgba(255,255,255,.2);
+        box-shadow:0 0 0 0 rgba(255,255,255,.2);
+    }
+    to {
+        -webkit-box-shadow:0 0 0 700px rgba(255,255,255,0);
+        -moz-box-shadow:0 0 0 700px rgba(255,255,255,0);
+        box-shadow:0 0 0 700px rgba(255,255,255,0);
+    }
+}
+@-moz-keyframes not-found-main-wave-animation{
+    from {
+        -webkit-box-shadow:0 0 0 0 rgba(255,255,255,.2);
+        -moz-box-shadow:0 0 0 0 rgba(255,255,255,.2);
+        box-shadow:0 0 0 0 rgba(255,255,255,.2);
+    }
+    to {
+        -webkit-box-shadow:0 0 0 700px rgba(255,255,255,0);
+        -moz-box-shadow:0 0 0 700px rgba(255,255,255,0);
+        box-shadow:0 0 0 700px rgba(255,255,255,0);
+    }
+}
+@-o-keyframes not-found-main-wave-animation{
+    from {
+        -webkit-box-shadow:0 0 0 0 rgba(255,255,255,.2);
+        -moz-box-shadow:0 0 0 0 rgba(255,255,255,.2);
+        box-shadow:0 0 0 0 rgba(255,255,255,.2);
+    }
+    to {
+        -webkit-box-shadow:0 0 0 700px rgba(255,255,255,0);
+        -moz-box-shadow:0 0 0 700px rgba(255,255,255,0);
+        box-shadow:0 0 0 700px rgba(255,255,255,0);
+    }
+}
+@keyframes not-found-main-wave-animation{
+    from {
+        -webkit-box-shadow:0 0 0 0 rgba(255,255,255,.2);
+        -moz-box-shadow:0 0 0 0 rgba(255,255,255,.2);
+        box-shadow:0 0 0 0 rgba(255,255,255,.2);
+    }
+    to {
+        -webkit-box-shadow:0 0 0 700px rgba(255,255,255,0);
+        -moz-box-shadow:0 0 0 700px rgba(255,255,255,0);
+        box-shadow:0 0 0 700px rgba(255,255,255,0);
+    }
+}
+.error-page-content{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    @include translate(-50%, -50%);
+    img{
+        margin   : 195px auto 0;
+        max-width: 450px;
+    }
+    h3{
+        margin: 30px 0 0;
+        @include font($white, 40px, $roboto-regular);
+    }
+    p{
+        margin: 20px 0 0;
+        @include font($white, 18px, $roboto-light);
+    }
+    .btn-go-to-home{
+        margin    : 30px auto 0;
+        display   : block;
+        padding   : 9px 12px;
+        min-height: 40px;
+        @include border-radius(20px);
+        @include button(100%, 200px, $white);
+        @include font(#137edb, 14px, $roboto-light);
+        &:focus, &:hover{
+            color: #137edb;
+        }
+    }
+}

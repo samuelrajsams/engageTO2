@@ -1,0 +1,55 @@
+<div class="modal-header image-manager-modal-header">
+    <h3 class="modal-title">Notification image manager
+        <a href ng-click="uploadImageManager.cancel()" class="fa fa-times custom-close"></a>
+    </h3>
+</div>
+<div class="modal-body image-manager-modal-body">
+    <uib-tabset active="activeJustified" class="image-manager-icon-list" justified="true">
+        <uib-tab index="0" heading="Pre-Built Images">
+            <div class="icons-wrapper">
+                <ul class="list-inline icon-list">
+                    <li class="icons" ng-class="{'icon-blue': uploadImageManager.logoIndex === $index}" ng-click="uploadImageManager.selectedLogo($index, 'logo')" ng-repeat="image in uploadImageManager.defaultImageList">
+                        <i class="fa fa-check-circle" ng-show="uploadImageManager.logoIndex === $index"></i>
+                        <img src="{{image}}" alt="default-images">
+                    </li>
+                </ul>
+                <button type="button" class="btn btn-custom-primary" ng-click="uploadImageManager.uploadSelectedLogo('logo')" ng-disabled="uploadImageManager.logoIndex === -1">Select</button>
+            </div>
+        </uib-tab>
+        <uib-tab index="1" heading="My Images">
+            <div class="icons-wrapper">
+                <ul class="list-inline icon-list">
+                    <li class="icons" ng-class="{'icon-blue': uploadImageManager.fileIndex === $index}" ng-click="uploadImageManager.selectedLogo($index, 'file')" ng-repeat="image in uploadImageManager.uploadedImageList">
+                        <i class="fa fa-check-circle" ng-show="uploadImageManager.fileIndex === $index"></i>
+                        <img src="{{image}}" alt="default-images">
+                    </li>
+                </ul>
+                <button type="button" class="btn btn-custom-primary" ng-click="uploadImageManager.uploadSelectedLogo('file')" ng-disabled="uploadImageManager.fileIndex === -1">Select</button>
+            </div>
+        </uib-tab>
+        <uib-tab index="2" heading="Upload Images">
+            <form name="uploadImagesForm">
+                <div class="image-preview-wrapper">
+                    <img src="{{ uploadImageManager.croppedFile || 'app/assets/images/img.png'}}" alt="Image" width="50px" height="50px"/>
+                </div>
+                <div class="icons-wrapper">
+                    <span class="error" ng-show="uploadImageManager.isMaxFileSizeLimitReached">Push Notifications are lightweight. Kindly, Upload image below 5 MB size</span>
+                    <span class="error" ng-show="!uploadImageManager.isFileFormateValid">We can only show image on push notification. File types allowed .jpg,.jpeg,.png</span>
+                    <span class="error" ng-show="uploadImageManager.isMaxFilesUploaded">We can only upload 20 images for a website, please remove to upload new.</span>
+                    <div class="upload-image-wrapper" ngf-select="uploadImageManager.uploadingFiles($file, $invalidFiles)" ngf-multiple="false" ngf-accept="'image/*'" ngf-pattern="'.jpg,.jpeg,.png'" ngf-max-size="5MB" ng-if="!uploadImageManager.isFileSelected">
+                        <span>Click here to upload image<small>Maximum file size: 5MB</small></span>
+                    </div>
+                    <div class="cropArea" ng-if="uploadImageManager.isFileSelected">
+                        <img-crop image="uploadImageManager.files" result-image="uploadImageManager.croppedFile"></img-crop>
+                    </div>
+                    <div class="btn-wrapper text-center">
+                        <button type="button" class="btn btn-custom-primary" ng-click="uploadImageManager.uploadSelectedImage()" ng-disabled="!uploadImageManager.isFileSelected || engagetoApp.isLoading">Select
+                            <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+                        </button>
+                        <button type="button" class="btn btn-delete-primary" ng-click="uploadImageManager.removeSelectedImage()" ng-disabled="!uploadImageManager.isFileSelected">Delete</button>
+                    </div>
+                </div>
+            </form>
+        </uib-tab>
+    </uib-tabset>
+</div>

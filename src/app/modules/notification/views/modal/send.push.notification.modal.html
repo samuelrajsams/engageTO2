@@ -1,0 +1,61 @@
+<div class="modal-header custom-modal-header">
+    <h3 class="modal-title">This is your push notification
+        <a class="fa fa-times custom-close" href ng-click="sendNewPushNotification.close()"></a>
+    </h3>
+</div>
+<div class="modal-body custom-modal-body">
+    <a href ng-click="sendNewPushNotification.close()" class="fa fa-times custom-close"></a>
+    <div class="preview-wrapper-chrome clearfix" ng-if="sendNewPushNotification.browserPreviewTab === 'Chrome'">
+        <div class="preview-image-chrome">
+            <i class="fa {{sendNewPushNotification.notification.logo}}" ng-if="sendNewPushNotification.notification.logo != ''"></i>
+            <img class="img-responsive" ngf-src="sendNewPushNotification.notification.image" alt="" ng-if="sendNewPushNotification.notification.logo == ''"/>
+        </div>
+        <div class="preview-content-chrome">
+            <i class="fa fa-times" aria-hidden="true"></i>
+            <span>{{ sendNewPushNotification.notification.title || ''}}</span>
+            <span>{{ sendNewPushNotification.notification.message || ''}}</span>
+            <span>{{ engagetoApp.profile.subDomainName}}.engageto.com</span>
+            <i class="fa fa-cog" aria-hidden="true"></i>
+        </div>
+        <div class="cta-content">
+            <a href="http://www.{{sendNewPushNotification.advanceOptions.cta[0].url}}" class="btn btn-primary" target="_blank" ng-class="{
+                    'non-clickable-pointer'
+                    : sendNewPushNotification.advanceOptions.cta[0].url === ''}" ng-if="(sendNewPushNotification.advanceOptions.cta[0].url !== '' || sendNewPushNotification.advanceOptions.cta[0].text !== '') && sendNewPushNotification.advanceOptions.isAddButtonOpened">{{sendNewPushNotification.advanceOptions.cta[0].text}}</a>
+            <a href="http://www.{{sendNewPushNotification.advanceOptions.cta[1].url}}" target="_blank" class="btn btn-primary" ng-class="{
+                    'non-clickable-pointer'
+                    : sendNewPushNotification.advanceOptions.cta[1].url === ''}" ng-if="(sendNewPushNotification.advanceOptions.cta[1].url !== '' || sendNewPushNotification.advanceOptions.cta[1].text !== '') && sendNewPushNotification.advanceOptions.cta.length === 2 && sendNewPushNotification.advanceOptions.isAddButtonOpened">{{sendNewPushNotification.advanceOptions.cta[1].text}}</a>
+        </div>
+    </div>
+    <div class="preview-wrapper-firefox" ng-if="sendNewPushNotification.browserPreviewTab === 'Firefox'">
+        <div class="firefox-logo">
+            <img class="img-responsive" src="app/assets/images/firefox-logo.png"/>
+        </div>
+        <div class="preview-content-firefox">
+            <span>{{ sendNewPushNotification.notification.title || ''}}</span>
+            <span>{{ sendNewPushNotification.notification.message || ''}}</span>
+            <span>{{ engagetoApp.profile.subDomainName}}.engageto.com</span>
+        </div>
+        <div class="preview-image-firefox">
+            <i class="fa {{sendNewPushNotification.notification.logo}}" ng-if="sendNewPushNotification.notification.logo != ''"></i>
+            <img class="img-responsive" ngf-src="sendNewPushNotification.notification.image" alt="" ng-if="sendNewPushNotification.notification.logo == ''"/>
+        </div>
+    </div>
+    <div class="preview-wrapper-safari" ng-if="sendNewPushNotification.browserPreviewTab === 'Safari'">
+        <div class="preview-image-safari">
+            <i class="fa {{sendNewPushNotification.notification.logo}}" ng-if="sendNewPushNotification.notification.logo != ''"></i>
+            <img class="img-responsive" ngf-src="sendNewPushNotification.notification.image" alt="" ng-if="sendNewPushNotification.notification.logo == ''"/>
+        </div>
+        <div class="preview-content-safari">
+            <span>{{ sendNewPushNotification.notification.title || ''}}</span>
+            <span>{{ sendNewPushNotification.notification.message || ''}}</span>
+        </div>
+    </div>
+    <div class="text-center">
+        <button class="btn custom-modal-btn modal-blue-btn" type="button" ng-click="sendNewPushNotification.send()" ng-disabled="engagetoApp.isLoading || sendNewPushNotification.isSend">
+            <span ng-if="!sendNewPushNotification.scheduleOrSend.isScheduleNotificationRequired">Send</span>
+            <span ng-if="sendNewPushNotification.scheduleOrSend.isScheduleNotificationRequired"><span ng-if="sendNewPushNotification.notification.type === 'schedule'">Re-</span>Schedule</span>
+            <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+        </button>
+        <button class="btn custom-modal-btn modal-grey-btn" type="button" ng-click="sendNewPushNotification.modify()">Modify</button>
+    </div>
+</div>

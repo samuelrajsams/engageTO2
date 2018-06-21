@@ -1,0 +1,691 @@
+/* 
+    Created on : Sep 2, 2016, 3:59:12 PM
+    Author     : ahextech
+*/
+@import "variable.scss";
+@import "mixin.scss";
+@import "common.scss";
+
+/* Styles for index page starts here */
+.custom-header{
+    margin  : 0 0 50px;
+    position: relative;
+    @include font($dark-blue-1, 30px, $roboto-regular);
+    &:after{
+        left            : 50%;
+        width           : 40px;
+        bottom          : -10px;
+        height          : 2px;
+        content         : "";
+        position        : absolute;
+        background-color: $blue;
+        @include translate(-50%, -50%);
+    }
+}
+.banner-area{   
+    width              : 100%;
+    height             : 95vh;
+    display            : table;
+    position           : relative;
+    background-color   : #137edb;
+    background-image   : url('/app/assets/images/banner-area-image.png'), -moz-linear-gradient(289deg, #28b6ff, #004abb);
+    background-image   : url('/app/assets/images/banner-area-image.png'), -o-linear-gradient(289deg, #28b6ff, #004abb);
+    background-image   : url('/app/assets/images/banner-area-image.png'), -webkit-linear-gradient(289deg, #28b6ff, #004abb);
+    background-image   : url('/app/assets/images/banner-area-image.png'), linear-gradient(289deg, #28b6ff, #004abb);
+    background-repeat  : no-repeat;
+    background-position: center;
+    /*    background     : url('/app/assets/images/banner-image.jpg') no-repeat;
+        background-size: cover;*/
+    @include transition(all 0.5s ease-in);
+    .container{
+        height : 100%;
+        display: table;
+        .row{
+            display       : table-cell;
+            vertical-align: middle;
+        }
+    }
+    .banner-area-content-wrapper{
+        .banner-head{
+            margin: 0 0 40px;
+            @include font($white, 45px, $roboto-medium);
+        }
+        p{
+            color        : $white;  
+            font-size    : 20px;
+            font-family  : $roboto-light;
+        }
+        .btn-free-trial{
+            border    : 2px solid $white;
+            height    : 45px;
+            display   : inline-block;
+            margin-top: 30px;
+            @include border-radius(5px);
+            @include button(100%, 190px, $white);
+            @include font($blue, 16px, $roboto-regular);
+            @include transition(all 0.5s ease-in-out);
+            &:focus, &:hover{
+                color           : $white;
+                background-color: transparent
+            }
+        }
+        .btn-notification-generator{
+            border : 2px solid $white;
+            height : 45px;
+            margin : 30px 0 0 10px;
+            display: inline-block;
+            @include border-radius(5px);
+            @include button(100%, 205px, transparent);
+            @include font($white, 16px, $roboto-regular);
+            @include transition(0.5s all ease-in-out);
+            &:hover, &:focus, &:active{
+                color           : $blue;
+                background-color: $white;
+            }
+        }
+    }
+}
+.benefit-area{
+    height    : auto;
+    padding   : 50px 0;
+    max-width: 900px;
+    margin   : 0 auto;
+    img{
+        margin   : 0 auto;
+        display  : block;
+        width    : 100%; 
+    }
+    /*    min-height: 800px;
+        .benefit-area-content-wrapper{
+            min-height: 150px;
+            .benefit-area-content-head{
+                @include font($dark-green, 22px, $roboto-regular);
+            }
+            .benefit-area-content-text{
+                @include font($green-4, 16px, $roboto-regular);
+            }
+        }*/
+}
+.features-wrapper{
+    padding         : 50px 0;
+    background-color: #f2f7f9;
+    img{
+        margin   : 0 auto 15px;
+        max-width: 55px;
+    }
+    h5{
+        margin-bottom : 15px;
+        letter-spacing: 1px;
+        @include font($blue, 16px, $roboto-regular);
+    }
+    p{
+        margin        : 0 0 60px;
+        @include font($grey-1, 16px, $roboto-light);
+    }
+    .btn-more-features{
+        border : 1px solid $blue;
+        height : 45px;
+        margin : 0 auto;
+        display: block;
+        padding: 11px;
+        @include border-radius(5px);
+        @include button(100%, 120px, transparent);
+        @include font($blue, 14px, $roboto-regular);
+        @include transition(all 0.5s ease-in-out);
+        &:focus, &:hover{
+            color           : $white;
+            background-color: $blue;
+        }
+    }
+}
+.pricing-container{
+    padding: 50px 0;
+    .price-switch-wrapper{
+        height: 30px;
+        margin: 0 auto 50px;
+        .switch{
+            margin: 0 15px;
+        }
+    }
+    .custom-price-category{
+        width     : 100%;
+        border    : 1px solid #f1f1f1;
+        margin    : 20px auto;
+        padding   : 30px;
+        max-width : 350px;
+        min-height: 550px;
+        &:hover{
+            @include box-shadow(2px 2px 10px -3px);
+        }
+        &.startup-category{
+            .per-month-text{
+                margin-bottom: 20px;
+            }
+            .btn-price-category{
+                margin: 219px auto 0;
+            }
+        }
+        &.premium-category{
+            padding   : 10px 30px 30px;
+            border-top: 2px solid $light-green;
+            .price-category-head{
+                margin-bottom: 2px;
+            }
+            small{
+                @include font($light-green, 13px, $roboto-light);
+            }
+        }
+        &.expertise-category{
+            .btn-price-category{
+                margin: 23px auto 0;
+            }
+        }
+        .price-category-head{
+            letter-spacing: 1px;
+            @include font($black-1, 22px, $roboto-regular);
+        }
+        .price-amount{
+            margin: 25px 0 0;
+            @include font($blue, 32px, $roboto-light);
+        }
+        .per-month-text{
+            display: block;
+            @include font($black-1, 12px, $roboto-light);
+        }
+        .rzslider{
+            margin: 50px 0 20px;
+            .rz-bar-wrapper{
+                .rz-bar{
+                    height    : 4px;
+                    background: $light-grey;
+                    @include border-radius(2px);
+                    &.rz-selection{
+                        background: $blue;
+                        @include border-radius(0);
+                    }
+                }
+            }
+            .rz-pointer{
+                top             : -6px;
+                width           : 16px;
+                height          : 16px;
+                background-color: $blue;
+                &:hover{
+                    &:after{
+                        background: transparent;
+                    }
+                }
+                &:after{
+                    background: transparent;
+                }
+            }
+            .rz-bubble{
+                @include font($dark-blue-1, 17px, $roboto-regular);
+                &.rz-limit{
+                    display: none;
+                }
+            }
+            .rz-ticks{
+                .rz-tick{
+                    top       : 0;
+                    width     : 1.5px;
+                    height    : 10px;
+                    background: $grey-light-80;
+                    @include border-radius(0);
+                    &.rz-selected{
+                        background: $blue;
+                    }
+                    .rz-tick-value{
+                        @include font($blue, 14px, $roboto-light);
+                    }
+                }
+            }
+        }
+        .subscribers-text{
+            @include font($blue, 14px, $roboto-light);
+        }
+        .category-content{
+            margin: 15px 0 0;
+            @include font($black-1, 14px, $roboto-light);
+        }
+        .btn-price-category{
+            margin    : 20px auto 0;
+            display   : block;
+            min-height: 40px;
+            @include button(100%, 150px, $blue-light-20);
+            @include font($white, 13px, $roboto-regular);
+            @include transition(all 0.5s ease-in-out);
+            &:focus, &:hover{
+                background-color: $blue;
+            }
+        }
+    }
+}
+.count-container{
+    padding         : 50px 0;
+    background-color: $dark-blue-2;
+    h3{
+        margin    : 0 0 30px;
+        text-align: center;
+        @include font($green-4, 30px, $roboto-bold);
+    }
+    p{
+        margin    : 0;
+        text-align: center;
+        @include font($white, 20px, $roboto-regular);
+    }
+}
+.faq-wrapper{
+    padding         : 50px 0;
+    background-color: #f2f7f9;
+    .faq-category-head{
+        margin-top: 0;
+        @include font($dark-blue-1, 28px, $roboto-regular);
+    }
+    .panel{
+        margin          : 25px 15px;
+        overflow        : hidden;
+        background-color: $light-grey-1;
+        @include border-radius(8px);
+        &.panel-default{
+            border-color: $blue;
+        }
+        .panel-heading{
+            padding         : 0;
+            background-color: $light-grey-1;
+            .panel-title{
+                a{
+                    cursor         : pointer;
+                    display        : block;
+                    padding        : 15px 45px 15px 15px;
+                    line-height    : 24px;
+                    text-decoration: none;
+                    position: relative;
+                    @include font($blue, 15px, $roboto-regular);
+                    span{
+                        i{
+                            top: 20px;
+                            right: 15px;
+                            position: absolute;
+                            &.glyphicon{
+                                @include transition(all 0.5s ease-in-out);
+                                &.faq-arrow-right{
+                                    &:before{
+                                        content: "\e080";
+                                    }
+                                }
+                                &.faq-arrow-down{
+                                    transform: rotate(90deg);
+                                    &:before{
+                                        content: "\e080";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .panel-collapse{
+                .panel-body{
+                    padding     : 15px 30px;
+                    text-align  : justify;
+                    border-color: $blue;
+                    @include font($black-1, 15px, $roboto-light);
+                }
+            }
+        }
+    }
+    .btn-more-faq{
+        border : 1px solid $blue;
+        height : 45px;
+        margin : 0 auto;
+        display: block;
+        padding: 11px;
+        @include border-radius(5px);
+        @include button(100%, 120px, transparent);
+        @include font($blue, 14px, $roboto-regular);
+        @include transition(all 0.5s ease-in-out);
+        &:focus, &:hover{
+            color           : $white;
+            background-color: $blue;
+        }
+    }
+}
+
+/* Media Queries Starts Here */
+@media(min-width: 992px){
+    .banner-area{
+        .banner-head{
+            font-size: 34px;
+        }
+    }
+    /*    .benefit-area{
+            background: url('/app/assets/images/monitor-image.jpg') no-repeat center;
+        }*/
+}
+@media(min-width: 992px) and (max-width: 1199px){
+    .features-wrapper{
+        .features-carousel{
+            .bx-wrapper{
+                .bx-viewport{
+                    .slider1{
+                        .slide{
+                            h3{
+                                line-height: 25px;
+                                &.easy-setup{
+                                    width : 110px;
+                                    margin: 50px auto 70px;
+                                }
+                            }
+                        }
+                    }
+                }
+                .bx-controls{
+                    .bx-controls-direction{
+                        a{
+                            top      : 110px;
+                            font-size: 70px;
+                            &.bx-prev{
+                                left: 0;
+                            }
+                            &.bx-next{
+                                right: -5px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(min-width: 768px) and (max-width: 991px){
+    .benefit-area, .features-wrapper, .pricing-container, 
+    .count-container{
+        padding: 30px 0;
+        .benefit-area-head, .feature-head, 
+        .pricing-head{
+            margin   : 0 0 30px; 
+            font-size: 28px;
+        } 
+    }
+    .banner-area{
+        .banner-area-content-wrapper{
+            text-align: center;
+        }
+    }
+    .benefit-area{
+        background: url('/app/assets/images/monitor-image-xs.jpg') no-repeat center;
+        min-height: 760px;
+        .benefit-area-content-wrapper{
+            min-height: 140px;
+        }
+    }
+    .features-wrapper{
+        .features-carousel{
+            .bx-wrapper{
+                .bx-viewport{
+                    .slider1{
+                        .slide{
+                            h3{
+                                margin   : 50px 0;
+                                font-size: 17px;
+                            }
+                        }
+                    }
+                }
+                .bx-controls{
+                    .bx-controls-direction{
+                        a{
+                            &.bx-prev{
+                                left: -10px;
+                            }
+                            &.bx-next{
+                                right: 10px;
+                            }
+                            top      : 105px;
+                            width    : 0;
+                            height   : 0;
+                            font-size: 55px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .pricing-container{
+        .pricing-categories-container{
+            .price-category{
+                width  : 220px;
+                padding: 10px;
+                &.startup-category{
+                    span{
+                        margin: 95px 0 20px;
+                    }
+                }
+                &.expertise-category{
+                    span{
+                        margin: 70px 0 20px;
+                    }
+                }
+                h4{
+                    font-size: 16px;
+                }
+                p{
+                    font-size: 14px;
+                }
+                span{
+                    font-size: 18px;
+                }
+                button{
+                    font-size: 14px;
+                    max-width: 160px;
+                }
+            }
+        }
+    }
+    .count-container{
+        h3{
+            font-size: 26px;
+        }
+        p{
+            font-size: 18px;
+        }
+    }
+}
+@media(min-width: 481px) and (max-width: 767px){
+    .benefit-area{
+        background: url('/app/assets/images/monitor-image-xs.jpg') no-repeat center center / 700px;
+        min-height: 520px;
+        .benefit-area-content-wrapper{
+            .benefit-area-content-head{
+                font-size: 18px;
+            }
+            .benefit-area-content-text{
+                font-size: 15px;
+            }
+        }
+    }
+    .pricing-container{
+        .pricing-categories-container{
+            .price-category{
+                width    : auto;
+                margin   : 0 auto;
+                max-width: 380px;
+            }
+        }
+    }
+}
+@media(min-width: 320px) and (max-width: 480px){
+    .banner-area{
+        .banner-area-content-wrapper{
+            .btn-free-trial, .btn-notification-generator{
+                margin : 30px auto 0;
+                display: block;
+            }
+        }
+    }
+    .benefit-area{
+        background: url('/app/assets/images/monitor-image-xs.jpg') no-repeat center center / 900px;
+        .col-xxs-12{
+            width: 100%;
+        }
+    }
+    .features-wrapper{
+        .features-carousel{
+            .bx-wrapper{
+                .bx-controls{
+                    .bx-controls-direction{
+                        a{
+                            top: 90px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .pricing-container{
+        .pricing-option-form{
+            .radio-inline{
+                display: block;
+                & +.radio-inline{
+                    margin-left: 0; 
+                }
+                &.or-text{
+                    padding: 10px 0;
+                }
+            }
+        }
+    }
+    .count-container{
+        .col-xxs-12{
+            width: 100%;
+            &:nth-of-type(2), &:last-of-type{
+                margin-top: 20px;
+            }
+        }
+    }
+}
+@media(min-width: 320px) and (max-width: 767px){
+    .banner-area{
+        background-position: 75% center;
+        .banner-area-content-wrapper{
+            text-align : center;
+            .banner-head{
+                font-size: 25px;
+            }
+        }
+    }
+    .benefit-area, .features-wrapper, .pricing-container, 
+    .count-container{
+        padding: 30px 0;
+        .benefit-area-head, .feature-head, 
+        .pricing-head{
+            margin   : 0 0 25px; 
+            font-size: 25px;
+        } 
+    }
+    .benefit-area{
+        .benefit-area-content-wrapper{
+            min-height: 120px;
+        }
+    }
+    .features-wrapper{
+        .features-carousel{
+            .bx-wrapper{
+                margin-bottom: 20px;
+                .bx-viewport{
+                    .slider1{
+                        .slide{
+                            img{
+                                max-width: 50px;
+                            }
+                            h3{
+                                margin     : 20px 0;
+                                font-size  : 16px;
+                                line-height: 30px;
+                                &.easy-setup{
+                                    width : 55px;
+                                    margin: 20px auto;
+                                }
+                                &.http-https{
+                                    width : 115px;
+                                    margin: 20px auto;
+                                }
+                            }
+                            p{
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
+                .bx-controls{
+                    .bx-controls-direction{
+                        a{
+                            top      : 80px;
+                            width    : 0;
+                            height   : 0;
+                            font-size: 45px;
+                            &.bx-prev{
+                                left: -10px;
+                            }
+                            &.bx-next{
+                                right: 10px;
+                            }
+                        }
+                    }
+                    .bx-pager{
+                        bottom: -20px;
+                        &.bx-default-pager{
+                            .bx-pager-item{
+                                a{
+                                    width: 25px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .pricing-container{
+        .pricing-categories-container{
+            @include box-shadow(none);
+            .price-category{
+                @include box-shadow(2px 2px 10px -3px);
+                &.startup-category{
+                    padding: 15px;
+                    span{
+                        margin: 50px 0 30px;
+                    }
+                }
+                &.premium-category, &.expertise-category{
+                    padding     : 15px;
+                    margin-top  : 30px;
+                    border-color: transparent;
+                    span{
+                        margin: 50px 0 30px;
+                    }
+                }
+            }
+        }
+    }
+    .count-container{
+        h3{
+            margin   : 0 0 10px;
+            font-size: 20px;
+        }
+        p{
+            font-size: 15px;
+        }
+    }
+    .footer{
+        a{
+            img{
+                margin: 0 auto 15px;
+            }
+        }
+    }
+}
+/* Media Queries Ends Here */
+
+/* Styles for index page ends here */

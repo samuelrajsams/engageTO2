@@ -1,0 +1,19 @@
+<div class="login-module-container">
+    <a class="engageto-logo" href ui-sref="landing">
+        <img class="img-responsive" src="app/assets/images/logo-white.png" alt=""/>
+    </a>
+    <div class="login-module-wrapper">
+        <h3 class="text-center login-module-header">Resend activation link</h3>
+        <form class="login-module-form" name="resendMailModalForm" ng-submit="requestNewLink()">
+            <div class="form-group">
+                <input type="email" class="form-control" name="email" ng-model="resetMail.email" placeholder="Enter your email" ng-class="{ 'error-field': resendMailModalForm.email.$touched && resendMailModalForm.email.$invalid && visitedEmail}" ng-blur="visitedEmail = true" ng-focus="visitedEmail = false" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required/>
+                <span class="error" ng-show="!resendMailModalForm.email.$error.required && resendMailModalForm.email.$error.pattern && visitedEmail">Enter valid email address.</span>
+            </div>
+            <button type="submit" class="btn btn-login-module btn-re-send" ng-disabled="resendMailModalForm.$invalid || engagetoApp.isLoading">Re-send activation link
+                <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+            </button>
+        </form>
+        <a href ui-sref="forgotPasswordRequest" class="bottom-left-text">Forgot password?</a>
+        <a href ui-sref="signin" class="bottom-right-text signin-link">Sign In</a>
+    </div>
+</div>

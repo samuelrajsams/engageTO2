@@ -1,0 +1,48 @@
+<div class="modal-header custom-modal-header">
+    <h3 class="modal-title">Member / All Member Activity
+        <a class="fa fa-times custom-close" href="" ng-click="memberActivityTeamManagement.cancel()"></a>
+    </h3>
+</div>
+<div class="modal-body custom-modal-body clearfix">
+    <form class="search-by-date-form">
+        <span>Select Date <i class="fa fa-question-circle" aria-hidden="true"></i></span>
+        <label>From</label>
+        <input type="text" id="fromdatetimepicker" class="form-control"/>
+        <a class="fa fa-calendar from-date-icon" aria-hidden="true" ng-click="memberActivityTeamManagement.openFromDate()"></a>
+        <label>To</label>
+        <input type="text" id="todatetimepicker" class="form-control"/>
+        <a class="fa fa-calendar to-date-icon" aria-hidden="true" ng-click="memberActivityTeamManagement.openToDate()"></a>
+        <button type="button" class="btn settings-custom-btn btn-go">Go</button>
+    </form>
+    <form class="custom-website-form form-inline clearfix">
+        <div class="form-group">
+            <input type="text" class="form-control" id="searchByTeamMembers" name="searchByTeamMembers" ng-model="memberActivityTeamManagement.memberActivity.searchByTeamMembers" uib-typeahead="teamMember for teamMember in memberActivityTeamManagement.teamMembersList" placeholder="Search by team members"/>
+            <button type="button" class="btn btn-search-activity">
+                <i class="fa fa-search" aria-hidden="true"></i> Search
+            </button>
+        </div>
+    </form>
+    <div class="activity-container">
+        <div class="activity-wrapper">
+            <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+            <p class="activity-name">Domain Inautus.com Added by Mahadev.</p>
+            <p class="activity-date">10 Oct 2016 11:30 A.M.</p>
+        </div>
+        <div class="activity-wrapper">
+            <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+            <p class="activity-name">Sreedhar scheduled Push Notification for Dmadept.</p>
+            <p class="activity-date">10 Oct 2016 11:30 A.M.</p>
+        </div>
+        <div class="activity-wrapper">
+            <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+            <p class="activity-name">Mahadev started "Follow Up" Push Journey.</p>
+            <p class="activity-date">10 Oct 2016 11:30 A.M.</p>
+        </div>
+        <div class="activity-wrapper">
+            <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+            <p class="activity-name">Mahadev Added Sreedhar as a Team Member.</p>
+            <p class="activity-date">10 Oct 2016 11:30 A.M.</p>
+        </div>
+    </div>
+    <button type="button" ng-click="teamManagement.assignTeamManagementModal()" class="btn btn-custom btn-past-activity">Past Activity</button>
+</div>

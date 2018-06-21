@@ -1,0 +1,218 @@
+<!--<div class="pricing-container">
+    <div class="container">
+        <h3 class="custom-header text-center">Pricing</h3>
+        <p class="text-center">Pays for itself with one saved invoice</p>
+        <div class="row" id="pricing-tab-index">
+            <div class="col-xs-12">
+                <div class="price-switch-wrapper">
+                    <span>Billed Monthly</span>
+                    <div class="switch">
+                        <input id="pricing-landing" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="pricing.plan.planSlab" ng-true-value="'Yearly'" ng-false-value="'Monthly'" ng-change='pricing.changePlanSlab()'>
+                        <label for="pricing-landing"></label>
+                    </div>
+                    <span>Billed Annually <small>(Save 20%)</small></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="custom-price-category text-center startup-category">
+                    <h4 class="price-category-head">Startup</h4>
+                    <p class="price-amount">Free</p>
+                    <span class="per-month-text">per month</span>
+                    <p class="category-content">Send unlimited notifications</p>
+                    <p class="category-content">HTTP + HTTPS support</p>
+                    <p class="category-content">One click subscribe</p>
+                    <button class="btn btn-price-category" ng-click="pricing.selectedPlan('Free')">Start Free Trial</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="custom-price-category text-center startup-category">
+                    <h4 class="price-category-head">Startup</h4>
+                    <p class="price-amount">Free</p>
+                    <span class="per-month-text">per month</span>
+                    <p class="category-content">Send unlimited notifications</p>
+                    <p class="category-content">HTTP + HTTPS support</p>
+                    <p class="category-content">One click subscribe</p>
+                    <button class="btn btn-price-category" ng-click="pricing.selectedPlan('Free')">Start Free Trial</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="custom-price-category text-center startup-category">
+                    <h4 class="price-category-head">Startup</h4>
+                    <p class="price-amount">Free</p>
+                    <span class="per-month-text">per month</span>
+                    <p class="category-content">Send unlimited notifications</p>
+                    <p class="category-content">HTTP + HTTPS support</p>
+                    <p class="category-content">One click subscribe</p>
+                    <button class="btn btn-price-category" ng-click="pricing.selectedPlan('Free')">Start Free Trial</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="custom-price-category text-center premium-category">
+                    <h4 class="price-category-head">Premium</h4>
+                    <small>More Popular</small>
+                    <p class="price-amount">$
+                        <span class="odometer" id="odometer-slider1"></span>
+                    </p>
+                    <span class="per-month-text">per {{pricing.plan.planSlab}}</span>
+                    <rzslider rz-slider-model="pricing.slider1.value" rz-slider-options="pricing.slider1.options"></rzslider>
+                    <span class="subscribers-text">SUBSCRIBERS</span>
+                    <p class="category-content">Send unlimited notifications</p>
+                    <p class="category-content">HTTP + HTTPS support</p>
+                    <p class="category-content">One click subscribe</p>
+                    <p class="category-content">RSS-to-push</p>
+                    <p class="category-content">Segmentation</p>
+                    <p class="category-content">{{pricing.plan.noOfPremiumAPICalls}} API access</p>
+                    <button class="btn btn-price-category" ng-click="pricing.selectedPlan('Premium')">Start Free Trial</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="custom-price-category text-center">
+                    <h4 class="price-category-head">Expertise</h4>                    
+                    <p class="price-amount">$
+                        <span class="odometer-slider" id="odometer-slider2"></span>
+                    </p>
+                    <span class="per-month-text">per {{pricing.plan.planSlab}}</span>
+                    <rzslider rz-slider-model="pricing.slider2.value" rz-slider-options="pricing.slider2.options"></rzslider>
+                    <span class="subscribers-text">SUBSCRIBERS</span>
+                    <p class="category-content">Custom branding</p>
+                    <p class="category-content">Import/export data</p>
+                    <p class="category-content">HTTP + HTTPS support</p>
+                    <p class="category-content">One click subscribe</p>
+                    <p class="category-content">Custom sub domain</p>
+                    <p class="category-content">{{pricing.plan.noOfExpertiseAPICalls}} API access</p>
+                    <button class="btn btn-price-category" ng-click="pricing.selectingPlan('Expertise')">Start Free Trial</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<div class="modal-header custom-modal-header">
+    <h3 class="modal-title">Upgrade Account
+        <a class="fa fa-times custom-close" href="" ng-click="pricing.close()"></a>
+    </h3>
+</div>
+<div class="modal-body custom-modal-body">
+    <uib-tabset class="package-wrapper" active="pricing.activeTab" justified="true">
+        <uib-tab index="0" heading="Premium">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <h3>What's Included</h3>
+                        <ul>
+                            <li>Send unlimited notifications</li>
+                            <li>HTTP + HTTPS support</li>
+                            <li>One click subscribe</li>
+                            <li>RSS-to-push</li>
+                            <li>Segmentation</li>
+                            <li>{{pricing.premium.noOfPremiumAPICalls}} API access</li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="price-switch-wrapper">
+                            <span>Billed Monthly</span>
+                            <div class="switch">
+                                <input id="pricing-landing" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="pricing.premium.planSlab" ng-true-value="'Yearly'" ng-false-value="'Monthly'" ng-change='pricing.changePlanSlab()'>
+                                <label for="pricing-landing"></label>
+                            </div>
+                            <span>Billed Annually <small>(Save 20%)</small></span>
+                        </div>
+                        <!--<h3 class="package-price">$19</h3>-->
+                        <h3 class="package-price" style="display: inline-block;">$</h3><pricing-value-text></pricing-value-text>
+                        <div class="form-group">
+                            <select class="form-control" ng-model="pricing.premium.noOfSubscribers" ng-change="pricing.changePlanSlab()">
+                                <option value="5000">5000</option>
+                                <option value="10000">10000</option>
+                                <option value="25000">25000</option>
+                                <option value="50000">50000</option>
+                                <option value="100000">100000</option>
+                            </select>
+                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-custom-primary" ng-click="pricing.selectedPlan('Premium')">Purchase Plan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab index="1" heading="Expertise" select="pricing.onChangeTab()">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <h3>What's Included</h3>
+                        <ul>
+                            <li>HTTP + HTTPS support</li>
+                            <li>One click subscribe</li>
+                            <li>Custom Branding</li>
+                            <li>Custom sub domain</li>
+                            <li>Import/export data</li>
+                            <li>{{pricing.expertise.noOfPremiumAPICalls}} API access</li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="price-switch-wrapper">
+                            <span>Billed Monthly</span>
+                            <div class="switch">
+                                <input id="pricing-landing-2" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="pricing.expertise.planSlab" ng-true-value="'Yearly'" ng-false-value="'Monthly'" ng-change='pricing.changePlanSlab()'>
+                                <label for="pricing-landing-2"></label>
+                            </div>
+                            <span>Billed Annually <small>(Save 20%)</small></span>
+                        </div>
+                        <h3 class="package-price" style="display: inline-block;">$</h3><h3 class="package-price expertise-price"></h3>
+                        <div class="form-group">
+                            <select class="form-control" ng-model="pricing.expertise.noOfSubscribers" ng-change="pricing.changePlanSlab()">
+                                <option value="5000">5000</option>
+                                <option value="10000">10000</option>
+                                <option value="25000">25000</option>
+                                <option value="50000">50000</option>
+                                <option value="100000">100000</option>
+                            </select>
+                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-custom-primary" ng-click="pricing.selectedPlan('Expertise')">Purchase Plan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab index="2" heading="Enterprise">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <h3>What's Included</h3>
+                        <ul class="">
+                            <li>Unlimited Websites</li>
+                            <li>Unlimited Users</li>
+                            <li>... and much more!</li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <form class="exterprise-contact-form" name="enterpriseForm" novalidate>
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" id="name" name="name" class="form-control" ng-class="{'error-field': enterpriseForm.name.$touched && enterpriseForm.name.$error.required && visitedName}" ng-blur="visitedName = true" ng-focus="visitedName = false" ng-model="pricing.enterprise.name" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" class="form-control" ng-class="{ 'error-field': ((enterpriseForm.email.$touched && enterpriseForm.email.$error.required) || enterpriseForm.email.$invalid) && visitedEmail}" ng-blur="visitedEmail = true" ng-focus="visitedEmail = false" ng-model="pricing.enterprise.email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required/>
+                                <span class="error" ng-show="!enterpriseForm.email.$error.required && enterpriseForm.email.$error.pattern && visitedEmail">Enter valid email address.</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneNumber">Phone Number:</label>
+                                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" ng-class="{'error-field': enterpriseForm.phoneNumber.$touched && enterpriseForm.phoneNumber.$error.required && visitedMobile}" ng-blur="visitedMobile = true" ng-focus="visitedMobile = false" ng-model="pricing.enterprise.mobile" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message:</label>
+                                <textarea class="form-control" ng-class="{'error-field': enterpriseForm.message.$touched && enterpriseForm.message.$error.required && visitedMessage}" ng-blur="visitedMessage = true" ng-focus="visitedMessage = false" id="message" name="message" rows="10" cols="10" ng-model="pricing.enterprise.message" required></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button class="btn btn-custom-primary" ng-disabled="enterpriseForm.$invalid" ng-click="pricing.onFormSubmit()">Contact Us</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </uib-tab>
+    </uib-tabset>
+</div>

@@ -1,0 +1,14 @@
+<div class="modal-header custom-modal-header">
+    <h3 class="modal-title">Delete {{website.add_website.domain_address}}
+        <a class="fa fa-times custom-close" href="" ng-click="website.close()"></a>
+    </h3>
+</div>
+<div class="modal-body custom-modal-body">
+    <p class="delete-website-text">If you delete (<span>{{website.add_website.domain_address}}</span>), you will loose all your historical data, subscribers, push journeys, 
+        etc. This action can not be reversed.</p>
+    <h3 class="text-center">Are you sure?</h3>
+    <div class="delete-btn-wrapper clearfix text-center">
+        <button type="button" class="btn btn-delete-primary" ng-click="website.remove()">Yes, Delete my website</button>
+        <button type="button" class="btn btn-cancel-primary" ng-click="website.close()">No, Don't delete my website</button>
+    </div>
+</div>

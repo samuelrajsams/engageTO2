@@ -1,0 +1,65 @@
+<!--<div class="modal-body custom-push-notification-modal-body">-->
+<div class="modal-header custom-modal-header">
+    <h3 class="modal-title">Save your push notification
+        <a class="fa fa-times custom-close" href ng-click="saveNewPushNotification.close()"></a>
+    </h3>
+</div>
+<div class="modal-body custom-modal-body">
+    <form class="custom-form save-push-notification-form" name="saveNotificationForm">
+        <div class="form-group">
+            <label for="notificationName">Name of Notification
+                <i class="fa fa-question-circle" aria-hidden="true"></i>
+            </label>
+            <input type="text" class="form-control notification-name" ng-class="{'error-field' : saveNotificationForm.notificationName.$dirty && saveNotificationForm.notificationName.$error.required}" id="notificationName" name="notificationName" ng-model="saveNewPushNotification.name" required/>
+        </div>
+    </form>
+    <h3 class="modal-title text-center save-notification-head" id="modal-title">Your saved push notification</h3>
+    <div class="preview-wrapper-chrome" ng-if="saveNewPushNotification.browserPreviewTab === 'Chrome'">
+        <div class="preview-image-chrome">
+            <i class="fa {{saveNewPushNotification.notification.logo}}" ng-if="saveNewPushNotification.notification.logo != ''"></i>
+            <img class="img-responsive" ngf-src="saveNewPushNotification.notification.image" alt="" ng-if="saveNewPushNotification.notification.logo == ''"/>
+        </div>
+        <div class="preview-content-chrome">
+            <i class="fa fa-times" aria-hidden="true"></i>
+            <span>{{ saveNewPushNotification.notification.title || ''}}</span>
+            <span>{{ saveNewPushNotification.notification.message || ''}}</span>
+            <span>{{ engagetoApp.profile.subDomainName}}.engageto.com</span>
+            <i class="fa fa-cog" aria-hidden="true"></i>
+        </div>
+        <div class="cta-content">
+            <a href="http://www.{{saveNewPushNotification.advanceOptions.cta[0].url}}" class="btn btn-primary" target="_blank" ng-class="{'non-clickable-pointer': saveNewPushNotification.advanceOptions.cta[0].url === ''}" ng-if="saveNewPushNotification.advanceOptions.cta[0].url !== '' || saveNewPushNotification.advanceOptions.cta[0].text !== ''">{{saveNewPushNotification.advanceOptions.cta[0].text}}</a>
+            <a href="http://www.{{saveNewPushNotification.advanceOptions.cta[1].url}}" target="_blank" class="btn btn-primary" ng-class="{'non-clickable-pointer': saveNewPushNotification.advanceOptions.cta[1].url === ''}" ng-if="(saveNewPushNotification.advanceOptions.cta[1].url !== '' || saveNewPushNotification.advanceOptions.cta[1].text !== '') && saveNewPushNotification.advanceOptions.cta.length === 2">{{saveNewPushNotification.advanceOptions.cta[1].text}}</a>
+        </div>
+    </div>
+    <div class="preview-wrapper-firefox" ng-if="saveNewPushNotification.browserPreviewTab === 'Firefox'">
+        <div class="firefox-logo">
+            <img class="img-responsive" src="app/assets/images/firefox-logo.png"/>
+        </div>
+        <div class="preview-content-firefox">
+            <span>{{ saveNewPushNotification.notification.title || ''}}</span>
+            <span>{{ saveNewPushNotification.notification.message || ''}}</span>
+            <span>{{ engagetoApp.profile.subDomainName}}.engageto.com</span>
+        </div>
+        <div class="preview-image-firefox">
+            <i class="fa {{saveNewPushNotification.notification.logo}}" ng-if="saveNewPushNotification.notification.logo != ''"></i>
+            <img class="img-responsive" ngf-src="saveNewPushNotification.notification.image" alt="" ng-if="saveNewPushNotification.notification.logo == ''"/>
+        </div>
+    </div>
+    <div class="preview-wrapper-safari" ng-if="saveNewPushNotification.browserPreviewTab === 'Safari'">
+        <div class="preview-image-safari">
+            <i class="fa {{saveNewPushNotification.notification.logo}}" ng-if="saveNewPushNotification.notification.logo != ''"></i>
+            <img class="img-responsive" ngf-src="saveNewPushNotification.notification.image" alt="" ng-if="saveNewPushNotification.notification.logo == ''"/>
+        </div>
+        <div class="preview-content-safari">
+            <span>{{ saveNewPushNotification.notification.title || ''}}</span>
+            <span>{{ saveNewPushNotification.notification.message || ''}}</span>
+        </div>
+    </div>
+    <div class="text-center">
+        <button class="btn custom-modal-btn modal-blue-btn" type="button" ng-click="saveNewPushNotification.save()" ng-disabled="saveNotificationForm.$invalid || engagetoApp.isLoading">
+            <span ng-if="saveNewPushNotification.notification.type !== 'save'">Save</span><span ng-if="saveNewPushNotification.notification.type === 'save'">Update</span>
+            <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+        </button>
+        <button class="btn custom-modal-btn modal-grey-btn" type="button" ng-click="saveNewPushNotification.close()">Close</button>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="custom-banner-area text-center">
+    <h3 class="custom-head">Frequently Asked Questions</h3>
+</div>
+<div class="faq-wrapper">
+    <div class="container">
+        <uib-accordion class="faq-list" close-others="faq.oneAtTime" ng-repeat="query in faq.queries">
+            <h4 class="faq-category-head text-center">{{query.title}}</h4>
+            <div uib-accordion-group class="panel-default" is-open="group.isOpen" ng-repeat="group in query.group">
+                <uib-accordion-heading>
+                    {{group.question}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': group.isOpen, 'glyphicon-chevron-right': !group.isOpen}"></i>
+                </uib-accordion-heading>
+                {{group.answer}}
+            </div>
+        </uib-accordion>
+    </div>
+</div>

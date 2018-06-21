@@ -1,0 +1,544 @@
+<aside class="settings-sidebar expand" ng-class="{'sidebar-collapse':!settings.showSidebar,'expand':settings.showSidebar}">
+    <button type="button" class="btn btn-collapse" ng-click="settings.sidebarExpandCollapse()">
+        <i class="fa fa-chevron-circle-left settings-option-icon" aria-hidden="true"></i>
+    </button>
+    <uib-tabset class="settings-options-list" active="activeJustified" justified="true">
+        <uib-tab class="settings-options" index="0">
+            <uib-tab-heading>
+                <i class="fa fa-envelope settings-option-icon" aria-hidden="true"></i>
+            </uib-tab-heading>
+            <div class="permission-box-container clearfix">
+                <h3 class="settings-option-head">Permission Box</h3>
+                <div class="permission-box-content" style="display: none">
+                    <span>Select Device <i class="fa fa-question-circle" aria-hidden="true"></i></span>
+                    <div class="btn-group btn-custom-group">
+                        <label class="btn push-btn" ng-model="radioModel" uib-btn-radio="'desktop'" uncheckable>Desktop</label>
+                        <label class="btn push-btn" ng-model="radioModel" uib-btn-radio="'mobile'" uncheckable>Mobile</label>
+                    </div>
+                    <span>Is your website fully https implemented <i class="fa fa-question-circle" aria-hidden="true"></i></span>
+                    <div class="btn-group btn-custom-group">
+                        <label class="btn push-btn" ng-model="radioModel" uib-btn-radio="'no'" uncheckable>No</label>
+                        <label class="btn push-btn" ng-model="radioModel" uib-btn-radio="'yes'" uncheckable>Yes</label>
+                    </div>
+                    <ul class="permission-box-options-list">
+                        <li class="permission-box-options">
+                            <a class=""><i class="fa fa-safari" aria-hidden="true"></i>Safari Style</a>
+                        </li>
+                        <li class="permission-box-options">
+                            <a class=""><i class="fa fa-sticky-note" aria-hidden="true"></i>Sticky Scroll</a>
+                        </li>
+                        <li class="permission-box-options">
+                            <a class=""><i class="fa fa-sort" aria-hidden="true"></i>Sticky Top/Bottom</a>
+                        </li>
+                        <li class="permission-box-options">
+                            <a class=""><i class="fa fa-barcode" aria-hidden="true"></i>Top/Bottom Bar</a>
+                        </li>
+                        <li class="permission-box-options">
+                            <a class=""><i class="fa fa-bell" aria-hidden="true"></i>Bell</a>
+                        </li>
+                        <li class="permission-box-options">
+                            <a class=""><i class="fa fa-lightbulb-o" aria-hidden="true"></i>Light Box</a>
+                        </li>
+                        <li class="permission-box-options">
+                            <a class=""><i class="fa fa-lock" aria-hidden="true"></i>Native SSL(High Conversion)</a>
+                        </li>
+                        <li class="permission-box-options">
+                            <a class=""><i class="fa fa-unlock" aria-hidden="true"></i>Native Non SSL</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="permission-box-options-container">
+                    <div class="safari-wrapper" style="display: none">
+                        <h3 class="permission-options-name">
+                            <i class="fa fa-safari" aria-hidden="true"></i>Safari Style
+                        </h3>
+                        <a href="javascript:void(0);" class="btn-nav-sidebar btn-change-permission">
+                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Change Permission
+                        </a>
+                        <p class="option-text">Click on optin box at right side to customize with different text, colors, font etc.</p>
+                        <span class="settings-label">Animation <i class="fa fa-question-circle" aria-hidden="true"></i></span>
+                        <div class="animation-dropdown-wrapper">
+                            <select class="form-control animation-dropdown">
+                                <option>Rotate</option>
+                                <option>Roll In</option>
+                                <option>Flip</option>
+                                <option>Slide In</option>
+                                <option>Bounce</option>
+                                <option>Flash</option>
+                                <option>Shake</option>
+                                <option>Swing</option>
+                                <option>Pulse</option>
+                                <option>Wobble</option>
+                                <option>Tada</option>
+                                <option>Rubber</option>
+                            </select>
+                            <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="sticky-scroll-wrapper" style="display: none">
+                        <h3 class="permission-options-name">
+                            <i class="fa fa-sticky-note" aria-hidden="true"></i>Sticky Scroll
+                        </h3>
+                        <a href="javascript:void(0);" class="btn-nav-sidebar btn-change-permission">
+                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Change Permission
+                        </a>
+                        <p class="option-text">Click on optin box at right side to customize with different text, colors, font etc.</p>
+                        <span class="settings-label">Position</span>
+                        <div class="position-display"></div>
+                        <span class="settings-label">Animation <i class="fa fa-question-circle" aria-hidden="true"></i></span>
+                        <div class="animation-dropdown-wrapper">
+                            <select class="form-control animation-dropdown">
+                                <option>Rotate</option>
+                                <option>Roll In</option>
+                                <option>Flip</option>
+                                <option>Slide In</option>
+                                <option>Bounce</option>
+                                <option>Flash</option>
+                                <option>Shake</option>
+                                <option>Swing</option>
+                                <option>Pulse</option>
+                                <option>Wobble</option>
+                                <option>Tada</option>
+                                <option>Rubber</option>
+                            </select>
+                            <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="sticky-top-bottom-wrapper" style="display: none">
+                        <h3 class="permission-options-name">
+                            <i class="fa fa-sticky-note" aria-hidden="true"></i>Sticky Top/Bottom
+                        </h3>
+                        <a href="javascript:void(0);" class="btn-nav-sidebar btn-change-permission">
+                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Change Permission
+                        </a>
+                        <p class="option-text">Click on optin box at right side to customize with different text, colors, font etc.</p>
+                        <span class="settings-label">Position</span>
+                        <div class="position-display"></div>
+                        <span class="settings-label">Animation <i class="fa fa-question-circle" aria-hidden="true"></i></span>
+                        <div class="animation-dropdown-wrapper">
+                            <select class="form-control animation-dropdown">
+                                <option>Rotate</option>
+                                <option>Roll In</option>
+                                <option>Flip</option>
+                                <option>Slide In</option>
+                                <option>Bounce</option>
+                                <option>Flash</option>
+                                <option>Shake</option>
+                                <option>Swing</option>
+                                <option>Pulse</option>
+                                <option>Wobble</option>
+                                <option>Tada</option>
+                                <option>Rubber</option>
+                            </select>
+                            <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="top-bottom-bar-wrapper" style="display: none">
+                        <h3 class="permission-options-name">
+                            <i class="fa fa-barcode" aria-hidden="true"></i>Top/Bottom Bar
+                        </h3>
+                        <a href="javascript:void(0);" class="btn-nav-sidebar btn-change-permission">
+                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Change Permission
+                        </a>
+                        <p class="option-text">Click on optin box at right side to customize with different text, colors, font etc.</p>
+                        <span class="settings-label">Position</span>
+                        <div class="position-display"></div>
+                        <span class="settings-label">Animation <i class="fa fa-question-circle" aria-hidden="true"></i></span>
+                        <div class="animation-dropdown-wrapper">
+                            <select class="form-control animation-dropdown">
+                                <option>Rotate</option>
+                                <option>Roll In</option>
+                                <option>Flip</option>
+                                <option>Slide In</option>
+                                <option>Bounce</option>
+                                <option>Flash</option>
+                                <option>Shake</option>
+                                <option>Swing</option>
+                                <option>Pulse</option>
+                                <option>Wobble</option>
+                                <option>Tada</option>
+                                <option>Rubber</option>
+                            </select>
+                            <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="bell-wrapper" style="display: none">
+                        <h3 class="permission-options-name">
+                            <i class="fa fa-bell" aria-hidden="true"></i>Bell
+                        </h3>
+                        <a href="javascript:void(0);" class="btn-nav-sidebar btn-change-permission">
+                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Change Permission
+                        </a>
+                        <p class="option-text">Click on optin box at right side to customize with different text, colors, font etc.</p>
+                        <span class="settings-label">Position</span>
+                        <div class="position-display"></div>
+                        <span class="settings-label">Animation <i class="fa fa-question-circle" aria-hidden="true"></i></span>
+                        <div class="animation-dropdown-wrapper">
+                            <select class="form-control animation-dropdown">
+                                <option>Rotate</option>
+                                <option>Roll In</option>
+                                <option>Flip</option>
+                                <option>Slide In</option>
+                                <option>Bounce</option>
+                                <option>Flash</option>
+                                <option>Shake</option>
+                                <option>Swing</option>
+                                <option>Pulse</option>
+                                <option>Wobble</option>
+                                <option>Tada</option>
+                                <option>Rubber</option>
+                            </select>
+                            <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="lightbox-wrapper" style="display: none">
+                        <h3 class="permission-options-name">
+                            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>Light Box
+                        </h3>
+                        <a href="javascript:void(0);" class="btn-nav-sidebar btn-change-permission">
+                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Change Permission
+                        </a>
+                        <p class="option-text">Click on optin box at right side to customize with different text, colors, font etc.</p>
+                        <span class="settings-label">Animation <i class="fa fa-question-circle" aria-hidden="true"></i></span>
+                        <div class="animation-dropdown-wrapper">
+                            <select class="form-control animation-dropdown">
+                                <option>Rotate</option>
+                                <option>Roll In</option>
+                                <option>Flip</option>
+                                <option>Slide In</option>
+                                <option>Bounce</option>
+                                <option>Flash</option>
+                                <option>Shake</option>
+                                <option>Swing</option>
+                                <option>Pulse</option>
+                                <option>Wobble</option>
+                                <option>Tada</option>
+                                <option>Rubber</option>
+                            </select>
+                            <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="ssl-wrapper" style="display: none">
+                        <h3 class="permission-options-name">
+                            <i class="fa fa-lock" aria-hidden="true"></i>Native SSL (High Conversion)
+                        </h3>
+                        <a href="javascript:void(0);" class="btn-nav-sidebar btn-change-permission">
+                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Change Permission
+                        </a>
+                        <span class="settings-label">Preview <i class="fa fa-question-circle" aria-hidden="true"></i></span>
+                        <div class="btn-group btn-custom-group">
+                            <label class="btn push-btn" ng-model="radioModel" uib-btn-radio="'chrome'" uncheckable>Chrome</label>
+                            <label class="btn push-btn" ng-model="radioModel" uib-btn-radio="'firefox'" uncheckable>Firefox</label>
+                            <label class="btn push-btn" ng-model="radioModel" uib-btn-radio="'safari'" uncheckable>Safari</label>
+                        </div>
+                        <span class="settings-label-small">Instructions:</span>
+                        <p class="option-text">Native optin will only work if you have SSL certificate installed 
+                            on your website. If you don't have SSL, buy and install, then follow below steps:</p>
+                        <p class="option-text">
+                            1. Download .zip file by clicking on below button.
+                        </p>
+                        <p class="option-text">
+                            2. Upload this file at root folder of your website server and extract it.
+                        </p>
+                        <p class="option-text">
+                            3. Delete .zip file.
+                        </p>
+                        <button class="btn btn-download">Download <i class="fa fa-download" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="non-ssl-wrapper">
+                        <h3 class="permission-options-name">
+                            <i class="fa fa-lock" aria-hidden="true"></i>Native (Non SSL)
+                        </h3>
+                        <a href="javascript:void(0);" class="btn-nav-sidebar btn-change-permission">
+                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Change Permission
+                        </a>
+                        <span class="settings-label">Preview <i class="fa fa-question-circle" aria-hidden="true"></i></span>
+                        <div class="btn-group btn-custom-group">
+                            <label class="btn push-btn" ng-model="radioModel" uib-btn-radio="'chrome'" uncheckable>Chrome</label>
+                            <label class="btn push-btn" ng-model="radioModel" uib-btn-radio="'firefox'" uncheckable>Firefox</label>
+                            <label class="btn push-btn" ng-model="radioModel" uib-btn-radio="'safari'" uncheckable>Safari</label>
+                        </div>
+                    </div>
+                </div>
+                <a href="javascript:void(0);" class="btn-nav-sidebar btn-chicklet pull-right">
+                    <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Chicklet
+                </a>
+            </div>
+        </uib-tab>
+        <uib-tab class="settings-options" index="1">
+            <uib-tab-heading>
+                <i class="fa fa-chevron-circle-right settings-option-icon" aria-hidden="true"></i>
+            </uib-tab-heading>
+            <div class="chicklet-container clearfix">
+                <h3 class="settings-option-head">Chicklet</h3>
+                <span class="settings-label">Enable Chicklet
+                    <div class="switch">
+                        <input id="chickletSwitch" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                        <label for="chickletSwitch"></label>
+                    </div>
+                </span>
+                <p class="option-text">
+                    Click on optin box at right side to customize with different text, colors, font etc.
+                </p>
+                <span class="settings-label">
+                    Text Position <i class="fa fa-question-circle" aria-hidden="true"></i>
+                </span>
+                <div class="btn-group btn-custom-group">
+                    <label class="btn push-btn" ng-model="radioModel" uib-btn-radio="'ltr'" uncheckable>LTR</label>
+                    <label class="btn push-btn" ng-model="radioModel" uib-btn-radio="'rtl'" uncheckable>RTL</label>
+                </div>
+                <span class="settings-label">
+                    Chicklet Position <i class="fa fa-question-circle" aria-hidden="true"></i>
+                </span>
+                <div class="position-display"></div>
+                <span class="settings-label">Animation <i class="fa fa-question-circle" aria-hidden="true"></i></span>
+                <div class="animation-dropdown-wrapper">
+                    <select class="form-control animation-dropdown">
+                        <option>Rotate</option>
+                        <option>Roll In</option>
+                        <option>Flip</option>
+                        <option>Slide In</option>
+                        <option>Bounce</option>
+                        <option>Flash</option>
+                        <option>Shake</option>
+                        <option>Swing</option>
+                        <option>Pulse</option>
+                        <option>Wobble</option>
+                        <option>Tada</option>
+                        <option>Rubber</option>
+                    </select>
+                    <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+                </div>
+                <a href="javascript:void(0);" class="btn-nav-sidebar btn-permission hidden-xs">
+                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Permission Box
+                </a>
+                <a href="javascript:void(0);" class="btn-nav-sidebar btn-permission pull-left visible-xs">
+                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Permission
+                </a>
+                <a href="javascript:void(0);" class="btn-nav-sidebar btn-child-window pull-right">
+                    <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Child Window
+                </a>
+            </div>
+        </uib-tab>
+        <uib-tab class="settings-options" index="2">
+            <uib-tab-heading>
+                <i class="fa fa-check settings-option-icon" aria-hidden="true"></i>
+            </uib-tab-heading>
+            <div class="child-window-container clearfix">
+                <h3 class="settings-option-head">Child Window</h3>
+                <p class="option-text">
+                    Click on optin box at right side to customize with different text, colors, font etc.
+                </p>
+                <a href="javascript:void(0);" class="btn-nav-sidebar btn-chicklet">
+                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Chicklet
+                </a>
+                <a href="javascript:void(0);" class="btn-nav-sidebar btn-welcome-notification pull-right hidden-xs">
+                    <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Welcome Notification
+                </a>
+                <a href="javascript:void(0);" class="btn-nav-sidebar btn-welcome-notification pull-right visible-xs">
+                    <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Wel. Notification
+                </a>
+            </div>
+        </uib-tab>
+        <uib-tab class="settings-options" index="3">
+            <uib-tab-heading>
+                <i class="fa fa-thumbs-up settings-option-icon" aria-hidden="true"></i>
+            </uib-tab-heading>
+            <div class="welcome-notification-container">
+                <h3 class="settings-option-head">Welcome Notification</h3>
+                <form class="welcome-notification-form">
+                    <div class="form-group">
+                        <label for="notificationTitle" class="settings-label">Notification Title <i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                        <input type="text" class="form-control" name="notificationTitle" id="notificationTitle"/>
+                        <small>(50 Characters)</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="notificationMessage" class="settings-label">Notification Message <i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                        <textarea class="form-control" name="notificationMessage" id="notificationMessage" rows="5">
+                            
+                        </textarea>
+                        <small>(104 Characters)</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="notificationURL" class="settings-label">Notification URL <i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                        <input type="text" class="form-control" name="notificationURL" id="notificationURL"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="notificationTitle" class="settings-label">
+                            Add UTM Parameters <i class="fa fa-question-circle" aria-hidden="true"></i>
+                            <div class="switch">
+                                <input id="welcomeSwitch1" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                                <label for="welcomeSwitch1"></label>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="utmMedium" class="settings-label">UTM Medium <i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                        <input type="text" class="form-control" name="utmMedium" id="utmMedium"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="utmSource" class="settings-label">UTM Source <i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                        <input type="text" class="form-control" name="utmSource" id="utmSource"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="utmCampaign" class="settings-label">UTM Campaign <i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                        <input type="text" class="form-control" name="utmCampaign" id="utmCampaign"/>
+                        <a href="javascript:void(0);" class="fa fa-plus-circle plus-icon"></a>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-bitly">Connect with Bitly</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="notificationImage" class="settings-label">Notification Image <i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                        <ul class="list-inline notification-image">
+                            <li>
+                                <img src="app/assets/images/img.png" alt=""/>
+                            </li>
+                            <li>
+                                <a class="fa fa-plus-circle plus-icon"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <span class="settings-label">Add Call Actions(CTA) <i class="fa fa-question-circle" aria-hidden="true"></i></span>
+                    <div class="form-group">
+                        <label for="firstCTAText" class="settings-label">First CTA Text <i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                        <input type="text" class="form-control" name="firstCTAText" id="firstCTAText"/>
+                        <small>(12 Characters)</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstCTAUrl" class="settings-label">First CTA URL <i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                        <input type="text" class="form-control" name="firstCTAUrl" id="firstCTAUrl"/>
+                        <a href="javascript:void(0);" class="fa fa-plus-circle plus-icon"></a>
+                    </div>
+                    <div class="form-group">
+                        <label for="notificationTitle" class="settings-label">
+                            Add UTM Parameters <i class="fa fa-question-circle" aria-hidden="true"></i>
+                            <div class="switch">
+                                <input id="welcomeSwitch2" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                                <label for="welcomeSwitch2"></label>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-bitly">Connect with Bitly</button>
+                    </div>
+                </form>
+                <a href="javascript:void(0);" class="btn-nav-sidebar btn-child-window">
+                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Chicklet
+                </a>
+                <a href="javascript:void(0);" class="btn-nav-sidebar btn-fcm pull-right">
+                    <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>FCM & .p12
+                </a>
+            </div>
+        </uib-tab>
+        <uib-tab class="settings-options" index="4">
+            <uib-tab-heading>
+                <i class="fa fa-google settings-option-icon" aria-hidden="true"></i>
+            </uib-tab-heading>
+            <div class="fcm-container">
+                <h3 class="settings-option-head">FCM & .p12 Certificate</h3>
+                <p class="option-text">
+                    FCM(Firebase Cloud Messaging) credentials are required to collect subscribers from Chrome and 
+                    Firefox browsers. By default, we are using our FCM credentials. We strongly recommend to enter your 
+                    credentials and store subscriber date in your account. <a href="javascript:void(0);">Click Here</a> to know how to 
+                    get FCM credentials.
+                </p>
+                <form class="fcm-form">
+                    <div class="form-group">
+                        <label for="fcmSenderID" class="settings-label">FCM Sender ID <i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                        <input type="text" class="form-control" name="fcmSenderID" id="fcmSenderID"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="fcmServerKey" class="settings-label">FCM Server Key <i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                        <input type="text" class="form-control" name="fcmServerKey" id="fcmServerKey"/>
+                    </div>
+                    <p class="option-text">
+                        .p12 certificate is required to collect subscribers from safari browsers. By default, we are 
+                        using our .p12 certificate, but you can also use your own .p12 certificate. 
+                        <a href="javascript:void(0);">Click Here</a> to know how to get .p12 certificate.
+                    </p>
+                    <div class="form-group">
+                        <label for="notificationTitle" class="settings-label">
+                            Use my own .p12 certificate <i class="fa fa-question-circle" aria-hidden="true"></i>
+                            <div class="switch">
+                                <input id="fcmSwitch1" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                                <label for="fcmSwitch1"></label>
+                            </div>
+                        </label>
+                    </div>
+                    <span class="settings-label">Upload .p12 certificate <i class="fa fa-question-circle" aria-hidden="true"></i></span>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-bitly">Upload</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="certificatePassword" class="settings-label">Enter .p12 certificate password <i class="fa fa-question-circle" aria-hidden="true"></i></label>
+                        <input type="text" class="form-control" name="certificatePassword" id="certificatePassword"/>
+                    </div>
+                </form>
+                <a href="javascript:void(0);" class="btn-nav-sidebar btn-welcome-notification hidden-xs">
+                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Welcome Notification
+                </a>
+                <a href="javascript:void(0);" class="btn-nav-sidebar btn-welcome-notification pull-left visible-xs">
+                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Wel. Notification
+                </a>
+                <a href="javascript:void(0);" class="btn-nav-sidebar btn-settings pull-right">
+                    <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Settings
+                </a>
+            </div>
+        </uib-tab>
+        <uib-tab class="settings-options" index="5">
+            <uib-tab-heading>
+                <i class="fa fa-cog settings-option-icon" aria-hidden="true"></i>
+            </uib-tab-heading>
+            <div class="other-settings-container">
+                <h3 class="settings-option-head">Other Settings</h3>
+                <span class="settings-label">Enable Optin on below platforms only <i class="fa fa-question-circle" aria-hidden="true"></i></span>
+                <div class="btn-group btn-custom-group">
+                    <label class="btn push-btn" ng-model="radioModel" uib-btn-radio="'desktop'" uncheckable>Desktop</label>
+                    <label class="btn push-btn" ng-model="radioModel" uib-btn-radio="'mobile'" uncheckable>Mobile</label>
+                    <label class="btn push-btn" ng-model="radioModel" uib-btn-radio="'tablet'" uncheckable>Tablet</label>
+                    <label class="btn push-btn" ng-model="radioModel" uib-btn-radio="'all'" uncheckable>All</label>
+                </div>
+                <label for="notificationTitle" class="settings-label">
+                    One Click Unsubscribe Button <i class="fa fa-question-circle" aria-hidden="true"></i>
+                    <div class="switch">
+                        <input id="otherSettings" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                        <label for="otherSettings"></label>
+                    </div>
+                </label>
+                <div class="btn-group btn-custom-group">
+                    <label class="btn push-btn" ng-model="radioModel" uib-btn-radio="'bell'" uncheckable>Bell</label>
+                    <label class="btn push-btn" ng-model="radioModel" uib-btn-radio="'chicklet'" uncheckable>Chicklet</label>
+                </div>
+                <p class="option-text">
+                    Click on un-subscribe button at right side to customize with different text, colors, font etc.
+                </p>
+                <a href="javascript:void(0);" class="btn-nav-sidebar btn-fcm">
+                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>FCM & .p12
+                </a>
+            </div>
+        </uib-tab>
+    </uib-tabset>
+</aside>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="settings-content-wrapper" ng-class="{'content-area-collapsed':!settings.showSidebar,'content-area-expand':settings.showSidebar}">
+                <div class="settings-content-header clearfix">
+                    <ul class="list-inline device-list navbar-left">
+                        <li><a href="javascript:void(0);" class="fa fa-laptop device"></a></li>
+                        <li><a href="javascript:void(0);" class="fa fa-tablet device"></a></li>
+                        <li><a href="javascript:void(0);" class="fa fa-mobile device"></a></li>
+                    </ul>
+                    <ul class="list-inline btn-list navbar-right">
+                        <li><a href="javascript:void(0);" class="btn form-btn btn-next">Save</a></li>
+                        <li><a href class="btn form-btn btn-exit" ng-click="settings.goBack()">Exit</a></li>
+                    </ul>
+                </div>
+                <div class="content-area">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+{
+  "name": "angular-multiselect-typeahead",
+  "authors": [
+    "Derik Evangelista <kirederik@gmail.com>"
+  ],
+  "description": "A simple AngularJS directive for a multiselect typeahead",
+  "main": "./multiselect-typeahead.js",
+  "keywords": [
+    "angularjs",
+    "typeahead",
+    "multiselect",
+    "directive"
+  ],
+  "license": "MIT",
+  "homepage": "http://kirederik.github.io/multiselect",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular": "~1.4.0"
+  },
+  "_release": "1f4fd6220d",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "1f4fd6220d79668b0733814d382f9be3b3e3d991"
+  },
+  "_source": "https://github.com/kirederik/angular-multiselect-typeahead.git",
+  "_target": "*",
+  "_originalSource": "angular-multiselect-typeahead"
+}

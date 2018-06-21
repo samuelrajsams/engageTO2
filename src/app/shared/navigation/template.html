@@ -1,0 +1,167 @@
+<div class="engageto-dashboard-area">
+    <!--template html-->
+    <aside class="engageto-sidebar" ng-class="{'sidebar-collapse' : sidebarToggle, 'sidebar-expand': !sidebarToggle }">
+        <div class="relative">
+            <button type="button" class=" btn-sidebar hidden"  ng-click="engagetoApp.toggleSidebar()">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+        <ul class="sidebar-options-list">
+            <li class="sidebar-options engageto-logo">
+                <!--<a href=""><img class="logo" src="app/assets/images/logo-new-blue.png" alt=""/></a>-->
+                <a href ui-sref="landing">
+                    <img class="logo" src="app/assets/images/logo-white.png" alt=""/>
+                    <img class="logo logo-xs" src="app/assets/images/logo-xs.png" alt=""/>
+                </a>
+            </li>
+            <!--            <li class="sidebar-options new-push-notification">
+                            <a href ui-sref="side-nav-template.new-push-notification" class="btn btn-new-notification">New Push Notification</a>
+                        </li>-->
+            <li class="sidebar-options new-push-notification" ng-class="{'active': engagetoApp.setting.active === 'notification'}">
+                <a href ui-sref="side-nav-template.new-push-notification">
+                    <i class="fa fa-tachometer"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="sidebar-options new-push-notification" ng-class="{'active': engagetoApp.setting.active === 'sendNotifications'}" ng-if="engagetoApp.profile.role !== 'Analyst'">
+                <a href ui-sref="side-nav-template.send-new-push-notification">
+                    <i class="fa fa-bullhorn"></i>
+                    <span>Send Notification</span>
+                </a>
+            </li>
+            <li class="sidebar-options new-push-notification" ng-class="{'active': engagetoApp.setting.active === 'allNotifications'}">
+                <a href ui-sref="side-nav-template.all-notifications">
+                    <i class="fa fa-line-chart"></i>
+                    <span>All Push Notifications</span>
+                </a>
+            </li>
+            <li class="sidebar-options new-push-notification" ng-class="{'active': engagetoApp.setting.active === 'smartSegmentation'}" ng-if="engagetoApp.profile.role !== 'Analyst'">
+                <a href ui-sref="side-nav-template.smart-segmentation">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Smart Segmentation</span>
+                </a>
+            </li>
+            <li class="sidebar-options new-push-notification" ng-class="{'active': engagetoApp.setting.active === 'smartAutomation'}" ng-if="engagetoApp.profile.role !== 'Analyst'">
+                <a href ui-sref="side-nav-template.smart-automation">
+                    <i class="fa fa-rss"></i>
+                    <span>Smart Automation</span>
+                </a>
+            </li>
+            <li class="sidebar-options" ng-class="{'active': engagetoApp.setting.active === 'website'}" ng-if="engagetoApp.profile.role === 'Super Administrator' || engagetoApp.profile.role === 'Administrator'">
+                <!--<a href ui-sref="side-nav-template.summary">-->
+                <a href ui-sref="side-nav-template.domain-management">
+                    <i class="fa fa-globe"></i>
+                    <span>Domain Management</span>
+                </a>
+            </li>
+            <li class="sidebar-options" ng-class="{'active': engagetoApp.setting.active === 'team'}" ng-if="engagetoApp.profile.role === 'Super Administrator' || engagetoApp.profile.role === 'Administrator'">
+                <a href ui-sref="side-nav-template.team-management">
+                    <i class="fa fa-users"></i>
+                    <span>Team Management</span>
+                </a>
+            </li>
+            <li class="sidebar-options" ng-class="{'active': engagetoApp.setting.active === 'settings'}" ng-if="engagetoApp.profile.role === 'Super Administrator' || engagetoApp.profile.role === 'Administrator'">
+                <!--<a href ui-sref="settings">-->
+                <a href="javascript:void(0)" ng-click="isCollapsed = !isCollapsed">
+                    <i class="fa fa-cog"></i>
+                    <span>Settings</span>
+                    <i class="fa fa-angle-right pull-right" ng-class="{'collapse-open': isCollapsed}"></i>
+                </a>
+                <ul class="settings-sub-menu"  uib-collapse="!isCollapsed">
+                    <li class="settings-sub-menu-options">
+                        <a href ui-sref="side-nav-template.fcm-credentials">Add FCM Credentials</a>
+                    </li>
+                    <li class="settings-sub-menu-options">
+                        <a href ui-sref="side-nav-template.new-welcome-notification">Welcome Message</a>
+                    </li>
+                    <li class="settings-sub-menu-options">
+                        <a href ui-sref="side-nav-template.code-installation">Code and Implementation</a>
+                    </li>
+                    <li class="settings-sub-menu-options">
+                        <a href ui-sref="side-nav-template.get-api-key">Get API Key</a>
+                    </li>
+                    <li class="settings-sub-menu-options">
+                        <a href ui-sref="optins">Optins</a>
+                    </li>
+                    <li class="settings-sub-menu-options">
+                        <a href ui-sref="side-nav-template.sub-optins">Sub Optins</a>
+                    </li>
+                    <li class="settings-sub-menu-options">
+                        <a href ui-sref="side-nav-template.child-window">Child Window</a>
+                    </li>
+                </ul>
+            </li>
+             <li class="sidebar-options support-menu">
+                <a href ng-click="engagetoApp.openSupportModal()">
+                    <i class="fa fa-question"></i>
+                    <span>Support</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+    <div class="engageto-dashboard-content" ng-class="{'dashboard-expand' : sidebarToggle, 'dashboard-shrink': !sidebarToggle }">
+        <div class="dashboard-content-area-navbar" ng-class="{'dashboard-head-expand' : sidebarToggle, 'dashboard-head-shrink': !sidebarToggle }">
+            <ul class="nav navbar-nav navbar-left left-option-list">
+                <li class="left-options">
+                    <a class="menu-toggle" ng-click="engagetoApp.toggleSidebar()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </a>
+                </li>
+                <li class="left-options" ng-if="engagetoApp.profile.role !== 'Analyst'">
+                    <button class="btn btn-push-notification" ui-sref="side-nav-template.send-new-push-notification" uib-tooltip="Send Notification" tooltip-trigger="'mouseenter'" tooltip-placement="bottom"><span class="fa fa-envelope-o visible-xxs"></span><span class="hidden-xxs">Send Notification</span></button>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right right-option-list">
+                <li class="right-options">
+                    <select class="form-control" id="domainList" name="domainList" ng-model="engagetoApp.selectedDomainName" ng-change="engagetoApp.selectDomain(engagetoApp.selectedDomainName)">
+                        <!--<option value="Domain List" selected="selected">Domain List</option>-->
+                        <option ng-repeat="domain in engagetoApp.domainList" value="{{domain.domain_referer}}">{{domain.domain_name|| domain.domain_address}}</option>
+                        <option value="add_domain" ng-if="engagetoApp.profile.role === 'Super Administrator' || engagetoApp.profile.role === 'Administrator'">Add New</option>
+                    </select>
+                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                </li>
+                <li class="right-options" ng-click="engagetoApp.toggleSign()">
+                    <a class="user-header">
+                        <div class="short-name" ng-if="engagetoApp.profile.image === ''">{{engagetoApp.profile.initial || 'U'}}</div>
+                        <img class="img-responsive short-name" ng-src="{{engagetoApp.profile.image || ''}}" ng-if="engagetoApp.profile.image !== ''"/>
+                        <span class="username hidden-xxs">Hi, {{engagetoApp.profile.firstName|| 'User'}}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="right-sidebar user-details-hide" ng-class="{'user-details-show' : showToggle, 'user-details-hide': !showToggle }">
+            <div class="right-sidebar-container">
+                <div class="right-sidebar-title">
+                    <p>Your Account</p><i class="fa fa-times" aria-hidden="true" ng-click="engagetoApp.toggleSign()"></i>
+                </div>
+                <div class="user-details">
+                    <div class="user-profile-details">
+                        <!--<h4>Welcome</h4>-->
+                        <p>Welcome {{engagetoApp.profile.firstName|| 'User'}} {{engagetoApp.profile.lastName}}</p>
+                        <p>{{engagetoApp.profile.email}}</p>
+                        <div class="short-name" ng-if="engagetoApp.profile.image === ''">{{engagetoApp.profile.initial|| 'U'}}</div>
+                        <img class="img-responsive" ng-src="{{engagetoApp.profile.image || ''}}" ng-if="engagetoApp.profile.image !== ''"/>
+                    </div>
+                    <div class="user-account-details">
+                        <p>Current Plan: <span>{{engagetoApp.userPlan}}</span></p>
+                        <p>Notifications Sent: <span>0/1,000</span></p>
+                        <p>Subscribers Remaining: <span>900/1000</span></p>
+                    </div>
+                    <div class="user-domain-details">
+                        <p>You are on: <span>{{engagetoApp.profile.domainName}}</span></p>
+                    </div>
+                    <div class="buttons-wrapper clearfix">
+                        <a href ng-click="engagetoApp.selectDomain('add_domain')" class="btn btn-custom-primary" ng-if="engagetoApp.profile.role === 'Super Administrator' || engagetoApp.profile.role === 'Administrator'"><i class="fa fa-plus" aria-hidden="true"></i> Add Domain</a>
+                        <a href ng-click="engagetoApp.addTeamMember()" class="btn btn-custom-primary" ng-if="engagetoApp.profile.role === 'Super Administrator' || engagetoApp.profile.role === 'Administrator'"><i class="fa fa-plus" aria-hidden="true"></i> Add Member</a>
+                        <a href ng-click="engagetoApp.goToState('side-nav-template.account-settings')" class="btn btn-custom-primary"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
+                        <!--<a href ng-click="engagetoApp.changePasswordModal()" class="btn btn-right-sidebar btn-settings"><i class="fa fa-cog" aria-hidden="true"></i>Change Password</a>-->
+                        <a href ng-click="signOut()" class="btn btn-custom-primary"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ui-view=""></div>
+    </div>
+</div>

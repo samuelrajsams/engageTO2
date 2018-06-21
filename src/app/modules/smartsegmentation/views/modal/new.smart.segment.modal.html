@@ -1,0 +1,130 @@
+<div class="modal-header custom-modal-header">
+    <h3 class="modal-title">New Smart Segment
+        <a class="fa fa-times custom-close" href ng-click="newSmartSegment.close()"></a>
+    </h3>
+    <div ng-show="newSmartSegment.validationErrorMessage !== ''" class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" ng-click="newSmartSegment.hideDangerAlert()"><span aria-hidden="true">&times;</span></button>
+        {{newSmartSegment.validationErrorMessage}}
+    </div>
+</div>
+<div class="modal-body custom-modal-body">
+    <span class="total-subscribers-count">Total Subscribers : <small>{{newSmartSegment.SubscriberListCount}}</small></span>
+    <form class="custom-website-form smart-segment-form clearfix">
+        <div class="form-group">
+            <label for="segmentType">Segment Type <i class="fa fa-question-circle" aria-hidden="true"></i></label>
+            <div class="btn-group btn-custom-group">
+                <label class="btn push-btn" ng-model="newSmartSegment.segmentType" uib-btn-radio="'Audience'" ng-change="newSmartSegment.operator = 'AND'">Audience</label>
+                <label class="btn push-btn" ng-model="newSmartSegment.segmentType" uib-btn-radio="'Welcome'">Welcome</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Segment Name <i class="fa fa-question-circle" aria-hidden="true"></i></label>
+            <input type="text" id="segmentName" name="segmentName" class="form-control input-segment-name" ng-class="{'error-field': (newSmartSegment.segmentName === '' && !newSmartSegment.segmentName && newSmartSegment.isSegmentNameBlurded) || !newSmartSegment.isSegmentNameValid}" ng-model="newSmartSegment.segmentName" smart-segment-validator required ng-trim="false"/>
+            <span ng-if="!newSmartSegment.isSegmentNameValid" style="color: red;">Sorry, Only alphabets, numbers, underscores and hyphens allowed</span>
+            <span ng-if="newSmartSegment.isSegmentNameValid && newSmartSegment.isSegmentNameBlurded && newSmartSegment.segmentName !== '' && newSmartSegment.segmentName">
+                <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="segmentCriteria">Segment Criteria <i class="fa fa-question-circle" aria-hidden="true"></i></label>
+            <div class="segment-criteria-container clearfix" ng-repeat="segment in newSmartSegment.criterias">
+                <a class="fa fa-dot-circle-o" ng-if="$index === 0"></a>
+                <a class="fa fa-plus-circle"  ng-if="$index === 0" ng-click="newSmartSegment.addMoreCriteria()"></a>
+                <div class="segment-criteria-keyword">
+                    <select class="form-control" ng-model="segment.selectedCategory" ng-change="newSmartSegment.onChangeCateory($index)">
+                        <option value="Select Category" selected="selected">Select Category</option>
+                        <option value="Country">Country</option>
+                        <option value="City">City</option>
+                        <option value="Browser">Browser</option>
+                        <option value="Device">Device</option>
+                        <option value="Operating System">Operating System</option>
+                        <option value="Subscribed from a URL">Subscribed from a URL</option>
+                        <option value="Subscribed on Date">Subscribed on Date</option>
+                        <option value="Traffic Source">Traffic Source</option>
+                        <option value="Notification" ng-if="newSmartSegment.segmentType === 'Audience'">Notification</option>
+                    </select>
+                </div>
+                <div class="segment-criteria-condition">
+                    <select class="form-control" ng-model="segment.selectedConditionOne" ng-change="newSmartSegment.onChangeCondition($index, 1)">
+                        <option value="Select Condition" selected="selected">Select Condition</option>
+                        <option value="equals" ng-if="segment.selectedCategory === 'Country' || segment.selectedCategory === 'City' || segment.selectedCategory === 'Browser' || segment.selectedCategory === 'Operating System' || segment.selectedCategory === 'Device' || segment.selectedCategory === 'Subscribed from a URL' || segment.selectedCategory === 'Subscribed on Date'">equals</option>
+                        <option value="does not equals" ng-if="segment.selectedCategory === 'Country' || segment.selectedCategory === 'City' || segment.selectedCategory === 'Browser' || segment.selectedCategory === 'Operating System' || segment.selectedCategory === 'Device' || segment.selectedCategory === 'Subscribed from a URL' || segment.selectedCategory === 'Subscribed on Date'">does not equals</option>
+                        <!--                        <option value="starts">starts with</option>
+                                                <option value="ends with">ends with</option>-->
+                        <option value="contains" ng-if="segment.selectedCategory === 'Subscribed from a URL' || segment.selectedCategory === 'Traffic Source'">contains</option>
+                        <option value="does not contains" ng-if="segment.selectedCategory === 'Subscribed from a URL' || segment.selectedCategory === 'Traffic Source'">does not contains</option>
+                        <option value="greater than" ng-if="segment.selectedCategory === 'Subscribed on Date'">greater than</option>
+                        <option value="less than" ng-if="segment.selectedCategory === 'Subscribed on Date'">less than</option>
+                        <option value="wildcard" ng-if="segment.selectedCategory === 'Country' || segment.selectedCategory === 'City' || segment.selectedCategory === 'Subscribed from a URL' || segment.selectedCategory === 'Traffic Source'">wildcard</option>
+                    </select>
+                </div>
+                <div class="segment-criteria-value" ng-show="segment.selectedCategory === 'Country' && (segment.selectedConditionOne === 'equals' || segment.selectedConditionOne === 'does not equals')">
+                    <input type="text" class="form-control" ng-model="segment.selectedCountry" uib-typeahead="country.name for country in segment.countryList | filter:{name:$viewValue}" placeholder="Select Country" autocomplete="off" ng-blur="newSmartSegment.getSubscriberListCount('Country', $index)"/>
+                    <!--<bootstrap-select-picker-multiple criterias="newSmartSegment.criterias" type="segment.selectedCategory" index='$index'></bootstrap-select-picker-multiple>-->
+                </div>
+                <div class="segment-criteria-value" ng-if="segment.selectedCategory === 'Browser' || segment.selectedCategory === 'Operating System' || segment.selectedCategory === 'Device' || (newSmartSegment.segmentType === 'Audience' && segment.selectedCategory === 'City')">
+<!--                    <select class="form-control" id="selectGeneric{{$index}}" name="selectGeneric">
+                        <option value="" selected="selected" disabled="disabled">Select Option</option>
+                        <option ng-repeat="value in segment.autocompleteList" value="{{value}}">{{value}}</option>
+                    </select>-->
+                    <input type="text" class="form-control" ng-model="segment.selectedAutocomplete" uib-typeahead="value for value in segment.autocompleteList | filter:$viewValue" placeholder="Enter Value" autocomplete="off" ng-blur="newSmartSegment.getSubscriberListCount('autoComplete', $index)"/>
+                </div>
+                <div class="segment-criteria-value" ng-if="newSmartSegment.segmentType === 'Welcome' && segment.selectedCategory === 'City'">
+                    <input type="text" id="city-list-{{$index}}" class="form-control" ng-model="segment.selectedCities" uib-typeahead="value for value in segment.allCityList" placeholder="Enter City Name" autocomplete-city autocomplete="off" ng-blur="newSmartSegment.getSubscriberListCount('city', $index)">
+                </div>
+                <div class="segment-criteria-value" ng-if="segment.selectedConditionOne === 'wildcard' && (segment.selectedCategory === 'Country' || segment.selectedCategory === 'City' || segment.selectedCategory === 'Subscribed from a URL' || segment.selectedCategory === 'Traffic Source')">
+                    <input type="text" class="form-control" ng-model="segment.selectedWildcard" placeholder="Enter Wildcard" ng-blur="newSmartSegment.getSubscriberListCount('wildcard', $index)"/>
+                </div>
+                <div class="segment-criteria-value" ng-if="segment.selectedCategory === 'Subscribed from a URL' && (segment.selectedConditionOne === 'equals' || segment.selectedConditionOne === 'does not equals')">
+                    <input type="text" id="searchUrl{{$index}}" name="searchUrl" class="form-control" ng-class="{'error-field': !segment.isUrlValid}" ng-model="segment.searchUrl" placeholder="Enter search URL" smart-segment-validator ng-trim="false"/>
+                    <span ng-if="!segment.isUrlValid" style="color: red;">Your URL should start with ‘/‘. No need to enter root domain.</span>
+                    <span ng-if="segment.isUrlValid && segment.searchUrl !== '' && segment.searchUrl && segment.isUrlBlured">
+                        <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div class="segment-criteria-value" ng-show="segment.selectedCategory === 'Subscribed from a URL' && (segment.selectedConditionOne === 'contains' || segment.selectedConditionOne === 'does not contains')">
+                    <input type="text" class="form-control" ng-model="segment.urlKeywords" placeholder="Enter Keywords" ng-blur="newSmartSegment.getSubscriberListCount('url', $index)"/>
+                    <!--                    <gcse:search></gcse:search>-->
+                </div>
+                <div class="segment-criteria-value" ng-show="segment.selectedCategory === 'Traffic Source' && (segment.selectedConditionOne === 'contains' || segment.selectedConditionOne === 'does not contains')">
+                    <input type="text" class="form-control" ng-model="segment.trafficKeywords" placeholder="Enter Traffic Sources" ng-blur="newSmartSegment.getSubscriberListCount('traffic', $index)"/>
+                </div>
+                <div class="segment-criteria-value" ng-show="segment.selectedCategory === 'Subscribed on Date'">
+                    <subscriber-datepicker index="$index" criterias="newSmartSegment.criterias"></subscriber-datepicker>
+                </div>
+                <span class="version-text" ng-if="segment.selectedCategory === 'Browser'">Version</span>
+                <div class="segment-criteria-condition" ng-if="segment.selectedCategory === 'Browser'">
+                    <select class="form-control" ng-model="segment.selectedConditionTwo" ng-change="newSmartSegment.onChangeCondition($index, 2)">
+                        <option value="Select Condition" selected="selected">Select Condition</option>
+                        <option value="equals">equals</option>
+                        <option value="does not equals">does not equals</option>
+                        <option value="greater than">greater than</option>
+                        <option value="less than">less than</option>
+                    </select>
+                </div>
+                <div class="segment-criteria-value" ng-if="segment.selectedCategory === 'Browser'">
+                    <input type="text" id="browserVersion{{$index}}" name="browserVersion" class="form-control" ng-class="{'error-field': !segment.isVersionValid}" ng-model="segment.versionNumber" placeholder="Enter Version" smart-segment-validator ng-trim="false" ng-blur="newSmartSegment.getSubscriberListCount('version', $index)"/>
+                    <span ng-if="!segment.isVersionValid" style="color: red;">Only numbers with or without decimal points are allowed.</span>
+                    <span ng-if="segment.isVersionValid && segment.versionNumber !== '' && segment.versionNumber && segment.isVersionBlured">
+                        <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div class="segment-criteria-value" ng-if="!$first">
+                    <a class="fa fa-trash" ng-click="newSmartSegment.removeSegmentCriteria($index)"></a>
+                </div>
+            </div>
+            <div class="btn-group btn-custom-group and-or-group">
+                <label class="btn push-btn" ng-disabled="newSmartSegment.criterias.length > 2" ng-model="newSmartSegment.operator" uib-btn-radio="'AND'">AND</label>
+                <label class="btn push-btn" ng-disabled="newSmartSegment.criterias.length > 2" ng-model="newSmartSegment.operator" uib-btn-radio="'OR'" ng-if="newSmartSegment.segmentType !== 'Audience'">OR</label>
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-cancel-primary" ng-click="newSmartSegment.close()">Close</button>
+            <button type="button" class="btn btn-custom-primary" ng-click="newSmartSegment.save()" ng-disabled="engagetoApp.isLoading">
+                <engageto-loader-image ng-if="engagetoApp.isLoading"></engageto-loader-image>
+                <span ng-if="!newSmartSegment.segmentId">Create</span>
+                <span ng-if="newSmartSegment.segmentId">Update</span>
+            </button>
+        </div>
+    </form>
+</div>

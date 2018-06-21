@@ -1,0 +1,30 @@
+<div class="login-module-container">
+    <div class="login-module-wrapper clearfix">
+        <a class="engageto-logo" href ui-sref="landing">
+            <img class="img-responsive" src="app/assets/images/logo-white.png" alt=""/>
+        </a>
+        <h4 class="text-center login-module-sub-header">Create your new account</h4>
+        <form class="login-module-form" name="engagetoForm" id="engagetoForm" ng-submit="register.signup()" novalidate>
+            <div class="form-group">
+                <input type="email" class="form-control" ng-class="{ 'error-field': engagetoForm.email.$touched && engagetoForm.email.$invalid && visitedEmail}" ng-blur="visitedEmail = true" ng-focus="visitedEmail = false" id="email" name="email" ng-model="register.engageto.email" placeholder="email id" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required/>
+                <span class="error" ng-show="engagetoForm.email.$touched && engagetoForm.email.$invalid && visitedEmail">
+                    <!--<span ng-show="engagetoForm.email.$error.required">Email id required</span>-->
+                    <span class="error-2" ng-show="!engagetoForm.email.$error.required && engagetoForm.email.$error.pattern">Enter valid email address.</span>
+                </span>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-class="{ 'error-field': engagetoForm.websiteURL.$touched && engagetoForm.websiteURL.$invalid && visitedUrl}"ng-blur="visitedUrl = true" ng-focus="visitedUrl = false" id="websiteURL" name="websiteURL" ng-model="register.engageto.webSiteUrl" placeholder="https://" ng-pattern="/^(http[s]?:\/\/www\.|HTTP[S]?:\/\/WWW\.|http[s]?:\/\/|HTTP[S]?:\/\/|www\.|WWW\.|[A-Za-z]{0})[A-Za-z0-9]+([\-\.]{1}[A-Za-z0-9]+)*\.[A-Za-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/" required/>
+                <span class="error" ng-show="engagetoForm.websiteURL.$touched && engagetoForm.websiteURL.$invalid && visitedUrl">
+                    <!--<span ng-show="engagetoForm.websiteURL.$error.required">Website Url is required</span>-->
+                    <span class="error-2" ng-show="engagetoForm.websiteURL.$error.pattern">Please enter valid website url</span>
+                </span>
+            </div>
+            <button type="submit" class="btn btn-login-module" ng-disabled="signinForm.$invalid || engagetoApp.isLoading">Login
+                <engageto-loader-image ng-if="!engagetoApp.isLoading"></engageto-loader-image>
+            </button>
+        </form>
+        <!--        <a href ui-sref="forgotPasswordRequest" class="forgot-password-text">Forgot password</a>
+                <p class="no-account-text text-center">Don't have an account? <a href ng-click="user.openSignupForm()">Get Started.</a></p>-->
+    </div>
+</div>
+

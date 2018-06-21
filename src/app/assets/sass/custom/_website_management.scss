@@ -1,0 +1,488 @@
+/* 
+    Created on : Nov 15, 2016, 2:10:43 PM
+    Author     : ahextech
+*/
+.website-management-wrapper{
+    padding         : 15px;
+    position        : relative;
+    background-color: $white;
+    .btn-add-website{
+        top     : 15px;
+        left    : 15px;
+        position: absolute;
+        @include border-radius(5px);
+        @include button(100%, 150px, $blue-light-20);
+        @include font($white, 14px, $roboto-regular);
+        @include transition(all 0.5s ease-in-out);
+        &:hover, &:focus{
+            background-color: $blue;
+        }  
+    }
+    .badge{
+        border-radius: 4px;
+        display: inline-block;
+        margin-left: 5px;
+        font-size: 13px;
+        line-height: 13px;
+    }
+    .view-selection-list{
+        .nav-tabs{
+            float: right;
+            width: 50px;
+            .view-selection-option{
+                a{
+                    color    : $sidebar-grey;
+                    border   : 0;
+                    padding  : 0;
+                    font-size: 19px;
+                    &:hover{
+                        background-color: transparent;
+                    }
+                }
+                &.active{
+                    a{
+                        color: $blue;
+                    }
+                }
+            }
+        }
+        .tab-content{
+            margin-top: 70px;
+            .website-details-wrapper{
+                border : 1px solid $grey-border-dark;
+                padding: 30px 15px 10px;
+                position: relative;
+                margin-bottom: 30px;
+                @include border-radius(5px);
+                .status{
+                    right   : 15px;
+                    top     : 5px;
+                    position: absolute;
+                    font-size: 18px;
+                    z-index  : 1;
+                    .fa-check{
+                        color: $green-1;
+                    }
+                    .fa-exclamation-circle{
+                        color: red;
+                    }
+                }
+                p{
+                    position: relative;
+                    padding-left: 125px;
+                    @include font($black-1, 15px, $roboto-regular);
+                    span{
+                        position: absolute;
+                        left: 0;
+                        @include font($black-1, 15px, $roboto-light);
+                    }
+                }
+                .actions-wrapper{
+                    .action-list{
+                        list-style   : none;
+                        margin-bottom: 0;
+                        .action-items{
+                            &:last-of-type{
+                                padding-right: 0;
+                            }
+                        }
+                        .fa{
+                            font-size: 16px;
+                        }
+                        .fa-pencil{
+                            color: $black;
+                        }
+                        .fa-eye, .fa-file-code-o{
+                            color: $blue;
+                        }
+                        .fa-trash{
+                            color: $red;
+                        }
+                    }
+                }
+                .team-member-details{
+                    p{
+                        padding-left: 65px;
+                        &:nth-of-type(2){
+                            overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Styles of Add Website Modal Box Starts Here */
+.add-website-modal{
+
+}
+.edit-website-modal{
+    .switch{
+        margin      : 0; 
+        padding-left: 55px;
+        input{
+            &.cmn-toggle-round{
+                + label{
+                    &:before, &:after{
+                        top: 0;
+                    }
+                    &:before{
+                        height: 21px;
+                    }
+                    &:after{
+                        top : 1px;
+                        left: -2px;
+                    }
+                }
+                &:checked{
+                    + label{
+                        &:before{
+                            background-color: $blue;
+                        }
+                    }
+                }
+            }
+        }
+        /*        label{
+                    &:before{
+                        top: 0 !important;
+                    }
+                    &:after{
+                        top: -4px !important;
+                    }
+                }*/
+    }
+    .btn-wrapper{
+        .btn{
+            display  : inline-block;
+            max-width: 150px;
+        }
+    }
+}
+.add-website-modal{
+    .custom-website-form{
+        .btn-add-website{
+            @include button(100%, 150px, $blue-light-20);
+        }
+    }
+    .nav-tabs{
+        border       : 0;
+        margin-bottom: 30px;
+        position: relative;
+        &:before{
+            content         : "";
+            top             : 36px;
+            left            : 45px;
+            right           : 45px;
+            height          : 5px;
+            display         : block;
+            position        : absolute;
+            background-color: $grey-border-dark;
+        }
+        li{
+            border: 0;
+            a{
+                border  : 0;
+                padding: 0;
+                &:focus, &:active, &:hover{
+                    color           : #4c9dff;
+                    border          : 0;
+                    background-color: transparent;
+                }
+                .icon{
+                    color      : #ccc;
+                    padding    : 5px;
+                    margin     : 7px auto 0;
+                    display    : block;
+                    text-align : center;
+                    line-height: 16px;
+                    @include circle(25px);
+                }
+                .title{
+                    display: block;
+                }
+            }
+            &.active{
+                a{
+                    background-color: transparent;
+                    .icon{
+                        color           : #4c9dff;
+                        background-color: $grey-border-dark;
+                    }
+                }
+            }
+            &:last-child{
+                float: right;
+            }
+        }
+    }
+    .code-container{
+        border       : 1px solid $blue-1;
+        height       : auto;
+        position     : relative;
+        margin-top   : 15px;
+        border-radius: 5px;
+        .code-overlay{
+            left            : 0;
+            right           : 0;
+            top             : 0;
+            bottom          : 0;
+            position        : absolute;
+            background-color: rgba(45,201,45,.3);
+            span{
+                top      : 50%;
+                left     : 50%;
+                color    : $white;
+                position : absolute;
+                display  : inline-block;
+                padding  : 6px 20px;
+                font-size: 20px;
+                background: rgba(25,106,229,0.4);
+                @include translate(-50%, -50%);
+            }
+        }
+        .code-block{
+            height  : 170px;
+            border  : 0;
+            margin  : 0;
+            overflow: auto;
+            text-align: left;
+        }
+        .btn-custom-primary{
+            position   : absolute;
+            right      : 0;
+            bottom     : 0;
+            padding    : 6px;
+            min-width  : auto;
+            font-size  : 12px;
+            line-height: 12px;
+            @include border-radius(0);
+        }
+    }
+    .input-group{
+        .input-group-addon.address{
+            min-width: 170px;   
+        }
+    }
+    .integrations-code{
+        h4{
+            margin-top: 0;
+            @include font($black-1, 16px, $roboto-regular);
+        }
+        p{
+            @include font($black-1, 14px, $roboto-regular);
+        }
+        .instruction-wrapper{
+            border: 1px solid $grey-border-dark;
+            padding: 15px;
+            @include border-radius(4px);
+            .code{
+                padding: 10px;
+                font-size: 13px;
+                word-break: break-all;
+                word-wrap: break-word;
+                background-color: #f5f5f5;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+        }
+        small{
+            display: block;
+            margin-bottom: 20px;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .send{
+            cursor: pointer;
+        }
+        .send-code-form{
+            .form-group{
+                margin-bottom: 0;
+                .input-group{
+                    .input-group-addon{
+                        height: 34.5px;
+                    }
+                    input{
+                        max-width: 420px;
+                    }
+                    .btn-custom-primary{
+                        height: 34px;
+                    }
+                }
+            }
+        }
+    }
+}
+/* Styles of Add Website Modal Box Ends Here */
+
+/* Styles of Delete Website Modal Box Starts Here */
+.delete-website-modal{
+    .modal-dialog{
+        .modal-content{
+            padding : 0;
+            .custom-modal-body{
+                .delete-website-text{
+                    color      : $form-label;
+                    font-size  : 14px;
+                    font-family: $roboto-light;
+                }
+                h3{
+                    color      : $grey-5;
+                    font-size  : 16px;
+                    font-family: $roboto-light;
+                }
+                .delete-btn-wrapper{
+                    margin-top: 20px;
+                    /*width  : 500px;*/
+                    display: block;
+                    .btn-delete{
+                        float    : left;
+                        border   : 1px solid $red;
+                        max-width: 220px;
+                        &:hover{
+                            border-color: $red-hover;
+                        }
+                    }
+                    .btn-dont-delete{
+                        float      : left;
+                        border     : 1px solid $grey-4;
+                        max-width  : 260px;
+                        margin-left: 20px;
+                        &:hover{
+                            border-color: $grey-hover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/* Styles of Delete Website Modal Box Ends Here */
+
+/* Styles of Verify Installation Modal Box Starts Here */
+.verify-code-installation-modal{
+    .modal-dialog{
+        width: 450px;
+        .modal-content{
+            .custom-modal-body{
+                .verify-installation-wrapper{
+                    i{
+                        display   : block;
+                        font-size : 80px;
+                        text-align: center;
+                        &.verify-fail-icon{
+                            color: $red;
+                        }
+                        &.verify-success-icon{
+                            color: $light-green;
+                        }
+                    }
+                    p{
+                        margin: 0 0 5px;
+                        @include font($black-1, 14px, $roboto-light);
+                        a{
+                            color    : $blue;
+                            font-size: 15px;
+                        }
+                    }
+                    .verify-code-success-text, .verify-code-fail-text{
+                        margin: 10px 0 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ribbon {
+    top: 5px;
+    color        : $white;
+    padding      : 4px 12px;
+    position     : absolute;
+    position     : absolute;
+    font-size    : 12px;
+    background   : #32c861;
+    font-family  : roboto,sans-serif;
+    margin-left  : -25px;
+    margin-bottom: 15px;
+    @include box-shadow(2px 2px 0 rgba(0,0,0,.1));
+    &::before {
+        left       : 0px;
+        width      : 0; top: 100%;
+        height     : 0;
+        content    : '';
+        position   : absolute;
+        border-top : 10px solid #289f4d;
+        border-left: 10px solid transparent;
+    }
+}
+/* Styles of Verify Installation Modal Box Ends Here */
+
+/* Media Queries Starts Here */
+@media(min-width: 1200px){
+
+}
+@media(min-width: 992px){
+    .custom-container{
+        .website-management-wrapper{
+            .view-selection-list{
+                .tab-content{
+                    .tab-pane{
+                        .table-responsive{
+                            overflow-x: initial;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
+@media(min-width: 768px) and (max-width: 991px){
+
+}
+@media(min-width: 481px) and (max-width: 767px){
+
+}
+@media(min-width: 320px) and (max-width: 767px){
+    .website-management-wrapper{
+        .view-selection-list{
+            .nav-tabs{
+                li{
+                    display: inline-block;
+                }
+            }
+        }
+    }
+    .delete-website-modal{
+        .delete-btn-wrapper{
+            .btn-delete-primary{
+                margin-bottom: 15px;
+            }
+        }
+    }
+    .custom-container{
+        .website-management-wrapper{
+            .view-selection-list{
+                .nav-tabs{
+                    width: 60px;
+                    .view-selection-option{
+                        display: inline-block;
+                        &:last-of-type{
+                            margin-left: 5px;
+                        }
+                        a{
+                            i{
+                                font-size: 22px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/* Media Queries Ends Here */

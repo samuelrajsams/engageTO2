@@ -1,0 +1,609 @@
+<!--<button type="button" class="visible-xxs btn-eye" ng-click="sendPushNotification.notificationPreview()"><i class="fa fa-eye" aria-hidden="true"></i></button>-->
+<button type="button" class="visible-xs btn-view-notification-preview" ng-click="sendPushNotification.notificationPreview()">
+    <i class="fa fa-eye" aria-hidden="true"></i>
+</button>
+<div class="notification-preview clearfix" ng-class="{'notification-preview-toggle': sendPushNotification.showNotification}">
+    <div class="browser-push-button-wrapper">
+        <div class="btn-group btn-custom-group">
+            <label class="btn push-btn" ng-model="sendPushNotification.browserPreviewTab" uib-btn-radio="'Chrome'">Chrome</label>
+            <label class="btn push-btn" ng-model="sendPushNotification.browserPreviewTab" uib-btn-radio="'Firefox'">Firefox</label>
+            <label class="btn push-btn" ng-model="sendPushNotification.browserPreviewTab" uib-btn-radio="'Safari'">Safari</label>
+        </div>
+    </div>
+    <div class="preview-wrapper-chrome clearfix" ng-if="sendPushNotification.browserPreviewTab === 'Chrome'">
+        <div class="preview-image-chrome">
+            <i class="fa {{sendPushNotification.notification.logo}}" ng-if="sendPushNotification.notification.logo != ''"></i>
+            <img class="img-responsive" ng-src="{{engagetoApp.notification.image}}" alt="" ng-if="sendPushNotification.notification.logo == ''"
+            />
+        </div>
+        <div class="preview-content-chrome">
+            <span>{{ sendPushNotification.notification.title || 'Notification title here'}}</span>
+            <span>{{ sendPushNotification.notification.message || 'Notification message here'}}</span>
+            <span class="domain-name">{{ engagetoApp.profile.subDomainName}}.engageto.com</span>
+            <i class="fa fa-cog" aria-hidden="true"></i>
+        </div>
+        <div class="cta-content">
+            <a href="http://www.{{sendPushNotification.advanceOptions.cta[0].url}}" class="btn btn-primary" target="_blank" ng-if="sendPushNotification.advanceOptions.cta[0].url.trim() != '' && !sendPushNotification.advanceOptions.cta[0].invalidCtaUrlPattern && sendPushNotification.advanceOptions.cta[0].text.trim() != '' && sendPushNotification.advanceOptions.isAddButtonOpened">{{sendPushNotification.advanceOptions.cta[0].text}}</a>
+            <a href="http://www.{{sendPushNotification.advanceOptions.cta[1].url}}" target="_blank" class="btn btn-primary" ng-if="(sendPushNotification.advanceOptions.cta[1].url.trim() != '' && !sendPushNotification.advanceOptions.cta[1].invalidCtaUrlPattern && sendPushNotification.advanceOptions.cta[1].text.trim() != '') && sendPushNotification.advanceOptions.cta.length === 2 && sendPushNotification.advanceOptions.isAddButtonOpened">{{sendPushNotification.advanceOptions.cta[1].text}}</a>
+        </div>
+    </div>
+    <div class="preview-wrapper-firefox" ng-if="sendPushNotification.browserPreviewTab === 'Firefox'">
+        <div class="firefox-logo">
+            <img class="img-responsive" src="app/assets/images/firefox-logo.png" />
+        </div>
+        <div class="preview-content-firefox">
+            <span>{{ sendPushNotification.notification.title || 'Notification title here'}}</span>
+            <span>{{ sendPushNotification.notification.message || 'Notification message here'}}</span>
+            <span class="domain-name">{{ engagetoApp.profile.subDomainName}}.engageto.com</span>
+        </div>
+        <div class="preview-image-firefox">
+            <i class="fa {{sendPushNotification.notification.logo}}" ng-if="sendPushNotification.notification.logo != ''"></i>
+            <img class="img-responsive" ng-src="{{engagetoApp.notification.image}}" alt="" ng-if="sendPushNotification.notification.logo == ''"
+            />
+        </div>
+    </div>
+    <div class="preview-wrapper-safari clearfix" ng-if="sendPushNotification.browserPreviewTab === 'Safari'">
+        <div class="preview-image-safari">
+            <i class="fa {{sendPushNotification.notification.logo}}" ng-if="sendPushNotification.notification.logo != ''"></i>
+            <img class="img-responsive" ng-src="{{engagetoApp.notification.image}}" alt="" ng-if="sendPushNotification.notification.logo == ''"
+            />
+        </div>
+        <div class="preview-content-safari">
+            <span>{{ sendPushNotification.notification.title || 'Notification title here'}}</span>
+            <span>{{ sendPushNotification.notification.message || 'Notification message here'}}</span>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="preview-info-wrapper">
+        <div class="note">
+            <p>
+                <strong>Note:</strong> These previews are for representational purposes only based on how they may look on Mac OS.
+                Actual notifications may differ based on text length and Operating System.
+            </p>
+            <p>If you're adding emojis, Chrome automatically appends a space next to each emoticon in the actual notification.</p>
+        </div>
+    </div>
+</div>
+<div class="dashboard-content-header">
+    <h3 class="dashboard-content-area-heading">New Push Notification</h3>
+    <div class="subtitle">Send your notification right away</div>
+    <!--<button type="button" class="btn btn-custom-primary visible-xs btn-notification-preview"><i class="fa fa-eye"></i> Preview</button>-->
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xxs-12 col-lg-7 col-md-6 col-sm-7">
+            <div class="notification-details-wrapper">
+                <div ng-show="sendPushNotification.notification.subscriberErrorMsg" class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" ng-click="sendPushNotification.hideDangerAlert()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    Weâ€™re very happy that you want to send push notification but without subscriber it isnâ€™t possible to send.
+                </div>
+                <form class="custom-form notification-details-form" name="notificationDetails">
+                    <div class='field-box-wrapper'>
+                        <div class="form-group">
+                            <label for="notificationTitle">Notification Title</label>
+                            <input type="text" ng-class="{'error-field' : ((notificationDetails.notificationTitle.$error.required || !sendPushNotification.notification.title.trim()) && sendPushNotification.notification.visitedTitle) || sendPushNotification.notification.validateTitle }"
+                                class="form-control" name="notificationTitle" id="notificationTitle" ng-blur="sendPushNotification.notification.visitedTitle = true"
+                                ng-focus="sendPushNotification.notification.visitedTitle = false;
+                                            sendPushNotification.notification.validateTitle = false;" ng-model="sendPushNotification.notification.title"
+                                ng-change="sendPushNotification.keypress(50, 'title')" maxlength="50" required ng-trim="false"
+                                autocomplete="off" />
+                            <small ng-show="sendPushNotification.notification.title_text_remaining === null" style="color:green">(50 Characters)</small>
+                            <small ng-show="sendPushNotification.notification.showTitleSuccess && sendPushNotification.notification.title_text_remaining !== null"
+                                style="color:green">({{sendPushNotification.notification.title_text_remaining}} Characters)</small>
+                            <small class='error' ng-hide="sendPushNotification.notification.showTitleSuccess">({{sendPushNotification.notification.title_text_remaining}} Characters)</small>
+                            <span class='error' ng-hide="sendPushNotification.notification.showTitleSuccess">Shorten your title and make it appealing.</span>
+                            <span ng-show="!notificationDetails.notificationTitle.$error.required && sendPushNotification.notification.showTitleSuccess && sendPushNotification.notification.visitedTitle && sendPushNotification.notification.title.trim() != ''">
+                                <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="notificationMessage">Notification Message</label>
+                            <textarea class="form-control" ng-class="{'error-field' : ((notificationDetails.notificationMessage.$error.required || !sendPushNotification.notification.message.trim()) && sendPushNotification.notification.visitedMsg) || sendPushNotification.notification.validateMessage }"
+                                name="notificationMessage" id="notificationMessage" ng-blur="sendPushNotification.notification.visitedMsg = true"
+                                ng-focus="sendPushNotification.notification.visitedMsg = false;
+                                            sendPushNotification.notification.validateMessage = false;" ng-model="sendPushNotification.notification.message"
+                                ng-change="sendPushNotification.keypress(100, 'message')" maxlength="100" required ng-trim="false"></textarea>
+                            <small ng-show="sendPushNotification.notification.msg_text_remaining === null" style="color:green">(100 Characters)</small>
+                            <small ng-show="sendPushNotification.notification.showMsgSuccess && sendPushNotification.notification.msg_text_remaining !== null"
+                                style="color:green">({{sendPushNotification.notification.msg_text_remaining}} Characters)</small>
+                            <small class='error' ng-hide="sendPushNotification.notification.showMsgSuccess">({{sendPushNotification.notification.msg_text_remaining}} Characters)</small>
+                            <span class='error' ng-hide="sendPushNotification.notification.showMsgSuccess">Shorten your description and make it appealing.</span>
+                            <span ng-show="!notificationDetails.notificationMessage.$error.required && sendPushNotification.notification.showMsgSuccess && sendPushNotification.notification.visitedMsg && sendPushNotification.notification.message.trim() != ''">
+                                <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <div class="form-group notification-image-container">
+                            <label for="notificationImage">Notification Image</label>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <ul class="list-inline">
+                                        <li ng-repeat-start="image in sendPushNotification.uploadImageList" ng-click="sendPushNotification.onClickSelectImage($index)"
+                                            ng-class="{'active': $index === sendPushNotification.uploadImageList.indexOf(sendPushNotification.notification.image)}">
+                                            <img ng-src="{{image}}" alt="" />
+                                            <i class="fa fa-check-circle" ng-if="$index === sendPushNotification.uploadImageList.indexOf(sendPushNotification.notification.image)"></i>
+                                        </li>
+                                        <li ng-repeat-end ng-if="$index + 2 === sendPushNotification.uploadImageList.length + 1" ng-click="sendPushNotification.uploadImageModal()">
+                                            <span>Image Manager</span>
+                                        </li>
+                                        <li ng-if="sendPushNotification.uploadImageList.length === 0" ng-click="sendPushNotification.uploadImageModal()">
+                                            <span>Image Manager</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="notificationUrl">
+                            <label for="notificationURL">Notification URL</label>
+                            <input type="text" ng-class="{'error-field' : notificationDetails.notificationURL.$error.required || sendPushNotification.notification.isUrlRequired || (notificationDetails.notificationURL.$invalid && sendPushNotification.notification.visitedUrl)}"
+                                ng-blur="sendPushNotification.exitUTMParams('url', -1)" ng-focus="sendPushNotification.notification.visitedUrl = false;
+                                            sendPushNotification.notification.validateUrl = false;
+                                            sendPushNotification.notification.isUrlRequired = false;" class="form-control"
+                                name="notificationURL" id="notificationURL" ng-model="sendPushNotification.notification.url"
+                                ng-pattern="/^(http[s]?:\/\/www\.|HTTP[S]?:\/\/WWW\.|http[s]?:\/\/|HTTP[S]?:\/\/|www\.|WWW\.|[A-Za-z]{0})[A-Za-z0-9]+([\-\.]{1}[A-Za-z0-9]+)*\.[A-Za-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/"
+                            />
+                            <span class="error" style="color:red" ng-show="notificationDetails.notificationURL.$error.pattern && sendPushNotification.notification.visitedUrl">Please enter valid website URL</span>
+                            <span ng-show="sendPushNotification.notification.url && !notificationDetails.notificationURL.$error.pattern && sendPushNotification.notification.visitedUrl">
+                                <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field-box-wrapper">
+                        <div class="form-group">
+                            <h4 class="utm-param-head utm-hidden-sm">Track Using UTM Parameters</h4>
+                            <div class="switch" uib-tooltip="Please, Enter Notification URL, to enable UTM tracking." tooltip-placement="right" tooltip-trigger="'outsideClick'"
+                                tooltip-enable="sendPushNotification.notification.url == '' || sendPushNotification.notification.url == 'undefined'">
+                                <input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="sendPushNotification.notification.isUTMParametersRequired"
+                                    ng-disabled="notificationDetails.notificationURL.$error.pattern || sendPushNotification.notification.url == '' || sendPushNotification.notification.url == 'undefined'">
+                                <label for="cmn-toggle-1"></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-if="sendPushNotification.notification.isUTMParametersRequired">
+                                    <label for="utmSource">UTM Source</label>
+                                    <input type="text" ng-class="{'error-field' : ((notificationDetails.utmSource.$error.required || !sendPushNotification.notification.isUTMSourceValid) && sendPushNotification.notification.visitedSource) || sendPushNotification.notification.validateUTMSource || !sendPushNotification.notification.showSourceSuccess}"
+                                        ng-blur="sendPushNotification.exitUTMParams('source', -1)" ng-focus="sendPushNotification.notification.visitedSource = false;
+                                                    sendPushNotification.notification.validateUTMSource = false;" class="form-control"
+                                        name="utmSource" id="utmSource" ng-model="sendPushNotification.notification.uTMSource"
+                                        ng-change="sendPushNotification.keypress(50, 'source')" ng-trim="false" maxlength="50"
+                                        required/>
+                                    <small ng-show="sendPushNotification.notification.source_text_remaining === null" style="color:green">(43 Characters)</small>
+                                    <small ng-show="sendPushNotification.notification.showSourceSuccess && sendPushNotification.notification.source_text_remaining !== null"
+                                        style="color:green">({{sendPushNotification.notification.source_text_remaining}} Characters)</small>
+                                    <small class='error' ng-hide="sendPushNotification.notification.showSourceSuccess">({{sendPushNotification.notification.source_text_remaining}} Characters)</small>
+                                    <span class='error' ng-hide="sendPushNotification.notification.showSourceSuccess">Sorry, Youâ€™ve exceeded the given character limit.</span>
+                                    <span class="error" style="color:red" ng-show="sendPushNotification.notification.showSourceSuccess && !sendPushNotification.notification.isUTMSourceValid && sendPushNotification.notification.visitedSource">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                    <span ng-show="!notificationDetails.utmSource.$error.required && sendPushNotification.notification.isUTMSourceValid && sendPushNotification.notification.showSourceSuccess && sendPushNotification.notification.visitedSource">
+                                        <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" ng-if="sendPushNotification.notification.isUTMParametersRequired">
+                                    <label for="utmMedium">UTM Medium</label>
+                                    <input type="text" ng-class="{'error-field' : (!sendPushNotification.notification.isUTMMediumValid && sendPushNotification.notification.visitedMedium) || !sendPushNotification.notification.showMediumSuccess}"
+                                        ng-blur="sendPushNotification.exitUTMParams('medium', -1)" ng-focus="sendPushNotification.notification.visitedMedium = false"
+                                        class="form-control" name="utmMedium" id="utmMedium" ng-model="sendPushNotification.notification.uTMMedium"
+                                        ng-change="sendPushNotification.keypress(50, 'medium')" maxlength="50" ng-trim="false"
+                                    />
+                                    <small ng-show="sendPushNotification.notification.medium_text_remaining === null" style="color:green">(33 Characters)</small>
+                                    <small ng-show="sendPushNotification.notification.showMediumSuccess && sendPushNotification.notification.medium_text_remaining !== null"
+                                        style="color:green">({{sendPushNotification.notification.medium_text_remaining}} Characters)</small>
+                                    <small class='error' ng-hide="sendPushNotification.notification.showMediumSuccess">({{sendPushNotification.notification.medium_text_remaining}} Characters)</small>
+                                    <span class='error' ng-hide="sendPushNotification.notification.showMediumSuccess">Sorry, Youâ€™ve exceeded the given character limit.</span>
+                                    <span class="error" style="color:red" ng-show="sendPushNotification.notification.showMediumSuccess && !sendPushNotification.notification.isUTMMediumValid && sendPushNotification.notification.visitedMedium">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                    <span ng-show="sendPushNotification.notification.uTMMedium !== '' && sendPushNotification.notification.isUTMMediumValid && sendPushNotification.notification.showMediumSuccess && sendPushNotification.notification.visitedMedium">
+                                        <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-if="sendPushNotification.notification.isUTMParametersRequired">
+                                    <label for="utmCampaign">UTM Campaign</label>
+                                    <input type="text" ng-class="{'error-field' : (!sendPushNotification.notification.isUTMCampaignValid && sendPushNotification.notification.visitedCampaign) || !sendPushNotification.notification.showCampaignSuccess}"
+                                        ng-blur="sendPushNotification.exitUTMParams('campaign', -1)" ng-focus="sendPushNotification.notification.visitedCampaign = false"
+                                        class="form-control" name="utmCampaign" id="utmCampaign" ng-model="sendPushNotification.notification.uTMCampaign"
+                                        ng-change="sendPushNotification.keypress(50, 'compaign')" maxlength="50" ng-trim="false"
+                                    />
+                                    <small ng-show="sendPushNotification.notification.compaign_text_remaining === null" style="color:green">(29 Characters)</small>
+                                    <small ng-show="sendPushNotification.notification.showCampaignSuccess && sendPushNotification.notification.compaign_text_remaining !== null"
+                                        style="color:green">({{sendPushNotification.notification.compaign_text_remaining}} Characters)</small>
+                                    <small class='error' ng-hide="sendPushNotification.notification.showCampaignSuccess">({{sendPushNotification.notification.compaign_text_remaining}} Characters)</small>
+                                    <span class='error' ng-hide="sendPushNotification.notification.showCampaignSuccess">Sorry, Youâ€™ve exceeded the given character limit.</span>
+                                    <span class="error" style="color:red" ng-show="sendPushNotification.notification.showCampaignSuccess && !sendPushNotification.notification.isUTMCampaignValid && sendPushNotification.notification.visitedCampaign">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                    <span ng-show="sendPushNotification.notification.uTMCampaign !== '' && sendPushNotification.notification.isUTMCampaignValid && sendPushNotification.notification.showCampaignSuccess && sendPushNotification.notification.visitedCampaign">
+                                        <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" ng-hide="!sendPushNotification.notification.isUTMParametersRequired">
+                                    <label for="utmTerm">Term</label>
+                                    <input type="text" ng-class="{'error-field' : (!sendPushNotification.notification.isUTMTermValid && sendPushNotification.notification.visitedTerm) || !sendPushNotification.notification.showTermSuccess}"
+                                        ng-blur="sendPushNotification.exitUTMParams('term', -1)" ng-focus="sendPushNotification.notification.visitedTerm = false"
+                                        class="form-control" name="utmTerm" id="utmTerm" ng-model="sendPushNotification.notification.uTMTerm"
+                                        ng-change="sendPushNotification.keypress(50, 'term')" maxlength="50" ng-trim="false"
+                                    />
+                                    <small ng-show="sendPushNotification.notification.term_text_remaining === null" style="color:green">(50 Characters)</small>
+                                    <small ng-show="sendPushNotification.notification.showTermSuccess && sendPushNotification.notification.term_text_remaining !== null"
+                                        style="color:green">({{sendPushNotification.notification.term_text_remaining}} Characters)</small>
+                                    <small class='error' ng-hide="sendPushNotification.notification.showTermSuccess">({{sendPushNotification.notification.term_text_remaining}} Characters)</small>
+                                    <span class='error' ng-hide="sendPushNotification.notification.showTermSuccess">Sorry, Youâ€™ve exceeded the given character limit.</span>
+                                    <span class="error" style="color:red" ng-show="sendPushNotification.notification.showTermSuccess && !sendPushNotification.notification.isUTMTermValid && sendPushNotification.notification.visitedTerm">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                    <span ng-show="sendPushNotification.notification.uTMTerm !== '' && sendPushNotification.notification.isUTMTermValid && sendPushNotification.notification.showTermSuccess && sendPushNotification.notification.visitedTerm">
+                                        <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-hide="!sendPushNotification.notification.isUTMParametersRequired">
+                                    <label for="utmContent">Content</label>
+                                    <input type="text" ng-class="{'error-field' : (!sendPushNotification.notification.isUTMContentValid && sendPushNotification.notification.visitedContent) || !sendPushNotification.notification.showContentSuccess}"
+                                        ng-blur="sendPushNotification.exitUTMParams('content', -1)" ng-focus="sendPushNotification.notification.visitedContent = false"
+                                        class="form-control" name="utmContent" id="utmContent" ng-model="sendPushNotification.notification.uTMContent"
+                                        ng-change="sendPushNotification.keypress(50, 'content')" maxlength="50" ng-trim="false"
+                                    />
+                                    <small ng-show="sendPushNotification.notification.content_text_remaining === null" style="color:green">(50 Characters)</small>
+                                    <small ng-show="sendPushNotification.notification.showContentSuccess && sendPushNotification.notification.content_text_remaining !== null"
+                                        style="color:green">({{sendPushNotification.notification.content_text_remaining}} Characters)</small>
+                                    <small class='error' ng-hide="sendPushNotification.notification.showContentSuccess">({{sendPushNotification.notification.content_text_remaining}} Characters)</small>
+                                    <span class='error' ng-hide="sendPushNotification.notification.showContentSuccess">Sorry, Youâ€™ve exceeded the given character limit.</span>
+                                    <span class="error" style="color:red" ng-show="sendPushNotification.notification.showContentSuccess && !sendPushNotification.notification.isUTMContentValid && sendPushNotification.notification.visitedContent">Sorry, Only alphabets, hyphen, numbers and underscores are allowed</span>
+                                    <span ng-show="sendPushNotification.notification.uTMContent !== '' && sendPushNotification.notification.isUTMContentValid && sendPushNotification.notification.showContentSuccess && sendPushNotification.notification.visitedContent">
+                                        <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field-box-wrapper">
+                        <div class="form-group">
+                            <h4 class="utm-param-head utm-hidden-sm">
+                                Add Buttons to Notifications
+                                <small>Applicable only for Chrome 48 and above</small>
+                            </h4>
+                            <div class="switch">
+                                <input id="cmn-toggle-2" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="sendPushNotification.advanceOptions.isAddButtonOpened">
+                                <label for="cmn-toggle-2"></label>
+                            </div>
+                        </div>
+                        <div class="row" ng-if="sendPushNotification.advanceOptions.isAddButtonOpened" ng-repeat="cta in sendPushNotification.advanceOptions.cta">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label>Button Text</label>
+                                    <input type="text" name="ctaText{{$index}}" id="ctaText{{$index}}" class="form-control" ng-class="{'error-field' : (!cta.showCtaTextSuccess && cta.visitedCtaText) || (!cta.text.trim() && cta.url.length && cta.visitedCtaUrl)}"
+                                        ng-blur="cta.visitedCtaText = true" ng-focus="cta.visitedCtaText = false" ng-model="cta.text"
+                                        maxlength="12" ng-change="sendPushNotification.keypress(12, 'ctaText')" ng-trim="false">
+                                    <small ng-show="cta.text_remaining === null" style="color:green">(12 Characters)</small>
+                                    <small ng-show="cta.showCtaTextSuccess && cta.text_remaining !== null" style="color:green">({{cta.text_remaining}} Characters)</small>
+                                    <small class="error" ng-hide="cta.showCtaTextSuccess">({{cta.text_remaining}} Characters)</small>
+                                    <span ng-show="cta.text.length && cta.showCtaTextSuccess && cta.visitedCtaText && cta.text.trim() != ''">
+                                        <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="form-group">
+                                    <label>Button URL</label>
+                                    <input type="text" name="ctaUrl{{$index}}" id="ctaUrl{{$index}}" class="form-control" ng-class="{'error-field': (cta.text.trim() != '' && !cta.url.length && cta.visitedCtaText) || (cta.url != '' && cta.url != 'undefined' && cta.invalidCtaUrlPattern && cta.visitedCtaUrl)}"
+                                        ng-blur="sendPushNotification.exitUTMParams('ctaUrl', $index)" ng-focus="cta.visitedCtaUrl = false"
+                                        ng-model="cta.url">
+                                    <span class="error" ng-show="cta.url != '' && cta.url != 'undefined' && cta.invalidCtaUrlPattern && cta.visitedCtaUrl">Please enter valid CTA URL</span>
+                                    <span ng-show="cta.url != '' && cta.url != 'undefined' && !cta.invalidCtaUrlPattern && cta.visitedCtaUrl">
+                                        <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field-box-wrapper">
+                        <div class="form-group notification-expiry-wrapper">
+                            <label class="notification-expiry-label" for="notificationExpiry">Set Notification Expiry
+                                <i class="fa fa-question-circle" aria-hidden="true" uib-tooltip="Works on chrome browser only" tooltip-placement="top" tooltip-trigger="'mouseenter'"></i>
+                            </label>
+                            <input type="text" ng-class="{'error-field': (((sendPushNotification.advanceOptions.expiryType === 'Days' && sendPushNotification.advanceOptions.expiryValue > 28) || (sendPushNotification.advanceOptions.expiryType === 'Hours' && sendPushNotification.advanceOptions.expiryValue > 672) || (sendPushNotification.advanceOptions.expiryType === 'Minutes' && sendPushNotification.advanceOptions.expiryValue > 40320) || (sendPushNotification.advanceOptions.expiryType === 'Seconds' && sendPushNotification.advanceOptions.expiryValue > 2419200)) || sendPushNotification.advanceOptions.numLimitMsg || notificationDetails.notificationExpiry.$invalid) && sendPushNotification.advanceOptions.visitedExpiryValue}"
+                                ng-blur="sendPushNotification.advanceOptions.visitedExpiryValue = true;
+                                            sendPushNotification.checkValue('notificationExpiry');" ng-focus="sendPushNotification.advanceOptions.visitedExpiryValue = false"
+                                class="form-control notification-expiry" name="notificationExpiry" id="notificationExpiry" ng-model="sendPushNotification.advanceOptions.expiryValue"
+                                ng-pattern="/^(\+|-)?(0|[1-9][0-9]*)$/" />
+                            <span ng-show="sendPushNotification.advanceOptions.expiryValue && !sendPushNotification.advanceOptions.numLimitMsg && !notificationDetails.notificationExpiry.$error.pattern && sendPushNotification.advanceOptions.visitedExpiryValue && ((sendPushNotification.advanceOptions.expiryType === 'Days' && sendPushNotification.advanceOptions.expiryValue <= 28) || (sendPushNotification.advanceOptions.expiryType === 'Hours' && sendPushNotification.advanceOptions.expiryValue <= 672) || (sendPushNotification.advanceOptions.expiryType === 'Minutes' && sendPushNotification.advanceOptions.expiryValue <= 40320) || (sendPushNotification.advanceOptions.expiryType === 'Seconds' && sendPushNotification.advanceOptions.expiryValue <= 2419200))">
+                                <i class="fa fa-check-circle check-mark-custom" aria-hidden="true"></i>
+                            </span>
+                            <div class="btn-group btn-custom-group">
+                                <label class="btn push-btn" ng-model="sendPushNotification.advanceOptions.expiryType" uib-btn-radio="'Days'">Days</label>
+                                <label class="btn push-btn" ng-model="sendPushNotification.advanceOptions.expiryType" uib-btn-radio="'Hours'">Hours</label>
+                                <label class="btn push-btn" ng-model="sendPushNotification.advanceOptions.expiryType" uib-btn-radio="'Minutes'">Minutes</label>
+                                <label class="btn push-btn" ng-model="sendPushNotification.advanceOptions.expiryType" uib-btn-radio="'Seconds'">Seconds</label>
+                            </div>
+                            <span class="error" ng-show="sendPushNotification.advanceOptions.numLimitMsg && sendPushNotification.advanceOptions.visitedExpiryValue">Enter digits only</span>
+                            <span class="error" ng-show="!sendPushNotification.advanceOptions.numLimitMsg && notificationDetails.notificationExpiry.$error.pattern && sendPushNotification.advanceOptions.visitedExpiryValue">We allow only whole numeric time</span>
+                            <span class="error" ng-show="!sendPushNotification.advanceOptions.numLimitMsg && !notificationDetails.notificationExpiry.$error.pattern && sendPushNotification.advanceOptions.visitedExpiryValue && sendPushNotification.advanceOptions.expiryType === 'Days' && sendPushNotification.advanceOptions.expiryValue > 28">You cannot set notification expiry to more than 28 Days</span>
+                            <span class="error" ng-show="!sendPushNotification.advanceOptions.numLimitMsg && !notificationDetails.notificationExpiry.$error.pattern && sendPushNotification.advanceOptions.visitedExpiryValue && sendPushNotification.advanceOptions.expiryType === 'Hours' && sendPushNotification.advanceOptions.expiryValue > 672">You cannot set notification expiry to more than 672 Hours</span>
+                            <span class="error" ng-show="!sendPushNotification.advanceOptions.numLimitMsg && !notificationDetails.notificationExpiry.$error.pattern && sendPushNotification.advanceOptions.visitedExpiryValue && sendPushNotification.advanceOptions.expiryType === 'Minutes' && sendPushNotification.advanceOptions.expiryValue > 40320">You cannot set notification expiry to more than 40320 Minutes</span>
+                            <span class="error" ng-show="!sendPushNotification.advanceOptions.numLimitMsg && !notificationDetails.notificationExpiry.$error.pattern && sendPushNotification.advanceOptions.visitedExpiryValue && sendPushNotification.advanceOptions.expiryType === 'Seconds' && sendPushNotification.advanceOptions.expiryValue > 2419200">You cannot set notification expiry to more than 2419200 Seconds</span>
+                        </div>
+                        <div class="form-group duration-wrapper">
+                            <label for="notificationDuration">Notification Duration
+                                <i class="fa fa-question-circle" aria-hidden="true" uib-tooltip="Works on chrome browser only" tooltip-placement="top" tooltip-trigger="'mouseenter'"></i>
+                            </label>
+                            <div class="radio btn-radio">
+                                <div class="custom-radio">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="unlimited" id="unlimited" ng-model="sendPushNotification.advanceOptions.isDurationInSecs" value="unlimited">
+                                        <span>
+                                            <i class="fa fa-circle"></i>
+                                        </span> Keep notification open until interaction
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="radio btn-radio">
+                                <div class="custom-radio">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="timeSpecific" id="timeSpecific" ng-model="sendPushNotification.advanceOptions.isDurationInSecs"
+                                            value="limited">
+                                        <span>
+                                            <i class="fa fa-circle"></i>
+                                        </span> Keep open for 20 Seconds
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='field-box-wrapper schedule-notification-wrapper' id="schedule-notification-picker">
+                        <div class="form-group">
+                            <h4 class="utm-param-head utm-hidden-sm">
+                                Schedule Notification for later
+                            </h4>
+                            <div class="switch">
+                                <input id="schedule-notification" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="sendPushNotification.scheduleOrSend.isScheduleNotificationRequired">
+                                <label for="schedule-notification"></label>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="sendPushNotification.scheduleOrSend.isScheduleNotificationRequired">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-3">
+                                    <label>Time-Zone</label>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <select class="form-control" ng-model="zones.value" ng-change="timeZoneChange(zones.value)">
+                                        <option ng-repeat="zones in timeZoneList.data" value="{{zones.value}}">{{zones.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group" ng-if="sendPushNotification.scheduleOrSend.isScheduleNotificationRequired">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-4">
+                                    <div class="radio btn-radio">
+                                        <div class="custom-radio">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="scheduleNotification" value="one-time" ng-model="sendPushNotification.scheduleOrSend.scheduleType"
+                                                    ng-change="sendPushNotification.scheduleOrSend.onChangeScheduleType('one-time')">
+                                                <span>
+                                                    <i class="fa fa-circle"></i>
+                                                </span> One-Time
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-4">
+                                    <div class="radio btn-radio">
+                                        <div class="custom-radio">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="scheduleNotification" value="multiple-date" ng-model="sendPushNotification.scheduleOrSend.scheduleType"
+                                                    ng-change="sendPushNotification.scheduleOrSend.onChangeScheduleType('multiple-date')">
+                                                <span>
+                                                    <i class="fa fa-circle"></i>
+                                                </span> Multiple Dates
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-4">
+                                    <div class="radio btn-radio">
+                                        <div class="custom-radio">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="scheduleNotification" value="recurring" ng-model="sendPushNotification.scheduleOrSend.scheduleType"
+                                                    ng-change="sendPushNotification.scheduleOrSend.onChangeScheduleType('recurring')">
+                                                <span>
+                                                    <i class="fa fa-circle"></i>
+                                                </span> Recurring
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="one-time-wrapper schedule-sub-wrapper" ng-if="sendPushNotification.scheduleOrSend.scheduleType === 'one-time' && sendPushNotification.scheduleOrSend.isScheduleNotificationRequired">
+                            <div class="date-time-wrapper">
+                                <div class="form-group">
+                                    <label class="control-label" for="selectDate">Select Date & Time</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" uib-datepicker-popup ng-model="sendPushNotification.scheduleOrSend.ones.selectedDate"
+                                            is-open="sendPushNotification.scheduleOrSend.ones.showDateTimePicker" datepicker-options="sendPushNotification.scheduleOrSend.ones.selectedDateOptions"
+                                            ng-change="sendPushNotification.scheduleOrSend.ones.openDateTimePicker('select')">
+                                        <span class="input-group-addon" ng-click="sendPushNotification.scheduleOrSend.ones.openDateTimePicker('open')">
+                                            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <span class="text-at">at</span>
+                                <div class="form-group">
+                                    <label class="control-label" for="selectTime"></label>
+                                    <div class="">
+                                        <div uib-timepicker ng-model="sendPushNotification.scheduleOrSend.ones.selectedTime" min="sendPushNotification.scheduleOrSend.ones.minTime"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="multiple-dates-wrapper schedule-sub-wrapper" ng-if="sendPushNotification.scheduleOrSend.scheduleType === 'multiple-date' && sendPushNotification.scheduleOrSend.isScheduleNotificationRequired">
+                            <div class="date-time-wrapper" ng-repeat="dateTime in sendPushNotification.scheduleOrSend.multiple.dateTimeObejctList">
+                                <div class="form-group">
+                                    <label class="control-label" for="selectDate">Select Date & Time</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" uib-datepicker-popup ng-model="dateTime.selectedDate" is-open="dateTime.showDateTimePicker"
+                                            datepicker-options="dateTime.selectedDateOptions" ng-change="sendPushNotification.scheduleOrSend.multiple.openDateTimePicker('select', $index)">
+                                        <span class="input-group-addon" ng-click="sendPushNotification.scheduleOrSend.multiple.openDateTimePicker('open', $index)">
+                                            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <span class="text-at">at</span>
+                                <div class="form-group">
+                                    <label class="control-label" for="selectTime"></label>
+                                    <div class="">
+                                        <div uib-timepicker ng-model="dateTime.selectedTime" min="dateTime.minTime"></div>
+                                    </div>
+                                    <a class="fa fa-times" ng-click="sendPushNotification.scheduleOrSend.multiple.removeDateTimeInline($index)" ng-if="$index !== 0"></a>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-add-field" ng-click="sendPushNotification.scheduleOrSend.multiple.addDateTimeInline()"
+                                ng-if="sendPushNotification.scheduleOrSend.multiple.dateTimeObejctList.length < 10">Add More</button>
+                        </div>
+                        <div class="recurring-wrapper schedule-sub-wrapper " ng-if="sendPushNotification.scheduleOrSend.scheduleType === 'recurring' && sendPushNotification.scheduleOrSend.isScheduleNotificationRequired">
+                            <div class="date-limit-wrapper">
+                                <div class="form-group">
+                                    <label class="control-label" for="selectDate">Select Start Date</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" uib-datepicker-popup ng-model="sendPushNotification.scheduleOrSend.recurring.startDate"
+                                            is-open="sendPushNotification.scheduleOrSend.recurring.showDatePicker" datepicker-options="sendPushNotification.scheduleOrSend.recurring.startDateOptions"
+                                            ng-change="sendPushNotification.scheduleOrSend.recurring.onChangeDatePicker()">
+                                        <span class="input-group-addon" ng-click="sendPushNotification.scheduleOrSend.recurring.openPicker('date')">
+                                            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="radio btn-radio">
+                                        <div class="custom-radio">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="recurringNotification" value="end-date" ng-model="sendPushNotification.scheduleOrSend.recurring.dateLimit"
+                                                    ng-change="sendPushNotification.scheduleOrSend.recurring.onChangeLimit('end-date')">
+                                                <span>
+                                                    <i class="fa fa-circle"></i>
+                                                </span> Select End Date
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" uib-datepicker-popup ng-model="sendPushNotification.scheduleOrSend.recurring.endDate"
+                                            is-open="sendPushNotification.scheduleOrSend.recurring.showTimePicker" ng-disabled="sendPushNotification.scheduleOrSend.recurring.dateLimit === 'never-end'"
+                                            datepicker-options="sendPushNotification.scheduleOrSend.recurring.endDateOptions"
+                                            ng-change="sendPushNotification.scheduleOrSend.recurring.onChangeDatePicker()">
+                                        <span class="input-group-addon" ng-click="sendPushNotification.scheduleOrSend.recurring.openPicker('time')">
+                                            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="radio btn-radio">
+                                        <div class="custom-radio">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="recurringNotification" value="never-end" ng-model="sendPushNotification.scheduleOrSend.recurring.dateLimit"
+                                                    ng-change="sendPushNotification.scheduleOrSend.recurring.onChangeLimit('never-end')">
+                                                <span>
+                                                    <i class="fa fa-circle"></i>
+                                                </span> Never End
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="error" ng-if="sendPushNotification.scheduleOrSend.recurring.errorMessage !== ''">{{sendPushNotification.scheduleOrSend.recurring.errorMessage}}</span>
+                            <div class="repeat-wrapper schedule-sub-wrapper">
+                                <div class="repeat-head-wrapper">
+                                    <h4 class="utm-param-head">Repeat</h4>
+                                </div>
+                                <div class="repeat-schedule-wrapper schedule-sub-wrappe">
+                                    <div class="date-time-wrapper">
+                                        <div class="form-group">
+                                            <label class="control-label">Select Time</label>
+                                            <select class="form-control" name="repeatList" ng-model="sendPushNotification.scheduleOrSend.recurring.repeatedOn">
+                                                <option value="Daily">Daily</option>
+                                                <option value="Weekly">Weekly</option>
+                                                <option value="Monthly">Monthly</option>
+                                            </select>
+                                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                        </div>
+                                        <span class="text-at">at</span>
+                                        <div class="form-group">
+                                            <label class="control-label" for="selectTime"></label>
+                                            <div class="">
+                                                <div uib-timepicker ng-model="sendPushNotification.scheduleOrSend.recurring.selectedTime"></div>
+                                            </div>
+                                        </div>
+                                        <div class="repeat-schedule-wrapper">
+                                            <div class="form-group full-width-group" ng-if="sendPushNotification.scheduleOrSend.recurring.repeatedOn === 'Weekly'">
+                                                <label class="control-label label-block" for="selectTime">Select Days: </label>
+                                                <div class="custom-check" ng-repeat="days in sendPushNotification.scheduleOrSend.recurring.daysList">
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" ng-model="days.status">
+                                                        <span>
+                                                            <i class="fa fa-check"></i>
+                                                        </span> {{days.name}}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group full-width-group" ng-if="sendPushNotification.scheduleOrSend.recurring.repeatedOn === 'Monthly'">
+                                                <label class="control-label label-block" for="selectTime">Select Dates: </label>
+                                                <div class="custom-check" ng-repeat="dates in sendPushNotification.scheduleOrSend.recurring.datesList">
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" ng-model="dates.status">
+                                                        <span>
+                                                            <i class="fa fa-check"></i>
+                                                        </span> {{dates.name}}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='field-box-wrapper schedule-notification-wrapper' id="schedule-notification-picker">
+                        <div class="form-group">
+                            <h4 class="utm-param-head utm-hidden-sm">
+                                    Include Segment
+                            </h4>
+                            <div class="switch">
+                                <input id="schedule-notification-include-segment" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-model="sendPushNotification.scheduleOrSend.isIncludeSegmentRequired">
+                                <label for="schedule-notification-include-segment"></label>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="sendPushNotification.scheduleOrSend.isIncludeSegmentRequired">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-3">
+                                    <label>Samuel</label>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <select class="form-control">
+                                        <option ng-repeat="segments in segmentsList.data" value="{{segments.name}}">{{segments.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" ng-click="sendPushNotification.sendPushNotificationModal()" class="btn form-btn btn-send btn-custom-primary">
+                            <span ng-if="!sendPushNotification.scheduleOrSend.isScheduleNotificationRequired">Preview</span>
+                            <span ng-if="sendPushNotification.scheduleOrSend.isScheduleNotificationRequired">
+                                <span ng-if="sendPushNotification.notification.type === 'schedule'">Re-</span>Schedule</span>
+                        </button>
+                        <button type="button" ng-click="sendPushNotification.savePushNotificationModal()" class="btn form-btn btn-save btn-custom-primary"
+                            ng-if="!sendPushNotification.scheduleOrSend.isScheduleNotificationRequired">
+                            <span ng-if="sendPushNotification.notification.type !== 'save'">Save</span>
+                            <span ng-if="sendPushNotification.notification.type === 'save'">Update</span> as template</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+/* 
+    Created on : May 19, 2017, 12:36:44 PM
+    Author     : ahextech
+*/
+.features-page-wrapper{
+    padding: 50px 0;
+    .row{
+        margin-bottom: 20px;
+    }
+    .features-option-wrapper{
+        position    : relative;
+        padding-left: 70px;
+        img{
+            top      : -15px;
+            left     : 0;
+            position : absolute;
+            max-width: 50px;
+        }
+        .feature-head{
+            margin-bottom: 25px;
+            @include font($grey-1, 16px, $roboto-regular);
+        }
+        .feature-content{
+            margin-bottom: 50px;
+            @include font($grey-1, 14px, $roboto-light);
+        }
+    }
+    img{
+        margin   : 0 auto;
+        max-width: 400px;
+    }
+}

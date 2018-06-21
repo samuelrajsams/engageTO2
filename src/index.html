@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html ng-app="engageto" ng-cloak>
+    <head>
+        <meta charset="utf-8">
+        <title>Website Push Notifications for Chrome, Firefox and Safari - engageto</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <!--Place favicon.ico and apple-touch-icon.png in the root directory--> 
+        <link rel="shortcut icon" href="app/assets/images/favicon.png">
+        <link rel="manifest" href="app/convert_visitor_push_notification/manifest.json">
+
+        <!-- build:css({.tmp,src}) /styles/vendor.min.css -->
+        <!-- bower:css -->
+        <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css"/>
+        <link rel="stylesheet" href="/../bower_components/angularjs-slider/dist/rzslider.css" type="text/css"/>
+        <link rel="stylesheet" href="/../bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" type="text/css"/>
+        <link rel="stylesheet" href="/../bower_components/datatables.net-dt/css/jquery.dataTables.css" type="text/css"/>
+        <link rel="stylesheet" href="/../bower_components/angular-datatables/dist/plugins/bootstrap/datatables.bootstrap.min.css" type="text/css"/>
+        <link rel="stylesheet" href="/../bower_components/select-picker/dist/picker.min.css" type="text/css"/>
+        <link rel="stylesheet" href="/../bower_components/emojione/assets/css/emojione.min.css" type="text/css"/>
+        <link rel="stylesheet" href="/../bower_components/emojionearea/dist/emojionearea.min.css" type="text/css"/>
+        <link rel="stylesheet" href="/../bower_components/angular-toastr/dist/angular-toastr.min.css" type="text/css"/>
+        <link rel="stylesheet" href="../bower_components/bootstrap-select/dist/css/bootstrap-select.min.css" type="text/css"/>
+        <link rel="stylesheet" href="../bower_components/bootstrap-daterangepicker/daterangepicker.css" type="text/css"/>
+        <link rel="stylesheet" href="../bower_components/angular-bootstrap-colorpicker/css/colorpicker.min.css" type="text/css"/>
+        <link rel="stylesheet" href="../bower_components/ng-img-crop/compile/minified/ng-img-crop.css" type="text/css"/>
+
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:css({.tmp,src}) /styles/styles.min.css -->
+        <!-- inject:css -->
+        <link href="/app/assets/css/jquery.bxslider.min.css" rel="stylesheet" type="text/css"/>
+        <link href="/app/assets/css/_jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
+        <link href="/app/assets/css/odometer-theme-default.css" rel="stylesheet" type="text/css"/>
+        <link href="/app/assets/css/style.min.css" rel="stylesheet" type="text/css"/>
+        <!-- endinject -->
+        <!-- endbuild -->
+        <base href="/">    
+    </head>
+    <body>
+        <!-- included for FB Login-->
+        <div id="fb-root"></div>
+        <div id="page-loader" ng-if="engagetoApp.isPageLoading">
+            <div class="spinner">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+            </div>
+        </div>
+        <!--<nav class="engageto-nav navbar navbar-default navbar-fixed-top" ng-if="engagetoApp.isHeaderRequired">-->
+        <nav class="engageto-nav navbar navbar-static-top" ng-show="engagetoApp.isHeaderRequired">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" ng-click="engagetoApp.toggleNavBar()" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href ui-sref="landing" ng-if="!$storage.token">
+                        <img class="logo img-responsive logo-white" src="app/assets/images/logo-white.svg" alt=""/>
+                        <img class="logo img-responsive logo-blue hidden" src="app/assets/images/logo-blue.svg" alt=""/>
+                    </a>
+                    <a class="navbar-brand" href ui-sref="side-nav-template.new-push-notification" ng-show="$storage.token && engagetoApp.toState !== 'getting-started'">
+                        <img class="logo img-responsive logo-white" src="app/assets/images/logo-white.svg" alt=""/>
+                        <img class="logo img-responsive logo-blue hidden" src="app/assets/images/logo-blue.svg" alt=""/>
+                    </a>
+                    <a class="navbar-brand" href="javascript:void(0)" ng-show="engagetoApp.toState === 'getting-started'">
+                        <img class="logo img-responsive logo-white" src="app/assets/images/logo-white.svg" alt=""/>
+                        <img class="logo img-responsive logo-blue hidden" src="app/assets/images/logo-blue.svg" alt=""/>
+                    </a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse navbar-options">
+                    <ul class="nav navbar-nav navbar-right navbar-landing-options">
+                        <li ng-if="engagetoApp.toState !== 'getting-started'"><a href ng-click="engagetoApp.goToTab('how-it-works-custom')">How it works</a></li>
+                        <li ng-if="engagetoApp.toState !== 'getting-started'"><a href ng-click="engagetoApp.goToTab('features-landing-custom')">Features</a></li>
+                        <li ng-if="engagetoApp.toState !== 'getting-started'"><a href ng-click="engagetoApp.goToTab('pricing-tab-index')">Pricing</a></li>
+                        <li ng-if="engagetoApp.toState !== 'getting-started'"><a href ng-click="engagetoApp.goToTab('faq-tab-index')">FAQ</a></li>
+                        <li ng-if="engagetoApp.toState !== 'getting-started'"><a href="javascript:void(0);" target="_blank">Help</a></li>
+                        <li ng-if="!$storage.token"><a class="btn-login" href ui-sref="signin">Login</a></li>
+                        <li ng-if="!$storage.token"><a class="btn-register" href ui-sref="register">Register</a></li>
+                        <li ng-if="$storage.token && engagetoApp.toState !== 'getting-started'"><a class="btn-login btn-dashboard" href ui-sref="side-nav-template.new-push-notification">Dashboard</a></li>
+                        <li class="dropdown" ng-if="$storage.token && engagetoApp.toState === 'getting-started'">
+                            <a ng-click="signOut()">
+                                <i class="fa fa-power-off" aria-hidden="true"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+        <div ui-view></div>
+        <footer class="footer" ng-show="engagetoApp.isFooterRequired">
+            <div class="footer-first-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-3 col-md-2">
+                            <a href="javascript:void(0);">
+                                <img class="img-responsive" src="app/assets/images/logo-white.png" alt=""/>
+                            </a>
+                        </div>
+                        <!--                        <div class="col-xs-6 col-sm-2">
+                                                    <h3>Company</h3>
+                                                    <a href="javascript:void(0);">About</a>
+                                                    <a href ui-sref="how-it-works">How it works?</a>
+                                                    <a href="javascript:void(0);">Features</a>
+                                                    <a href ui-sref="pricing">Pricing</a>
+                                                    <a href="javascript:void(0);">Contact us</a>
+                                                </div>-->
+                        <div class="col-sm-9 col-md-10">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <h3>Products</h3>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <a href="javascript:void(0);">Push notification</a>
+                                            <a href="javascript:void(0);">Browser notification</a>
+                                            <a href="javascript:void(0);">Mobile notification</a>
+                                            <a href="javascript:void(0);">RSS-to-Push</a>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <a href ui-sref="chromePushNotification">Chrome</a>
+                                            <a href ui-sref="firefoxPushNotification">Firefox</a>
+                                            <a href ui-sref="androidPushNotification">Android</a>
+                                            <a href ui-sref="joomlaPushNotification">Joomla</a>
+                                            <a href ui-sref="wordpressPushNotification">Wordpress</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <h3>Resources</h3>
+                                            <a href="javascript:void(0);">Blog</a>
+                                            <a href="javascript:void(0);">Case studies</a>
+                                            <a href="javascript:void(0);">FAQ</a>
+                                            <a href ui-sref="notification-generator">Notification Generator</a>
+                                            <a href="javascript:void(0);">Knowledge Base</a>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <h3>Contact us on</h3>
+                                            <a href="mailto:sales@engageto.com" class="contact-text">
+                                                <i class="fa fa-envelope-o" aria-hidden="true"></i> sales@engageto.com
+                                            </a>
+                                            <a class="contact-text">
+                                                <i class="fa fa-phone" aria-hidden="true"></i> +91 123 45 67890
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom-footer-content">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-view">© 2017 engageto.com </p>
+                            </div>
+                            <div class="col-sm-6 col-xs-8 col-xxs-12">
+                                <ul class="list-inline bottom-footer-links">
+                                    <li>
+                                        <a href="javascript:void(0);" class="footlinks">Sitemap</a>
+                                    </li>
+                                    <li>
+                                        <a href ui-sref="termAndCondition" class="footlinks">Terms and Conditions</a>
+                                    </li>
+                                    <li>
+                                        <a href ui-sref="privacyPolicy" class="footlinks">Privacy Policy</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-3 col-xs-4 col-xxs-12">
+                                <ul class="list-inline social-icon-wrapper clearfix">
+                                    <li>
+                                        <a href="javascript:void(0);" target="_blank" class="facebook-icon"><i class="fa fa-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" target="_blank" class="twitter-icon"><i class="fa fa-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" target="_blank" class="linkedin-icon"><i class="fa fa-linkedin-square"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- build:js /scripts/vendor.min.js -->
+        <!-- bower:js -->
+        <script src="../bower_components/jquery/dist/jquery.js"></script>
+        <script src="../bower_components/angular/angular.js"></script>
+        <script src="../bower_components/angular-animate/angular-animate.js"></script>
+        <script src="../bower_components/angular-mocks/angular-mocks.js"></script>
+        <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="../bower_components/angularjs-slider/dist/rzslider.js"></script>
+        <script src="../bower_components/ngstorage/ngStorage.js"></script>
+        <script src="../bower_components/moment/min/moment.min.js"></script>
+        <script src="../bower_components/ng-file-upload/ng-file-upload.js"></script>
+        <script src="../bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="../bower_components/datatables.net/js/jquery.dataTables.js"></script>
+        <script src="../bower_components/angular-datatables/dist/angular-datatables.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/colreorder/angular-datatables.colreorder.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/columnfilter/angular-datatables.columnfilter.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/light-columnfilter/angular-datatables.light-columnfilter.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/colvis/angular-datatables.colvis.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/fixedcolumns/angular-datatables.fixedcolumns.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/fixedheader/angular-datatables.fixedheader.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/scroller/angular-datatables.scroller.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/tabletools/angular-datatables.tabletools.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/buttons/angular-datatables.buttons.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/select/angular-datatables.select.js"></script>
+        <script src="../bower_components/angular-scroll/angular-scroll.min.js"></script>
+        <script src="../bower_components/clipboard/dist/clipboard.min.js"></script>
+        <script src="../bower_components/ngclipboard/dist/ngclipboard.min.js"></script>
+        <script src="../bower_components/emojione/lib/js/emojione.min.js"></script>
+        <script src="../bower_components/emojionearea/dist/emojionearea.min.js"></script>
+        <script src="../bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+        <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+        <script src="../bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <script src="../bower_components/angular-daterangepicker/js/angular-daterangepicker.min.js"></script>
+        <script src="../bower_components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.min.js"></script>
+        <script src="../bower_components/ng-img-crop/compile/unminified/ng-img-crop.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+        <script src="https://d3js.org/d3.v3.min.js"></script>
+        <script src="https://d3js.org/queue.v1.min.js"></script>
+        <script src="https://d3js.org/topojson.v1.min.js"></script>
+        <!--<script src="app/shared/vendor/d3.min.js"></script>-->
+        <script src="app/shared/vendor/d3js.js"></script>
+        <script src="app/shared/vendor/topojson.min.js"></script>
+
+        <!-- build:js /scripts/app.min.js -->
+        <script src="app/shared/vendor/build/jquery.datetimepicker.full.js"></script>
+        <script src="app/shared/vendor/jquery.bxslider.min.js"></script>
+        <script src="app/shared/vendor/odometer.min.js"></script>
+        <script src="app/app.config.js"></script>
+        <script src="app/common.js"></script>
+        <script src="app/application.js"></script>
+        <script src="app/application.config.js"></script>
+        <script src="app/application.run.js"></script>
+        <script src="app/shared/constants/app.constant.js"></script>
+        <script src="app/shared/constants/landing.constant.js"></script>
+        <script src="app/shared/constants/tnc.constant.js"></script>
+        <script src="app/shared/constants/privacy.policy.constant.js"></script>
+        <script src="app/shared/constants/optins.constant.js"></script>
+        <script src="app/shared/constants/sent.insights.constant.js"></script>
+        <script src="app/shared/constants/send.notification.constant.js"></script>
+
+        <script src="app/modules/landing/landing.module.js"></script>
+        <script src="app/modules/landing/config/landing.routes.js"></script>
+        <script src="app/modules/onboarding/onboarding.module.js"></script>
+        <script src="app/modules/onboarding/config/onboarding.routes.js"></script>
+        <script src="app/modules/notification/notification.module.js"></script>
+        <script src="app/modules/notification/config/notification.routes.js"></script>
+        <script src="app/modules/all_notifications/all.notifications.module.js"></script>
+        <script src="app/modules/all_notifications/config/all.notifications.routes.js"></script>                        
+        <script src="app/modules/summary/summary.module.js"></script>
+        <script src="app/modules/summary/config/summary.routes.js"></script>
+        <script src="app/modules/smartsegmentation/smart.segmentation.module.js"></script>
+        <script src="app/modules/smartsegmentation/config/smart.segmentation.routes.js"></script>
+        <script src="app/modules/smartautomation/smart.automation.module.js"></script>
+        <script src="app/modules/smartautomation/config/smart.automation.routes.js"></script>
+        <script src="app/modules/settings/settings.module.js"></script>
+        <script src="app/modules/settings/config/setting.routes.js"></script>
+        <script src="app/modules/website/website.module.js"></script>
+        <script src="app/modules/website/config/website.routes.js"></script>
+        <script src="app/modules/account_settings/account.settings.module.js"></script>
+        <script src="app/modules/account_settings/config/account.settings.routes.js"></script>
+        <script src="app/modules/team_management/team.management.module.js"></script>
+        <script src="app/modules/team_management/config/team.management.routes.js"></script>
+        <!--        <script src="app/modules/api_credentials/api.credentials.module.js"></script>
+        <script src="app/modules/api_credentials/config/api.credentials.routes.js"></script>
+        <script src="app/modules/integrations/integrations.module.js"></script>
+        <script src="app/modules/integrations/config/integrations.routes.js"></script>-->
+        <script src="app/modules/fcm_credentials/fcm.credentials.module.js"></script>
+        <script src="app/modules/fcm_credentials/config/fcm.credentials.routes.js"></script>
+
+        <script src="app/shared/directives/single.click.directive.js"></script>
+        <script src="app/shared/directives/select.picker.multiple.directive.js"></script>
+        <script src="app/shared/directives/engageto.loader.image.directives.js"></script>
+        <script src="app/shared/directives/pricing.value.text.directive.js"></script>
+        <script src="app/modules/website/directives/add.website.directive.js"></script>
+        <script src="app/modules/notification/directives/welcome.notification.validator.directive.js"></script>
+        <script src="app/modules/notification/directives/welcome.advance.validator.directive.js"></script>
+        <script src="app/modules/notification/directives/welcome.summary.validator.directive.js"></script>
+        <script src="app/modules/account_settings/directives/edit.user.validator.directive.js"></script>
+        <script src="app/modules/settings/component/go.previous.page.component.js"></script>
+        <!--        <script src="app/modules/notification/directives/ab.split.validator.directive.js"></script>
+                <script src="app/modules/notification/directives/ab.split.advance.validator.directive.js"></script>
+        <script src="app/modules/landing/directives/emoji.input.title.directives.js"></script>-->
+
+        <script src="app/shared/services/application.services.js"></script>
+        <script src="app/modules/landing/services/landing.service.js"></script>
+        <script src="app/modules/onboarding/services/onboarding.service.js"></script>
+        <script src="app/modules/landing/services/signin.modal.service.js"></script>
+        <script src="app/modules/notification/services/notification.service.js"></script>
+        <script src="app/modules/account_settings/services/account.service.js"></script>
+        <script src="app/modules/website/services/website.service.js"></script>
+        <script src="app/modules/smartsegmentation/services/smart.segmentation.service.js"></script>
+        <script src="app/modules/summary/services/summary.service.js"></script>
+        <script src="app/modules/smartautomation/services/smart.automation.service.js"></script>
+        <script src="app/modules/team_management/services/team.management.service.js"></script>
+        <script src="app/modules/team_management/services/team.member.details.service.js"></script>
+        <script src="app/modules/all_notifications/services/all_notifications_service.js"></script>
+        <script src="app/modules/fcm_credentials/services/fcm.service.js"></script>
+        <script src="app/modules/settings/services/setting.service.js"></script>
+
+        <script src="app/modules/landing/controllers/landing.controller.js"></script>
+        <script src="app/modules/landing/controllers/modal/register.modal.controller.js"></script>
+        <script src="app/modules/landing/controllers/register.controller.js"></script>
+        <!--        <script src="app/modules/landing/controllers/blog.controller.js"></script>-->
+        <script src="app/modules/landing/controllers/notification.generator.controller.js"></script>
+        <!--  <script src="app/modules/landing/controllers/partners.controller.js"></script>-->
+        <!--<script src="app/modules/landing/controllers/affiliates.controller.js"></script>-->
+        <!--<script src="app/modules/landing/controllers/engagetoh.coupon.controller.js"></script>-->
+        <script src="app/modules/landing/controllers/pricing.controller.js"></script>
+        <script src="app/modules/onboarding/controllers/onboarding.controller.js"></script>
+        <script src="app/modules/landing/controllers/privacy.policy.controller.js"></script>
+        <script src="app/modules/landing/controllers/termsncondition.controller.js"></script>
+        <script src="app/modules/landing/controllers/how.it.works.controller.js"></script>
+        <script src="app/modules/landing/controllers/chrome.push.notification.controller.js"></script>
+        <script src="app/modules/landing/controllers/joomla.push.notification.controller.js"></script>
+        <script src="app/modules/landing/controllers/android.push.notification.controller.js"></script>
+        <script src="app/modules/landing/controllers/firefox.push.notification.controller.js"></script>
+        <script src="app/modules/landing/controllers/wordpress.push.notification.controller.js"></script>
+        <script src="app/modules/landing/controllers/features.controller.js"></script>
+        <script src="app/modules/landing/controllers/faq.controller.js"></script>
+        <script src="app/modules/landing/controllers/code.installation.controller.js"></script>
+        <script src="app/modules/landing/directives/set.password.checker.directive.js"></script>
+        <script src="app/modules/landing/directives/password.checker.directive.js"></script>
+        <script src="app/modules/landing/directives/notification.generator.validator.directive.js"></script>
+        <script src="app/modules/landing/directives/notification.generator.advance.validator.directive.js"></script>
+        <script src="app/modules/account_settings/directives/change.password.checker.directive.js"></script>
+        <script src="app/modules/landing/controllers/modal/pricing.modal.controller.js"></script>
+        <script src="app/modules/landing/controllers/set.password.controller.js"></script>
+        <script src="app/modules/landing/controllers/resetting.password.controller.js"></script>
+        <script src="app/modules/landing/controllers/login.controller.js"></script>
+        <script src="app/modules/landing/controllers/resend.mail.controller.js"></script>
+        <script src="app/modules/landing/controllers/reset.password.controller.js"></script>
+        <script src="app/modules/landing/controllers/modal/support.modal.controller.js"></script>
+        <script src="app/modules/account_settings/controllers/modal/change.password.controller.js"></script>
+        <script src="app/modules/notification/controllers/modal/add.domain.modal.controller.js"></script>
+        <script src="app/modules/notification/controllers/modal/exit.notification.controller.js"></script>
+        <script src="app/modules/notification/controllers/modal/save.push.notification.controller.js"></script>
+        <script src="app/modules/notification/controllers/modal/send.push.notification.controller.js"></script>
+        <script src="app/modules/notification/controllers/modal/upload.image.manager.controller.js"></script>
+        <script src="app/modules/notification/controllers/push/send.new.push.notification.controller.js"></script>
+        <script src="app/modules/notification/controllers/welcome/welcome.notification.controller.js"></script>
+        <!--       <script src="app/modules/notification/controllers/absplit/ab.split.test.notification.controller.js"></script>-->
+        <script src="app/modules/notification/controllers/new.push.notification.controller.js"></script>
+        <script src="app/modules/summary/controllers/summary.controller.js"></script>
+        <script src="app/modules/all_notifications/controllers/all.notifications.controller.js"></script>
+        <script src="app/modules/all_notifications/controllers/modal/download.report.modal.controller.js"></script>
+        <script src="app/modules/all_notifications/controllers/modal/delete.notification.modal.controller.js"></script>
+        <script src="app/modules/all_notifications/controllers/welcome.notification.insight.controller.js"></script>
+        <script src="app/modules/all_notifications/controllers/ab.split.notification.insight.controller.js"></script>
+        <script src="app/modules/all_notifications/controllers/sent.notification.insight.controller.js"></script>
+        <script src="app/modules/settings/controllers/settings.controller.js"></script>
+        <script src="app/modules/settings/controllers/optins.controller.js"></script>
+        <script src="app/modules/settings/controllers/sub.optins.controller.js"></script>
+        <script src="app/modules/settings/controllers/child.window.controller.js"></script>
+        <script src="app/modules/settings/controllers/get.api.key.controller.js"></script>
+        <script src="app/modules/smartsegmentation/directives/subscriber.datepicker.directive.js"></script>
+        <script src="app/modules/smartsegmentation/directives/smart.segment.validator.directive.js"></script>
+        <script src="app/modules/smartsegmentation/directives/autocomplete.city.directive.js"></script>
+        <script src="app/modules/smartsegmentation/controllers/modal/new.smart.segmentation.modal.controller.js"></script>
+        <script src="app/modules/smartsegmentation/controllers/modal/edit.smart.segmentation.modal.controller.js"></script>
+        <script src="app/modules/smartsegmentation/controllers/modal/delete.smart.segment.modal.controller.js"></script>
+        <script src="app/modules/smartsegmentation/controllers/smart.segmentation.controller.js"></script>
+        <script src="app/modules/smartautomation/controllers/modal/add.rss.feed.modal.controller.js"></script>
+        <script src="app/modules/smartautomation/controllers/modal/add.rss.feed.modal.controller.js"></script>
+        <script src="app/modules/smartautomation/directives/rss.feed.validator.js"></script>
+        <script src="app/modules/smartautomation/controllers/modal/edit.rss.feed.modal.controller.js"></script>
+        <script src="app/modules/smartautomation/controllers/modal/delete.rss.feed.modal.controller.js"></script>
+        <script src="app/modules/smartautomation/controllers/smart.automation.controller.js"></script> 
+        <script src="app/modules/website/controllers/modal/add.website.modal.controller.js"></script>
+        <script src="app/modules/website/controllers/modal/edit.website.modal.controller.js"></script>
+        <script src="app/modules/website/controllers/modal/delete.website.modal.controller.js"></script>
+        <script src="app/modules/website/controllers/modal/verify.code.installation.modal.controller.js"></script>
+        <script src="app/modules/website/controllers/modal/show.code.installation.modal.controller.js"></script>
+        <script src="app/modules/website/controllers/domain.management.controller.js"></script>
+        <script src="app/modules/account_settings/controllers/modal/upload.image.manager.controller.js"></script>
+        <script src="app/modules/account_settings/controllers/modal/cancel.account.modal.controller.js"></script>
+        <script src="app/modules/account_settings/controllers/modal/edit.account.setting.modal.controller.js"></script>
+        <script src="app/modules/account_settings/controllers/modal/invoice.setting.modal.controller.js"></script>
+        <script src="app/modules/account_settings/controllers/modal/upgrade.degrade.account.modal.controller.js"></script>
+        <script src="app/modules/account_settings/controllers/account.settings.controller.js"></script>
+        <script src="app/modules/account_settings/directives/edit.user.validator.directive.js"></script>
+        <script src="app/modules/team_management/controllers/modal/add.team.management.controller.js"></script>
+        <script src="app/modules/team_management/controllers/modal/assign.team.management.controller.js"></script>
+        <script src="app/modules/team_management/controllers/modal/delete.nonassign.management.controller.js"></script>
+        <script src="app/modules/team_management/controllers/modal/delete.team.management.controller.js"></script>
+        <script src="app/modules/team_management/controllers/modal/edit.team.management.controller.js"></script>
+        <script src="app/modules/team_management/controllers/modal/memeber.activity.management.controller.js"></script>
+        <script src="app/modules/team_management/controllers/team.management.controller.js"></script>
+        <script src="app/modules/team_management/directives/add.team.member.validator.directive.js"></script>
+        <script src="app/modules/fcm_credentials/controllers/fcm.credentials.controller.js"></script>
+        <!-- <script src="app/modules/api_credentials/controllers/api.credentials.controller.js"></script> -->
+        <!-- <script src="app/modules/integrations/controllers/integrations.controller.js"></script> -->
+        <!-- <script src="app/modules/landing/controllers/modal/watch.video.modal.controller.js"></script> -->
+
+        <!-- <script src="app/convert_visitor_push_notification/register-worker.js"></script> --> -->
+
+        <!-- endinject -->
+        <!-- endbuild -->
+    </body>
+</html>

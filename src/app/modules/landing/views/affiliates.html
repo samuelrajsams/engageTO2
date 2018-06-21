@@ -1,0 +1,95 @@
+<div class="custom-banner-area text-center">
+    <div class="container">
+        <h1 class="custom-head">engageto Affiliate Program</h1>
+        <h3 class="custom-content">Make more money with engageto</h3>
+        <button type="button" class="btn btn-join-program">Join our Affiliate Program</button>
+    </div>
+</div>
+<div class="affiliate-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="affiliate-program-wrapper">
+                    <h3>How engageto Affiliate Program works?</h3>
+                    <p>
+                        engageto affiliate program is really easy to use and it will help you to make you more money. 
+                        We'll pay you a 20% commission on every sale you generate using your referral link.
+                    </p>
+                    <p>
+                        You just have to promote the affiliate link on your website, blog, email, Facebook, Twitter, 
+                        LinkedIn or other social networks.
+                    </p>
+                </div>
+                <div class="intentpush-promotion-wrapper">
+                    <h3 class="promote-intentpush-head">Why should I promote engageto?</h3>
+                    <p>
+                        engageto is website push notification service provider. You can easily integrate engageto with 
+                        your website/blog and collect subscribers to send mobile app like notifications but without mobile 
+                        app. engageto is equipped with great features such as multiple opt-ins, subscriber segmentation, 
+                        RSS to Push, Unlimited Websites, Unlimited Notification, Multi user etc.
+                    </p>
+                    <p>
+                        Website push notification is new and sexy technology which will help online marketers & bloggers to 
+                        engage subscribers by sending targeted offers and blog updates.
+                    </p>
+                    <p>
+                        Most importantly you can get 20% commission on each sale. Our pricing model depends on number of 
+                        subscribers. If you sale a plan with highest number of subscribers, you will receive highest amount 
+                        of commission.
+                    </p>
+                </div>
+                <div class="affiliate-income-calculator-wrapper">
+                    <h4 class="income-calculator-head">Affiliate Income Calculator</h4>
+                    <div class="plan-wrapper custom-affiliate-wrapper">
+                        <label>Select Plan:</label>
+                        <div class="btn-group btn-custom-group">
+                            <label class="btn push-btn" ng-model="affiliates.plan" uib-btn-radio="'STARTUP'" ng-change="affiliates.changePlanSlab()">STARTUP</label>
+                            <label class="btn push-btn" ng-model="affiliates.plan" uib-btn-radio="'BUSINESS'" ng-change="affiliates.changePlanSlab()">BUSINESS</label>
+                        </div>
+                    </div>
+                    <div class="tenure-wrapper custom-affiliate-wrapper">
+                        <label>Select Tenure:</label>
+                        <div class="btn-group btn-custom-group">
+                            <label class="btn push-btn" ng-model="affiliates.planSlab" uib-btn-radio="'Monthly'" ng-change="affiliates.changePlanSlab()">Monthly</label>
+                            <label class="btn push-btn" ng-model="affiliates.planSlab" uib-btn-radio="'Yearly'" ng-change="affiliates.changePlanSlab()">Yearly</label>
+                        </div>
+                    </div>
+                    <div class="subscribers-number-wrapper custom-affiliate-wrapper">
+                        <label>Select number of subscribers:</label>
+                        <rzslider rz-slider-model="affiliates.slider.value" rz-slider-options="affiliates.slider.options"></rzslider>
+                    </div>
+                    <div class="sales-wrapper custom-affiliate-wrapper">
+                        <label>Sales per month:</label>
+                        <input type="text" class="form-control sales-select" ng-model="affiliates.salesPerMonth">
+                        <a class="fa fa-caret-up" aria-hidden="true" ng-click="affiliates.stepUp()"></a>
+                        <div class="divider"></div>
+                        <a class="fa fa-caret-down" aria-hidden="true" ng-click="affiliates.stepDown()"></a>
+                        <div class="seperator"></div>
+                    </div>
+                    <h4>
+                        You'll get ${{affiliates.planPrice}} commission on {{affiliates.planSlab}} {{affiliates.plan}} plan of {{affiliates.noOfSubscribers}} subscribers with only {{affiliates.salesPerMonth}} sales.
+                    </h4>
+                </div>
+                <div class="start-affiliation-wrapper">
+                    <h3 class="start-affiliation-head">How do I get started as an affiliate?</h3>
+                    <p>
+                        You just need to join our affiliate program on ShareASale. We manually review and approve all 
+                        affiliates, so it can take up to 48 hours before you get approved.
+                    </p>
+                    <p>
+                        After approval you just need to login at ShareASale & click on Links &raquo; Get a Link / Banner 
+                        then find engageto, click on it. There you'll get your referral link. We've 60 days cookie policy, 
+                        it'll help you to get commission even if visitor doesn't buy engageto subscription at first visit.
+                    </p>
+                    <button type="button" class="btn btn-join-affiliate"> Join Affiliate Program</button>
+                    <p>
+                        If you have any question head to our Affiliates section of <a href ui-sref="support" target="_blank">Support</a> and go through our 
+                        knowledge-base articles. Also don't forget to read our <a href="/terms-and-conditions#affiliatetos">Affiliate Terms & Conditions</a>.
+                    </p>
+                    <p>You can also contact us at <a href="mailto:affiliates@engageto.com">affiliates@engageto.com</a>.</p>
+                    <p>Thank you very much for showing interest in our affiliate program.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

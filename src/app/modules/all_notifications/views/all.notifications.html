@@ -1,0 +1,183 @@
+<div class="dashboard-content-header">
+    <h3 class="dashboard-content-area-heading">All Push Notifications</h3>
+    <div class="subtitle">Overview of notifications</div>
+</div>
+<div class="container-fluid">
+    <div class="smart-custom-container all-notification-wrapper">
+        <div class="smart-custom-wrapper">
+            <div class="date-wrapper">
+                <form class="form-inline date-form custom-form">
+                    <div class="form-group">
+                        <i class="fa fa-calendar"></i>
+                        <input date-range-picker class="form-control date-picker" type="text" ng-model="allNotifications.date" options="allNotifications.options"/>
+                    </div>
+                    <div class="btn-group" uib-dropdown is-open="status.isopen">
+                        <button id="single-button" type="button" class="btn btn-custom-primary" uib-dropdown-toggle ng-disabled="disabled">
+                            Get Report <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                            <li role="menuitem">
+                                <a href ng-click="allNotifications.downloadReport('pdf')">PDF</a>
+                            </li>
+                            <li role="menuitem">
+                                <a href ng-click="allNotifications.downloadReport('csv')">CSV</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+            <uib-tabset class="push-notifications-list" active="allNotifications.activeTab">
+                <uib-tab class="push-notifications-option" index="0" heading="Sent">
+                    <div class="table-responsive">
+                        <table datatable="ng" id="sent-datatables-data" class="table table-bordered table-striped table-responsive smart-custom-table sent-notification-table" dt-options="allNotifications.dtOptions" dt-column-defs="allNotifications.sentDtColumnDefs"> 
+                            <thead> 
+                                <tr> 
+                                    <th>Title</th> 
+                                    <th>Scheduled?</th> 
+                                    <th>Delivered Count</th> 
+                                    <th>Views</th> 
+                                    <th>Clicks</th> 
+                                    <th>CTR</th> 
+                                    <th>CTA 1 Clicks</th> 
+                                    <th>CTA 2 Clicks</th> 
+                                    <th>Action</th>
+                                </tr> 
+                            </thead> 
+                            <tbody>
+                                <tr ng-repeat="sentPushNotifications in allNotifications.sentPushNotifications">
+                                    <td>{{sentPushNotifications.title}}</td>
+                                    <td>{{sentPushNotifications.scheduled_at | date:'dd MMMM yyyy HH:mm:ss'}}</td>
+                                    <td>{{sentPushNotifications.successful_delivery}}</td>
+                                    <td>{{sentPushNotifications.views}}</td>
+                                    <td>{{sentPushNotifications.clicks}}</td>
+                                    <td>{{sentPushNotifications.ctr | number : 2}}</td>
+                                    <td>{{sentPushNotifications.cta1_clicks}}</td>
+                                    <td>{{sentPushNotifications.cta2_clicks}}</td>
+                                    <td>
+                                        <a class="fa fa-trash" ng-click="allNotifications.openDeleteNotificationModal('sent', sentPushNotifications.notification_id, $index)"></a>
+                                        <a class="fa fa-bar-chart" ui-sref="side-nav-template.sent-notification-insight({notificationId: sentPushNotifications.notification_id})" ng-if="engagetoApp.profile.role !== 'Analyst'"></a>
+                                    </td>
+                                </tr>
+                            </tbody> 
+                        </table>
+                    </div>
+                </uib-tab>
+                <uib-tab class="push-notifications-option" index="1" heading="Scheduled">
+                    <div class="table-responsive">
+                        <table datatable="ng" class="table table-bordered table-striped table-responsive smart-custom-table scheduled-notification-table" dt-options="allNotifications.dtOptions" dt-column-defs="allNotifications.scheduledDtColumnDefs"> 
+                            <thead> 
+                                <tr> 
+                                    <th>Title</th> 
+                                    <th>To be Delivered to</th> 
+                                    <th>Scheduled On</th> 
+                                    <th>Scheduled Type</th> 
+                                    <th>Time Zone</th> 
+                                    <th>Action</th>
+                                </tr> 
+                            </thead> 
+                            <tbody>
+                                <tr ng-repeat="scheduledPushNotifications in allNotifications.scheduledPushNotifications"> 
+                                    <td>{{scheduledPushNotifications.title}}</td> 
+                                    <td>{{scheduledPushNotifications.toBeDeliveredTo}}</td> 
+                                    <td>{{scheduledPushNotifications.scheduledOn}}</td> 
+                                    <td style="text-transform: capitalize;">{{scheduledPushNotifications.notification_type}}</td> 
+                                    <td>Asia/Kolkota GMT+5:30</td> 
+                                    <td>
+                                        <a class="fa fa-pencil" ui-sref="side-nav-template.send-new-push-notification({notificationId: scheduledPushNotifications.notification_id, notificationType: 'schedule'})"></a>
+                                        <a class="fa fa-trash" ng-click="allNotifications.openDeleteNotificationModal('schedule', scheduledPushNotifications.notification_id, $index)"></a>
+                                    </td>
+                                </tr>
+                            </tbody> 
+                        </table>
+                    </div>
+                </uib-tab>
+                <uib-tab class="push-notifications-option" index="2" heading="Saved Templates">
+                    <div class="table-responsive">
+                        <table datatable="ng" class="table table-bordered table-striped table-responsive smart-custom-table saved-notification-table" dt-options="allNotifications.dtOptions" dt-column-defs="allNotifications.saveDtColumnDefs"> 
+                            <thead> 
+                                <tr> 
+                                    <th class="name-col">Name</th> 
+                                    <th class="address-col">Title</th> 
+                                    <th class="edit-col">Action</th>
+                                </tr> 
+                            </thead> 
+                            <tbody> 
+                                <tr ng-repeat="savedPushNotifications in allNotifications.savedPushNotifications">
+                                    <td>{{savedPushNotifications.name}}</td>
+                                    <td>{{savedPushNotifications.title}}</td>
+                                    <td>
+                                        <a class="fa fa-pencil" ui-sref="side-nav-template.send-new-push-notification({notificationId: savedPushNotifications.notification_id, notificationType: 'save'})" ng-if="engagetoApp.profile.role !== 'Analyst'"></a>
+                                        <a class="fa fa-trash" ng-click="allNotifications.openDeleteNotificationModal('saved', savedPushNotifications.notification_id, $index)" ng-if="engagetoApp.profile.role !== 'Analyst'"></a>
+                                    </td>
+                                </tr>
+                            </tbody> 
+                        </table>
+                    </div>
+                </uib-tab>
+                <!--                <uib-tab class="push-notifications-option" index="3" heading="AB Split Tests">
+                                    <div class="table-responsive">
+                                        <table datatable="ng" class="table table-bordered table-striped table-responsive smart-custom-table ab-notification-table" dt-options="allNotifications.dtOptions" dt-column-defs="allNotifications.abSplitDtColumnDefs"> 
+                                            <thead> 
+                                                <tr> 
+                                                    <th>No</th> 
+                                                    <th>Name</th> 
+                                                    <th>Scheduled On</th> 
+                                                    <th>Winner</th> 
+                                                    <th>Winner Views</th> 
+                                                    <th>Winner Clicks</th> 
+                                                    <th>Winner CTR</th> 
+                                                    <th>Edit</th> 
+                                                    <th>Delete</th>
+                                                    <th>Insights</th>
+                                                </tr> 
+                                            </thead> 
+                                            <tbody>
+                                                <tr ng-repeat="notification in allNotifications.abSplitNotifications">
+                                                    <td>{{$index + 1}}</td>
+                                                    <td>{{notification.segmentName}}</td>
+                                                    <td>{{notification.scheduledAt}}</td>
+                                                    <td>{{notification.abSplitWinnerName}}</td>
+                                                    <td>{{notification.winnerViewCounts}}</td>
+                                                    <td>{{notification.winnerClickCounts}}</td>
+                                                    <td>{{notification.winnerCTR}}</td>
+                                                    <td><a class="fa fa-pencil"></a></td>
+                                                    <td><a class="fa fa-trash"></a></td>
+                                                    <td><a class="fa fa-bar-chart"></a></td>
+                                                </tr>
+                                            </tbody> 
+                                        </table>
+                                    </div>
+                                </uib-tab>-->
+                <uib-tab class="push-notifications-option" index="4" heading="Welcome Notifications">
+                    <div class="table-responsive">
+                        <table datatable="ng" class="table table-bordered table-striped table-responsive smart-custom-table welcome-notification-table" dt-options="allNotifications.dtOptions" dt-column-defs="allNotifications.welcomeDtColumnDefs"> 
+                            <thead> 
+                                <tr> 
+                                    <th>Title</th> 
+                                    <th>Views</th> 
+                                    <th>Clicks</th> 
+                                    <th>CTR</th> 
+                                    <th>Created By</th> 
+                                    <th>Action</th>
+                                </tr> 
+                            </thead> 
+                            <tbody>
+                                <tr ng-repeat="notification in allNotifications.welcomeNotifications">
+                                    <td>{{notification.title}}</td>
+                                    <td>{{notification.noOfViews || 0}}</td>
+                                    <td>{{notification.noOfClicks || 0}}</td>
+                                    <td>{{notification.ctr | number : 2}}</td>
+                                    <td>{{notification.created_by}}</td>
+                                    <td>
+                                        <a class="fa fa-pencil" ui-sref="side-nav-template.new-welcome-notification({notificationId:notification.notification_referer})" ng-if="engagetoApp.profile.role !== 'Analyst'"></a>
+                                        <a class="fa fa-trash" ng-click="allNotifications.openDeleteNotificationModal('welcome', notification.notification_referer, $index)" ng-if="engagetoApp.profile.role !== 'Analyst'"></a>
+                                    </td>
+                                </tr>
+                            </tbody> 
+                        </table>
+                    </div>
+                </uib-tab>
+            </uib-tabset>
+        </div>
+    </div>
+</div>

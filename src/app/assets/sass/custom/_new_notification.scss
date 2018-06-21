@@ -1,0 +1,1306 @@
+/* 
+    Created on : Sep 19, 2016, 6:39:04 PM
+    Author     : ahextech
+*/
+@import "variable.scss";
+@import "mixin.scss";
+
+.visible-xxs{
+    display: none;
+}
+.hidden-xxs{
+    display: block;
+}
+
+/* Styles for Carousel Indicators Starts Here */
+.preview-wrapper-chrome{
+    position: relative;
+    .carousel-indicators{
+        bottom       : 0;
+        position     : absolute;
+        margin-bottom: 0;
+    }
+}
+/* Styles for Carousel Indicators Ends Here */
+
+/* Styles for Notification Preview Positioning Starts Here */
+.notification-preview, .notification-preview-xs{
+    top     : 152px;
+    right   : 15px;
+    width   : 350px;
+    z-index : 1;
+    position: fixed;
+    /* Styles for Arrow Buttons on Notification Preview Starts Here */
+    .preview-wrapper-chrome, .preview-wrapper-firefox, .preview-wrapper-safari{
+        .preview-arrow{
+            color    : $blue-1;
+            display  : none;
+            opacity  : 0.8;
+            z-index  : 1;
+            position : absolute;
+            font-size: 24px;
+            &.fa-arrow-circle-left{
+                left: 5px;
+            }
+            &.fa-arrow-circle-right{
+                right: 5px;
+            }
+        }
+        &:hover{
+            .preview-arrow{
+                display: block;
+            }
+        }
+    }
+    .preview-wrapper-chrome{
+        .preview-arrow{
+            top: 108px;
+        }      
+        .domain-name{
+            position: absolute;
+            bottom: 5px;
+        }
+    }
+    .preview-wrapper-firefox{
+        .preview-arrow{
+            top: 98px;
+        }
+    }
+    .preview-wrapper-safari{
+        .preview-arrow{
+            top: 88px;
+            &.fa-arrow-circle-left{
+                left: 55px;
+            }
+        }
+    }
+    /* Styles for Arrow Buttons on Notification Preview Ends Here */
+}
+/* Styles for Notification Preview Positioning Starts Here */
+.utm-param-head{
+    .form-group{
+        small{
+            display: block;
+            font-size: 10px;
+            text-align: left;
+        }
+    }
+}
+.preview-info-wrapper{
+    margin-top: 20px;
+    .info{
+        border: 1px solid $grey-border-dark;
+        padding: 10px;
+        position: relative;
+        border-radius: 2px;
+        background-color: #fff;
+        &::before{
+            top: -12px;
+            left: 50%;
+            width: 0;
+            height: 0;
+            content: "";
+            position: absolute;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 12px solid $grey-border-dark;
+        }
+        &::after{
+            top: -10px;
+            left: 50%;
+            width: 0;
+            height: 0;
+            content: "";
+            position: absolute;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 11px solid $white;
+        }
+    }
+}
+
+/* Styles for Notification Viewing Icon in xs starts here */
+.btn-view-notification-preview{
+    top             : 75px;
+    color           : $white;
+    right           : 15px;
+    width           : 35px;
+    border          : 1px solid transparent;
+    height          : 35px;
+    z-index         : 10;
+    position        : fixed;
+    font-size       : 20px;
+    background-color: $sidebar-grey;
+    @include border-radius(50%);
+}
+/* Styles for Notification Viewing Icon in xs ends here */
+
+/* Styles for New Push Notification Modal Boxes Starts Here */
+.custom-push-notification-modal{
+    .modal-dialog{
+        width: 450px;
+        .modal-content{
+            .custom-push-notification-modal-body{
+                position: relative;
+                .custom-close{
+                    top             : -25px;
+                    color           : $grey-1;
+                    right           : -50px;
+                    border          : none;
+                    opacity         : 1;
+                    position        : absolute;
+                    font-size       : 25px;
+                    background-color: transparent;
+                }
+                .modal-title{
+                    color        : $grey-1;
+                    font-size    : 30px;
+                    font-family  : $opensans-light;
+                    margin-bottom: 0;
+                    &.exit-modal-head{
+                        font-size: 29px;
+                    }
+                }
+                .preview-wrapper-chrome{
+                    margin-top   : 15px;
+                    margin-bottom: 30px;
+                }
+                .push-notification-content-head{
+                    color        : $grey-1;
+                    font-size    : 22px;
+                    font-family  : $opensans-light;
+                    margin-bottom: 15px;
+                }
+                .push-notification-content{
+                    color        : $grey-1;
+                    font-size    : 16px;
+                    font-family  : $opensans-light;
+                    margin-bottom: 20px;
+                }
+            }
+            .custom-modal-body{
+                .save-notification-head{
+                    margin-bottom: 10px;
+                    @include font($grey-1, 20px, $roboto-regular);
+                }
+                .preview-wrapper-chrome{
+                    width : 420px;
+                    margin: 0 0 20px;
+                    .preview-content-chrome{
+                        width: 320px;
+                    }
+                }
+                .custom-modal-btn{
+                    width    : 100%;
+                    max-width: 100px;
+                    @include font($white, 14px, $roboto-regular);
+                    @include transition(all 0.5s ease-in-out);
+                    &.modal-blue-btn{
+                        background-color: $blue-light-20;
+                        &:hover{
+                            background-color: $blue;
+                        }
+                    }
+                    &.modal-grey-btn{
+                        background-color: $black-light-20;
+                        &:hover{
+                            background-color: $black-1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/* Styles for New Push Notification Modal Boxes Ends Here */
+
+/* Common Styles For All Forms Starts Here*/
+.custom-form{
+    .utm-param-head{
+        display       : inline-block;
+        margin-top    : 6px;
+        vertical-align: top;
+        @include font($black-1, 16px, $roboto-regular);
+    }
+    .field-box-wrapper{
+        padding: 15px 15px 0 15px;
+        border: 1px solid $grey-border-dark;
+        margin-bottom: 15px;
+        @include border-radius(2px);
+        ul{
+            li{
+                &:last-of-type{
+                    .fa-circle{
+                        width: 14px;
+                    }
+                }
+                &:nth-last-of-type(2){
+                    .fa-circle{
+                        width: 14px;
+                    }
+                }
+            }
+        }
+    }
+    .duration-wrapper{
+        > label{
+            display: block;
+            font-size: 16px;
+        }
+        .btn-radio{
+            &:last-of-type{
+                .form-control{
+                    display: inline-block;
+                    max-width: 70px;
+                    margin: 0 5px;
+                }
+            }
+        }
+    }
+    .notification-image-container{
+        ul{
+            margin: 0;
+            li{
+                width: 60px;
+                height: 60px;
+                cursor: pointer;
+                border: 1px solid $grey-border-dark;
+                padding: 5px;
+                position: relative;
+                vertical-align: middle;
+                &.active{
+                    border-color: $blue;
+                }
+                img{
+                    max-width: 100%;
+                }
+                i{
+                    top: 2px;
+                    left: 2px;
+                    color: $blue;
+                    position: absolute;
+                }
+                &:last-of-type{
+                    padding: 10px 5px;
+                    font-size: 12px;
+                    text-align: center;
+                    border-style: dashed;
+                    font-family: roboto-light;
+                }
+            }
+        }
+    }
+    .notification-expiry-wrapper{
+        > label{
+            display: block;
+            font-size: 16px;
+            margin-bottom: 10px;
+        } 
+        > input{
+            display: inline-block;
+            max-width: 70px;
+        }
+    }
+}
+.notification-header{
+    color        : $form-label;
+    font-size    : 24px;
+    margin-top   : 0;
+    font-family  : $opensans-light;
+    margin-bottom: 30px;
+    padding      : 15px 15px;
+    border-bottom: 2px solid #e6ecf4;
+    background: #fff;
+    h3{
+        margin: 0;
+    }
+}
+/* Common Styles For All Forms Ends Here*/
+
+/* Styles for Categories List Starts Here */
+.notification-category{
+    clear   : both;
+    width: 61%;
+    margin: auto;
+    display: block;
+    padding-top: 50px;
+    li{
+        float     : left;
+        padding   : 0;
+        text-align: center;
+        &:nth-of-type(2), &:last-of-type{
+            margin-left: 30px;
+        }
+        .categories{
+            color      : $form-label; 
+            width      : 320px;
+            height     : 210px;
+            display    : inline-block;
+            padding    : 50px 30px 0;
+            font-size  : 18px;
+            font-family: $opensans-light;
+            @include box-shadow(0px 4px 8px 4px rgba(0,0,0,0.2));
+            @include border-radius(5px);
+            &:hover{
+                color           : $white;
+                background-color: $blue-3;
+            }
+            small{
+                display    : block;
+                font-size  : 14px;
+                margin-top : 25px;
+                font-family: $opensans-light;
+            }
+        }
+    }
+}
+/* Styles for Categories List Ends Here */
+
+/* Styles for Browser Buttons Starts Here*/
+.browser-push-button-wrapper{
+    text-align: right;
+}
+
+/* Styles for Image manager Modal Starts Here */
+.upload-image-manager-modal{
+    .modal-dialog{
+        /*width: 480px;*/
+        .modal-content{
+            padding         : 0;
+            background-color: $white;
+            @include border-radius(0);
+            .image-manager-modal-header{
+                padding         : 10px 15px;
+                min-height      : 50px;
+                background-color: $blue-1;
+                .modal-title{
+                    color       : $white;
+                    position    : relative;
+                    font-size   : 18px;
+                    font-family : $opensans-light;
+                }
+            }
+            .image-manager-modal-body{
+                padding : 0 15px 15px;
+                position: relative;
+                .image-manager-icon-list{
+                    .nav-tabs{
+                        border-bottom: 1px solid #ddd;
+                        .nav-item{
+                            width   : auto;
+                            padding : 0;
+                            position: relative;
+                            &.active{
+                                a{
+                                    font-family : $roboto-regular;
+                                    border-color: $blue; 
+                                }
+                            }
+                            &:not(:last-of-type){
+                                a{
+                                    margin-right: 5px;
+                                }
+                            }
+                            a{
+                                border          : 0;
+                                padding         : 12px 8px;
+                                text-align      : left;
+                                border-bottom   : 2px solid transparent;
+                                background-color: $white;
+                                @include font($grey-1, 14px, $roboto-light);
+                                &:hover{
+                                    border-color: $blue; 
+                                }
+                            }
+                        }
+                    }
+                    .tab-content{
+                        .icons-wrapper{
+                            .btn-upload-icons{
+                                color           : $grey-1;
+                                font-size       : 14px;
+                                max-width       : 120px;
+                                margin-top      : 20px;
+                                min-height      : 38px;
+                                font-family     : $opensans-light;
+                                border-color    : $blue-1;
+                                background-color: $white;
+                                @include border-radius(5px);
+                            }
+                            .icon-list{
+                                margin: 15px 0 0;
+                                &>.icons{
+                                    border  : 2px solid transparent;
+                                    cursor  : pointer;
+                                    padding : 0;
+                                    position: relative;
+                                    &.icon-blue{
+                                        img{
+                                            border-color: $blue;
+                                        }
+                                    }
+                                    .fa-check-circle{
+                                        top      : 7px;
+                                        left     : 7px;
+                                        color    : $blue;
+                                        display  : block;
+                                        position : absolute;
+                                        font-size: 15px;
+                                    }
+                                    img{
+                                        border   : 1px solid #ddd;
+                                        margin   : 5px;
+                                        padding  : 5px;
+                                        max-width: 61px;
+                                    }
+                                }
+                            }
+                            > .btn-custom-primary{
+                                margin : 10px auto 0;
+                                display: block;
+                            }
+                            .btn-wrapper{
+                                margin-top: 10px;
+                            }
+                            .btn-select-icon{
+                                max-width   : 75px;
+                                border-color: $green-1;
+                            }
+                            .btn-delete-icon{
+                                max-width   : 75px;
+                                margin-left : 15px;
+                                border-color: $red;
+                            }
+                            .pre-built-icon-head{
+                                color      : $grey-1;
+                                display    : block;
+                                font-size  : 14px;
+                                margin-top : 15px;
+                                font-family: $opensans-light;
+                            }
+                        }
+                        .cropArea {
+                            width     :100%;
+                            height    :350px;
+                            overflow  : hidden;
+                            background: #E4E4E4;
+                        }
+                        .icons-wrapper{
+                            .error{
+                                margin: 5px 0 -10px;
+                                display: block;
+                                position: initial;
+                            }
+                        }
+                        .image-preview-wrapper{
+                            top     : 15px;
+                            right   : 15px;
+                            position: absolute;
+                            img{
+                                width : 30px;
+                                height: 30px;
+                            }
+                        }
+                    }
+                }
+            }
+            .image-manager-modal-footer{
+
+            }
+        }
+    }
+}
+.upload-image-wrapper{
+    border    : 1px dashed $grey-border-dark;
+    cursor    : pointer;
+    position  : relative;
+    min-height: 300px;
+    margin: 20px 0;
+    span{ 
+        top       : 50%;
+        width     : 100%;
+        opacity   : 0.1;
+        position  : absolute;
+        font-size : 35px;
+        text-align: center;
+        @include translate(0, -50%);
+        small{
+            display: block;
+            font-size: 24px;
+        }
+    }
+}
+/* Styles for Image manager Modal Ends Here */
+
+/* Styles for Create Welcome Notification Starts Here */
+.welcome-notification-header{
+    color      : $form-label;
+    font-size  : 18px;
+    font-family: $opensans-light;
+    font-weight: 700;
+}
+.help-text{
+    top           : 0;
+    color         : $form-label;
+    right         : 0;
+    position      : absolute;
+    font-size     : 14px;
+    font-family   : $opensans-light;
+    border-bottom : 1px solid $form-label;
+    padding-bottom: 5px;
+}
+/* Styles for Create Welcome Notification Starts Here */
+
+/* Styles for Schedule Notification Wrapper Starts Here */
+.schedule-notification-wrapper{
+    .form-group{
+        .btn-radio{
+            &:first-of-type{
+                margin: 0;
+            }
+            .custom-radio{
+                margin: 0;
+            }
+        }
+    }
+    .custom-radio{
+        label{
+            &.radio-inline{
+                input[type="radio"]{
+                    +span{
+                        i{
+                            margin: 0.5px 0 0 -0.5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .schedule-sub-wrapper{
+        border-top   : 1px solid $grey-border-dark;
+        padding-top  : 10px;
+        margin-bottom: 20px;
+        .date-time-wrapper{
+            position: relative;
+            .form-group{
+                width         : 45%;
+                display       : inline-block;
+                max-width     : 320px;
+                vertical-align: middle;
+                &:nth-of-type(2){
+                    width: auto;
+                    max-width: initial;
+                }
+                .input-group{
+                    .form-control{
+                        border-top-right-radius: 0;
+                        border-bottom-right-radius: 0;
+                    }
+                }
+                .input-group-addon{
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                    background-color: $white;
+                    .fa{
+                        color: $grey-1;
+                    }
+                }
+                .uib-timepicker{
+                    .btn-link{
+                        line-height: 1;
+                        color: $blue;
+                        &:hover{
+                            color: $blue;
+                        }
+                    }
+                    .form-group{
+                        margin: 0 5px;
+                    }
+                    .btn-default{
+                        @include transition(all 0.5s ease-in-out);
+                        &:hover{
+                            color: $dark-grey;
+                            border-color: $blue;
+                            background-color: transparent;
+                        }
+                        &:focus{
+                            color: $dark-grey;
+                            background-color: transparent;
+                        }
+                    }
+                }
+            }
+            .text-at{
+                margin : 0 15px;
+                display: inline-block;
+                @include font($grey-1, 14px, $roboto-regular);
+            }
+            .fa-times{
+                color    : $btn_delete_bg;
+                font-size: 15px;
+                margin-left: 10px;
+                top      : 50%;
+                right    : -25px;
+                position : absolute;
+            }
+        }
+        .date-limit-wrapper{
+            .form-group{
+                width         : 30%;
+                display       : inline-block;
+                max-width     : 320px;
+                vertical-align: top;
+                &:not(:first-of-type){
+                    margin-left: 15px;
+                }
+                .input-group{
+                    margin-top: 15px;
+                    .input-group-addon{
+                        background-color: $white;
+                        .fa{
+                            color: $grey-1;
+                        }
+                    }
+                }
+            }
+        }
+        .subscriber-timezone-wrapper{
+            border: 1px solid $grey-border-dark;
+            .subscriber-local-time-switch-wrapper{
+                padding         : 10px;
+                border-bottom   : 1px solid $grey-border-dark;
+                background-color: #fbfbfb;
+                .form-group{
+                    margin-bottom: 0;
+                    .utm-param-head{
+                        color         : $grey-1;
+                        margin        : 0;
+                        font-size     : 14px;
+                        vertical-align: middle;
+                    }
+                    .switch{
+                        input{
+                            &.cmn-toggle-round{
+                                + label{
+                                    &:before{
+                                        top: 0;
+                                    }
+                                    &:after{
+                                        top: 1px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .subscriber-list-wrapper{
+                padding: 10px;
+                h3{
+                    font-size    : 14px;
+                    margin-bottom: 5px;
+                }
+            }
+        }
+        .btn-add-field{
+            @include border-radius(5px);
+            @include button(100%, 110px, $blue-light-20);
+            @include font($white, 14px, $roboto-regular);
+            @include transition(all 0.5s ease-in-out);
+            &:focus, &:hover{
+                background-color: $blue;
+            }
+        }
+        .repeat-wrapper{
+            border: 1px solid $grey-border-dark;
+            .repeat-head-wrapper{
+                padding         : 10px;
+                border-bottom   : 1px solid $grey-border-dark;
+                background-color: #fbfbfb;
+                .utm-param-head{
+                    color    : $grey-1;
+                    margin   : 0;
+                    font-size: 14px;
+                }
+            }
+            .repeat-schedule-wrapper{
+                padding: 10px;
+                .form-group{
+                    width         : 45%;
+                    display       : inline-block;
+                    max-width     : 320px;
+                    vertical-align: middle;
+                    &.full-width-group{
+                        width: 100%;
+                        max-width: initial;
+                    }
+                    .label-block{
+                        display: block;
+                        margin-bottom: 10px;
+                    }
+                    .custom-check{
+                        min-width: 70px;
+                    }
+                    &:first-of-type{
+                        position  : relative;
+                        select{
+                            cursor            : pointer;
+                            z-index           : 11;
+                            appearance        : none;
+                            -moz-appearance   : none;
+                            background-color  : transparent;
+                            -webkit-appearance: none;
+                        }
+                        .fa-caret-down{
+                            top     : 30px;
+                            color   : $grey-1;
+                            right   : 10px;
+                            z-index : 0;
+                            position: absolute;
+                        }
+                    }
+                    .input-group-addon{
+                        background-color: $white;
+                        .fa{
+                            color: $grey-1;
+                        }
+                    }
+                }
+                .text-at{
+                    margin : 0 15px;
+                    display: inline-block;
+                    @include font($grey-1, 14px, $roboto-regular);
+                }
+            }
+        }
+    }
+}
+/* Styles for Schedule Notification Wrapper Ends Here */
+
+@media(min-width: 992px) and (max-width: 1199px){
+    .plus-icon {
+        font-size: 30px;
+    }
+    .custom-form{
+        .utm-param-head{
+            margin-top: 0;
+        }
+    }
+    .notification-header{
+        font-size    : 20px;
+        margin-bottom: 25px;
+    }
+}
+
+@media(min-width: 926px) and (max-width: 991px){
+    .notification-details-form, .advanced-options-form{
+        .switch{
+            display    : inline-block;
+            margin-left: 5px;
+            input{
+                &.cmn-toggle-round{
+                    + label{
+                        &:before, &:after{
+                            top: 2px;
+                        }
+                        &:after{
+                            top: 1px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(min-width: 768px) and (max-width: 925px){
+    .notification-details-form, .advanced-options-form{
+        .switch{
+            display    : block;
+            margin-left: 0;
+            input{
+                &.cmn-toggle-round{
+                    + label{
+                        &:before, &:after{
+                            top: 0;
+                        }
+                        &:after{
+                            top: -1px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(min-width: 768px) and (max-width: 991px){
+    .notification-preview{
+        width: 280px;
+    }
+    /* Styles for Notification Category Starts Here */
+    .notification-category{
+        li{
+            &:last-of-type{
+                margin-left: 20px;
+            }
+            .categories{
+                width    : 260px;
+                padding  : 40px 20px 0;
+                small{
+                    font-size: 14px;
+                }
+            }
+        }
+
+    }
+    /* Styles for Notification Category Ends Here */
+
+    .custom-form{
+        .utm-param-head{
+            position : relative;
+            font-size: 16px;
+            i{
+                top      : 2px;
+                right    : -17px;
+                position : absolute;
+                font-size: 14px;
+            }
+        }
+        .form-group{
+            label{
+                font-size: 16px;
+                i{
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    .notification-header{
+        font-size    : 18px;
+        margin-bottom: 25px;
+    }
+    .plus-icon {
+        font-size: 25px;
+    }
+    .btn-bitly{
+        font-size: 17px;
+    }
+    .form-btn{
+        max-width: 120px;
+    }
+    .notification-details-form, .advanced-options-form{
+        .switch{
+            input{
+                &.cmn-toggle-round{
+                    + label{
+                        &:before, &:after{
+                            /*top     : 0;*/
+                        }
+                        &:before{
+                            width : 50px;
+                            height: 22px;
+                        }
+                        &:after{
+                            /*top   : -1px;*/
+                            width : 24px;
+                            height: 24px;
+                        }
+                    }
+                    &:checked{
+                        + label{
+                            &:after{
+                                margin-left: 30px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    /* Styles for Notification Content Starts Here */
+    .notification-details-form{
+        .form-group{
+            label{
+                font-size: 16px;
+                i{
+                    font-size: 15px;
+                }
+            }
+            input{
+                min-height: 40px;
+            }
+            small{
+                font-size: 12px;
+            }
+        }
+    }
+    /* Styles for Notification Content Ends Here */
+
+
+}
+@media(min-width: 586px) and (max-width: 767px){
+
+}
+@media(min-width: 526px) and (max-width: 585px){
+
+}
+@media(min-width: 526px) and (max-width: 767px){
+    .xs-hide{
+        display: block !important;
+    }
+    .custom-form{
+        .utm-param-head{
+            font-size : 16px;
+            margin-top: 0;
+        }
+        .form-btn{
+            max-width: 100px;
+        }
+        .btn-back, .btn-next, .btn-send{
+            margin-right: 4.5%;
+        }
+    }
+
+    /* Styles for Notification Preview Positioning Starts Here */
+    .notification-preview, .notification-preview-xs{
+        /*        top: 0;
+                width: 100%;
+                margin: 20px auto;
+                position: relative;
+                transform: initial;
+                max-width: 350px;*/
+        position: fixed;
+        background-color: $white;
+        .preview-wrapper-chrome{
+            height    : 120px;
+            margin-top: 15px;
+            .preview-image-chrome{
+                width: 25%;
+                span{
+                    font-size: 22px;
+                }
+            }
+            .preview-content-chrome{
+                width  : 75%;
+                padding: 8px 10px;
+                span{
+                    &:first-of-type{
+                        font-size: 13px;
+                    }
+                    &:not(:first-of-type){
+                        font-size : 13px;
+                        margin-top: 5px;
+                    }
+                }
+            }
+        }
+    }
+    /* Styles for Notification Preview Positioning Ends Here */
+}
+@media(min-width: 481px) and (max-width: 525px){
+    .custom-form{
+        .utm-param-head{
+            font-size    : 17px;
+            margin-top   : 0;
+            margin-bottom: 0;
+        }
+        .form-group{
+            label{
+                i{
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    .btn-bitly{
+        margin   : 0 auto;
+        display  : block;
+    }
+}
+
+@media(min-width: 481px) and (max-width: 767px){
+    /* Styles for Notification Category Starts Here */
+    .notification-category{
+        li{
+            &:last-of-type{
+                margin-left: 20px;
+            }
+            .categories{
+                width    : auto;
+                height   : 200px;
+                padding  : 30px 20px;
+                font-size: 16px;
+                max-width: 210px;
+                small{
+                    font-size: 14px;
+                }
+            }
+        }
+
+    }
+    /* Styles for Notification Category Ends Here */
+
+    /* Styles for New Push Notification Modal Boxes Starts Here */
+    .custom-push-notification-modal{
+        .modal-dialog{
+            width  : 430px;
+            margin : 30px auto;
+            display: block;
+            .modal-content{
+                padding: 20px;
+                .custom-push-notification-modal-body{
+                    .custom-close{
+                        top      : -15px;
+                        right    : -15px;
+                        font-size: 20px;
+                    }
+                    .modal-title{
+                        font-size    : 25px;
+                        &.exit-modal-head{
+                            font-size: 25px;
+                        }
+                    }
+                    .push-notification-content-head{
+                        font-size    : 19px;
+                    }
+                    .push-notification-content{
+                        font-size    : 15px;
+                    }
+                    .custom-modal-btn{
+                        max-width: 177px;
+                    }
+                }
+            }
+        }
+    }
+    /* Styles for New Push Notification Modal Boxes Ends Here */
+    .custom-form{
+        .form-group{
+            label{
+                i{
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    .plus-icon{
+        font-size: 28px;
+    }
+    .btn-bitly{
+        font-size: 18px;
+    }
+}
+@media(min-width: 320px) and (max-width: 480px){
+    /* Styles for Notification Category Starts Here */
+    .notification-category{
+        li{
+            float  : none;
+            display: block;
+            &:last-of-type{
+                margin: 40px 0 0;
+            }
+            .categories{
+                width    : auto;
+                max-width: 280px;
+            }
+        }
+
+    }
+    /* Styles for Notification Category Ends Here */
+
+    /* Styles for New Push Notification Modal Boxes Starts Here */
+    .custom-push-notification-modal{
+        .modal-dialog{
+            width  : 300px;
+            margin : 30px auto;
+            display: block;
+            .modal-content{
+                padding: 0;
+                .custom-push-notification-modal-body{
+                    .custom-close{
+                        top      : 5px;
+                        right    : 5px;
+                        font-size: 15px;
+                    }
+                    .modal-title{
+                        font-size : 20px;
+                        &.exit-modal-head{
+                            font-size: 19px;
+                        }
+                    }
+                    .push-notification-content-head{
+                        font-size : 18px;
+                    }
+                    .push-notification-content{
+                        font-size : 14px;
+                        text-align: justify;
+                    }
+                    .custom-modal-btn{
+                        margin   : 10px auto;
+                        display  : block;
+                        font-size: 18px;
+                        max-width: 270px;
+                    }
+                }
+            }
+        }
+    }
+    /* Styles for New Push Notification Modal Boxes Ends Here */
+    .uib-datepicker-popup{
+        left   : -6px !important;
+        padding: 5px;
+    }
+    .custom-form{
+        /* Styles UTM Parameter Head Starts Here */
+        .utm-param-head{
+            font-size    : 16px;
+            margin-top   : 0;
+            margin-bottom: 0;
+        }
+        .form-group{
+            .btn-radio{
+                .btn-radio-label{
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    .btn-bitly{
+        margin   : 0 auto;
+        display  : block;
+        font-size: 17px;
+    }
+}
+
+@media(min-width: 320px) and (max-width: 767px){
+    .engageto-dashboard-content{
+        /*width      : 100%;*/
+        margin-left: 0;
+    }
+    .btn-sidebar{
+        top             : 50px;
+        right           : -40px;
+        width           : 40px;
+        border          : 1px solid $sidebar-grey;
+        height          : 40px;
+        position        : absolute;
+        z-index         : 9999;
+        background-color: $sidebar-grey;
+        .fa-bars{
+            color    : $white;
+            font-size: 21px;
+        }
+    }
+    .notification-header{
+        font-size    : 17px;
+        margin-bottom: 15px;
+    }
+    .plus-icon{
+        font-size: 22px;
+    }
+    .upload-image-manager-modal{
+        .modal-dialog{
+            .nav-tabs{
+                li{
+                    display: inline-block;
+                    a{
+                        @include border-radius(0);
+                    }
+                }
+            }
+        }
+    }
+    .notification-preview{
+        top: 140px;
+        right: -100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        @include transition(all 0.5s ease-in-out);
+        @include border-radius(8px);
+        &.notification-preview-toggle{ 
+            right: 10px;
+        }
+    }
+}
+
+@media(min-width: 320px) and (max-width: 525px){
+    .hidden-xxs{
+        display: none;
+    }
+    .visible-xxs{
+        display: block;
+    }
+    /* Styles for fixed notification preview starts here */
+    .notification-preview, .notification-preview-xs{
+        top        : 140px;
+        right      : 15px;
+        width      : auto;
+        z-index    : 20;
+        position   : fixed;
+        margin-left: 15px;
+        .browser-push-button-wrapper{
+            .btn-custom-group{
+                .push-btn{
+                    font-size : 13px;
+                    min-height: 32px;
+                }
+            }
+        }
+        .preview-wrapper-chrome{
+            height     : 100px;
+            margin-top : 10px;
+            margin-left: 15px;
+            .preview-image-chrome{
+                width: 20%;
+                span{
+                    font-size: 20px;
+                }
+            }
+            .preview-content-chrome{
+                width  : 80%;
+                padding: 10px;
+                span{
+                    &:first-of-type{
+                        font-size: 13px;
+                    }
+                    &:not(:first-of-type){
+                        font-size : 13px;
+                        margin-top: 3px;
+                    }
+                }
+            }
+        }
+    }
+    /* Styles for fixed notification preview ends here */
+    .notification-details-form, .advanced-options-form{
+        .form-btn{
+            width: 32%;
+            margin: 30px 0 15px 0;
+            display: inline-block;
+            max-width: 158px;
+        }
+    }
+    .schedule-send-form{
+        .form-btn{
+            width: 49%;
+            display: inline-block;
+            max-width: 240px;
+        }
+        .btn-back, .btn-send{
+            margin: 30px 0 0 0;
+        }
+        .btn-next, .btn-exit{
+            margin: 15px 0 0 0;
+        }
+    }
+    .custom-form{
+        .form-group{
+            label{
+                i{
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
+/* Media Queries Ends Here */
